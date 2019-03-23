@@ -1,0 +1,194 @@
+testproc.lst     Page 1 ../assemble Ver  0.1229148993.00a
+$Id: testproc.asm,v 1.1 2011/04/13 19:53:46 doug Exp $
+COPR 2011 Douglas Goodall
+   1:U:1 0000:                    title      $Id: testproc.asm,v 1.1 2011/04/+
+   1+U+1 0000:          13 19:53:46 doug Exp $  
+   2:U:1 0000:                    subttl     COPR 2011 Douglas Goodall  
+   3:U:1 0000:                ;
+   4:U:1 0000:                ; $Log: testproc.asm,v $
+   5:U:1 0000:                ; Revision 1.1  2011/04/13 19:53:46  doug
+   6:U:1 0000:                ; Initial revision
+   7:U:1 0000:                ;
+   8:U:1 0000:                ;
+   9:U:1 0000:                    include    gplstuff.inc  
+   1:U:2 0000:                ; ------------------------------------
+   2:U:2 0000:                ; This file is part of "Vintage Modern 
+   3:U:2 0000:                ; Assembler Plus Tools (VMAPT)".
+   4:U:2 0000:                ;
+   5:U:2 0000:                ; VMAPT is free software: you can 
+   6:U:2 0000:                ; redistribute it and/or modify it under 
+   7:U:2 0000:                ; the terms of  the GNU General Public 
+   8:U:2 0000:                ; License  as published by the Free
+   9:U:2 0000:                ; Software  Foundation, either version 3
+  10:U:2 0000:                ; of the License, or (at your option)  
+  11:U:2 0000:                ; any later version.
+  12:U:2 0000:                ;
+  13:U:2 0000:                ; VMAPT is distributed in the hope that it 
+  14:U:2 0000:                ; will be useful, but WITHOUT ANY WARRANTY;
+  15:U:2 0000:                ; without even the implied warranty of   
+  16:U:2 0000:                ; MERCHANTABILITY or FITNESS FOR A 
+  17:U:2 0000:                ; PARTICULAR PURPOSE. See the GNU General 
+  18:U:2 0000:                ; Public License for more details.
+  19:U:2 0000:                ;
+  20:U:2 0000:                ; You  should have received a copy of the 
+  21:U:2 0000:                ; GNU General Public License along with 
+  22:U:2 0000:                ; VMAPT. If not,
+  23:U:2 0000:                ; see <http://www.gnu.org/licenses/>.
+  24:U:2 0000:                ; ----------------------------------------
+  25:U:2 0000:                                
+  10:U:1 0000:                    include    assemble.inc  
+   1:U:2 0000:                ;
+   2:U:2 0000:                ; $Log: assemble.inc,v $
+   3:U:2 0000:                ; Revision 1.1  2011/03/25 08:43:19  doug
+   4:U:2 0000:                ; Initial revision
+   5:U:2 0000:                ;
+   6:U:2 0000:                ;
+   7:U:2 0000:          TRUE      equ8       1  
+   8:U:2 0000:          FALSE     equ8       0  
+   9:U:2 0000:                ;;;;;;;;;;;;;;;;;;;;;;
+  10:U:2 0000:                ; eof - assemble.inc ;
+  11:U:2 0000:                ;;;;;;;;;;;;;;;;;;;;;; 
+  11:U:1 0000:                    include    cpm80.inc  
+   1:U:2 0000:                ;
+   2:U:2 0000:                ; $Log: cpm80.inc,v $
+testproc.lst     Page 2 ../assemble Ver  0.1229148993.00a
+$Id: testproc.asm,v 1.1 2011/04/13 19:53:46 doug Exp $
+COPR 2011 Douglas Goodall
+   3:U:2 0000:                ; Revision 1.1  2011/03/25 08:43:19  doug
+   4:U:2 0000:                ; Initial revision
+   5:U:2 0000:                ;
+   6:U:2 0000:                ;
+   7:U:2 0000:          bdos      equ16      5  
+   8:U:2 0000:          conin     equ8       1  
+   9:U:2 0000:          conout    equ8       2  
+  10:U:2 0000:          prt       equ8       9  
+  11:U:2 0000:          term      equ8       0  
+  12:U:2 0000:                ;;;;;;;;;;;;;;;;;;;
+  13:U:2 0000:                ; eof - cpm80.inc ;
+  14:U:2 0000:                ;;;;;;;;;;;;;;;;;;;
+  15:U:2 0000:                                
+  12:U:1 0000:                                
+  13:U:1 0000:                    radix      hex  
+  14:U:1 0100:                    org        100  
+  15:U:1 0100:                                
+  16:U:1 0100: 0E 0D    start     mvi        c,destbuf-srcbufr  
+  17:U:1 0102: 11 24 01           lxi        d,destbuf  
+  18:U:1 0105: 21 17 01           lxi        h,srcbufr  
+  19:U:1 0108:                    proc       z80  
+  20:U:1 0108: ED B0              ldir         
+  21:U:1 010A:                    proc       8085  
+  22:U:1 010A:                                
+  23:U:1 010A: 0E 09              mvi        c,prt  
+  24:U:1 010C: 11 31 01           lxi        d,donemsg  
+  25:U:1 010F: CD 05 00           call       bdos  
+  26:U:1 0112:                                
+  27:U:1 0112: 0E 00              mvi        c,TERM  
+  28:U:1 0114: C3 05 00           jmp        bdos  
+  29:U:1 0117:                                
+  30:U:1                srcbufr   dstr       Hello World!!                   +
+  30+U+1 0117:                     
+  30:U:1 0117: 48 65 6C srcbufr   db         048H,065H,06CH  ; Hel
+  30:U:1 011A: 6C 6F 20 srcbufr   db         06CH,06FH,020H  ; lo 
+  30:U:1 011D: 57 6F 72 srcbufr   db         057H,06FH,072H  ; Wor
+  30:U:1 0120: 6C 64 21 srcbufr   db         06CH,064H,021H  ; ld!
+  30:U:1 0123: 21       srcbufr   db         021H            ; !
+  31:U:1                destbuf   rb         destbuf-srcbufr                 +
+  31+U+1 0124:                       
+  31:U:1 0124: 00 00 00 destbuf   db         000H,000H,000H  ; 
+  31:U:1 0127: 00 00 00 destbuf   db         000H,000H,000H  ; 
+  31:U:1 012A: 00 00 00 destbuf   db         000H,000H,000H  ; 
+  31:U:1 012D: 00 00 00 destbuf   db         000H,000H,000H  ; 
+  31:U:1 0130: 00       destbuf   db         000H            ; 
+  32:U:1                donemsg   dstr       Done with mem copy$             +
+  32+U+1 0131:                           
+testproc.lst     Page 3 ../assemble Ver  0.1229148993.00a
+$Id: testproc.asm,v 1.1 2011/04/13 19:53:46 doug Exp $
+COPR 2011 Douglas Goodall
+  32:U:1 0131: 44 6F 6E donemsg   db         044H,06FH,06EH  ; Don
+  32:U:1 0134: 65 20 77 donemsg   db         065H,020H,077H  ; e w
+  32:U:1 0137: 69 74 68 donemsg   db         069H,074H,068H  ; ith
+  32:U:1 013A: 20 6D 65 donemsg   db         020H,06DH,065H  ;  me
+  32:U:1 013D: 6D 20 63 donemsg   db         06DH,020H,063H  ; m c
+  32:U:1 0140: 6F 70 79 donemsg   db         06FH,070H,079H  ; opy
+  32:U:1 0143: 24       donemsg   db         024H            ; $
+  33:U:1 0144:                                
+  34:U:1 0144: 00 01              end        start  
+testproc.lst     Page 4 ../assemble Ver  0.1229148993.00a
+$Id: testproc.asm,v 1.1 2011/04/13 19:53:46 doug Exp $
+COPR 2011 Douglas Goodall
+  34:U:1 ----------------------------------------------
+  34:U:1 Symbol table byte entries...
+  34:U:1 conin.u8, 0x01 (1)
+  34:U:1 conout.u8, 0x02 (2)
+  34:U:1 destbuf.u8, 0x24 (36)
+  34:U:1 donemsg.u8, 0x31 (49)
+  34:U:1 false.u8, 0x00 (0)
+  34:U:1 prt.u8, 0x09 (9)
+  34:U:1 srcbufr.u8, 0x17 (23)
+  34:U:1 start.u8, 0x00 (0)
+  34:U:1 term.u8, 0x00 (0)
+  34:U:1 true.u8, 0x01 (1)
+  34:U:1 ----------------------------------------------
+  34:U:1 Symbol table word entries...
+  34:U:1 bdos.u16, 0x0005 (5)
+  34:U:1 destbuf.u16, 0x0124 (292)
+  34:U:1 donemsg.u16, 0x0131 (305)
+  34:U:1 ldefpgln.u16, 0x0032 (50)
+  34:U:1 ldefpgwd.u16, 0x004A (74)
+  34:U:1 pagelgth.u16, 0x0032 (50)
+  34:U:1 pagewdth.u16, 0x004A (74)
+  34:U:1 srcbufr.u16, 0x0117 (279)
+  34:U:1 start.u16, 0x0100 (256)
+  34:U:1 ----------------------------------------------
+  34:U:1 Symbol table dword entries...
+  34:U:1 destbuf.u32, 0x00000124 (292)
+  34:U:1 donemsg.u32, 0x00000131 (305)
+  34:U:1 srcbufr.u32, 0x00000117 (279)
+  34:U:1 start.u32, 0x00000100 (256)
+  34:U:1 ----------------------------------------------
+  34:U:1 Symbol table qword entries...
+  34:U:1 destbuf.u64, 0x00000000000000124 (292)
+  34:U:1 donemsg.u64, 0x00000000000000131 (305)
+  34:U:1 srcbufr.u64, 0x00000000000000117 (279)
+  34:U:1 start.u64, 0x00000000000000100 (256)
+  34:U:1 ----------------------------------------------
+  34:U:1 Symbol table meta entries...
+  34:U:1 ascalc.mta, "$Id: ascalc.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $"
+  34:U:1 asdec20.mta, "$Id: asdec20.hpp,v 1.1 2011/03/25 05:49:38 doug Exp $"
+  34:U:1 asdec65.mta, "$Id: asdec65.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $"
+  34:U:1 asdec68k.mta, "$Id: asdec68k.hpp,v 1.1 2011/03/24 11:58:05 doug Exp +
+  34+U+1 0146:          $"
+  34:U:1 asdec80.mta, "$Id: asdec80.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $"
+  34:U:1 asdec85.mta, "$Id: asdec85.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $"
+  34:U:1 asdecdir.mta, "$Id: asdecdir.hpp,v 1.1 2011/03/24 11:58:05 doug Exp +
+  34+U+1 0146:          $"
+  34:U:1 asdecz80.mta, "$Id: asdecz80.hpp,v 1.1 2011/03/24 11:58:05 doug Exp +
+testproc.lst     Page 5 ../assemble Ver  0.1229148993.00a
+$Id: testproc.asm,v 1.1 2011/04/13 19:53:46 doug Exp $
+COPR 2011 Douglas Goodall
+  34+U+1 0146:          $"
+  34:U:1 aseval.mta, "$Id: aseval.hpp,v 1.2 2011/04/14 15:13:09 doug Exp $"
+  34:U:1 ashexout.mta, "$Id: ashexout.hpp,v 1.1 2011/03/24 11:58:05 doug Exp +
+  34+U+1 0146:          $"
+  34:U:1 asouterr.mta, "$Id: asouterr.hpp,v 1.2 2011/04/14 15:13:09 doug Exp +
+  34+U+1 0146:          $"
+  34:U:1 asouthex.mta, "$Id: asouthex.hpp,v 1.1 2011/03/24 11:58:05 doug Exp +
+  34+U+1 0146:          $"
+  34:U:1 asoutlst.mta, "$Id: asoutlst.hpp,v 1.2 2011/03/25 05:48:59 doug Exp +
+  34+U+1 0146:          $"
+  34:U:1 asoutwrn.mta, "$Id: asoutwrn.hpp,v 1.2 2011/04/14 15:13:09 doug Exp +
+  34+U+1 0146:          $"
+  34:U:1 asparse.mta, "$Id: asparse.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $"
+  34:U:1 asprint.mta, "$Id: asprint.hpp,v 1.2 2011/03/25 05:48:10 doug Exp $"
+  34:U:1 asresolv.mta, "$Id: asresolv.hpp,v 1.3 2011/04/14 15:13:09 doug Exp +
+  34+U+1 0146:          $"
+  34:U:1 assemble.mta, "$Id: assemble.cpp,v 1.5 2011/04/14 15:13:09 doug Exp +
+  34+U+1 0146:          $"
+  34:U:1 asymbols.mta, "$Id: asymbols.hpp,v 1.6 2011/04/14 15:13:09 doug Exp +
+  34+U+1 0146:          $"
+  34:U:1 hostname.mta, "MacBook-Pro.local"
+  34:U:1 hosttype.mta, "x86_64"
+  34:U:1 machtype.mta, "i686-pc-cygwin"
+  34:U:1 program.mta, "testproc"
+  34:U:1 pwd.mta, "/home/doug/src/framewk/01072013/astests"
+  34:U:1 username.mta, "doug"

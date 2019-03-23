@@ -1,0 +1,1726 @@
+Start of pass one
+
+src:         title   $Id: test6502.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
+label[0] g_szOpcode[5] g_szParms[54] comments[0]
+Processing TITLE directive
+
+src:         subttl  COPR 2011 Douglas Goodall
+label[0] g_szOpcode[6] g_szParms[25] comments[0]
+Processing SUBTTL directive
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; $Log: test6502.asm,v $
+label[0] g_szOpcode[0] g_szParms[0] comments[24]
+
+src: ; Revision 1.2  2011/03/25 09:01:21  doug
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; *** empty log message ***
+label[0] g_szOpcode[0] g_szParms[0] comments[27]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; Revision 1.1  2011/03/25 08:26:35  doug
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; Initial revision
+label[0] g_szOpcode[0] g_szParms[0] comments[18]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src:         include gplstuff.inc
+label[0] g_szOpcode[7] g_szParms[12] comments[0]
+Processing INCLUDE directive
+
+src: ; ------------------------------------
+label[0] g_szOpcode[0] g_szParms[0] comments[38]
+
+src: ; This file is part of "Vintage Modern 
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; Assembler Plus Tools (VMAPT)".
+label[0] g_szOpcode[0] g_szParms[0] comments[32]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; VMAPT is free software: you can 
+label[0] g_szOpcode[0] g_szParms[0] comments[34]
+
+src: ; redistribute it and/or modify it under 
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; the terms of  the GNU General Public 
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; License  as published by the Free
+label[0] g_szOpcode[0] g_szParms[0] comments[35]
+
+src: ; Software  Foundation, either version 3
+label[0] g_szOpcode[0] g_szParms[0] comments[40]
+
+src: ; of the License, or (at your option)  
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; any later version.
+label[0] g_szOpcode[0] g_szParms[0] comments[20]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; VMAPT is distributed in the hope that it 
+label[0] g_szOpcode[0] g_szParms[0] comments[43]
+
+src: ; will be useful, but WITHOUT ANY WARRANTY;
+label[0] g_szOpcode[0] g_szParms[0] comments[43]
+
+src: ; without even the implied warranty of   
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; MERCHANTABILITY or FITNESS FOR A 
+label[0] g_szOpcode[0] g_szParms[0] comments[35]
+
+src: ; PARTICULAR PURPOSE. See the GNU General 
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: ; Public License for more details.
+label[0] g_szOpcode[0] g_szParms[0] comments[34]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; You  should have received a copy of the 
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: ; GNU General Public License along with 
+label[0] g_szOpcode[0] g_szParms[0] comments[40]
+
+src: ; VMAPT. If not,
+label[0] g_szOpcode[0] g_szParms[0] comments[16]
+
+src: ; see <http://www.gnu.org/licenses/>.
+label[0] g_szOpcode[0] g_szParms[0] comments[37]
+
+src: ; ----------------------------------------
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: ; The purpose of this test is to verify 
+label[0] g_szOpcode[0] g_szParms[0] comments[40]
+
+src: ; that the calculation of forward and 
+label[0] g_szOpcode[0] g_szParms[0] comments[38]
+
+src: ; backward displacements are correct.
+label[0] g_szOpcode[0] g_szParms[0] comments[37]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: ; When calculating branches a forward 
+label[0] g_szOpcode[0] g_szParms[0] comments[38]
+
+src: ; branch of 6 skips the following 6 
+label[0] g_szOpcode[0] g_szParms[0] comments[36]
+
+src: ; bytes so, effectively the program 
+label[0] g_szOpcode[0] g_szParms[0] comments[36]
+
+src: ; counter points to the address that 
+label[0] g_szOpcode[0] g_szParms[0] comments[37]
+
+src: ; is 8 bytes beyond the address of 
+label[0] g_szOpcode[0] g_szParms[0] comments[35]
+
+src: ; the branch opcode; and a backward
+label[0] g_szOpcode[0] g_szParms[0] comments[35]
+
+src: ; branch of $FA (256-6) goes to an 
+label[0] g_szOpcode[0] g_szParms[0] comments[35]
+
+src: ; address 7 bytes before the branch 
+label[0] g_szOpcode[0] g_szParms[0] comments[36]
+
+src: ; instruction
+label[0] g_szOpcode[0] g_szParms[0] comments[13]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	proc	6502
+label[0] g_szOpcode[4] g_szParms[4] comments[0]
+Processing PROC directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	radix	hex
+label[0] g_szOpcode[5] g_szParms[3] comments[0]
+Processing RADIX directive
+
+src: 	org	100
+label[0] g_szOpcode[3] g_szParms[3] comments[0]
+Processing ORG directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	page
+label[0] g_szOpcode[4] g_szParms[0] comments[0]
+Processing PAGE directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: ; test BPL instruction
+label[0] g_szOpcode[0] g_szParms[0] comments[22]
+
+src: backwd1	nop	; -7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 	nop	; -6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 	nop	; -5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 	nop	; -4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 	nop	; -3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 	nop	; -2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 	nop	; -1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: ;	bpl	backwd1
+label[0] g_szOpcode[0] g_szParms[0] comments[13]
+
+src: ;	bpl	forewd1
+label[0] g_szOpcode[0] g_szParms[0] comments[13]
+
+src: 	nop	; +1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 	nop	; +2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 	nop	; +3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 	nop	; +4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 	nop	; +5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 	nop	; +6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: forewd1	nop	; +7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	page
+label[0] g_szOpcode[4] g_szParms[0] comments[0]
+Processing PAGE directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: ; test BMI instruction
+label[0] g_szOpcode[0] g_szParms[0] comments[22]
+
+src: backwd2	nop	; -7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         bmi     backwd2
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BMI g_szOpcode
+
+src:         bmi     forewd2
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BMI g_szOpcode
+
+src:         nop	; +1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 	nop	; +6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: forewd2	nop	; +7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 	
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	page
+label[0] g_szOpcode[4] g_szParms[0] comments[0]
+Processing PAGE directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: ; test BVC instruction
+label[0] g_szOpcode[0] g_szParms[0] comments[22]
+
+src: backwd3 nop	; -7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         bvc     backwd3
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BVC g_szOpcode
+
+src:         bvc     forewd3
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BVC g_szOpcode
+
+src:         nop	; +1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 	nop	; +6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: forewd3 nop	; +7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	page
+label[0] g_szOpcode[4] g_szParms[0] comments[0]
+Processing PAGE directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: ; test BVS instruction
+label[0] g_szOpcode[0] g_szParms[0] comments[22]
+
+src: backwd4 nop	; -7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 	bvs	backwd4
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BVS g_szOpcode
+
+src: 	bvs	forewd4
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BVS g_szOpcode
+
+src:         nop	; +1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 	nop	; +6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: forewd4	nop	; +7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	page
+label[0] g_szOpcode[4] g_szParms[0] comments[0]
+Processing PAGE directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: ; test BCC instruction
+label[0] g_szOpcode[0] g_szParms[0] comments[22]
+
+src: backwd5 nop	; -7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         bcc     backwd5
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BCC g_szOpcode
+
+src:         bcc     forewd5
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BCC g_szOpcode
+
+src:         nop	; +1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 	nop	; +6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: forewd5 nop	; +7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	page
+label[0] g_szOpcode[4] g_szParms[0] comments[0]
+Processing PAGE directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: ; test BCS instruction
+label[0] g_szOpcode[0] g_szParms[0] comments[22]
+
+src: backwd6 nop	; -7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         bcs     backwd6
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BCS g_szOpcode
+
+src:         bcs     forewd6
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BCS g_szOpcode
+
+src:         nop	; +1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 	nop	; +6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: forewd6 nop	; +7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	page
+label[0] g_szOpcode[4] g_szParms[0] comments[0]
+Processing PAGE directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: ; test BNE instructon
+label[0] g_szOpcode[0] g_szParms[0] comments[21]
+
+src: backwd7 nop	; -7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         bne     backwd7
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BNE g_szOpcode
+
+src:         bne     forewd7
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BNE g_szOpcode
+
+src:         nop	; +1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 	nop	; +6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: forewd7 nop	; +7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	page
+label[0] g_szOpcode[4] g_szParms[0] comments[0]
+Processing PAGE directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: ; test BEQ instruction
+label[0] g_szOpcode[0] g_szParms[0] comments[22]
+
+src: backwd8 nop	; -7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; -1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         beq     backwd8
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BEQ g_szOpcode
+
+src:         beq     forewd8
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BEQ g_szOpcode
+
+src:         nop	; +1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src:         nop	; +5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 	nop	; +6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: forewd8 nop	; +7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	end
+label[0] g_szOpcode[3] g_szParms[0] comments[0]
+Processing END directive
+End of pass one
+Start of pass two
+
+src:         title   $Id: test6502.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
+label[0] g_szOpcode[5] g_szParms[54] comments[0]
+Processing TITLE directive
+
+src:         subttl  COPR 2011 Douglas Goodall
+label[0] g_szOpcode[6] g_szParms[25] comments[0]
+Processing SUBTTL directive
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; $Log: test6502.asm,v $
+label[0] g_szOpcode[0] g_szParms[0] comments[24]
+
+src: ; Revision 1.2  2011/03/25 09:01:21  doug
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; *** empty log message ***
+label[0] g_szOpcode[0] g_szParms[0] comments[27]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; Revision 1.1  2011/03/25 08:26:35  doug
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; Initial revision
+label[0] g_szOpcode[0] g_szParms[0] comments[18]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src:         include gplstuff.inc
+label[0] g_szOpcode[7] g_szParms[12] comments[0]
+Processing INCLUDE directive
+
+src: ; ------------------------------------
+label[0] g_szOpcode[0] g_szParms[0] comments[38]
+
+src: ; This file is part of "Vintage Modern 
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; Assembler Plus Tools (VMAPT)".
+label[0] g_szOpcode[0] g_szParms[0] comments[32]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; VMAPT is free software: you can 
+label[0] g_szOpcode[0] g_szParms[0] comments[34]
+
+src: ; redistribute it and/or modify it under 
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; the terms of  the GNU General Public 
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; License  as published by the Free
+label[0] g_szOpcode[0] g_szParms[0] comments[35]
+
+src: ; Software  Foundation, either version 3
+label[0] g_szOpcode[0] g_szParms[0] comments[40]
+
+src: ; of the License, or (at your option)  
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; any later version.
+label[0] g_szOpcode[0] g_szParms[0] comments[20]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; VMAPT is distributed in the hope that it 
+label[0] g_szOpcode[0] g_szParms[0] comments[43]
+
+src: ; will be useful, but WITHOUT ANY WARRANTY;
+label[0] g_szOpcode[0] g_szParms[0] comments[43]
+
+src: ; without even the implied warranty of   
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; MERCHANTABILITY or FITNESS FOR A 
+label[0] g_szOpcode[0] g_szParms[0] comments[35]
+
+src: ; PARTICULAR PURPOSE. See the GNU General 
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: ; Public License for more details.
+label[0] g_szOpcode[0] g_szParms[0] comments[34]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; You  should have received a copy of the 
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: ; GNU General Public License along with 
+label[0] g_szOpcode[0] g_szParms[0] comments[40]
+
+src: ; VMAPT. If not,
+label[0] g_szOpcode[0] g_szParms[0] comments[16]
+
+src: ; see <http://www.gnu.org/licenses/>.
+label[0] g_szOpcode[0] g_szParms[0] comments[37]
+
+src: ; ----------------------------------------
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: ; The purpose of this test is to verify 
+label[0] g_szOpcode[0] g_szParms[0] comments[40]
+
+src: ; that the calculation of forward and 
+label[0] g_szOpcode[0] g_szParms[0] comments[38]
+
+src: ; backward displacements are correct.
+label[0] g_szOpcode[0] g_szParms[0] comments[37]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: ; When calculating branches a forward 
+label[0] g_szOpcode[0] g_szParms[0] comments[38]
+
+src: ; branch of 6 skips the following 6 
+label[0] g_szOpcode[0] g_szParms[0] comments[36]
+
+src: ; bytes so, effectively the program 
+label[0] g_szOpcode[0] g_szParms[0] comments[36]
+
+src: ; counter points to the address that 
+label[0] g_szOpcode[0] g_szParms[0] comments[37]
+
+src: ; is 8 bytes beyond the address of 
+label[0] g_szOpcode[0] g_szParms[0] comments[35]
+
+src: ; the branch opcode; and a backward
+label[0] g_szOpcode[0] g_szParms[0] comments[35]
+
+src: ; branch of $FA (256-6) goes to an 
+label[0] g_szOpcode[0] g_szParms[0] comments[35]
+
+src: ; address 7 bytes before the branch 
+label[0] g_szOpcode[0] g_szParms[0] comments[36]
+
+src: ; instruction
+label[0] g_szOpcode[0] g_szParms[0] comments[13]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	proc	6502
+label[0] g_szOpcode[4] g_szParms[4] comments[0]
+Processing PROC directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	radix	hex
+label[0] g_szOpcode[5] g_szParms[3] comments[0]
+Processing RADIX directive
+
+src: 	org	100
+label[0] g_szOpcode[3] g_szParms[3] comments[0]
+Processing ORG directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	page
+label[0] g_szOpcode[4] g_szParms[0] comments[0]
+Processing PAGE directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: ; test BPL instruction
+label[0] g_szOpcode[0] g_szParms[0] comments[22]
+
+src: backwd1	nop	; -7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0100,count=1,offset=0); called
+
+src: 	nop	; -6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0101,count=1,offset=0); called
+
+src: 	nop	; -5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0102,count=1,offset=0); called
+
+src: 	nop	; -4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0103,count=1,offset=0); called
+
+src: 	nop	; -3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0104,count=1,offset=0); called
+
+src: 	nop	; -2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0105,count=1,offset=0); called
+
+src: 	nop	; -1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0106,count=1,offset=0); called
+
+src: ;	bpl	backwd1
+label[0] g_szOpcode[0] g_szParms[0] comments[13]
+
+src: ;	bpl	forewd1
+label[0] g_szOpcode[0] g_szParms[0] comments[13]
+
+src: 	nop	; +1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0107,count=1,offset=0); called
+
+src: 	nop	; +2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0108,count=1,offset=0); called
+
+src: 	nop	; +3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0109,count=1,offset=0); called
+
+src: 	nop	; +4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=010A,count=1,offset=0); called
+
+src: 	nop	; +5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=010B,count=1,offset=0); called
+
+src: 	nop	; +6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=010C,count=1,offset=0); called
+
+src: forewd1	nop	; +7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=010D,count=1,offset=0); called
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	page
+label[0] g_szOpcode[4] g_szParms[0] comments[0]
+Processing PAGE directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: ; test BMI instruction
+label[0] g_szOpcode[0] g_szParms[0] comments[22]
+
+src: backwd2	nop	; -7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=010E,count=1,offset=0); called
+
+src:         nop	; -6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=010F,count=1,offset=0); called
+
+src:         nop	; -5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0110,count=1,offset=0); called
+
+src:         nop	; -4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0111,count=1,offset=0); called
+
+src:         nop	; -3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0112,count=1,offset=0); called
+
+src:         nop	; -2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0113,count=1,offset=0); called
+
+src:         nop	; -1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0114,count=1,offset=0); called
+
+src:         bmi     backwd2
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BMI g_szOpcode
+hexout(pc=0115,count=2,offset=0); called
+
+src:         bmi     forewd2
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BMI g_szOpcode
+hexout(pc=0117,count=2,offset=0); called
+
+src:         nop	; +1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0119,count=1,offset=0); called
+
+src:         nop	; +2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=011A,count=1,offset=0); called
+
+src:         nop	; +3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=011B,count=1,offset=0); called
+
+src:         nop	; +4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=011C,count=1,offset=0); called
+
+src:         nop	; +5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=011D,count=1,offset=0); called
+
+src: 	nop	; +6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=011E,count=1,offset=0); called
+
+src: forewd2	nop	; +7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=011F,count=1,offset=0); called
+
+src: 	
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	page
+label[0] g_szOpcode[4] g_szParms[0] comments[0]
+Processing PAGE directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: ; test BVC instruction
+label[0] g_szOpcode[0] g_szParms[0] comments[22]
+
+src: backwd3 nop	; -7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0120,count=1,offset=0); called
+
+src:         nop	; -6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0121,count=1,offset=0); called
+
+src:         nop	; -5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0122,count=1,offset=0); called
+
+src:         nop	; -4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0123,count=1,offset=0); called
+
+src:         nop	; -3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0124,count=1,offset=0); called
+
+src:         nop	; -2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0125,count=1,offset=0); called
+
+src:         nop	; -1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0126,count=1,offset=0); called
+
+src:         bvc     backwd3
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BVC g_szOpcode
+hexout(pc=0127,count=2,offset=0); called
+
+src:         bvc     forewd3
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BVC g_szOpcode
+hexout(pc=0129,count=2,offset=0); called
+
+src:         nop	; +1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=012B,count=1,offset=0); called
+
+src:         nop	; +2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=012C,count=1,offset=0); called
+
+src:         nop	; +3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=012D,count=1,offset=0); called
+
+src:         nop	; +4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=012E,count=1,offset=0); called
+
+src:         nop	; +5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=012F,count=1,offset=0); called
+
+src: 	nop	; +6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0130,count=1,offset=0); called
+
+src: forewd3 nop	; +7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0131,count=1,offset=0); called
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	page
+label[0] g_szOpcode[4] g_szParms[0] comments[0]
+Processing PAGE directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: ; test BVS instruction
+label[0] g_szOpcode[0] g_szParms[0] comments[22]
+
+src: backwd4 nop	; -7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0132,count=1,offset=0); called
+
+src:         nop	; -6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0133,count=1,offset=0); called
+
+src:         nop	; -5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0134,count=1,offset=0); called
+
+src:         nop	; -4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0135,count=1,offset=0); called
+
+src:         nop	; -3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0136,count=1,offset=0); called
+
+src:         nop	; -2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0137,count=1,offset=0); called
+
+src:         nop	; -1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0138,count=1,offset=0); called
+
+src: 	bvs	backwd4
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BVS g_szOpcode
+hexout(pc=0139,count=2,offset=0); called
+
+src: 	bvs	forewd4
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BVS g_szOpcode
+hexout(pc=013B,count=2,offset=0); called
+
+src:         nop	; +1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=013D,count=1,offset=0); called
+
+src:         nop	; +2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=013E,count=1,offset=0); called
+
+src:         nop	; +3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=013F,count=1,offset=0); called
+
+src:         nop	; +4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0140,count=1,offset=0); called
+
+src:         nop	; +5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0141,count=1,offset=0); called
+
+src: 	nop	; +6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0142,count=1,offset=0); called
+
+src: forewd4	nop	; +7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0143,count=1,offset=0); called
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	page
+label[0] g_szOpcode[4] g_szParms[0] comments[0]
+Processing PAGE directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: ; test BCC instruction
+label[0] g_szOpcode[0] g_szParms[0] comments[22]
+
+src: backwd5 nop	; -7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0144,count=1,offset=0); called
+
+src:         nop	; -6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0145,count=1,offset=0); called
+
+src:         nop	; -5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0146,count=1,offset=0); called
+
+src:         nop	; -4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0147,count=1,offset=0); called
+
+src:         nop	; -3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0148,count=1,offset=0); called
+
+src:         nop	; -2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0149,count=1,offset=0); called
+
+src:         nop	; -1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=014A,count=1,offset=0); called
+
+src:         bcc     backwd5
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BCC g_szOpcode
+hexout(pc=014B,count=2,offset=0); called
+
+src:         bcc     forewd5
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BCC g_szOpcode
+hexout(pc=014D,count=2,offset=0); called
+
+src:         nop	; +1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=014F,count=1,offset=0); called
+
+src:         nop	; +2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0150,count=1,offset=0); called
+
+src:         nop	; +3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0151,count=1,offset=0); called
+
+src:         nop	; +4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0152,count=1,offset=0); called
+
+src:         nop	; +5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0153,count=1,offset=0); called
+
+src: 	nop	; +6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0154,count=1,offset=0); called
+
+src: forewd5 nop	; +7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0155,count=1,offset=0); called
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	page
+label[0] g_szOpcode[4] g_szParms[0] comments[0]
+Processing PAGE directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: ; test BCS instruction
+label[0] g_szOpcode[0] g_szParms[0] comments[22]
+
+src: backwd6 nop	; -7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0156,count=1,offset=0); called
+
+src:         nop	; -6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0157,count=1,offset=0); called
+
+src:         nop	; -5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0158,count=1,offset=0); called
+
+src:         nop	; -4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0159,count=1,offset=0); called
+
+src:         nop	; -3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=015A,count=1,offset=0); called
+
+src:         nop	; -2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=015B,count=1,offset=0); called
+
+src:         nop	; -1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=015C,count=1,offset=0); called
+
+src:         bcs     backwd6
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BCS g_szOpcode
+hexout(pc=015D,count=2,offset=0); called
+
+src:         bcs     forewd6
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BCS g_szOpcode
+hexout(pc=015F,count=2,offset=0); called
+
+src:         nop	; +1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0161,count=1,offset=0); called
+
+src:         nop	; +2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0162,count=1,offset=0); called
+
+src:         nop	; +3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0163,count=1,offset=0); called
+
+src:         nop	; +4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0164,count=1,offset=0); called
+
+src:         nop	; +5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0165,count=1,offset=0); called
+
+src: 	nop	; +6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0166,count=1,offset=0); called
+
+src: forewd6 nop	; +7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0167,count=1,offset=0); called
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	page
+label[0] g_szOpcode[4] g_szParms[0] comments[0]
+Processing PAGE directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: ; test BNE instructon
+label[0] g_szOpcode[0] g_szParms[0] comments[21]
+
+src: backwd7 nop	; -7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0168,count=1,offset=0); called
+
+src:         nop	; -6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0169,count=1,offset=0); called
+
+src:         nop	; -5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=016A,count=1,offset=0); called
+
+src:         nop	; -4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=016B,count=1,offset=0); called
+
+src:         nop	; -3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=016C,count=1,offset=0); called
+
+src:         nop	; -2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=016D,count=1,offset=0); called
+
+src:         nop	; -1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=016E,count=1,offset=0); called
+
+src:         bne     backwd7
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BNE g_szOpcode
+hexout(pc=016F,count=2,offset=0); called
+
+src:         bne     forewd7
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BNE g_szOpcode
+hexout(pc=0171,count=2,offset=0); called
+
+src:         nop	; +1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0173,count=1,offset=0); called
+
+src:         nop	; +2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0174,count=1,offset=0); called
+
+src:         nop	; +3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0175,count=1,offset=0); called
+
+src:         nop	; +4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0176,count=1,offset=0); called
+
+src:         nop	; +5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0177,count=1,offset=0); called
+
+src: 	nop	; +6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0178,count=1,offset=0); called
+
+src: forewd7 nop	; +7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0179,count=1,offset=0); called
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	page
+label[0] g_szOpcode[4] g_szParms[0] comments[0]
+Processing PAGE directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: ; test BEQ instruction
+label[0] g_szOpcode[0] g_szParms[0] comments[22]
+
+src: backwd8 nop	; -7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=017A,count=1,offset=0); called
+
+src:         nop	; -6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=017B,count=1,offset=0); called
+
+src:         nop	; -5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=017C,count=1,offset=0); called
+
+src:         nop	; -4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=017D,count=1,offset=0); called
+
+src:         nop	; -3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=017E,count=1,offset=0); called
+
+src:         nop	; -2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=017F,count=1,offset=0); called
+
+src:         nop	; -1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0180,count=1,offset=0); called
+
+src:         beq     backwd8
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BEQ g_szOpcode
+hexout(pc=0181,count=2,offset=0); called
+
+src:         beq     forewd8
+label[0] g_szOpcode[3] g_szParms[7] comments[0]
+Processing 6502 BEQ g_szOpcode
+hexout(pc=0183,count=2,offset=0); called
+
+src:         nop	; +1
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0185,count=1,offset=0); called
+
+src:         nop	; +2
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0186,count=1,offset=0); called
+
+src:         nop	; +3
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0187,count=1,offset=0); called
+
+src:         nop	; +4
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0188,count=1,offset=0); called
+
+src:         nop	; +5
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=0189,count=1,offset=0); called
+
+src: 	nop	; +6
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=018A,count=1,offset=0); called
+
+src: forewd8 nop	; +7
+label[7] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 6502 NOP g_szOpcode
+hexout(pc=018B,count=1,offset=0); called
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	end
+label[0] g_szOpcode[3] g_szParms[0] comments[0]
+Processing END directive
+End of pass two

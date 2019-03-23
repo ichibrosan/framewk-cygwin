@@ -1,0 +1,769 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>assemble.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.2' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/assemble.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L267'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L267' title='Defined at 267.'>main</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// ---------------------------------------------------</em>
+<a id='L2' name='L2' /><em class='comment'>// assemble.cpp  9-May-11   Running on Mac OS X 10.6.6</em>
+<a id='L3' name='L3' /><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
+<a id='L4' name='L4' /><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L5' name='L5' /><em class='comment'>// ---------------------------------------------------</em>
+<a id='L6' name='L6' /><em class='comment'>// This file is part of Vintage Modern Assembler Plus Tools.</em>
+<a id='L7' name='L7' /><em class='comment'>// VMAPT is free software: you can redistribute it and/or modify</em>
+<a id='L8' name='L8' /><em class='comment'>// it under the terms of the GNU General Public License as published by</em>
+<a id='L9' name='L9' /><em class='comment'>// the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L10' name='L10' /><em class='comment'>// (at your option) any later version.</em>
+<a id='L11' name='L11' /><em class='comment'>// VMAPT is distributed in the hope that it will be useful,</em>
+<a id='L12' name='L12' /><em class='comment'>// but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L13' name='L13' /><em class='comment'>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L14' name='L14' /><em class='comment'>// GNU General Public License for more details.</em>
+<a id='L15' name='L15' /><em class='comment'>// You should have received a copy of the GNU General Public License</em>
+<a id='L16' name='L16' /><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L17' name='L17' />
+<a id='L18' name='L18' /><strong class='reserved'>static</strong> <strong class='reserved'>char</strong> szAssembleCpp[] = "$Id: assemble.cpp,v 1.5 2011/04/14 15:13:09 doug Exp $";
+<a id='L19' name='L19' />
+<a id='L20' name='L20' /><em class='comment'>//#define DEBUG</em>
+<a id='L21' name='L21' /><em class='comment'>//#define __TRACE</em>
+<a id='L22' name='L22' />
+<a id='L23' name='L23' /><em class='comment'>//---------------------</em>
+<a id='L24' name='L24' /><em class='sharp'>#include</em> "<a href='219.html'>asdefs.hpp</a>"
+<a id='L25' name='L25' /><em class='sharp'>#define</em> <a href='../S/594.html#L48' title='Referred from 48 in dirclass.hpp.'>DIRCLASS</a>
+<a id='L26' name='L26' /><em class='sharp'>#define</em> <a href='../S/636.html#L26' title='Referred from 26 in memory.hpp.'>MEMORY</a>
+<a id='L27' name='L27' /><em class='sharp'>#define</em> <a href='../S/650.html#L21' title='Referred from 21 in srcclass.hpp.'>SRCCLASS</a>
+<a id='L28' name='L28' /><em class='sharp'>#include</em> "<a href='617.html'>includes.hpp</a>"
+<a id='L29' name='L29' /><em class='comment'>//---------------------</em>
+<a id='L30' name='L30' />
+<a id='L31' name='L31' /><strong class='reserved'>enum</strong> <em class='brace'>{</em>  <a href='../R/134.html' title='Multiple referred from 36 places.'>TYPE_ERR</a>,       <em class='comment'>// source line not identified yet</em>
+<a id='L32' name='L32' />        <a href='../R/128.html' title='Multiple referred from 84 places.'>TYPE_DIR</a>,       <em class='comment'>// source line is directive</em>
+<a id='L33' name='L33' />        <a href='../R/126.html' title='Multiple referred from 87 places.'>TYPE_8085</a>,      <em class='comment'>// source line is 8085 instruction</em>
+<a id='L34' name='L34' />        TYPE_8080,      <em class='comment'>// source line is 8080 instruction</em>
+<a id='L35' name='L35' />        <a href='../R/124.html' title='Multiple referred from 10 places.'>TYPE_6502</a>,      <em class='comment'>// source line is 6502 instruction</em>
+<a id='L36' name='L36' />        <a href='../R/125.html' title='Multiple referred from 14 places.'>TYPE_68000</a>,     <em class='comment'>// source line is 6800 instruction</em>
+<a id='L37' name='L37' />        <a href='../R/145.html' title='Multiple referred from 146 places.'>TYPE_Z80</a>,       <em class='comment'>// source line is z80  instruction</em>
+<a id='L38' name='L38' />        <a href='../S/2.html#L26' title='Referred from 26 in as1620/add.hpp.'>TYPE_1620</a>,      <em class='comment'>// source line is 1620 instruction</em>
+<a id='L39' name='L39' />        <a href='../R/127.html' title='Multiple referred from 7 places.'>TYPE_COMMENT</a>,   <em class='comment'>// source line is comment</em>
+<a id='L40' name='L40' />        <a href='../R/133.html' title='Multiple referred from 7 places.'>TYPE_EMPTY</a>,     <em class='comment'>// source line is empty</em>
+<a id='L41' name='L41' />        NUM_LINETYPES <em class='brace'>}</em>;
+<a id='L42' name='L42' />
+<a id='L43' name='L43' /><em class='comment'>// Errors are bits in g_iErrorNo</em>
+<a id='L44' name='L44' /><em class='sharp'>#define</em> ERROR_NONE      0
+<a id='L45' name='L45' /><em class='sharp'>#define</em> <a href='../R/58.html' title='Multiple referred from 305 places.'>ERROR_UNKOP</a>    (1&lt;&lt;0)
+<a id='L46' name='L46' /><em class='sharp'>#define</em> <a href='../R/59.html' title='Multiple referred from 5 places.'>ERROR_UNKSYM</a>   (1&lt;&lt;1)
+<a id='L47' name='L47' /><em class='sharp'>#define</em> <a href='../R/55.html' title='Multiple referred from 5 places.'>ERROR_RANGE</a>    (1&lt;&lt;2)
+<a id='L48' name='L48' /><em class='sharp'>#define</em> <a href='../R/54.html' title='Multiple referred from 5 places.'>ERROR_OPERATOR</a> (1&lt;&lt;3)
+<a id='L49' name='L49' /><em class='sharp'>#define</em> <a href='../R/51.html' title='Multiple referred from 82 places.'>ERROR_NOPARM</a>   (1&lt;&lt;4)
+<a id='L50' name='L50' /><em class='sharp'>#define</em> <a href='../R/52.html' title='Multiple referred from 29 places.'>ERROR_NOREG</a>    (1&lt;&lt;5)
+<a id='L51' name='L51' /><em class='sharp'>#define</em> <a href='../R/50.html' title='Multiple referred from 3 places.'>ERROR_NOMODE</a>   (1&lt;&lt;6)
+<a id='L52' name='L52' /><em class='sharp'>#define</em> <a href='../R/53.html' title='Multiple referred from 3 places.'>ERROR_NOVEC</a>    (1&lt;&lt;7)
+<a id='L53' name='L53' /><em class='sharp'>#define</em> <a href='../R/57.html' title='Multiple referred from 6 places.'>ERROR_SYNTAX</a>   (1&lt;&lt;8)
+<a id='L54' name='L54' /><em class='sharp'>#define</em> <a href='../R/47.html' title='Multiple referred from 2 places.'>ERROR_DIV0</a>     (1&lt;&lt;9)
+<a id='L55' name='L55' /><em class='sharp'>#define</em> <a href='../R/56.html' title='Multiple referred from 2 places.'>ERROR_SYMTYPE</a>  (1&lt;&lt;10)
+<a id='L56' name='L56' /><em class='sharp'>#define</em> <a href='../R/48.html' title='Multiple referred from 2 places.'>ERROR_INVNS</a>    (1&lt;&lt;11)
+<a id='L57' name='L57' /><em class='sharp'>#define</em> <a href='../R/49.html' title='Multiple referred from 3 places.'>ERROR_NOCPU</a>    (1&lt;&lt;12)
+<a id='L58' name='L58' /><em class='sharp'>#define</em> <a href='../R/61.html' title='Multiple referred from 5 places.'>ERROR_UNK_PUB</a>  (1&lt;&lt;13)
+<a id='L59' name='L59' /><em class='sharp'>#define</em> <a href='../R/60.html' title='Multiple referred from 5 places.'>ERROR_UNK_EXP</a>  (1&lt;&lt;14)
+<a id='L60' name='L60' />
+<a id='L61' name='L61' /><strong class='reserved'>enum</strong> <em class='brace'>{</em>
+<a id='L62' name='L62' />        PROC_NONE,
+<a id='L63' name='L63' />        <a href='../R/89.html' title='Multiple referred from 2 places.'>PROC_8080</a>,
+<a id='L64' name='L64' />        <a href='../R/90.html' title='Multiple referred from 7 places.'>PROC_8085</a>,
+<a id='L65' name='L65' />        <a href='../R/91.html' title='Multiple referred from 4 places.'>PROC_Z80</a>,
+<a id='L66' name='L66' />        <a href='../R/87.html' title='Multiple referred from 4 places.'>PROC_6502</a>,
+<a id='L67' name='L67' />        <a href='../R/88.html' title='Multiple referred from 4 places.'>PROC_68000</a>,
+<a id='L68' name='L68' />        <a href='../R/86.html' title='Multiple referred from 4 places.'>PROC_1620</a>,
+<a id='L69' name='L69' />        NUM_PROCS
+<a id='L70' name='L70' /><em class='brace'>}</em>;
+<a id='L71' name='L71' />
+<a id='L72' name='L72' /><strong class='reserved'>enum</strong> <em class='brace'>{</em>  <a href='../R/107.html' title='Multiple referred from 4 places.'>SEG_VAGUE</a>,
+<a id='L73' name='L73' />        <a href='../R/103.html' title='Multiple referred from 2 places.'>SEG_ABS</a>,
+<a id='L74' name='L74' />        <a href='../R/104.html' title='Multiple referred from 2 places.'>SEG_CODE</a>,
+<a id='L75' name='L75' />        <a href='../R/105.html' title='Multiple referred from 2 places.'>SEG_DATA</a>,
+<a id='L76' name='L76' />        <a href='../R/106.html' title='Multiple referred from 2 places.'>SEG_STACK</a>,
+<a id='L77' name='L77' />        NUM_SEGS
+<a id='L78' name='L78' /><em class='brace'>}</em>;
+<a id='L79' name='L79' />
+<a id='L80' name='L80' /><em class='sharp'>#define</em> <a href='../R/69.html' title='Multiple referred from 2 places.'>LOCAL_DEFAULT_PAGELENGTH</a>   50 
+<a id='L81' name='L81' /><em class='sharp'>#define</em> <a href='../R/70.html' title='Multiple referred from 2 places.'>LOCAL_DEFAULT_PAGEWIDTH</a>    74
+<a id='L82' name='L82' /><em class='sharp'>#define</em> <a href='../S/314.html#L195' title='Referred from 195 in assemble.cpp.'>LOCAL_DEFAULT_PROC</a>         <a href='../S/314.html#L64' title='Defined at 64 in assemble.cpp.'>PROC_8085</a>
+<a id='L83' name='L83' /><em class='sharp'>#define</em> <a href='../S/314.html#L183' title='Referred from 183 in assemble.cpp.'>LOCAL_DEFAULT_LISTINCLUDES</a> <a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a>
+<a id='L84' name='L84' />
+<a id='L85' name='L85' /><em class='comment'>// Warnings are bits in g_iWarningNo</em>
+<a id='L86' name='L86' /><em class='sharp'>#define</em> <a href='../R/149.html' title='Multiple referred from 2 places.'>WARNING_NONE</a>      0
+<a id='L87' name='L87' /><em class='sharp'>#define</em> <a href='../S/309.html#L33' title='Referred from 33 in asoutwrn.hpp.'>WARNING_DIV0</a>     (1&lt;&lt;0)
+<a id='L88' name='L88' /><em class='sharp'>#define</em> <a href='../R/148.html' title='Multiple referred from 2 places.'>WARNING_EXTERNAL</a> (1&lt;&lt;1)
+<a id='L89' name='L89' />
+<a id='L90' name='L90' /><strong class='reserved'>char</strong> g_cToken;  <em class='comment'>// used by parser to store current input token</em>
+<a id='L91' name='L91' />
+<a id='L92' name='L92' /><strong class='reserved'>char</strong> *g_p;      <em class='comment'>// </em>
+<a id='L93' name='L93' />
+<a id='L94' name='L94' /><strong class='reserved'>char</strong> g_szArgv0[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];
+<a id='L95' name='L95' />
+<a id='L96' name='L96' /><strong class='reserved'>char</strong> g_szAsparseHpp[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];
+<a id='L97' name='L97' /><strong class='reserved'>char</strong> g_szAsprintHpp[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];
+<a id='L98' name='L98' /><strong class='reserved'>char</strong> g_szAssembleCpp[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];
+<a id='L99' name='L99' />
+<a id='L100' name='L100' /><strong class='reserved'>char</strong> g_szBuffer[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];
+<a id='L101' name='L101' /><strong class='reserved'>char</strong> g_szBuffer2[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];
+<a id='L102' name='L102' /><strong class='reserved'>char</strong> g_szCommand[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];      <em class='comment'>// used for system() call</em>
+<a id='L103' name='L103' /><strong class='reserved'>char</strong> g_szComments[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];
+<a id='L104' name='L104' /><strong class='reserved'>char</strong> g_szCopr[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];
+<a id='L105' name='L105' />
+<a id='L106' name='L106' /><strong class='reserved'>char</strong> g_szFileNameASM[<a href='../D/99.html' title='Multiple defined in 3 places.'>MAXNAMLEN</a>];
+<a id='L107' name='L107' /><strong class='reserved'>char</strong> g_szFileNameBIN[<a href='../D/99.html' title='Multiple defined in 3 places.'>MAXNAMLEN</a>];
+<a id='L108' name='L108' /><strong class='reserved'>char</strong> g_szFileNameHEX[<a href='../D/99.html' title='Multiple defined in 3 places.'>MAXNAMLEN</a>];
+<a id='L109' name='L109' /><strong class='reserved'>char</strong> g_szFileNameLOG[<a href='../D/99.html' title='Multiple defined in 3 places.'>MAXNAMLEN</a>];
+<a id='L110' name='L110' /><strong class='reserved'>char</strong> g_szFileNameLST[<a href='../D/99.html' title='Multiple defined in 3 places.'>MAXNAMLEN</a>];
+<a id='L111' name='L111' /><strong class='reserved'>char</strong> g_szFileNameOBJ[<a href='../D/99.html' title='Multiple defined in 3 places.'>MAXNAMLEN</a>];
+<a id='L112' name='L112' /><strong class='reserved'>char</strong> g_szFileNameEXP[<a href='../D/99.html' title='Multiple defined in 3 places.'>MAXNAMLEN</a>];
+<a id='L113' name='L113' />
+<a id='L114' name='L114' /><strong class='reserved'>char</strong> g_szLabel[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];        <em class='comment'>// filled in by parser</em>
+<a id='L115' name='L115' /><strong class='reserved'>char</strong> g_szOpcode[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];       <em class='comment'>// filled in by parser</em>
+<a id='L116' name='L116' /><strong class='reserved'>char</strong> g_szParms[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];        <em class='comment'>// filled in by parser</em>
+<a id='L117' name='L117' /><strong class='reserved'>char</strong> g_szPc[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];
+<a id='L118' name='L118' /><strong class='reserved'>char</strong> g_szProgram[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];
+<a id='L119' name='L119' />
+<a id='L120' name='L120' /><strong class='reserved'>char</strong> g_szRadixFormat8[8];
+<a id='L121' name='L121' /><strong class='reserved'>char</strong> g_szRadixFormat8Decimal[] = "%d";
+<a id='L122' name='L122' /><strong class='reserved'>char</strong> g_szRadixFormat8Hex[] = "%03X";
+<a id='L123' name='L123' />
+<a id='L124' name='L124' /><strong class='reserved'>char</strong> g_szRadixFormat16[8];
+<a id='L125' name='L125' /><strong class='reserved'>char</strong> g_szRadixFormat16Decimal[] = "%d";
+<a id='L126' name='L126' /><strong class='reserved'>char</strong> g_szRadixFormat16Hex[] = "%05X";
+<a id='L127' name='L127' />
+<a id='L128' name='L128' /><strong class='reserved'>char</strong> g_szRadixFormat32[8];
+<a id='L129' name='L129' /><strong class='reserved'>char</strong> g_szRadixFormat32Decimal[] = "%ld";
+<a id='L130' name='L130' /><strong class='reserved'>char</strong> g_szRadixFormat32Hex[] = "%09lX";
+<a id='L131' name='L131' />
+<a id='L132' name='L132' /><strong class='reserved'>char</strong> g_szRadixFormat64[16];
+<a id='L133' name='L133' /><strong class='reserved'>char</strong> g_szRadixFormat64Decimal[] = "%lld";
+<a id='L134' name='L134' /><strong class='reserved'>char</strong> g_szRadixFormat64Hex[] = "%017llX";
+<a id='L135' name='L135' />
+<a id='L136' name='L136' /><strong class='reserved'>char</strong> g_szListRadix[16];
+<a id='L137' name='L137' /><strong class='reserved'>char</strong> g_szListRadixHex[] = "%04X";
+<a id='L138' name='L138' /><strong class='reserved'>char</strong> g_szListRadixDec[] = "%05d";
+<a id='L139' name='L139' />
+<a id='L140' name='L140' /><strong class='reserved'>char</strong> g_szRawComments[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];
+<a id='L141' name='L141' /><strong class='reserved'>char</strong> g_szRawLabel[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];
+<a id='L142' name='L142' /><strong class='reserved'>char</strong> g_szRawLine[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];
+<a id='L143' name='L143' /><strong class='reserved'>char</strong> g_szRawOpcode[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];
+<a id='L144' name='L144' /><strong class='reserved'>char</strong> g_szRawParms[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];
+<a id='L145' name='L145' />
+<a id='L146' name='L146' /><strong class='reserved'>char</strong> g_szSep[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];
+<a id='L147' name='L147' /><strong class='reserved'>char</strong> g_szSerial[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];
+<a id='L148' name='L148' /><strong class='reserved'>char</strong> g_szSubttl[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];
+<a id='L149' name='L149' /><strong class='reserved'>char</strong> g_szTemp[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];
+<a id='L150' name='L150' /><strong class='reserved'>char</strong> g_szTitle[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];
+<a id='L151' name='L151' />
+<a id='L152' name='L152' /><strong class='reserved'>char</strong> g_szStrBuffer[<a href='../D/50.html' title='Multiple defined in 2 places.'>DEFAULT_STRSIZE</a>];    <em class='comment'>// filled in by CSymbols::getstring</em>
+<a id='L153' name='L153' />
+<a id='L154' name='L154' /><strong class='reserved'>int</strong>  g_bBinary = <a href='../D/43.html' title='Multiple defined in 2 places.'>DEFAULT_BINARY</a>;
+<a id='L155' name='L155' /><strong class='reserved'>int</strong>  g_bComments;               <em class='comment'>// comment field (set in parser)</em>
+<a id='L156' name='L156' /><strong class='reserved'>int</strong>  g_bEndFound;               <em class='comment'>// end statement found</em>
+<a id='L157' name='L157' /><strong class='reserved'>int</strong>  g_bExported = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;       <em class='comment'>// export directive used</em>
+<a id='L158' name='L158' /><strong class='reserved'>int</strong>  g_bLabel;                  <em class='comment'>// label field found</em>
+<a id='L159' name='L159' /><strong class='reserved'>int</strong>  g_bOpcode;                 <em class='comment'>// opcode field found</em>
+<a id='L160' name='L160' /><strong class='reserved'>int</strong>  g_bParms;                  <em class='comment'>// parms field found</em>
+<a id='L161' name='L161' /><strong class='reserved'>int</strong>  g_bPass1;                  <em class='comment'>// we are in pass 1 (set in main)</em>
+<a id='L162' name='L162' /><strong class='reserved'>int</strong>  g_bPass2;                  <em class='comment'>// we are in pass 2 (set in main)</em>
+<a id='L163' name='L163' />
+<a id='L164' name='L164' /><strong class='reserved'>int</strong>  g_bSTR = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L165' name='L165' /><strong class='reserved'>int</strong>  g_bE8  = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L166' name='L166' /><strong class='reserved'>int</strong>  g_bE16 = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L167' name='L167' /><strong class='reserved'>int</strong>  g_bE32 = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L168' name='L168' /><strong class='reserved'>int</strong>  g_bE64 = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L169' name='L169' />
+<a id='L170' name='L170' /><strong class='reserved'>int</strong>  g_bP8  = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L171' name='L171' /><strong class='reserved'>int</strong>  g_bP16 = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L172' name='L172' /><strong class='reserved'>int</strong>  g_bP32 = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L173' name='L173' /><strong class='reserved'>int</strong>  g_bP64 = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L174' name='L174' />
+<a id='L175' name='L175' /><strong class='reserved'>int</strong>  g_bU8  = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L176' name='L176' /><strong class='reserved'>int</strong>  g_bU16 = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L177' name='L177' /><strong class='reserved'>int</strong>  g_bU32 = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L178' name='L178' /><strong class='reserved'>int</strong>  g_bU64 = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L179' name='L179' />
+<a id='L180' name='L180' /><strong class='reserved'>int</strong>  g_bSaveSymbols  = <a href='../D/48.html' title='Multiple defined in 2 places.'>DEFAULT_SAVESYMBOLS</a>;
+<a id='L181' name='L181' /><strong class='reserved'>int</strong>  g_bTypeIncludes = <a href='../S/219.html#L41' title='Defined at 41 in asdefs.hpp.'>DEFAULT_TYPEINCLUDES</a>;
+<a id='L182' name='L182' /><strong class='reserved'>int</strong>  g_bTypeSource   = <a href='../D/53.html' title='Multiple defined in 2 places.'>DEFAULT_TYPESOURCE</a>;
+<a id='L183' name='L183' /><strong class='reserved'>int</strong>  g_bListIncludes = <a href='../S/314.html#L83' title='Defined at 83 in assemble.cpp.'>LOCAL_DEFAULT_LISTINCLUDES</a>;            
+<a id='L184' name='L184' /><strong class='reserved'>int</strong>  g_b1stHdrLstd   = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L185' name='L185' /><strong class='reserved'>int</strong>  g_iBytesIndex;     <em class='comment'>// bytes emitted by this instruction</em>
+<a id='L186' name='L186' /><strong class='reserved'>int</strong>  g_iErrorNo;                <em class='comment'>// global error bitmask </em>
+<a id='L187' name='L187' /><strong class='reserved'>int</strong>  g_iErrors = 0;     <em class='comment'>// number of errors in pass2</em>
+<a id='L188' name='L188' /><strong class='reserved'>int</strong>  g_iFileLine;        <em class='comment'>// used by print function</em>
+<a id='L189' name='L189' /><strong class='reserved'>int</strong>  g_iLineType;        <em class='comment'>// see line type enum</em>
+<a id='L190' name='L190' /><strong class='reserved'>int</strong>  g_iPageLength;     <em class='comment'>// used by print function</em>
+<a id='L191' name='L191' /><strong class='reserved'>int</strong>  g_iPageline;       <em class='comment'>// used by print function</em>
+<a id='L192' name='L192' /><strong class='reserved'>int</strong>  g_iPageNumber;     <em class='comment'>// used by print function</em>
+<a id='L193' name='L193' /><strong class='reserved'>int</strong>  g_iPageWidth;      <em class='comment'>// used by print function</em>
+<a id='L194' name='L194' /><strong class='reserved'>int</strong>  g_iPc;             <em class='comment'>// program counter</em>
+<a id='L195' name='L195' /><strong class='reserved'>int</strong>  g_iProc = <a href='../S/314.html#L82' title='Defined at 82 in assemble.cpp.'>LOCAL_DEFAULT_PROC</a>;
+<a id='L196' name='L196' /><strong class='reserved'>int</strong>  g_iRc;             <em class='comment'>// used to receive return code</em>
+<a id='L197' name='L197' /><strong class='reserved'>int</strong>  g_iSegment;        <em class='comment'>// current segment type</em>
+<a id='L198' name='L198' /><strong class='reserved'>int</strong>  g_iSoboff;
+<a id='L199' name='L199' /><strong class='reserved'>int</strong>  g_iSobrante;
+<a id='L200' name='L200' /><strong class='reserved'>int</strong>  g_iSpaces = 5;     <em class='comment'>// used to format listing header</em>
+<a id='L201' name='L201' /><strong class='reserved'>int</strong>  g_iSourceLevel;    <em class='comment'>// used by print function</em>
+<a id='L202' name='L202' /><strong class='reserved'>int</strong>  g_iState;          <em class='comment'>// used by parser</em>
+<a id='L203' name='L203' /><strong class='reserved'>int</strong>  g_iTriplets;       <em class='comment'>// triplets needed for string</em>
+<a id='L204' name='L204' /><strong class='reserved'>int</strong>  g_iTripoff;        <em class='comment'>// number of bytes after triplets</em>
+<a id='L205' name='L205' /><strong class='reserved'>int</strong>  g_iVerbosity;      <em class='comment'>// self documenting</em>
+<a id='L206' name='L206' /><strong class='reserved'>int</strong>  g_iWarningNo;      <em class='comment'>// global warning bitmask</em>
+<a id='L207' name='L207' /><strong class='reserved'>int</strong>  g_iWarnings;       <em class='comment'>// number of warnings in pass2</em>
+<a id='L208' name='L208' />FILE *        g_fhex;           <em class='comment'>// Assembler hex     file handle</em>
+<a id='L209' name='L209' />FILE *        g_flog;           <em class='comment'>// Assembler log     file handle</em>
+<a id='L210' name='L210' />FILE *        g_flst;           <em class='comment'>// Assembler listing file handle</em>
+<a id='L211' name='L211' />FILE *        g_fexp;           <em class='comment'>// Assembler export  file handle</em>
+<a id='L212' name='L212' />
+<a id='L213' name='L213' /><a href='../D/34.html' title='Multiple defined in 4 places.'>CMemory</a> *     g_pCMemory = NULL;
+<a id='L214' name='L214' /><a href='../D/38.html' title='Multiple defined in 2 places.'>CSource</a> *     g_pCSource1;  <em class='comment'>// Used for pass 1</em>
+<a id='L215' name='L215' /><a href='../D/38.html' title='Multiple defined in 2 places.'>CSource</a> *     g_pCSource2;  <em class='comment'>// Used for pass 2</em>
+<a id='L216' name='L216' />
+<a id='L217' name='L217' /><em class='sharp'>#ifndef</em> <a href='../D/105.html' title='Multiple defined in 2 places.'>MEMSIZE</a>
+<a id='L218' name='L218' /><em class='sharp'>#define</em> <a href='../R/78.html' title='Multiple referred from 16 places.'>MEMSIZE</a> 32768
+<a id='L219' name='L219' /><em class='sharp'>#endif</em>
+<a id='L220' name='L220' /><strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> g_ucBytes[<a href='../D/105.html' title='Multiple defined in 2 places.'>MEMSIZE</a>];       <em class='comment'>// filled by code handlers</em>
+<a id='L221' name='L221' />
+<a id='L222' name='L222' /><strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> g_ucTemp;
+<a id='L223' name='L223' /><strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>  g_uiTarget;        <em class='comment'>// used by ascommon/_bshort.hpp</em>
+<a id='L224' name='L224' />
+<a id='L225' name='L225' />
+<a id='L226' name='L226' /><em class='sharp'>#define</em> <a href='../S/143.html#L19' title='Referred from 19 in ascalc.hpp.'>CALC</a>
+<a id='L227' name='L227' /><em class='sharp'>#include</em> "<a href='143.html'>ascalc.hpp</a>"
+<a id='L228' name='L228' />
+<a id='L229' name='L229' /><em class='comment'>// The asprint module contains the "print" function which</em>
+<a id='L230' name='L230' /><em class='comment'>// is used to format the listing file with page breaks...</em>
+<a id='L231' name='L231' /><em class='sharp'>#include</em> "<a href='312.html'>asprint.hpp</a>"
+<a id='L232' name='L232' />
+<a id='L233' name='L233' /><em class='comment'>// The CSymbols class provides a set of member functions</em>
+<a id='L234' name='L234' /><em class='comment'>// used to create a symbol table, add entries, and reference</em>
+<a id='L235' name='L235' /><em class='comment'>// them during the assembly process.</em>
+<a id='L236' name='L236' /><em class='sharp'>#include</em> "<a href='508.html'>asymbols.hpp</a>"
+<a id='L237' name='L237' /><a href='../D/39.html' title='Multiple defined in 3 places.'>CSymbols</a> * g_pCSymbols;
+<a id='L238' name='L238' />
+<a id='L239' name='L239' /><em class='sharp'>#include</em> "<a href='300.html'>ashexout.hpp</a>"
+<a id='L240' name='L240' /><em class='sharp'>#include</em> "<a href='310.html'>asparse.hpp</a>"
+<a id='L241' name='L241' />
+<a id='L242' name='L242' /><em class='sharp'>#define</em> <a href='../S/585.html#L29' title='Referred from 29 in cpostfix.hpp.'>POSTFIX</a>
+<a id='L243' name='L243' /><em class='sharp'>#include</em> "<a href='585.html'>cpostfix.hpp</a>"
+<a id='L244' name='L244' /><a href='../D/37.html' title='Multiple defined in 2 places.'>CPostfix</a> * g_pCPostfix;
+<a id='L245' name='L245' />
+<a id='L246' name='L246' /><em class='sharp'>#include</em> "<a href='299.html'>aseval.hpp</a>"
+<a id='L247' name='L247' /><a href='../D/33.html' title='Multiple defined in 2 places.'>CEval</a> * g_pCEval;
+<a id='L248' name='L248' />
+<a id='L249' name='L249' /><em class='sharp'>#include</em> "<a href='305.html'>asomfgen.hpp</a>"
+<a id='L250' name='L250' /><a href='../D/36.html' title='Multiple defined in 3 places.'>COmfGen</a> * g_pCOmfGen;
+<a id='L251' name='L251' />
+<a id='L252' name='L252' /><em class='sharp'>#include</em> "<a href='313.html'>asresolv.hpp</a>"         <em class='comment'>// Expression and symbol resolvers</em>
+<a id='L253' name='L253' /><em class='sharp'>#include</em> "<a href='303.html'>asmultip.hpp</a>"         <em class='comment'>// parse multiple parameters (csv)</em>
+<a id='L254' name='L254' /><em class='sharp'>#include</em> "<a href='217.html'>asdecdir.hpp</a>"         <em class='comment'>// Decode directives</em>
+<a id='L255' name='L255' /><em class='sharp'>#include</em> "<a href='215.html'>asdec80.hpp</a>"          <em class='comment'>// Decode 8080 operation codes</em>
+<a id='L256' name='L256' /><em class='sharp'>#include</em> "<a href='216.html'>asdec85.hpp</a>"          <em class='comment'>// Decode 8085 operation codes</em>
+<a id='L257' name='L257' /><em class='sharp'>#include</em> "<a href='213.html'>asdec65.hpp</a>"          <em class='comment'>// Decode 6502 operation codes</em>
+<a id='L258' name='L258' /><em class='sharp'>#include</em> "<a href='214.html'>asdec68k.hpp</a>"         <em class='comment'>// Decode 68k  operation codes</em>
+<a id='L259' name='L259' /><em class='sharp'>#include</em> "<a href='218.html'>asdecz80.hpp</a>"         <em class='comment'>// Decode Z-80 operation codes</em>
+<a id='L260' name='L260' /><em class='sharp'>#include</em> "<a href='212.html'>asdec20.hpp</a>"          <em class='comment'>// Decode 1620 operation codes</em>
+<a id='L261' name='L261' /><em class='sharp'>#include</em> "<a href='306.html'>asouterr.hpp</a>"
+<a id='L262' name='L262' /><em class='sharp'>#include</em> "<a href='307.html'>asouthex.hpp</a>"
+<a id='L263' name='L263' /><em class='sharp'>#include</em> "<a href='308.html'>asoutlst.hpp</a>"
+<a id='L264' name='L264' /><em class='sharp'>#include</em> "<a href='309.html'>asoutwrn.hpp</a>"
+<a id='L265' name='L265' />
+<a id='L266' name='L266' />
+<a id='L267' name='L267' /><strong class='reserved'>int</strong> main(<strong class='reserved'>int</strong> argc,<strong class='reserved'>char</strong> **argv)
+<a id='L268' name='L268' /><em class='brace'>{</em>
+<a id='L269' name='L269' />        <a href='../S/698.html#L198' title='Defined at 198 in versbind.hpp.'>Version</a>(argv[0]);
+<a id='L270' name='L270' />        strcpy(g_szArgv0,argv[0]);
+<a id='L271' name='L271' />        sprintf(g_szAssembleCpp,"%s %s %s",__FILE__,__TIME__,__DATE__);
+<a id='L272' name='L272' />
+<a id='L273' name='L273' />        <strong class='reserved'>if</strong>(2 &gt; argc) <em class='brace'>{</em>
+<a id='L274' name='L274' />                printf("usage - %s &lt;progname&gt;\n",argv[0]);
+<a id='L275' name='L275' />                printf("example - %s testfile\n",argv[0]);      
+<a id='L276' name='L276' />                exit(EXIT_FAILURE);
+<a id='L277' name='L277' />        <em class='brace'>}</em>
+<a id='L278' name='L278' />
+<a id='L279' name='L279' /><em class='comment'>//      ini_read(argv[0],"Debug",argv[1]);</em>
+<a id='L280' name='L280' /><em class='comment'>//      printf("g_szIniValue is %s\n",g_szIniValue);</em>
+<a id='L281' name='L281' />
+<a id='L282' name='L282' />        g_bPass1 = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L283' name='L283' />        g_bPass2 = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L284' name='L284' />
+<a id='L285' name='L285' />        <em class='comment'>// Create an instance of the expression evaluation object</em>
+<a id='L286' name='L286' />        g_pCEval = <strong class='reserved'>new</strong> <a href='../D/33.html' title='Multiple defined in 2 places.'>CEval</a>();
+<a id='L287' name='L287' />
+<a id='L288' name='L288' />        <em class='comment'>// set default radices to decimal for all precisions</em>
+<a id='L289' name='L289' />        strcpy(g_szRadixFormat8, g_szRadixFormat8Decimal );
+<a id='L290' name='L290' />        strcpy(g_szRadixFormat16,g_szRadixFormat16Decimal);
+<a id='L291' name='L291' />        strcpy(g_szRadixFormat32,g_szRadixFormat32Decimal);
+<a id='L292' name='L292' />        strcpy(g_szRadixFormat64,g_szRadixFormat64Decimal);
+<a id='L293' name='L293' />        strcpy(g_szListRadix,    g_szListRadixHex);
+<a id='L294' name='L294' />
+<a id='L295' name='L295' />        <em class='comment'>// take provided program name an add source extension</em>
+<a id='L296' name='L296' />        strcpy(g_szFileNameASM,argv[1]); strcat(g_szFileNameASM,".asm");
+<a id='L297' name='L297' />
+<a id='L298' name='L298' />        <em class='comment'>// take provided program name and add listing extension</em>
+<a id='L299' name='L299' />        strcpy(g_szFileNameLST,argv[1]); strcat(g_szFileNameLST,".lst");
+<a id='L300' name='L300' />
+<a id='L301' name='L301' />        <em class='comment'>// save name for listing header</em>
+<a id='L302' name='L302' />        strcpy(g_szProgram,g_szFileNameLST);
+<a id='L303' name='L303' />        
+<a id='L304' name='L304' />        <em class='comment'>// create logfile name</em>
+<a id='L305' name='L305' />        strcpy(g_szFileNameLOG,argv[1]); strcat(g_szFileNameLOG,".log");
+<a id='L306' name='L306' />        
+<a id='L307' name='L307' />        <em class='comment'>// create hexfile name</em>
+<a id='L308' name='L308' />        strcpy(g_szFileNameHEX,argv[1]); strcat(g_szFileNameHEX,".hex");
+<a id='L309' name='L309' />
+<a id='L310' name='L310' />        <em class='comment'>// create binary file name</em>
+<a id='L311' name='L311' />        strcpy(g_szFileNameBIN,argv[1]); strcat(g_szFileNameBIN,".bin");
+<a id='L312' name='L312' />
+<a id='L313' name='L313' />        <em class='comment'>// create export file name</em>
+<a id='L314' name='L314' />        strcpy(g_szFileNameEXP,argv[1]); strcat(g_szFileNameEXP,".exp");
+<a id='L315' name='L315' />
+<a id='L316' name='L316' />        g_pCOmfGen = <strong class='reserved'>new</strong> <a href='../D/36.html' title='Multiple defined in 3 places.'>COmfGen</a>(argv[1]);
+<a id='L317' name='L317' />                
+<a id='L318' name='L318' />        g_iVerbosity = <a href='../D/54.html' title='Multiple defined in 2 places.'>DEFAULT_VERBOSITY</a>;
+<a id='L319' name='L319' />
+<a id='L320' name='L320' />        g_pCSource1 = <strong class='reserved'>new</strong> <a href='../D/38.html' title='Multiple defined in 2 places.'>CSource</a>();
+<a id='L321' name='L321' />        g_iRc = g_pCSource1-&gt;<a href='../S/650.html#L51' title='Defined at 51 in srcclass.hpp.'>srcopen</a>(g_szFileNameASM); 
+<a id='L322' name='L322' />        <strong class='reserved'>if</strong>(EXIT_FAILURE == g_iRc) <em class='brace'>{</em>
+<a id='L323' name='L323' />                printf("Sorry, cannot find source file %s\n",g_szFileNameASM);
+<a id='L324' name='L324' />                exit(EXIT_FAILURE);
+<a id='L325' name='L325' />        <em class='brace'>}</em>
+<a id='L326' name='L326' />
+<a id='L327' name='L327' />        printf("Assembling %s\n",g_szFileNameASM);
+<a id='L328' name='L328' />
+<a id='L329' name='L329' />        g_flst = fopen(g_szFileNameLST,"w");
+<a id='L330' name='L330' />        <strong class='reserved'>if</strong>(NULL == g_flst) <em class='brace'>{</em>
+<a id='L331' name='L331' />                printf("Sorry, can't open listing file %s\n",g_szFileNameLST);
+<a id='L332' name='L332' />                exit(EXIT_FAILURE);
+<a id='L333' name='L333' />        <em class='brace'>}</em>
+<a id='L334' name='L334' />
+<a id='L335' name='L335' />        g_flog = fopen(g_szFileNameLOG,"w");
+<a id='L336' name='L336' />        <strong class='reserved'>if</strong>(NULL == g_flog) <em class='brace'>{</em>
+<a id='L337' name='L337' />                printf("Sorry, can't open log file %s\n",g_szFileNameLOG);
+<a id='L338' name='L338' />                fclose(g_flst); exit(EXIT_FAILURE);
+<a id='L339' name='L339' />        <em class='brace'>}</em>
+<a id='L340' name='L340' />
+<a id='L341' name='L341' />        g_fhex = fopen(g_szFileNameHEX,"w");
+<a id='L342' name='L342' />        <strong class='reserved'>if</strong>(NULL == g_fhex) <em class='brace'>{</em>
+<a id='L343' name='L343' />                printf("Sorry, can't open hex file %s\n",g_szFileNameHEX);
+<a id='L344' name='L344' />                fclose(g_flst); fclose(g_flog); exit(EXIT_FAILURE);
+<a id='L345' name='L345' />        <em class='brace'>}</em>
+<a id='L346' name='L346' />
+<a id='L347' name='L347' />        g_pCSymbols = <strong class='reserved'>new</strong> <a href='../D/39.html' title='Multiple defined in 3 places.'>CSymbols</a>(argv[1]);
+<a id='L348' name='L348' />        g_pCSymbols-&gt;<a href='../S/508.html#L120' title='Defined at 120 in asymbols.hpp.'>mynamespace</a>("default");
+<a id='L349' name='L349' />
+<a id='L350' name='L350' />        strcpy(g_szTitle,"Vintage Modern Assembler Plus Tools");
+<a id='L351' name='L351' />        sprintf(g_szSubttl,"Copyright (C) 20%d Douglas Goodall.",<a href='../S/699.html#L9' title='Defined at 9 in version.hpp.'>RMJ</a>);
+<a id='L352' name='L352' />        strcpy(g_szSep,"  ");
+<a id='L353' name='L353' />
+<a id='L354' name='L354' />        g_iPageLength = <a href='../S/314.html#L80' title='Defined at 80 in assemble.cpp.'>LOCAL_DEFAULT_PAGELENGTH</a>;       
+<a id='L355' name='L355' />        g_iPageWidth  = <a href='../S/314.html#L81' title='Defined at 81 in assemble.cpp.'>LOCAL_DEFAULT_PAGEWIDTH</a>;
+<a id='L356' name='L356' />
+<a id='L357' name='L357' />        g_iPageNumber = 1;      
+<a id='L358' name='L358' />
+<a id='L359' name='L359' />
+<a id='L360' name='L360' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("pagelgth",<a href='../S/508.html#L55' title='Defined at 55 in asymbols.hpp.'>TYPE_U16</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>)g_iPageLength);
+<a id='L361' name='L361' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("pagewdth",<a href='../S/508.html#L55' title='Defined at 55 in asymbols.hpp.'>TYPE_U16</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>)g_iPageWidth);
+<a id='L362' name='L362' />
+<a id='L363' name='L363' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("ldefpgln",<a href='../S/508.html#L55' title='Defined at 55 in asymbols.hpp.'>TYPE_U16</a>,
+<a id='L364' name='L364' />                         (<strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>)<a href='../S/314.html#L80' title='Defined at 80 in assemble.cpp.'>LOCAL_DEFAULT_PAGELENGTH</a>);
+<a id='L365' name='L365' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("ldefpgwd",<a href='../S/508.html#L55' title='Defined at 55 in asymbols.hpp.'>TYPE_U16</a>,
+<a id='L366' name='L366' />                         (<strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>)<a href='../S/314.html#L81' title='Defined at 81 in assemble.cpp.'>LOCAL_DEFAULT_PAGEWIDTH</a>);
+<a id='L367' name='L367' />
+<a id='L368' name='L368' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("assemble",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,
+<a id='L369' name='L369' />                        (<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)argv[0]);
+<a id='L370' name='L370' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("program",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,
+<a id='L371' name='L371' />                        (<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)argv[1]);
+<a id='L372' name='L372' />
+<a id='L373' name='L373' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("username",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,
+<a id='L374' name='L374' />                        (<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)version.<a href='../D/524.html' title='Multiple defined in 2 places.'>getuser</a>());
+<a id='L375' name='L375' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("machtype",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,
+<a id='L376' name='L376' />                        (<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)version.<a href='../D/500.html' title='Multiple defined in 2 places.'>getmachtype</a>());
+<a id='L377' name='L377' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("pwd",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,
+<a id='L378' name='L378' />                        (<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)version.<a href='../D/509.html' title='Multiple defined in 2 places.'>getpwd</a>());
+<a id='L379' name='L379' />        
+<a id='L380' name='L380' />        <a href='../S/618.html#L38' title='Defined at 38 in inibind.hpp.'>ini_read</a>(argv[0],"Env","HOSTNAME");
+<a id='L381' name='L381' />        <strong class='reserved'>if</strong>(0 &lt; strlen(g_szIniValue)) <em class='brace'>{</em>
+<a id='L382' name='L382' />                g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("hostname",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,
+<a id='L383' name='L383' />                                (<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)g_szIniValue);
+<a id='L384' name='L384' />        <em class='brace'>}</em>
+<a id='L385' name='L385' />
+<a id='L386' name='L386' />        <a href='../S/618.html#L38' title='Defined at 38 in inibind.hpp.'>ini_read</a>(argv[0],"Env","HOSTTYPE");
+<a id='L387' name='L387' />        <strong class='reserved'>if</strong>(0 &lt; strlen(g_szIniValue)) <em class='brace'>{</em>
+<a id='L388' name='L388' />                g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("hosttype",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,
+<a id='L389' name='L389' />                                (<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)g_szIniValue);
+<a id='L390' name='L390' />        <em class='brace'>}</em>
+<a id='L391' name='L391' />
+<a id='L392' name='L392' />
+<a id='L393' name='L393' />        <a href='../S/576.html#L26' title='Defined at 26 in bcctrace.hpp.'>TRACE</a>("starting pass1");
+<a id='L394' name='L394' />        g_iSegment = <a href='../S/314.html#L72' title='Defined at 72 in assemble.cpp.'>SEG_VAGUE</a>;
+<a id='L395' name='L395' />
+<a id='L396' name='L396' />        <em class='comment'>// Make the postfix part of the expression evaluation</em>
+<a id='L397' name='L397' />        <em class='comment'>// engine available. </em>
+<a id='L398' name='L398' />        g_pCPostfix = <strong class='reserved'>new</strong> <a href='../D/37.html' title='Multiple defined in 2 places.'>CPostfix</a>(<a href='../S/585.html#L31' title='Defined at 31 in cpostfix.hpp.'>POSTFIX_NO_DEBUG</a>);
+<a id='L399' name='L399' />
+<a id='L400' name='L400' />        g_bPass1 = <a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a>;
+<a id='L401' name='L401' />
+<a id='L402' name='L402' />        fprintf(g_flog,"Start of pass one\n");
+<a id='L403' name='L403' />
+<a id='L404' name='L404' />        printf("Pass One");
+<a id='L405' name='L405' />
+<a id='L406' name='L406' />        <em class='comment'>// This program counter, should start at 0</em>
+<a id='L407' name='L407' />        g_iPc = 0;
+<a id='L408' name='L408' />        
+<a id='L409' name='L409' />        g_bEndFound = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L410' name='L410' />
+<a id='L411' name='L411' />        <em class='comment'>// Get the first line of the source program     </em>
+<a id='L412' name='L412' />        g_p = g_pCSource1-&gt;<a href='../S/650.html#L67' title='Defined at 67 in srcclass.hpp.'>srcgets</a>();
+<a id='L413' name='L413' />        <strong class='reserved'>while</strong>(NULL != g_p) <em class='brace'>{</em>
+<a id='L414' name='L414' />                strcpy(g_szBuffer,g_p);
+<a id='L415' name='L415' />
+<a id='L416' name='L416' />                g_iSourceLevel = g_pCSource1-&gt;<a href='../S/650.html#L82' title='Defined at 82 in srcclass.hpp.'>srcgetlevel</a>();
+<a id='L417' name='L417' />                
+<a id='L418' name='L418' />                <em class='comment'>// Remove the trailing newline</em>
+<a id='L419' name='L419' />                <em class='comment'>// left there by the fgets</em>
+<a id='L420' name='L420' />                g_szBuffer[strlen(g_szBuffer)-1] = 0;
+<a id='L421' name='L421' />
+<a id='L422' name='L422' />                <em class='comment'>// Save the raw input line before parsing</em>
+<a id='L423' name='L423' />                strcpy(g_szRawLine,g_szBuffer);
+<a id='L424' name='L424' />                
+<a id='L425' name='L425' />                <em class='comment'>// Set default linetype to error in the</em>
+<a id='L426' name='L426' />                <em class='comment'>// expectation that it will be changed</em>
+<a id='L427' name='L427' />                <em class='comment'>// back by the parser when code is recognized.</em>
+<a id='L428' name='L428' />                g_iLineType = <a href='../S/314.html#L31' title='Defined at 31 in assemble.cpp.'>TYPE_ERR</a>;         <em class='comment'>// This is an enum</em>
+<a id='L429' name='L429' />                g_iErrorNo  = <a href='../S/314.html#L45' title='Defined at 45 in assemble.cpp.'>ERROR_UNKOP</a>;              <em class='comment'>// This is a bitfield</em>
+<a id='L430' name='L430' />                g_iWarningNo  = <a href='../S/314.html#L86' title='Defined at 86 in assemble.cpp.'>WARNING_NONE</a>;   <em class='comment'>// This is a bitfield</em>
+<a id='L431' name='L431' />
+<a id='L432' name='L432' />                <em class='comment'>// Assume to begin with no label, </em>
+<a id='L433' name='L433' />                <em class='comment'>// op, parm, or comment</em>
+<a id='L434' name='L434' />                g_bLabel    = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L435' name='L435' />                g_bOpcode   = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L436' name='L436' />                g_bParms    = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L437' name='L437' />                g_bComments = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L438' name='L438' />
+<a id='L439' name='L439' />                <a href='../D/463.html' title='Multiple defined in 2 places.'>asparse</a>();
+<a id='L440' name='L440' />
+<a id='L441' name='L441' />                <em class='comment'>// what a workhorse this clump of code is :-)</em>
+<a id='L442' name='L442' />                <a href='../S/576.html#L26' title='Defined at 26 in bcctrace.hpp.'>TRACE</a>("adding label if present");
+<a id='L443' name='L443' />                <strong class='reserved'>if</strong>( (0 != strlen(g_szLabel))       &amp;&amp; 
+<a id='L444' name='L444' />                    (0 != strncmp("EQU",g_szOpcode,3)) &amp;&amp;
+<a id='L445' name='L445' />                    (0 != strncmp("equ",g_szOpcode,3)) ) <em class='brace'>{</em> 
+<a id='L446' name='L446' />                  g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>(g_szLabel,<a href='../S/508.html#L54' title='Defined at 54 in asymbols.hpp.'>TYPE_U8</a>, (<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>)g_iPc);
+<a id='L447' name='L447' />                  g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>(g_szLabel,<a href='../S/508.html#L55' title='Defined at 55 in asymbols.hpp.'>TYPE_U16</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> )g_iPc);
+<a id='L448' name='L448' />                  g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>(g_szLabel,<a href='../S/508.html#L56' title='Defined at 56 in asymbols.hpp.'>TYPE_U32</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong>)g_iPc);
+<a id='L449' name='L449' />                  g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>(g_szLabel,<a href='../S/508.html#L57' title='Defined at 57 in asymbols.hpp.'>TYPE_U64</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong>)g_iPc);
+<a id='L450' name='L450' />                  g_bU8  = <a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a>;
+<a id='L451' name='L451' />                  g_bU16 = <a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a>;
+<a id='L452' name='L452' />                  g_bU32 = <a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a>;
+<a id='L453' name='L453' />                  g_bU64 = <a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a>;
+<a id='L454' name='L454' />                <em class='brace'>}</em>
+<a id='L455' name='L455' />
+<a id='L456' name='L456' />                <a href='../S/217.html#L24' title='Defined at 24 in asdecdir.hpp.'>decode_directives</a>();
+<a id='L457' name='L457' />                <strong class='reserved'>if</strong>(<a href='../S/314.html#L31' title='Defined at 31 in assemble.cpp.'>TYPE_ERR</a> == g_iLineType) <em class='brace'>{</em>
+<a id='L458' name='L458' />                        <strong class='reserved'>switch</strong>(g_iProc) <em class='brace'>{</em>
+<a id='L459' name='L459' />                                <strong class='reserved'>case</strong> <a href='../S/314.html#L63' title='Defined at 63 in assemble.cpp.'>PROC_8080</a>:  <a href='../S/215.html#L24' title='Defined at 24 in asdec80.hpp.'>decode_8080</a>();  <strong class='reserved'>break</strong>;
+<a id='L460' name='L460' />                                <strong class='reserved'>case</strong> <a href='../S/314.html#L64' title='Defined at 64 in assemble.cpp.'>PROC_8085</a>:  <a href='../S/216.html#L24' title='Defined at 24 in asdec85.hpp.'>decode_8085</a>();  <strong class='reserved'>break</strong>;
+<a id='L461' name='L461' />                                <strong class='reserved'>case</strong> <a href='../S/314.html#L66' title='Defined at 66 in assemble.cpp.'>PROC_6502</a>:  <a href='../S/213.html#L29' title='Defined at 29 in asdec65.hpp.'>decode_6502</a>();  <strong class='reserved'>break</strong>;
+<a id='L462' name='L462' />                                <strong class='reserved'>case</strong> <a href='../S/314.html#L67' title='Defined at 67 in assemble.cpp.'>PROC_68000</a>: <a href='../S/214.html#L29' title='Defined at 29 in asdec68k.hpp.'>decode_68000</a>(); <strong class='reserved'>break</strong>;
+<a id='L463' name='L463' />                                <strong class='reserved'>case</strong> <a href='../S/314.html#L65' title='Defined at 65 in assemble.cpp.'>PROC_Z80</a>:   <a href='../S/218.html#L24' title='Defined at 24 in asdecz80.hpp.'>decode_Z80</a>();   <strong class='reserved'>break</strong>;
+<a id='L464' name='L464' />                                <strong class='reserved'>case</strong> <a href='../S/314.html#L68' title='Defined at 68 in assemble.cpp.'>PROC_1620</a>:  <a href='../S/212.html#L24' title='Defined at 24 in asdec20.hpp.'>decode_1620</a>();  <strong class='reserved'>break</strong>;
+<a id='L465' name='L465' />                        <em class='brace'>}</em>
+<a id='L466' name='L466' />                <em class='brace'>}</em>
+<a id='L467' name='L467' />                <em class='comment'>//not needed in pass one</em>
+<a id='L468' name='L468' />                <em class='comment'>//#include "asoutlst.hpp"</em>
+<a id='L469' name='L469' />                <em class='comment'>//#include "asouthex.hpp"</em>
+<a id='L470' name='L470' />                <em class='comment'>//#include "asouterr.hpp"</em>
+<a id='L471' name='L471' />                <em class='comment'>//#include "asooutwrn.hpp"</em>
+<a id='L472' name='L472' />
+<a id='L473' name='L473' />                <em class='comment'>// Bump the program counter by the number</em>
+<a id='L474' name='L474' />                <em class='comment'>// of g_ucBytes generated by the current instruction</em>
+<a id='L475' name='L475' />                g_iPc += g_iBytesIndex;
+<a id='L476' name='L476' />
+<a id='L477' name='L477' />                <em class='comment'>// Fetch the next line if it exists,</em>
+<a id='L478' name='L478' />                <em class='comment'>// then go back to the beginning of the while</em>
+<a id='L479' name='L479' />                <strong class='reserved'>if</strong>(<a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a> == g_bEndFound) <em class='brace'>{</em>
+<a id='L480' name='L480' />                        g_p = NULL;
+<a id='L481' name='L481' />                <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L482' name='L482' />                        g_p = g_pCSource1-&gt;<a href='../S/650.html#L67' title='Defined at 67 in srcclass.hpp.'>srcgets</a>();
+<a id='L483' name='L483' />                <em class='brace'>}</em>
+<a id='L484' name='L484' />        <em class='brace'>}</em>;
+<a id='L485' name='L485' />        <strong class='reserved'>delete</strong> g_pCSource1;
+<a id='L486' name='L486' />        <strong class='reserved'>delete</strong> g_pCPostfix;
+<a id='L487' name='L487' />
+<a id='L488' name='L488' />        g_bPass1 = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L489' name='L489' />        fprintf(g_flog,"End of pass one\n");
+<a id='L490' name='L490' />
+<a id='L491' name='L491' />        <em class='comment'>//---------------------------------------------------</em>
+<a id='L492' name='L492' />
+<a id='L493' name='L493' /><em class='comment'>/*</em>
+<a id='L494' name='L494' /><em class='comment'>        fprintf(g_flst,"%s",g_szProgram);</em>
+<a id='L495' name='L495' /><em class='comment'>        // Insert needed spaces before page number field</em>
+<a id='L496' name='L496' /><em class='comment'>        for(int i=0;i&lt;g_iSpaces;i++) {</em>
+<a id='L497' name='L497' /><em class='comment'>                fprintf(g_flst," ");</em>
+<a id='L498' name='L498' /><em class='comment'>        }</em>
+<a id='L499' name='L499' /><em class='comment'>        fprintf(g_flst,"Page %d %s Ver of %s %s",</em>
+<a id='L500' name='L500' /><em class='comment'>                g_iPageNumber++,argv[0],__DATE__,__TIME__);</em>
+<a id='L501' name='L501' /><em class='comment'>        fprintf(g_flst,"\n%s",g_szTitle);</em>
+<a id='L502' name='L502' /><em class='comment'>        fprintf(g_flst,"\n%s",g_szSubttl);</em>
+<a id='L503' name='L503' /><em class='comment'>*/</em>
+<a id='L504' name='L504' />        <a href='../S/576.html#L26' title='Defined at 26 in bcctrace.hpp.'>TRACE</a>("starting pass2");
+<a id='L505' name='L505' />
+<a id='L506' name='L506' />        g_iSegment = <a href='../S/314.html#L72' title='Defined at 72 in assemble.cpp.'>SEG_VAGUE</a>;
+<a id='L507' name='L507' />
+<a id='L508' name='L508' />        <em class='comment'>// in case the namespace was changed in pass1</em>
+<a id='L509' name='L509' />        g_pCSymbols-&gt;<a href='../S/508.html#L120' title='Defined at 120 in asymbols.hpp.'>mynamespace</a>("default");
+<a id='L510' name='L510' />
+<a id='L511' name='L511' />        g_bPass2 = <a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a>;
+<a id='L512' name='L512' />        g_pCPostfix = <strong class='reserved'>new</strong> <a href='../D/37.html' title='Multiple defined in 2 places.'>CPostfix</a>(<a href='../S/585.html#L31' title='Defined at 31 in cpostfix.hpp.'>POSTFIX_NO_DEBUG</a>);
+<a id='L513' name='L513' />
+<a id='L514' name='L514' />        g_pCSource2 = <strong class='reserved'>new</strong> <a href='../D/38.html' title='Multiple defined in 2 places.'>CSource</a>();
+<a id='L515' name='L515' />        g_pCSource2-&gt;<a href='../S/650.html#L51' title='Defined at 51 in srcclass.hpp.'>srcopen</a>(g_szFileNameASM);
+<a id='L516' name='L516' />
+<a id='L517' name='L517' /><em class='comment'>//      printf("Pass2 Source file open, level %d line %d\n",</em>
+<a id='L518' name='L518' /><em class='comment'>//              g_pCSource2-&gt;srcgetlevel(),g_pCSource2-&gt;srcgetlineno()+1);</em>
+<a id='L519' name='L519' />
+<a id='L520' name='L520' />        <em class='comment'>//---------------------------------------------------</em>
+<a id='L521' name='L521' />
+<a id='L522' name='L522' />        fprintf(g_flog,"Start of pass two\n");
+<a id='L523' name='L523' />        printf("\nPass Two\n");
+<a id='L524' name='L524' />
+<a id='L525' name='L525' />        <strong class='reserved'>if</strong>(<a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a> == g_bExported) <em class='brace'>{</em>
+<a id='L526' name='L526' />                g_fexp = fopen(g_szFileNameEXP,"w");
+<a id='L527' name='L527' />                <strong class='reserved'>if</strong>(NULL == g_fexp) <em class='brace'>{</em>
+<a id='L528' name='L528' />                        printf("Sorry, can't open exp file %s\n",
+<a id='L529' name='L529' />                                g_szFileNameEXP);
+<a id='L530' name='L530' />                        fclose(g_fhex); fclose(g_flst); fclose(g_flog);
+<a id='L531' name='L531' />                        exit(EXIT_FAILURE);
+<a id='L532' name='L532' />                <em class='brace'>}</em>
+<a id='L533' name='L533' />                fprintf(g_fexp,
+<a id='L534' name='L534' />                        "; Symbols exported from %s.asm\n",argv[1]);
+<a id='L535' name='L535' />        <em class='brace'>}</em>
+<a id='L536' name='L536' />
+<a id='L537' name='L537' />        <strong class='reserved'>if</strong>(<a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a> == g_bBinary) <em class='brace'>{</em>
+<a id='L538' name='L538' />                g_pCMemory  = <strong class='reserved'>new</strong> <a href='../D/34.html' title='Multiple defined in 4 places.'>CMemory</a>(<a href='../D/105.html' title='Multiple defined in 2 places.'>MEMSIZE</a>,g_szFileNameBIN);
+<a id='L539' name='L539' />        <em class='brace'>}</em>
+<a id='L540' name='L540' />
+<a id='L541' name='L541' />        g_iPc = 0;              <em class='comment'>// program counter starts at 0  </em>
+<a id='L542' name='L542' />        g_iFileLine = 0;        <em class='comment'>// file line number (zero rel)</em>
+<a id='L543' name='L543' />        g_iPageline = 0;        <em class='comment'>// page line number (zero rel)</em>
+<a id='L544' name='L544' />
+<a id='L545' name='L545' />        g_bEndFound = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L546' name='L546' />
+<a id='L547' name='L547' />        <em class='comment'>// Get the first line of the source program     </em>
+<a id='L548' name='L548' />        g_p = g_pCSource2-&gt;<a href='../S/650.html#L67' title='Defined at 67 in srcclass.hpp.'>srcgets</a>();
+<a id='L549' name='L549' />        <strong class='reserved'>while</strong>(NULL != g_p) <em class='brace'>{</em>
+<a id='L550' name='L550' />
+<a id='L551' name='L551' />                <strong class='reserved'>if</strong>( <a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a> == g_bTypeSource ) <em class='brace'>{</em>
+<a id='L552' name='L552' />                        <strong class='reserved'>if</strong>( 1 &lt; g_pCSource2-&gt;<a href='../S/650.html#L82' title='Defined at 82 in srcclass.hpp.'>srcgetlevel</a>() ) <em class='brace'>{</em>
+<a id='L553' name='L553' />                                <strong class='reserved'>if</strong>( <a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a> == g_bTypeIncludes ) <em class='brace'>{</em>
+<a id='L554' name='L554' />                                        printf("[%d.%d] %s",
+<a id='L555' name='L555' />                                                g_pCSource2-&gt;<a href='../S/650.html#L82' title='Defined at 82 in srcclass.hpp.'>srcgetlevel</a>(),
+<a id='L556' name='L556' />                                                g_pCSource2-&gt;<a href='../S/650.html#L46' title='Defined at 46 in srcclass.hpp.'>srcgetlineno</a>(),
+<a id='L557' name='L557' />                                                g_p);
+<a id='L558' name='L558' />                                <em class='brace'>}</em>
+<a id='L559' name='L559' />                        <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L560' name='L560' />                                printf("[%d.%d] %s",
+<a id='L561' name='L561' />                                       g_pCSource2-&gt;<a href='../S/650.html#L82' title='Defined at 82 in srcclass.hpp.'>srcgetlevel</a>(),
+<a id='L562' name='L562' />                                       g_pCSource2-&gt;<a href='../S/650.html#L46' title='Defined at 46 in srcclass.hpp.'>srcgetlineno</a>(),
+<a id='L563' name='L563' />                                       g_p);
+<a id='L564' name='L564' />                        <em class='brace'>}</em>
+<a id='L565' name='L565' />                <em class='brace'>}</em>
+<a id='L566' name='L566' />
+<a id='L567' name='L567' />                <em class='comment'>// get the include level for the listing file</em>
+<a id='L568' name='L568' />                g_iSourceLevel = g_pCSource2-&gt;<a href='../S/650.html#L82' title='Defined at 82 in srcclass.hpp.'>srcgetlevel</a>();
+<a id='L569' name='L569' />                g_iFileLine    = g_pCSource2-&gt;<a href='../S/650.html#L46' title='Defined at 46 in srcclass.hpp.'>srcgetlineno</a>();
+<a id='L570' name='L570' />
+<a id='L571' name='L571' />                <em class='comment'>// put the line in the global buffer</em>
+<a id='L572' name='L572' />                strcpy(g_szBuffer,g_p);
+<a id='L573' name='L573' />
+<a id='L574' name='L574' />                <em class='comment'>// Remove the trailing newline</em>
+<a id='L575' name='L575' />                <em class='comment'>// left there by the fgets</em>
+<a id='L576' name='L576' />                g_szBuffer[strlen(g_szBuffer)-1] = 0;
+<a id='L577' name='L577' />
+<a id='L578' name='L578' />                <em class='comment'>// Save the raw input line before parsing</em>
+<a id='L579' name='L579' />                strcpy(g_szRawLine,g_szBuffer);
+<a id='L580' name='L580' />                
+<a id='L581' name='L581' />                <em class='comment'>// Set default linetype to error in the</em>
+<a id='L582' name='L582' />                <em class='comment'>// expectation that it will be changed</em>
+<a id='L583' name='L583' />                <em class='comment'>// back by the parser when code is recognized.</em>
+<a id='L584' name='L584' />                g_iLineType = <a href='../S/314.html#L31' title='Defined at 31 in assemble.cpp.'>TYPE_ERR</a>;
+<a id='L585' name='L585' />                g_iErrorNo  = <a href='../S/314.html#L45' title='Defined at 45 in assemble.cpp.'>ERROR_UNKOP</a>;
+<a id='L586' name='L586' />                g_iWarningNo  = <a href='../S/314.html#L86' title='Defined at 86 in assemble.cpp.'>WARNING_NONE</a>;
+<a id='L587' name='L587' />
+<a id='L588' name='L588' />                <em class='comment'>// Assume to begin with no </em>
+<a id='L589' name='L589' />                <em class='comment'>// label,op,parm,or comment</em>
+<a id='L590' name='L590' />                g_bLabel    = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L591' name='L591' />                g_bOpcode   = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L592' name='L592' />                g_bParms    = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L593' name='L593' />                g_bComments = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L594' name='L594' />
+<a id='L595' name='L595' />                <a href='../D/463.html' title='Multiple defined in 2 places.'>asparse</a>();
+<a id='L596' name='L596' />
+<a id='L597' name='L597' />                <em class='comment'>// what a workhorse this clump of code is :-)</em>
+<a id='L598' name='L598' />                <a href='../S/576.html#L26' title='Defined at 26 in bcctrace.hpp.'>TRACE</a>("adding label if present");
+<a id='L599' name='L599' />                <strong class='reserved'>if</strong>( (0 != strlen(g_szLabel)) &amp;&amp;
+<a id='L600' name='L600' />                    (0 != strncmp("EQU",g_szOpcode,3)) &amp;&amp;
+<a id='L601' name='L601' />                    (0 != strncmp("equ",g_szOpcode,3)) &amp;&amp;
+<a id='L602' name='L602' />                    (0 != strncmp("CALC",g_szOpcode,4)) &amp;&amp;
+<a id='L603' name='L603' />                    (0 != strncmp("calc",g_szOpcode,4)) ) <em class='brace'>{</em>
+<a id='L604' name='L604' />                        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>(g_szLabel,<a href='../S/508.html#L54' title='Defined at 54 in asymbols.hpp.'>TYPE_U8</a>, (<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>)g_iPc);
+<a id='L605' name='L605' />                        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>(g_szLabel,<a href='../S/508.html#L55' title='Defined at 55 in asymbols.hpp.'>TYPE_U16</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> )g_iPc);
+<a id='L606' name='L606' />                        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>(g_szLabel,<a href='../S/508.html#L56' title='Defined at 56 in asymbols.hpp.'>TYPE_U32</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong>)g_iPc);
+<a id='L607' name='L607' />                        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>(g_szLabel,<a href='../S/508.html#L57' title='Defined at 57 in asymbols.hpp.'>TYPE_U64</a>,
+<a id='L608' name='L608' />                                   (<strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong>)g_iPc);
+<a id='L609' name='L609' />                        g_bU8 = <a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a>;
+<a id='L610' name='L610' />                        g_bU16 = <a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a>;
+<a id='L611' name='L611' />                        g_bU32 = <a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a>;
+<a id='L612' name='L612' />                        g_bU64 = <a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a>;
+<a id='L613' name='L613' />                <em class='brace'>}</em>
+<a id='L614' name='L614' />
+<a id='L615' name='L615' />                <a href='../S/217.html#L24' title='Defined at 24 in asdecdir.hpp.'>decode_directives</a>();
+<a id='L616' name='L616' />                <strong class='reserved'>if</strong>(<a href='../S/314.html#L31' title='Defined at 31 in assemble.cpp.'>TYPE_ERR</a> == g_iLineType) <em class='brace'>{</em>
+<a id='L617' name='L617' />                        <strong class='reserved'>switch</strong>(g_iProc) <em class='brace'>{</em>
+<a id='L618' name='L618' />                                <strong class='reserved'>case</strong> <a href='../S/314.html#L63' title='Defined at 63 in assemble.cpp.'>PROC_8080</a>:  <a href='../S/215.html#L24' title='Defined at 24 in asdec80.hpp.'>decode_8080</a>();  <strong class='reserved'>break</strong>;
+<a id='L619' name='L619' />                                <strong class='reserved'>case</strong> <a href='../S/314.html#L64' title='Defined at 64 in assemble.cpp.'>PROC_8085</a>:  <a href='../S/216.html#L24' title='Defined at 24 in asdec85.hpp.'>decode_8085</a>();  <strong class='reserved'>break</strong>;
+<a id='L620' name='L620' />                                <strong class='reserved'>case</strong> <a href='../S/314.html#L66' title='Defined at 66 in assemble.cpp.'>PROC_6502</a>:  <a href='../S/213.html#L29' title='Defined at 29 in asdec65.hpp.'>decode_6502</a>();  <strong class='reserved'>break</strong>;
+<a id='L621' name='L621' />                                <strong class='reserved'>case</strong> <a href='../S/314.html#L67' title='Defined at 67 in assemble.cpp.'>PROC_68000</a>: <a href='../S/214.html#L29' title='Defined at 29 in asdec68k.hpp.'>decode_68000</a>(); <strong class='reserved'>break</strong>;
+<a id='L622' name='L622' />                                <strong class='reserved'>case</strong> <a href='../S/314.html#L65' title='Defined at 65 in assemble.cpp.'>PROC_Z80</a>:   <a href='../S/218.html#L24' title='Defined at 24 in asdecz80.hpp.'>decode_Z80</a>();   <strong class='reserved'>break</strong>;
+<a id='L623' name='L623' />                                <strong class='reserved'>case</strong> <a href='../S/314.html#L68' title='Defined at 68 in assemble.cpp.'>PROC_1620</a>:  <a href='../S/212.html#L24' title='Defined at 24 in asdec20.hpp.'>decode_1620</a>();  <strong class='reserved'>break</strong>;
+<a id='L624' name='L624' />                        <em class='brace'>}</em>
+<a id='L625' name='L625' />                <em class='brace'>}</em>
+<a id='L626' name='L626' />
+<a id='L627' name='L627' /><em class='comment'>//              #include "asouthex.hpp" // Output         to hex     file</em>
+<a id='L628' name='L628' />                <a href='../S/307.html#L24' title='Defined at 24 in asouthex.hpp.'>asouthex</a>();
+<a id='L629' name='L629' />
+<a id='L630' name='L630' /><em class='comment'>//              #include "asoutlst.hpp" // Output line    to listing file</em>
+<a id='L631' name='L631' />                <a href='../S/308.html#L24' title='Defined at 24 in asoutlst.hpp.'>asoutlst</a>();
+<a id='L632' name='L632' />
+<a id='L633' name='L633' /><em class='comment'>//              #include "asouterr.hpp" // Output error   to listing file</em>
+<a id='L634' name='L634' />                <a href='../S/306.html#L30' title='Defined at 30 in asouterr.hpp.'>asouterr</a>();
+<a id='L635' name='L635' />
+<a id='L636' name='L636' /><em class='comment'>//              #include "asoutwrn.hpp" // Output warning to listing file</em>
+<a id='L637' name='L637' />                <a href='../S/309.html#L30' title='Defined at 30 in asoutwrn.hpp.'>asoutwrn</a>();
+<a id='L638' name='L638' />
+<a id='L639' name='L639' />                <em class='comment'>// Bump the program counter by the number</em>
+<a id='L640' name='L640' />                <em class='comment'>// of g_ucBytes generated by the current instruction</em>
+<a id='L641' name='L641' />                g_iPc += g_iBytesIndex;
+<a id='L642' name='L642' />
+<a id='L643' name='L643' />                <strong class='reserved'>if</strong>(<a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a> == g_bEndFound) <em class='brace'>{</em>
+<a id='L644' name='L644' />                        g_p = NULL;
+<a id='L645' name='L645' />                <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L646' name='L646' />                        g_p = g_pCSource2-&gt;<a href='../S/650.html#L67' title='Defined at 67 in srcclass.hpp.'>srcgets</a>();
+<a id='L647' name='L647' />                <em class='brace'>}</em>
+<a id='L648' name='L648' />                <a href='../S/576.html#L26' title='Defined at 26 in bcctrace.hpp.'>TRACE</a>("end of pass2 while loop");
+<a id='L649' name='L649' />        <em class='brace'>}</em>;
+<a id='L650' name='L650' />        <strong class='reserved'>delete</strong> g_pCSource2;
+<a id='L651' name='L651' />        <strong class='reserved'>delete</strong> g_pCPostfix;
+<a id='L652' name='L652' />
+<a id='L653' name='L653' />        <strong class='reserved'>if</strong>(<a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a> == g_bBinary) <em class='brace'>{</em>
+<a id='L654' name='L654' />                <strong class='reserved'>if</strong>(NULL != g_pCMemory) <em class='brace'>{</em>
+<a id='L655' name='L655' />                        <strong class='reserved'>delete</strong> g_pCMemory;
+<a id='L656' name='L656' />                <em class='brace'>}</em>
+<a id='L657' name='L657' />        <em class='brace'>}</em>
+<a id='L658' name='L658' />
+<a id='L659' name='L659' />        printf("\n%d warnings\n",g_iWarnings);
+<a id='L660' name='L660' />        printf("%d errors\n",g_iErrors);
+<a id='L661' name='L661' />        fprintf(g_flog,"End of pass two\n");
+<a id='L662' name='L662' />
+<a id='L663' name='L663' />        g_bPass2 = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
+<a id='L664' name='L664' />
+<a id='L665' name='L665' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("ascalc",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)szAscalcHpp);
+<a id='L666' name='L666' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("asdec65",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)szAsdec65Hpp);
+<a id='L667' name='L667' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("asdec68k",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)szAsdec68kHpp);
+<a id='L668' name='L668' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("asdec80",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)szAsdec80Hpp);
+<a id='L669' name='L669' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("asdec85",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)szAsdec85Hpp);
+<a id='L670' name='L670' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("asdecdir",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)szAsdecdirHpp);
+<a id='L671' name='L671' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("asdecz80",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)szAsdecz80Hpp);
+<a id='L672' name='L672' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("asdec20",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)szAsdec20Hpp);
+<a id='L673' name='L673' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("aseval",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)szAsevalHpp);
+<a id='L674' name='L674' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("ashexout",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)szAshexoutHpp);
+<a id='L675' name='L675' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("asouterr",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)szAsouterrHpp);
+<a id='L676' name='L676' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("asouthex",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)szAsouthexHpp);
+<a id='L677' name='L677' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("asoutlst",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)szAsoutlstHpp);
+<a id='L678' name='L678' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("asresolv",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)szAsresolvHpp);
+<a id='L679' name='L679' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("asoutwrn",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)szAsoutwrnHpp);
+<a id='L680' name='L680' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("asymbols",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)szAsymbolsHpp);
+<a id='L681' name='L681' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("assemble",<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)szAssembleCpp);
+<a id='L682' name='L682' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("asprint", <a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)szAsprintHpp);
+<a id='L683' name='L683' />        g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>("asparse", <a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)szAsparseHpp);
+<a id='L684' name='L684' />
+<a id='L685' name='L685' />        <em class='comment'>// add the symbol table into the listing file</em>
+<a id='L686' name='L686' />        <strong class='reserved'>if</strong>(<a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a> == g_bSTR) g_pCSymbols-&gt;<a href='../D/486.html' title='Multiple defined in 3 places.'>dump</a>(<a href='../S/508.html#L53' title='Defined at 53 in asymbols.hpp.'>TYPE_STRING</a>,g_flst);
+<a id='L687' name='L687' />        
+<a id='L688' name='L688' />        <strong class='reserved'>if</strong>(<a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a> == g_bU8)  g_pCSymbols-&gt;<a href='../D/486.html' title='Multiple defined in 3 places.'>dump</a>(<a href='../S/508.html#L54' title='Defined at 54 in asymbols.hpp.'>TYPE_U8</a>, g_flst);
+<a id='L689' name='L689' />        <strong class='reserved'>if</strong>(<a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a> == g_bU16) g_pCSymbols-&gt;<a href='../D/486.html' title='Multiple defined in 3 places.'>dump</a>(<a href='../S/508.html#L55' title='Defined at 55 in asymbols.hpp.'>TYPE_U16</a>,g_flst);
+<a id='L690' name='L690' />        <strong class='reserved'>if</strong>(<a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a> == g_bU32) g_pCSymbols-&gt;<a href='../D/486.html' title='Multiple defined in 3 places.'>dump</a>(<a href='../S/508.html#L56' title='Defined at 56 in asymbols.hpp.'>TYPE_U32</a>,g_flst);
+<a id='L691' name='L691' />        <strong class='reserved'>if</strong>(<a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a> == g_bU64) g_pCSymbols-&gt;<a href='../D/486.html' title='Multiple defined in 3 places.'>dump</a>(<a href='../S/508.html#L57' title='Defined at 57 in asymbols.hpp.'>TYPE_U64</a>,g_flst);
+<a id='L692' name='L692' />
+<a id='L693' name='L693' />        <strong class='reserved'>if</strong>(<a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a> == g_bE8)  g_pCSymbols-&gt;<a href='../D/486.html' title='Multiple defined in 3 places.'>dump</a>(<a href='../S/508.html#L59' title='Defined at 59 in asymbols.hpp.'>TYPE_E8</a>, g_flst);
+<a id='L694' name='L694' />        <strong class='reserved'>if</strong>(<a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a> == g_bE16) g_pCSymbols-&gt;<a href='../D/486.html' title='Multiple defined in 3 places.'>dump</a>(<a href='../S/508.html#L60' title='Defined at 60 in asymbols.hpp.'>TYPE_E16</a>,g_flst);
+<a id='L695' name='L695' />        <strong class='reserved'>if</strong>(<a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a> == g_bE32) g_pCSymbols-&gt;<a href='../D/486.html' title='Multiple defined in 3 places.'>dump</a>(<a href='../S/508.html#L61' title='Defined at 61 in asymbols.hpp.'>TYPE_E32</a>,g_flst);
+<a id='L696' name='L696' />        <strong class='reserved'>if</strong>(<a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a> == g_bE64) g_pCSymbols-&gt;<a href='../D/486.html' title='Multiple defined in 3 places.'>dump</a>(<a href='../S/508.html#L62' title='Defined at 62 in asymbols.hpp.'>TYPE_E64</a>,g_flst);
+<a id='L697' name='L697' />
+<a id='L698' name='L698' />        <strong class='reserved'>if</strong>(<a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a> == g_bP8)  g_pCSymbols-&gt;<a href='../D/486.html' title='Multiple defined in 3 places.'>dump</a>(<a href='../S/508.html#L63' title='Defined at 63 in asymbols.hpp.'>TYPE_P8</a>, g_flst);
+<a id='L699' name='L699' />        <strong class='reserved'>if</strong>(<a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a> == g_bP16) g_pCSymbols-&gt;<a href='../D/486.html' title='Multiple defined in 3 places.'>dump</a>(<a href='../S/508.html#L64' title='Defined at 64 in asymbols.hpp.'>TYPE_P16</a>,g_flst);
+<a id='L700' name='L700' />        <strong class='reserved'>if</strong>(<a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a> == g_bP32) g_pCSymbols-&gt;<a href='../D/486.html' title='Multiple defined in 3 places.'>dump</a>(<a href='../S/508.html#L65' title='Defined at 65 in asymbols.hpp.'>TYPE_P32</a>,g_flst);
+<a id='L701' name='L701' />        <strong class='reserved'>if</strong>(<a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a> == g_bP64) g_pCSymbols-&gt;<a href='../D/486.html' title='Multiple defined in 3 places.'>dump</a>(<a href='../S/508.html#L66' title='Defined at 66 in asymbols.hpp.'>TYPE_P64</a>,g_flst);
+<a id='L702' name='L702' />
+<a id='L703' name='L703' />        g_pCSymbols-&gt;<a href='../D/486.html' title='Multiple defined in 3 places.'>dump</a>(<a href='../S/508.html#L58' title='Defined at 58 in asymbols.hpp.'>TYPE_META</a>,g_flst);
+<a id='L704' name='L704' />        
+<a id='L705' name='L705' />        <em class='comment'>// Close all the input and output files.        </em>
+<a id='L706' name='L706' />        <strong class='reserved'>if</strong>(NULL != g_flog) fclose(g_flog);
+<a id='L707' name='L707' />        <strong class='reserved'>if</strong>(NULL != g_flst) <em class='brace'>{</em>
+<a id='L708' name='L708' />                fprintf(g_flst,"%c",<a href='../S/643.html#L43' title='Defined at 43 in pcascii.hpp.'>ASCII_FORMFEED</a>);
+<a id='L709' name='L709' />                fclose(g_flst);
+<a id='L710' name='L710' />        <em class='brace'>}</em>
+<a id='L711' name='L711' />
+<a id='L712' name='L712' />        <em class='comment'>// If errors occured, delete the hex file</em>
+<a id='L713' name='L713' />        <strong class='reserved'>if</strong>(0 != g_iErrors) <em class='brace'>{</em>
+<a id='L714' name='L714' />                sprintf(g_szCommand,"rm -f %s",g_szFileNameHEX);
+<a id='L715' name='L715' />                system(g_szCommand);
+<a id='L716' name='L716' />        <em class='brace'>}</em>
+<a id='L717' name='L717' />
+<a id='L718' name='L718' />        <strong class='reserved'>if</strong>(NULL != g_fexp) fclose(g_fexp);
+<a id='L719' name='L719' />
+<a id='L720' name='L720' />
+<a id='L721' name='L721' />        <em class='comment'>// this is a good place to consider writing the </em>
+<a id='L722' name='L722' />        <em class='comment'>// public symbols into the object file.</em>
+<a id='L723' name='L723' />        g_pCOmfGen-&gt;<a href='../S/305.html#L55' title='Defined at 55 in asomfgen.hpp.'>genpubs</a>();
+<a id='L724' name='L724' />
+<a id='L725' name='L725' />        <strong class='reserved'>if</strong>(<a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a> == g_bSaveSymbols) <em class='brace'>{</em>
+<a id='L726' name='L726' />                <strong class='reserved'>delete</strong> g_pCSymbols;
+<a id='L727' name='L727' />        <em class='brace'>}</em>
+<a id='L728' name='L728' />
+<a id='L729' name='L729' />        <strong class='reserved'>delete</strong> g_pCEval;        <em class='comment'>// All done with the evaluation object</em>
+<a id='L730' name='L730' />
+<a id='L731' name='L731' />        <strong class='reserved'>delete</strong> g_pCOmfGen;
+<a id='L732' name='L732' />        
+<a id='L733' name='L733' />        <strong class='reserved'>if</strong>(0 == g_iErrors) <em class='brace'>{</em>
+<a id='L734' name='L734' />                <strong class='reserved'>return</strong>(EXIT_SUCCESS);
+<a id='L735' name='L735' />        <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L736' name='L736' />                <strong class='reserved'>return</strong>(EXIT_FAILURE);
+<a id='L737' name='L737' />        <em class='brace'>}</em>
+<a id='L738' name='L738' /><em class='brace'>}</em>
+<a id='L739' name='L739' />
+<a id='L740' name='L740' /><em class='comment'>////////////////////////</em>
+<a id='L741' name='L741' /><em class='comment'>// eof - assemble.cpp //</em>
+<a id='L742' name='L742' /><em class='comment'>////////////////////////</em>
+<a id='L743' name='L743' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L267'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

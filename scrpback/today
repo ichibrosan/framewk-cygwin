@@ -1,0 +1,4 @@
+#!/bin/bash
+mkdir 02202011 2>> today.log
+cd 02202011 >> today.log
+rm ../today

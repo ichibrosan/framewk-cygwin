@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>asprint.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.2' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/asprint.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L26'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='314.html#L231' title='Included from 231 in assemble.cpp.'>INCLUDED FROM</a></h2>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L26' title='Defined at 26.'>print</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// ---------------------------------------------------</em>
+<a id='L2' name='L2' /><em class='comment'>// asprint.hpp  24-Mar-11   Running on Mac OS X 10.6.6</em>
+<a id='L3' name='L3' /><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
+<a id='L4' name='L4' /><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L5' name='L5' /><em class='comment'>// ---------------------------------------------------</em>
+<a id='L6' name='L6' /><em class='comment'>// This file is part of Vintage Modern Assembler Plus Tools.</em>
+<a id='L7' name='L7' /><em class='comment'>//</em>
+<a id='L8' name='L8' /><em class='comment'>// VMAPT is free software: you can redistribute it and/or modify</em>
+<a id='L9' name='L9' /><em class='comment'>// it under the terms of the GNU General Public License as published by</em>
+<a id='L10' name='L10' /><em class='comment'>// the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L11' name='L11' /><em class='comment'>// (at your option) any later version.</em>
+<a id='L12' name='L12' /><em class='comment'>//</em>
+<a id='L13' name='L13' /><em class='comment'>// VMAPT is distributed in the hope that it will be useful,</em>
+<a id='L14' name='L14' /><em class='comment'>// but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L15' name='L15' /><em class='comment'>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L16' name='L16' /><em class='comment'>// GNU General Public License for more details.</em>
+<a id='L17' name='L17' /><em class='comment'>//</em>
+<a id='L18' name='L18' /><em class='comment'>// You should have received a copy of the GNU General Public License</em>
+<a id='L19' name='L19' /><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L20' name='L20' /><em class='comment'>//</em>
+<a id='L21' name='L21' />
+<a id='L22' name='L22' /><strong class='reserved'>static</strong> <strong class='reserved'>char</strong> szAsprintHpp[] = "$Id: asprint.hpp,v 1.2 2011/03/25 05:48:10 doug Exp $";
+<a id='L23' name='L23' />
+<a id='L24' name='L24' /><em class='comment'>// 3/24/2011 dwg - make print of includes conditional</em>
+<a id='L25' name='L25' />
+<a id='L26' name='L26' /><strong class='reserved'>void</strong> <a href='../R/250.html' title='Multiple referred from 49 places.'>print</a>(FILE *fpl)
+<a id='L27' name='L27' /><em class='brace'>{</em>
+<a id='L28' name='L28' />
+<a id='L29' name='L29' />  <strong class='reserved'>char</strong> cSegment;
+<a id='L30' name='L30' />
+<a id='L31' name='L31' />  <strong class='reserved'>char</strong> sep;
+<a id='L32' name='L32' />  <strong class='reserved'>char</strong> szBufovfl[128];
+<a id='L33' name='L33' />
+<a id='L34' name='L34' />  <strong class='reserved'>switch</strong>(g_iSegment) <em class='brace'>{</em>
+<a id='L35' name='L35' />    <strong class='reserved'>case</strong> <a href='../S/314.html#L72' title='Defined at 72 in assemble.cpp.'>SEG_VAGUE</a>: cSegment = 'U';  <strong class='reserved'>break</strong>;
+<a id='L36' name='L36' />    <strong class='reserved'>case</strong> <a href='../S/314.html#L73' title='Defined at 73 in assemble.cpp.'>SEG_ABS</a>:   cSegment = 'A';  <strong class='reserved'>break</strong>;
+<a id='L37' name='L37' />    <strong class='reserved'>case</strong> <a href='../S/314.html#L74' title='Defined at 74 in assemble.cpp.'>SEG_CODE</a>:  cSegment = 'C';  <strong class='reserved'>break</strong>;
+<a id='L38' name='L38' />    <strong class='reserved'>case</strong> <a href='../S/314.html#L75' title='Defined at 75 in assemble.cpp.'>SEG_DATA</a>:  cSegment = 'D';  <strong class='reserved'>break</strong>;
+<a id='L39' name='L39' />    <strong class='reserved'>case</strong> <a href='../S/314.html#L76' title='Defined at 76 in assemble.cpp.'>SEG_STACK</a>: cSegment = 'S';  <strong class='reserved'>break</strong>;
+<a id='L40' name='L40' />    defaut:         cSegment = '?';  <strong class='reserved'>break</strong>;
+<a id='L41' name='L41' />  <em class='brace'>}</em>
+<a id='L42' name='L42' />
+<a id='L43' name='L43' />  sprintf(g_szAsprintHpp,"%s %s %s",__FILE__,__TIME__,__DATE__);
+<a id='L44' name='L44' />
+<a id='L45' name='L45' />  <strong class='reserved'>if</strong>(<a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a> == g_b1stHdrLstd) <em class='brace'>{</em>
+<a id='L46' name='L46' />        fprintf(fpl,"%s",g_szProgram);
+<a id='L47' name='L47' />        <em class='comment'>// Insert needed spaces before page number field</em>
+<a id='L48' name='L48' />        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;g_iSpaces;i++) <em class='brace'>{</em>
+<a id='L49' name='L49' />                fprintf(fpl," ");
+<a id='L50' name='L50' />        <em class='brace'>}</em>
+<a id='L51' name='L51' />        fprintf(fpl,"Page %d %s Ver %2d.%02d.%02d%c",
+<a id='L52' name='L52' />                g_iPageNumber++,g_szArgv0,<a href='../S/699.html#L9' title='Defined at 9 in version.hpp.'>RMJ</a>,<a href='../S/699.html#L10' title='Defined at 10 in version.hpp.'>RMN</a>,<a href='../S/699.html#L11' title='Defined at 11 in version.hpp.'>RUP</a>,'a'+<a href='../S/699.html#L12' title='Defined at 12 in version.hpp.'>RTP</a>);
+<a id='L53' name='L53' />        fprintf(fpl,"\n%s",g_szTitle);
+<a id='L54' name='L54' />        fprintf(fpl,"\n%s",g_szSubttl);
+<a id='L55' name='L55' />        g_b1stHdrLstd = <a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a>;
+<a id='L56' name='L56' />  <em class='brace'>}</em>
+<a id='L57' name='L57' />
+<a id='L58' name='L58' />  <strong class='reserved'>if</strong>( (1 == g_iSourceLevel) || (<a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a> == g_bListIncludes) ) <em class='brace'>{</em>
+<a id='L59' name='L59' />    sep = ':';
+<a id='L60' name='L60' />    <strong class='reserved'>if</strong>(g_iPageWidth-6 &lt; strlen(g_szBuffer2)) <em class='brace'>{</em>
+<a id='L61' name='L61' />      <strong class='reserved'>while</strong>(g_iPageWidth-6 &lt; strlen(g_szBuffer2)) <em class='brace'>{</em>
+<a id='L62' name='L62' />        strcpy(szBufovfl,&amp;g_szBuffer2[g_iPageWidth-6]);
+<a id='L63' name='L63' />        g_szBuffer2[g_iPageWidth-6] = 0;
+<a id='L64' name='L64' />        fprintf(fpl,"\n%4d%c%c%c%d %s+",
+<a id='L65' name='L65' />                g_iFileLine,sep,cSegment,sep,g_iSourceLevel,g_szBuffer2);       
+<a id='L66' name='L66' />        sep = '+';
+<a id='L67' name='L67' />        <strong class='reserved'>if</strong>(g_iPageLength == ++g_iPageline) <em class='brace'>{</em>
+<a id='L68' name='L68' />          fprintf(fpl,"\n%c%s",<a href='../S/643.html#L43' title='Defined at 43 in pcascii.hpp.'>ASCII_FORMFEED</a>,g_szProgram);
+<a id='L69' name='L69' />          <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;g_iSpaces;i++) <em class='brace'>{</em>
+<a id='L70' name='L70' />            fprintf(fpl," ");
+<a id='L71' name='L71' />          <em class='brace'>}</em>
+<a id='L72' name='L72' />          fprintf(fpl,"Page %d %s Ver %2d.%02d.%02d%c",
+<a id='L73' name='L73' />                g_iPageNumber++,g_szArgv0,<a href='../S/699.html#L9' title='Defined at 9 in version.hpp.'>RMJ</a>,<a href='../S/699.html#L10' title='Defined at 10 in version.hpp.'>RMN</a>,<a href='../S/699.html#L11' title='Defined at 11 in version.hpp.'>RUP</a>,'a'+<a href='../S/699.html#L12' title='Defined at 12 in version.hpp.'>RTP</a>);
+<a id='L74' name='L74' />          fprintf(fpl,"\n%s",g_szTitle);
+<a id='L75' name='L75' />          fprintf(fpl,"\n%s",g_szSubttl); 
+<a id='L76' name='L76' />          g_iPageline = 3;      
+<a id='L77' name='L77' />        <em class='brace'>}</em>
+<a id='L78' name='L78' />        strcpy(g_szBuffer2,szBufovfl);
+<a id='L79' name='L79' />      <em class='brace'>}</em>
+<a id='L80' name='L80' />      sprintf(g_szPc,g_szListRadix,g_iPc);
+<a id='L81' name='L81' />      fprintf(fpl,"\n%4d%c%c%c%d %s:          %s",
+<a id='L82' name='L82' />              g_iFileLine,sep,cSegment,sep,g_iSourceLevel,g_szPc,g_szBuffer2);  
+<a id='L83' name='L83' />      <strong class='reserved'>if</strong>(g_iPageLength == ++g_iPageline) <em class='brace'>{</em>
+<a id='L84' name='L84' />        fprintf(fpl,"\n%c%s",<a href='../S/643.html#L43' title='Defined at 43 in pcascii.hpp.'>ASCII_FORMFEED</a>,g_szProgram); 
+<a id='L85' name='L85' />        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;g_iSpaces;i++) <em class='brace'>{</em>
+<a id='L86' name='L86' />          fprintf(fpl," ");
+<a id='L87' name='L87' />        <em class='brace'>}</em>
+<a id='L88' name='L88' />        fprintf(fpl,"Page %d %s Ver %2d.%02d.%02d%c",
+<a id='L89' name='L89' />                g_iPageNumber++,g_szArgv0,<a href='../S/699.html#L9' title='Defined at 9 in version.hpp.'>RMJ</a>,<a href='../S/699.html#L10' title='Defined at 10 in version.hpp.'>RMN</a>,<a href='../S/699.html#L11' title='Defined at 11 in version.hpp.'>RUP</a>,'a'+<a href='../S/699.html#L12' title='Defined at 12 in version.hpp.'>RTP</a>);
+<a id='L90' name='L90' />        fprintf(fpl,"\n%s",g_szTitle);
+<a id='L91' name='L91' />        fprintf(fpl,"\n%s",g_szSubttl);
+<a id='L92' name='L92' />        g_iPageline = 3;        
+<a id='L93' name='L93' />      <em class='brace'>}</em>
+<a id='L94' name='L94' />    <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L95' name='L95' />      fprintf(fpl,"\n%4d:%c%c%d %s",g_iFileLine,cSegment,sep,g_iSourceLevel,g_szBuffer2);       
+<a id='L96' name='L96' />      <strong class='reserved'>if</strong>(g_iPageLength == ++g_iPageline) <em class='brace'>{</em>
+<a id='L97' name='L97' />        fprintf(fpl,"\n%c%s",<a href='../S/643.html#L43' title='Defined at 43 in pcascii.hpp.'>ASCII_FORMFEED</a>,g_szProgram);
+<a id='L98' name='L98' />        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;g_iSpaces;i++) <em class='brace'>{</em>
+<a id='L99' name='L99' />          fprintf(fpl," ");
+<a id='L100' name='L100' />        <em class='brace'>}</em>
+<a id='L101' name='L101' />        fprintf(fpl,"Page %d %s Ver %2d.%02d.%02d%c",
+<a id='L102' name='L102' />                g_iPageNumber++,g_szArgv0,<a href='../S/699.html#L9' title='Defined at 9 in version.hpp.'>RMJ</a>,<a href='../S/699.html#L10' title='Defined at 10 in version.hpp.'>RMN</a>,<a href='../S/699.html#L11' title='Defined at 11 in version.hpp.'>RUP</a>,'a'+<a href='../S/699.html#L12' title='Defined at 12 in version.hpp.'>RTP</a>);
+<a id='L103' name='L103' />        fprintf(fpl,"\n%s",g_szTitle);
+<a id='L104' name='L104' />        fprintf(fpl,"\n%s",g_szSubttl);
+<a id='L105' name='L105' />        g_iPageline = 3;        
+<a id='L106' name='L106' />      <em class='brace'>}</em>
+<a id='L107' name='L107' />    <em class='brace'>}</em>
+<a id='L108' name='L108' />  <em class='brace'>}</em>
+<a id='L109' name='L109' /><em class='brace'>}</em>
+<a id='L110' name='L110' />
+<a id='L111' name='L111' /><em class='comment'>///////////////////////</em>
+<a id='L112' name='L112' /><em class='comment'>// eof - asprint.hpp //</em>
+<a id='L113' name='L113' /><em class='comment'>///////////////////////</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L26'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

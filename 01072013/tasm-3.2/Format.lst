@@ -1,0 +1,195 @@
+0001   0000             ;****************************************************************
+0002   0000             ;	Format N8VEMram disk B - 2008 J Moxham                  *
+0003   0000             ; modified with JR loops so can be relocated anywhere in ram    *
+0004   0000             ;                                                               *
+0005   0000             ;****************************************************************
+0006   0000             IO_Y0:		.EQU	$60
+0007   0000             IO_Y1:		.EQU	$68
+0008   0000             IO_Y2:		.EQU	$70
+0009   0000             IO_Y3:		.EQU	$78
+0010   0000             
+0011   0000             ; PIO 82C55 I/O IS ATTACHED TO THE FIRST IO BASE ADDRESS
+0012   0000             
+0013   0000             PIO1A:		.EQU	$IO_Y0+0	; (INPUT)  IN 1-8
+0014   0000             PIO1B:		.EQU	$IO_Y0+1	; (OUTPUT) OUT TO LEDS
+0015   0000             PIO1C:		.EQU	$IO_Y0+2	; (INPUT)  
+0016   0000             PIO1CONT:	.EQU	$IO_Y0+3	; CONTROL BYTE PIO 82C55
+0017   0000             
+0018   0000             ; UART 16C450 SERIAL IS ATTACHED TO THE SECOND IO BASE ADDRESS
+0019   0000             
+0020   0000             UART0:		.EQU	$IO_Y1+0	; DATA IN/OUT
+0021   0000             UART1:		.EQU	$IO_Y1+1	; CHECK RX
+0022   0000             UART2:		.EQU	$IO_Y1+2	; INTERRUPTS
+0023   0000             UART3:		.EQU	$IO_Y1+3	; LINE CONTROL
+0024   0000             UART4:		.EQU	$IO_Y1+4	; MODEM CONTROL
+0025   0000             UART5:		.EQU	$IO_Y1+5	; LINE STATUS
+0026   0000             UART6:		.EQU	$IO_Y1+6	; MODEM STATUS
+0027   0000             UART7:		.EQU	$IO_Y1+7	; SCRATCH REG.
+0028   0000             
+0029   0000             ; MEMORY PAGE CONFIGURATION LATCH IS ATTACHED TO FOURTH IO BASE ADDRESS
+0030   0000             
+0031   0000             MPCL_RAM:	.EQU	$IO_Y3		; RAM CONTROL PORT, SHOULD ONLY BE CHANGED WHILE
+0032   0000             					; IN UPPER MEMORY PAGE $8000-$FFFF OR LIKELY
+0033   0000             					; LOSS OF CPU MEMORY CONTEXT.
+0034   0000             
+0035   0000             MPCL_ROM:	.EQU	$IO_Y3+$04	; ROM CONTROL PORT, SHOULD ONLY BE CHANGED WHILE
+0036   0000             					; IN UPPER MEMORY PAGE $8000-$FFFF OR LIKELY
+0037   0000             					; LOSS OF CPU MEMORY CONTEXT.
+0038   0000             
+0039   0000             ; RAM MEMORY PAGE CONFIGURATION LATCH CONTROL PORT ( IO_Y3 ) INFORMATION
+0040   0000             
+0041   0000             ;	7 6 5 4  3 2 1 0      ONLY APPLICABLE TO THE LOWER MEMORY PAGE $0000-$7FFF
+0042   0000             ;	^ ^ ^ ^  ^ ^ ^ ^
+0043   0000             ;	: : : :  : : : :--0 = A15 RAM ADDRESS LINE DEFAULT IS 0
+0044   0000             ;	: : : :  : : :----0 = A16 RAM ADDRESS LINE DEFAULT IS 0
+0045   0000             ;	: : : :  : :------0 = A17 RAM ADDRESS LINE DEFAULT IS 0
+0046   0000             ;	: : : :  :--------0 = A18 RAM ADDRESS LINE DEFAULT IS 0
+0047   0000             ;	: : : :-----------0 = 
+0048   0000             ;	: : :-------------0 = 
+0049   0000             ;	: :---------------0 = 
+0050   0000             ;	:-----------------0 = 
+0051   0000             
+0052   0000             ; ROM MEMORY PAGE CONFIGURATION LATCH CONTROL PORT ( IO_Y3+$04 ) INFORMATION
+0053   0000             
+0054   0000             ;	7 6 5 4  3 2 1 0      ONLY APPLICABLE TO THE LOWER MEMORY PAGE $0000-$7FFF
+0055   0000             ;	^ ^ ^ ^  ^ ^ ^ ^
+0056   0000             ;	: : : :  : : : :--0 = A15 ROM ADDRESS LINE DEFAULT IS 0
+0057   0000             ;	: : : :  : : :----0 = A16 ROM ADDRESS LINE DEFAULT IS 0
+0058   0000             ;	: : : :  : :------0 = A17 ROM ADDRESS LINE DEFAULT IS 0
+0059   0000             ;	: : : :  :--------0 = A18 ROM ADDRESS LINE DEFAULT IS 0
+0060   0000             ;	: : : :-----------0 = A19 ROM ONLY ADDRESS LINE DEFAULT IS 0
+0061   0000             ;	: : :-------------0 = 
+0062   0000             ;	: :---------------0 = 
+0063   0000             ;	:-----------------0 = ROM SELECT (0=ROM, 1=RAM) DEFAULT IS 0
+0064   0000             
+0065   0000             
+0066   0000             ; NOTE THESE ARE ARTIFACTS FROM THE BRUCE JONES ROM MONITOR PROGRAM
+0067   0000             ; THE FLOPPY DISK CONTROLLER HARDWARE DOES NOT EXIST IN TEST PROTOTYPE
+0068   0000             ; AT THIS TIME BUT MAY BE INCLUDED AT SOME FUTURE DATE
+0069   0000             
+0070   0000             ; PI/O DISK CONTROLLER DATA
+0071   0000             
+0072   0000             ;	DCMD	==	63H	;FDC CONTROL PORT
+0073   0000             ;	WDC	==	64H	;FDC BASE ADDRESS
+0074   0000             ;	WCMD	==	WDC+0	;FDC COMMAND REG
+0075   0000             ;	WSTAT	==	WDC+0	;FDC STATUS REG
+0076   0000             ;	WTRACK	==	WDC+1
+0077   0000             ;	WSECT	==	WDC+2	;FDC SECTOR REG
+0078   0000             ;	WDATA	==	WDC+3	;FDC DATA REG
+0079   0000             
+0080   0000             ;179X COMMAND VALUES
+0081   0000             
+0082   0000             ;	RES	==	0BH	;RESTORE
+0083   0000             ;	SEEK	==	1BH	;SEEK NO VERIFY
+0084   0000             ;	READ	==	8CH	;READ NO SIDE COMPARE
+0085   0000             ;	WRITE	==	0ACH	;WRITE NO SIDE COMPARE
+0086   0000             ;	INT	==	0D0H	;FORCE INTERRUPT
+0087   0000             
+0088   0000             ;	DENS	==	01111110B ;INITIAL BOOT BYTE
+0089   0000             ;	HOME	==	0	;HOME TRACK VALUE
+0090   0000             ;	TRAK	==	0	;DESTINATION TRACK
+0091   0000             ;	BOOT	==	0	;LOCATION TO JUMP AFTER BOOTSTRAP
+0092   0000             ;	BCOUNT	==	512	;NUMBER OF BYTES TO READ IN
+0093   0000             
+0094   0000             ;PIO DISK CONTROLLER CONTROL PORT ( 63H ) INFORMATION
+0095   0000             
+0096   0000             ;	7 6 5 4  3 2 1 0
+0097   0000             ;	^ ^ ^ ^  ^ ^ ^ ^
+0098   0000             ;	: : : :  : : : :--0 = DISK 0 SELECTED
+0099   0000             ;	: : : :  : : :----0 = DISK 1 SELECTED
+0100   0000             ;	: : : :  : :------0 = DISK 2 SELECTED
+0101   0000             ;	: : : :  :--------0 = DISK 3 SELECTED
+0102   0000             ;	: : : :-----------1 = LOWER HEAD
+0103   0000             ;	: : :-------------0 = 
+0104   0000             ;	: :---------------0 = 
+0105   0000             ;	:-----------------0 = WAIT STATE
+0106   0000             
+0107   0000             
+0108   0000             ;********************* CONSTANTS ****************************************
+0109   0000             
+0110   0000             RAMTOP:		.EQU	$FFFF	; HIGHEST ADDRESSABLE MEMORY LOCATION
+0111   0000             RAMBOTTOM:	.EQU	$8000	; START OF FIXED UPPER 32K PAGE OF 512KB x 8 RAM 8000H-FFFFH
+0112   0000             MONSTARTCOLD:	.EQU	$F800	; COLD START MONITOR IN HIGH RAM
+0113   0000             END:		.EQU	$FF	; Mark END OF TEXT
+0114   0000             CR:		.EQU	0DH	; ASCII carriage return character
+0115   0000             LF:		.EQU	0AH	; ASCII line feed character
+0116   0000             ESC:		.EQU	1BH	; ASCII escape character
+0117   0000             
+0118   0100             		.org 	$0100
+0119   0100             
+0120   0100             
+0121   0100 21 10 01    		ld hl,$0110		; move $80 bytes from location $0110 to $9000
+0122   0103 11 00 90    		ld de,$9000
+0123   0106 01 80 00    		ld bc,$80
+0124   0109 ED B0       		ldir
+0125   010B C3 00 90    		jp $9000		; jump to $9000 ' arbitrary location above $8000 but below CPM
+0126   010E             
+0127   0110             		.org	$0110		; compile at $0110 but all jumps are relative
+0128   0110             FORMATRAM:
+0129   0110             
+0130   0110 3E 00       	LD	A,%00000000
+0131   0112 D3 78       	OUT	(MPCL_RAM),A		; reset RAM memory pager configuration latch to default
+0132   0114 3E 00       	LD	A,%00000000
+0133   0116 D3 7C       	OUT	(MPCL_ROM),A		; reset ROM memory pager configuration latch to default
+0134   0118 3E 80       	LD	A,%10000000
+0135   011A D3 7C       	OUT	(MPCL_ROM),A		; ensure ROM is switched out
+0136   011C 3E 00       	LD	A,%00000000		; start RAM page counter in A at zero
+0137   011E             FORM_MEM_LOOP:
+0138   011E             					; objective is to initialize all SRAM pages
+0139   011E             					; fill selected SRAM page with its page number
+0140   011E             					; page numbers are $0-$F
+0141   011E             					; page $F is reserved so do not overwrite it
+0142   011E             					; or you will lose CPU context
+0143   011E D3 78       	OUT	(MPCL_RAM),A		; switch out ROM and in SRAM page 0
+0144   0120             					; indicate to operator what is happening by
+0145   0120             					; flashing SRAM page number in the LEDs with
+0146   0120             					; the MSB of LEDs lit
+0147   0120             ;	OUT	(PIO1B),A		; output value to PIO, port B LEDs during initialize
+0148   0120 21 00 00    	LD	HL,$0000		; specify beginning of lower 32K page in HL
+0149   0123 01 00 80    	LD	BC,$8000		; specify length of lower 32K page in BC
+0150   0126             					; specify fill value data in A
+0151   0126             
+0152   0126 5D          	ld	e,l			; fill memory
+0153   0127 54          	ld	d,h
+0154   0128 13          	inc	de
+0155   0129 77          	ld	(hl),A
+0156   012A ED B0       	ldir
+0157   012C 3C          	INC	A			; select next memory page and change fill value
+0158   012D FE 0F       	CP	$0F			; have you filled $0E pages yet?
+0159   012F 20 ED       	JR	NZ,FORM_MEM_LOOP	; no, go initialize the next page
+0160   0131             					; yes, go on to start monitor
+0161   0131 3E 00       	LD	A,$00			
+0162   0133             ;	OUT	(PIO1B),A		; output value to PIO, turn off port B LEDs
+0163   0133 3E 01       	LD	A,%00000001		; switch in first 32K lower page (first track)
+0164   0135 D3 78       	OUT	(MPCL_RAM),A		;
+0165   0137             ;                   Formatting the ram is simple as clearing the directory area 
+0166   0137             ;                   to a value of E5h (the first 8k of track 1 or the ramdisk).
+0167   0137 21 00 00    	LD	HL,$0000		; starting memory address of track 1, sector 0 in HL
+0168   013A 01 FF 1F    	LD	BC,$1FFF		; 8K of directory sectors reserved (length in BC)
+0169   013D 3E E5       	LD	A,$E5			; initializing value in A 
+0170   013F 5D          	ld	e,l			; fill memory
+0171   0140 54          	ld	d,h
+0172   0141 13          	inc	de
+0173   0142 77          	ld	(hl),A
+0174   0143 ED B0       	ldir
+0175   0145             ; RESET MPCL latch to default CP/M with 64K setting
+0176   0145 3E 00       	LD	A,%00000000
+0177   0147 D3 78       	OUT	(MPCL_RAM),A		; reset memory pager configuration latch to default
+0178   0149             					; default configuration is full 64K RAM and 32K ROM
+0179   0149             					; switched out
+0180   0149 3E 80       	LD	A,%10000000
+0181   014B D3 7C       	OUT	(MPCL_ROM),A		; reset memory pager configuration latch to default
+0182   014D             					; default configuration is full 64K RAM and 32K ROM
+0183   014D             					; switched out
+0184   014D C3 03 EA    	JP	$EA03			; Jump to warm boot CPM
+0185   0150 45 6E 64 20 	.byte "End Format"
+0185   0154 46 6F 72 6D 
+0185   0158 61 74 
+0186   015A 2D 2D 2D 2D 	.byte "------"
+0186   015E 2D 2D 
+0187   04FF             	.ORG	$04ff	; fill up space so RTC and xmodem in the right spot
+0188   04FF 00          	.db	$00
+0189   0500             .END
+0190   0500             
+0191   0500             
+tasm: Number of errors = 0

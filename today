@@ -1,0 +1,3 @@
+#!/bin/bash
+mkdir 01072013 2>> today.log
+cd 01072013 >> today.log

@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ascommon/equ.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.2' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/707.html'>ascommon</a>/equ.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L13'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L13' title='Defined at 13.'>strcmp</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// $Log: equ.hpp,v $</em>
+<a id='L2' name='L2' /><em class='comment'>// Revision 1.2  2011/03/25 21:47:31  doug</em>
+<a id='L3' name='L3' /><em class='comment'>// *** empty log message ***</em>
+<a id='L4' name='L4' /><em class='comment'>//</em>
+<a id='L5' name='L5' /><em class='comment'>// Revision 1.1  2011/03/25 07:19:17  doug</em>
+<a id='L6' name='L6' /><em class='comment'>// Initial revision</em>
+<a id='L7' name='L7' /><em class='comment'>//</em>
+<a id='L8' name='L8' />
+<a id='L9' name='L9' /><strong class='reserved'>char</strong> dir_equ[] = "$Id: equ.hpp,v 1.2 2011/03/25 21:47:31 doug Exp $";
+<a id='L10' name='L10' />
+<a id='L11' name='L11' /><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L12' name='L12' />
+<a id='L13' name='L13' /><strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 371 places.'>strcmp</a>(<a href='../S/652.html#L23' title='Defined at 23 in strupr.hpp.'>strupr</a>(g_szOpcode),"EQU")) <em class='brace'>{</em>
+<a id='L14' name='L14' />  fprintf(g_flog,"Processing EQU directive\n");
+<a id='L15' name='L15' />  <strong class='reserved'>if</strong>(0 != strlen(g_szParms)) <em class='brace'>{</em>
+<a id='L16' name='L16' />    g_iLineType = <a href='../S/314.html#L32' title='Defined at 32 in assemble.cpp.'>TYPE_DIR</a>;
+<a id='L17' name='L17' />    <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong> r = <a href='../S/313.html#L220' title='Defined at 220 in asresolv.hpp.'>resolvep64</a>(g_szParms);
+<a id='L18' name='L18' />    fprintf(g_flog,"result from resolvep64(g_szParms) was 0X%017llX\n",r);
+<a id='L19' name='L19' />    g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>(g_szLabel,<a href='../S/508.html#L54' title='Defined at 54 in asymbols.hpp.'>TYPE_U8</a>, (<strong class='reserved'>unsigned</strong>      <strong class='reserved'>char</strong>)r);
+<a id='L20' name='L20' />    g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>(g_szLabel,<a href='../S/508.html#L55' title='Defined at 55 in asymbols.hpp.'>TYPE_U16</a>,(<strong class='reserved'>unsigned</strong>       <strong class='reserved'>int</strong>)r);
+<a id='L21' name='L21' />    g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>(g_szLabel,<a href='../S/508.html#L56' title='Defined at 56 in asymbols.hpp.'>TYPE_U32</a>,(<strong class='reserved'>unsigned</strong>      <strong class='reserved'>long</strong>)r);
+<a id='L22' name='L22' />    g_pCSymbols-&gt;<a href='../D/456.html' title='Multiple defined in 7 places.'>add</a>(g_szLabel,<a href='../S/508.html#L57' title='Defined at 57 in asymbols.hpp.'>TYPE_U64</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong>)r);
+<a id='L23' name='L23' />        g_iErrorNo ^= <a href='../S/314.html#L45' title='Defined at 45 in assemble.cpp.'>ERROR_UNKOP</a>;
+<a id='L24' name='L24' />  <em class='brace'>}</em> 
+<a id='L25' name='L25' /><em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L13'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

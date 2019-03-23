@@ -1,0 +1,38 @@
+// $Log: THANKS,v $
+// Revision 1.1  2011/04/02 12:53:08  doug
+// Initial revision
+//
+//
+
+Additional contributors to Vintage Modern Assembler Plus Tools
+
+  Copyright (C) 1999, 2005 Free Software Foundation, Inc.
+
+  Copying and distribution of this file, with or without modification,
+  are permitted in any medium without royalty provided the copyright
+  notice and this notice are preserved.
+
+Thanks to:
+
+	Luiz Roberto Meier for the postfix code which is the inside
+	engine for the expression evaluation code. i
+
+	I have to thank the LORD for the time and talent that lets me 
+	create this software. I am grateful for the blessing in my life
+	including my passion as a toolsmith. It is my hope that these
+	programs are helpful to others in their function and as examples
+	of systems programming, which has been my lifelong occupation.
+	And also Handsome the cat, who sits with me patiently as I 
+	endlessly message the keyboard. And Tina the staffy, whose
+	boundless energy and joy are inspiring. And of course my family
+	whose support warms my heart. 
+
+	And also the the many people in the open source community whose
+	respect I strive to earn as I make my own contributions to the
+	amazing body of software and informaton now at our fingertips.
+ 
+	And finally. Apple Computers, who have given me such an enjoyable
+	alternative to the vision of Bill Gates and the monolith called 
+	Microsoft.
+
+See also the AUTHORS and ChangeLog files.

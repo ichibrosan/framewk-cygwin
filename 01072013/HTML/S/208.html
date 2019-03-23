@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ascommon/typeinc.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.2' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/707.html'>ascommon</a>/typeinc.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L11'>[^]</a><a href='#L20'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L11' title='Defined at 11.'>strcmp</a></li>
+<li><a href='#L20' title='Defined at 20.'>strcmp</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// $Log: typeinc.hpp,v $</em>
+<a id='L2' name='L2' /><em class='comment'>// Revision 1.1  2011/04/04 13:36:46  doug</em>
+<a id='L3' name='L3' /><em class='comment'>// Initial revision</em>
+<a id='L4' name='L4' /><em class='comment'>//</em>
+<a id='L5' name='L5' /><em class='comment'>//</em>
+<a id='L6' name='L6' />
+<a id='L7' name='L7' /><strong class='reserved'>char</strong> dir_typeinc[] = "$Id: typeinc.hpp,v 1.1 2011/04/04 13:36:46 doug Exp $";
+<a id='L8' name='L8' />
+<a id='L9' name='L9' /><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L10' name='L10' />        
+<a id='L11' name='L11' />        <strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 371 places.'>strcmp</a>(<a href='../S/652.html#L23' title='Defined at 23 in strupr.hpp.'>strupr</a>(g_szOpcode),"TYPEINC")) <em class='brace'>{</em>
+<a id='L12' name='L12' />                fprintf(g_flog,"Processing TYPEINC directive\n");
+<a id='L13' name='L13' />                <strong class='reserved'>if</strong>(0 != strlen(g_szParms)) <em class='brace'>{</em>
+<a id='L14' name='L14' />                        g_bTypeIncludes = <a href='../S/313.html#L52' title='Defined at 52 in asresolv.hpp.'>resolvep8</a>(g_szParms);
+<a id='L15' name='L15' />                        g_iLineType = <a href='../S/314.html#L32' title='Defined at 32 in assemble.cpp.'>TYPE_DIR</a>;
+<a id='L16' name='L16' />                        g_iErrorNo ^= <a href='../S/314.html#L45' title='Defined at 45 in assemble.cpp.'>ERROR_UNKOP</a>;
+<a id='L17' name='L17' />                <em class='brace'>}</em>
+<a id='L18' name='L18' />        <em class='brace'>}</em>
+<a id='L19' name='L19' />
+<a id='L20' name='L20' />        <strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 371 places.'>strcmp</a>(<a href='../S/652.html#L23' title='Defined at 23 in strupr.hpp.'>strupr</a>(g_szOpcode),"TYPEINCL")) <em class='brace'>{</em>
+<a id='L21' name='L21' />                fprintf(g_flog,"Processing TYPEINCL directive\n");
+<a id='L22' name='L22' />                <strong class='reserved'>if</strong>(0 != strlen(g_szParms)) <em class='brace'>{</em>
+<a id='L23' name='L23' />                        g_bTypeIncludes = <a href='../S/313.html#L52' title='Defined at 52 in asresolv.hpp.'>resolvep8</a>(g_szParms);
+<a id='L24' name='L24' />                        g_iLineType = <a href='../S/314.html#L32' title='Defined at 32 in assemble.cpp.'>TYPE_DIR</a>;
+<a id='L25' name='L25' />                        g_iErrorNo ^= <a href='../S/314.html#L45' title='Defined at 45 in assemble.cpp.'>ERROR_UNKOP</a>;
+<a id='L26' name='L26' />                <em class='brace'>}</em>
+<a id='L27' name='L27' />        <em class='brace'>}</em>
+<a id='L28' name='L28' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L11'>[^]</a><a href='#L20'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>
