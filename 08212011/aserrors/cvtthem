@@ -1,3 +1,0 @@
-#!/bin/sh
-cvt banner.asm
-cvt test68k.asm
