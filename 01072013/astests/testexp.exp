@@ -1,7 +1,0 @@
-; Symbols exported from testexp.asm
-jcld	equ	$0D000
-jwrm	equ	$0D003
-jcout	equ	$0D006
-cold	equ	$0E000
-warm	equ	$0E011
-conout	equ	$0E022

@@ -1,72 +1,0 @@
-<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
-<html xmlns='http://www.w3.org/1999/xhtml'>
-<head>
-<title>asz80/ex.hpp</title>
-<meta name='robots' content='noindex,nofollow' />
-<meta name='generator' content='GLOBAL-6.2' />
-<meta http-equiv='Content-Style-Type' content='text/css' />
-<link rel='stylesheet' type='text/css' href='../style.css' />
-</head>
-<body>
-<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/709.html'>asz80</a>/ex.hpp</h2>
-<em class='comment'>/* [&lt;][&gt;]<a href='#L7'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
-<hr />
-<h2 class='header'>DEFINITIONS</h2>
-This source file includes following definitions.
-<ol>
-<li><a href='#L7' title='Defined at 7.'>strcmp</a></li>
-</ol>
-<hr />
-<pre>
-<a id='L1' name='L1' /><em class='comment'>// ---------------------------------------------------</em>
-<a id='L2' name='L2' /><em class='comment'>// EX.HPP       28-Jan-11 DOSBox-0.74 Version 1.00.00a</em>
-<a id='L3' name='L3' /><em class='comment'>// Serial No. 8208-4162-344865    All Rights Reserved.</em>
-<a id='L4' name='L4' /><em class='comment'>// Copyright (C) 2010 Douglas Goodall,  United States.</em>
-<a id='L5' name='L5' /><em class='comment'>// ---------------------------------------------------</em>
-<a id='L6' name='L6' />
-<a id='L7' name='L7' /><strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 371 places.'>strcmp</a>(<a href='../S/652.html#L23' title='Defined at 23 in strupr.hpp.'>strupr</a>(g_szOpcode),"EX")) <em class='brace'>{</em>
-<a id='L8' name='L8' />        fprintf(g_flog,"...processing EX g_szOpcode...\n");
-<a id='L9' name='L9' />        g_iLineType = <a href='../S/314.html#L37' title='Defined at 37 in assemble.cpp.'>TYPE_Z80</a>;
-<a id='L10' name='L10' />        g_iErrorNo ^= <a href='../S/314.html#L45' title='Defined at 45 in assemble.cpp.'>ERROR_UNKOP</a>;
-<a id='L11' name='L11' />        <strong class='reserved'>if</strong>(0 &lt; strlen(g_szParms)) <em class='brace'>{</em>
-<a id='L12' name='L12' />                <strong class='reserved'>int</strong> bDone = <a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a>;
-<a id='L13' name='L13' />                <strong class='reserved'>if</strong>(0 == <a href='../D/569.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../S/652.html#L23' title='Defined at 23 in strupr.hpp.'>strupr</a>(g_szParms),"(SP),HL")) <em class='brace'>{</em>
-<a id='L14' name='L14' />                        g_ucBytes[g_iBytesIndex++] = 0xe3;
-<a id='L15' name='L15' />                        bDone = <a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a>;
-<a id='L16' name='L16' />                <em class='brace'>}</em>
-<a id='L17' name='L17' />                <strong class='reserved'>if</strong>(0 == <a href='../D/569.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../S/652.html#L23' title='Defined at 23 in strupr.hpp.'>strupr</a>(g_szParms),"(SP),IX")) <em class='brace'>{</em>
-<a id='L18' name='L18' />                        g_ucBytes[g_iBytesIndex++] = 0xDD;
-<a id='L19' name='L19' />                        g_ucBytes[g_iBytesIndex++] = 0xe3;
-<a id='L20' name='L20' />                        bDone = <a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a>;
-<a id='L21' name='L21' />                <em class='brace'>}</em>
-<a id='L22' name='L22' />                <strong class='reserved'>if</strong>(0 == <a href='../D/569.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../S/652.html#L23' title='Defined at 23 in strupr.hpp.'>strupr</a>(g_szParms),"(SP),IY")) <em class='brace'>{</em>
-<a id='L23' name='L23' />                        g_ucBytes[g_iBytesIndex++] = 0xfd;
-<a id='L24' name='L24' />                        bDone = <a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a>;
-<a id='L25' name='L25' />                <em class='brace'>}</em>
-<a id='L26' name='L26' />                <strong class='reserved'>if</strong>(0 == <a href='../D/569.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../S/652.html#L23' title='Defined at 23 in strupr.hpp.'>strupr</a>(g_szParms),"AF,AF")) <em class='brace'>{</em>
-<a id='L27' name='L27' />                        g_ucBytes[g_iBytesIndex++] = 0x08;
-<a id='L28' name='L28' />                        bDone = <a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a>;
-<a id='L29' name='L29' />                <em class='brace'>}</em>
-<a id='L30' name='L30' />                <strong class='reserved'>if</strong>(0 == <a href='../D/569.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../S/652.html#L23' title='Defined at 23 in strupr.hpp.'>strupr</a>(g_szParms),"DE,HL")) <em class='brace'>{</em>
-<a id='L31' name='L31' />                        g_ucBytes[g_iBytesIndex++] = 0xeb;
-<a id='L32' name='L32' />                        bDone = <a href='../S/644.html#L24' title='Defined at 24 in portab.hpp.'>TRUE</a>;
-<a id='L33' name='L33' />                <em class='brace'>}</em>
-<a id='L34' name='L34' />                <strong class='reserved'>if</strong>(<a href='../S/644.html#L25' title='Defined at 25 in portab.hpp.'>FALSE</a> == bDone) <em class='brace'>{</em>
-<a id='L35' name='L35' />                        g_iErrorNo |= <a href='../S/314.html#L50' title='Defined at 50 in assemble.cpp.'>ERROR_NOREG</a>;
-<a id='L36' name='L36' />                <em class='brace'>}</em>
-<a id='L37' name='L37' />        <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
-<a id='L38' name='L38' />                g_iErrorNo |= <a href='../S/314.html#L49' title='Defined at 49 in assemble.cpp.'>ERROR_NOPARM</a>;
-<a id='L39' name='L39' />        <em class='brace'>}</em>
-<a id='L40' name='L40' />
-<a id='L41' name='L41' /><em class='brace'>}</em>
-<a id='L42' name='L42' />
-<a id='L43' name='L43' /><em class='comment'>//////////////////</em>
-<a id='L44' name='L44' /><em class='comment'>// eof - ex.hpp //</em>
-<a id='L45' name='L45' /><em class='comment'>//////////////////</em>
-<a id='L46' name='L46' />
-</pre>
-<hr />
-<a id='BOTTOM' name='BOTTOM' />
-<em class='comment'>/* [&lt;][&gt;][^]<a href='#L7'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
-</body>
-</html>
