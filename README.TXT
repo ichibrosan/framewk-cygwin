@@ -26,6 +26,11 @@ Note:
 	Add ~/src/framewk/bin to your path in .bashrc
 	We always see things differently a few years later
 
+	The build is still too tricky and needs work before others
+	can expect it to work as it should. But for now the binaries
+	in the pre-release work on my MacBook Pro and should work
+	for others if they have ~/src/framewk/bin in their PATH.
+
 To enter the appropriate development directory,
 do "make" then ". today". 
 
