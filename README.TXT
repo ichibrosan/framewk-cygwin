@@ -24,7 +24,7 @@ Note:
 	The 01072013 version is compiled to run on Windows 7.
 	Install the global program from ftp.gnu.org
 	Add ~/src/framewk/bin to your path in .bashrc
-
+	We always see things differently a few years later
 
 To enter the appropriate development directory,
 do "make" then ". today". 
