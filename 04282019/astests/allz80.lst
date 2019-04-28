@@ -1,4 +1,4 @@
-allz80.lst     Page 1 ../assemble Ver 19.04.28i
+allz80.lst     Page 1 ../assemble Ver 19.04.28j
 $Id: allz80.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
 COPR 2011 Douglas Goodall
    1:U:1 0000:                    title      $Id: allz80.asm,v 1.2 2011/03/25+
@@ -51,7 +51,7 @@ COPR 2011 Douglas Goodall
   22:U:1 0101: 7F                 ld         a,a  
   23:U:1 0102: 78                 ld         a,b  
   24:U:1 0103: 79                 ld         a,c  
-allz80.lst     Page 2 ../assemble Ver 19.04.28i
+allz80.lst     Page 2 ../assemble Ver 19.04.28j
 $Id: allz80.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
 COPR 2011 Douglas Goodall
   25:U:1 0104: 7A                 ld         a,d  
@@ -101,7 +101,7 @@ COPR 2011 Douglas Goodall
   69:U:1 0132: 62                 ld         h,d  
   70:U:1 0133: 63                 ld         h,e  
   71:U:1 0134: 64                 ld         h,h  
-allz80.lst     Page 3 ../assemble Ver 19.04.28i
+allz80.lst     Page 3 ../assemble Ver 19.04.28j
 $Id: allz80.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
 COPR 2011 Douglas Goodall
   72:U:1 0135: 65                 ld         h,l  
@@ -133,7 +133,7 @@ COPR 2011 Douglas Goodall
   98:U:1 0158: 77                 ld         (hl),a  
   99:U:1 0159:                                
  100:U:1 0159: 00 01              end        start  
-allz80.lst     Page 4 ../assemble Ver 19.04.28i
+allz80.lst     Page 4 ../assemble Ver 19.04.28j
 $Id: allz80.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
 COPR 2011 Douglas Goodall
  100:U:1 ----------------------------------------------
@@ -183,7 +183,7 @@ COPR 2011 Douglas Goodall
  100:U:1 asouterr.mta, "$Id: asouterr.hpp,v 1.2 2011/04/14 15:13:09 doug Exp +
  100+U+1 015B:          $"
  100:U:1 asdec80.mta, "$Id: asdec80.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $"
-allz80.lst     Page 5 ../assemble Ver 19.04.28i
+allz80.lst     Page 5 ../assemble Ver 19.04.28j
 $Id: allz80.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
 COPR 2011 Douglas Goodall
  100:U:1 asparse.mta, "$Id: asparse.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $"

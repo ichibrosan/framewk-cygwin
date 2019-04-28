@@ -1,22 +1,109 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
-<title>as8080/filler.hpp</title>
+<title>bin2hex.cpp</title>
 <meta name='robots' content='noindex,nofollow' />
 <meta name='generator' content='GLOBAL-6.6.3' />
 <meta http-equiv='Content-Style-Type' content='text/css' />
 <link rel='stylesheet' type='text/css' href='../style.css' />
 </head>
 <body>
-<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/839.html'>as8080</a>/filler.hpp</h2>
-<em class='comment'>/* [&lt;][&gt;][^][v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/bin2hex.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L36'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L36' title='Defined at 36.'>main</a></li>
+</ol>
 <hr />
 <pre>
-<a id='L1' name='L1'></a><em class='comment'>// for later</em>
-<a id='L2' name='L2'></a>
+<a id='L1' name='L1'></a><em class='comment'>// $Log: bin2hex.cpp,v $</em>
+<a id='L2' name='L2'></a><em class='comment'>// Revision 1.3  2011/04/14 15:13:09  doug</em>
+<a id='L3' name='L3'></a><em class='comment'>// get ready for release to wiki and server</em>
+<a id='L4' name='L4'></a><em class='comment'>//</em>
+<a id='L5' name='L5'></a><em class='comment'>//</em>
+<a id='L6' name='L6'></a>
+<a id='L7' name='L7'></a><em class='comment'>// ---------------------------------------------------</em>
+<a id='L8' name='L8'></a><em class='comment'>// bin2hex.cpp  22-Mar-11   Running on Mac OS X 10.6.6</em>
+<a id='L9' name='L9'></a><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
+<a id='L10' name='L10'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L11' name='L11'></a><em class='comment'>// ---------------------------------------------------</em>
+<a id='L12' name='L12'></a><em class='comment'>// This file is part of Vintage Modern Assembler Plus Tools.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>// VMAPT is free software: you can redistribute it and/or modify</em>
+<a id='L15' name='L15'></a><em class='comment'>// it under the terms of the GNU General Public License as published by</em>
+<a id='L16' name='L16'></a><em class='comment'>// the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L17' name='L17'></a><em class='comment'>// (at your option) any later version.</em>
+<a id='L18' name='L18'></a><em class='comment'>//</em>
+<a id='L19' name='L19'></a><em class='comment'>// VMAPT is distributed in the hope that it will be useful,</em>
+<a id='L20' name='L20'></a><em class='comment'>// but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L21' name='L21'></a><em class='comment'>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L22' name='L22'></a><em class='comment'>// GNU General Public License for more details.</em>
+<a id='L23' name='L23'></a><em class='comment'>//</em>
+<a id='L24' name='L24'></a><em class='comment'>// You should have received a copy of the GNU General Public License</em>
+<a id='L25' name='L25'></a><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L26' name='L26'></a><em class='comment'>//</em>
+<a id='L27' name='L27'></a>
+<a id='L28' name='L28'></a><strong class='reserved'>static</strong> <strong class='reserved'>char</strong> szBin2hexCpp[] = "$Id: bin2hex.cpp,v 1.3 2011/04/14 15:13:09 doug Exp $";
+<a id='L29' name='L29'></a>
+<a id='L30' name='L30'></a><em class='sharp'>#include</em> "<a href='../I/196.html'>asdefs.hpp</a>"
+<a id='L31' name='L31'></a><em class='sharp'>#define</em> <a href='../R/66.html' title='Multiple referred from 2 places.'>INIBIND</a>
+<a id='L32' name='L32'></a><em class='sharp'>#include</em> "<a href='../I/324.html'>includes.hpp</a>"
+<a id='L33' name='L33'></a>
+<a id='L34' name='L34'></a><em class='sharp'>#define</em> <a href='../R/23.html' title='Multiple referred from 6 places.'>DATA_RECORD</a> 0x00
+<a id='L35' name='L35'></a>
+<a id='L36' name='L36'></a><strong class='reserved'>int</strong> main(<strong class='reserved'>int</strong> argc,<strong class='reserved'>char</strong> **argv)
+<a id='L37' name='L37'></a><em class='brace'>{</em>
+<a id='L38' name='L38'></a>        <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> szBuffer[255];
+<a id='L39' name='L39'></a>        <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> ucTemp;
+<a id='L40' name='L40'></a>
+<a id='L41' name='L41'></a>        <a href='../D/440.html' title='Multiple defined in 2 places.'>Version</a>(argv[0]);
+<a id='L42' name='L42'></a>
+<a id='L43' name='L43'></a>        <strong class='reserved'>if</strong>(3 &gt; argc) <em class='brace'>{</em>
+<a id='L44' name='L44'></a>                printf("usage - %s &lt;binary-file&gt; &lt;new-hex-file&gt;\n",argv[0]);
+<a id='L45' name='L45'></a>                exit(EXIT_FAILURE);
+<a id='L46' name='L46'></a>        <em class='brace'>}</em>
+<a id='L47' name='L47'></a>
+<a id='L48' name='L48'></a>        FILE * fdin = fopen(argv[1],"r");
+<a id='L49' name='L49'></a>        <strong class='reserved'>if</strong>(NULL == fdin) <em class='brace'>{</em>
+<a id='L50' name='L50'></a>                printf("Sorry, cannot open %s for input\n",argv[1]);
+<a id='L51' name='L51'></a>                exit(EXIT_FAILURE);
+<a id='L52' name='L52'></a>        <em class='brace'>}</em>
+<a id='L53' name='L53'></a>
+<a id='L54' name='L54'></a>        FILE * fhex = fopen(argv[2],"w");
+<a id='L55' name='L55'></a>        <strong class='reserved'>if</strong>(NULL == fhex) <em class='brace'>{</em>
+<a id='L56' name='L56'></a>                printf("Sorry, cannot open %s for output\n",argv[2]);
+<a id='L57' name='L57'></a>                fclose(fdin);
+<a id='L58' name='L58'></a>                exit(EXIT_FAILURE);
+<a id='L59' name='L59'></a>        <em class='brace'>}</em>
+<a id='L60' name='L60'></a>
+<a id='L61' name='L61'></a>        <strong class='reserved'>int</strong> o = 0;
+<a id='L62' name='L62'></a>        <strong class='reserved'>int</strong> rc = fread(szBuffer,1,16,fdin);
+<a id='L63' name='L63'></a>        <strong class='reserved'>while</strong>(0 &lt; rc) <em class='brace'>{</em>
+<a id='L64' name='L64'></a>                <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> checksum = 0;
+<a id='L65' name='L65'></a>                fprintf(fhex,":");
+<a id='L66' name='L66'></a>                fprintf(fhex,"%02X",rc);
+<a id='L67' name='L67'></a>                fprintf(fhex,"%04X",o);
+<a id='L68' name='L68'></a>                fprintf(fhex,"%02X",<a href='../D/41.html' title='Multiple defined in 12 places.'>DATA_RECORD</a>);
+<a id='L69' name='L69'></a>                <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> index=0;index&lt;rc;index++) <em class='brace'>{</em>
+<a id='L70' name='L70'></a>                        ucTemp = szBuffer[index];
+<a id='L71' name='L71'></a>                        fprintf(fhex,"%02X",ucTemp);
+<a id='L72' name='L72'></a>                        checksum += ucTemp;
+<a id='L73' name='L73'></a>                <em class='brace'>}</em>
+<a id='L74' name='L74'></a>                fprintf(fhex,"%02X",(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>)((checksum^0xff)+1)&amp;0xff);
+<a id='L75' name='L75'></a>                fprintf(fhex,"\n");
+<a id='L76' name='L76'></a>
+<a id='L77' name='L77'></a>                rc = fread(szBuffer,1,16,fdin);
+<a id='L78' name='L78'></a>                o += 16;
+<a id='L79' name='L79'></a>        <em class='brace'>}</em>
+<a id='L80' name='L80'></a>
+<a id='L81' name='L81'></a>        <strong class='reserved'>return</strong>(EXIT_SUCCESS);
+<a id='L82' name='L82'></a><em class='brace'>}</em>
+<a id='L83' name='L83'></a>
 </pre>
 <hr />
 <a id='BOTTOM' name='BOTTOM'></a>
-<em class='comment'>/* [&lt;][&gt;][^][v]<a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L36'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 </body>
 </html>

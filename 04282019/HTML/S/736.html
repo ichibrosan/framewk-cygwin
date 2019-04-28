@@ -1,31 +1,31 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
-<title>base/dir.cpp</title>
+<title>base/lc.cpp</title>
 <meta name='robots' content='noindex,nofollow' />
 <meta name='generator' content='GLOBAL-6.6.3' />
 <meta http-equiv='Content-Style-Type' content='text/css' />
 <link rel='stylesheet' type='text/css' href='../style.css' />
 </head>
 <body>
-<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/846.html'>base</a>/dir.cpp</h2>
-<em class='comment'>/* [&lt;][&gt;]<a href='#L88'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/817.html'>base</a>/lc.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L35'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 <hr />
 <h2 class='header'>DEFINITIONS</h2>
 This source file includes following definitions.
 <ol>
-<li><a href='#L88' title='Defined at 88.'>main</a></li>
+<li><a href='#L35' title='Defined at 35.'>main</a></li>
 </ol>
 <hr />
 <pre>
-<a id='L1' name='L1'></a><em class='comment'>// $Log: dir.cpp,v $</em>
+<a id='L1' name='L1'></a><em class='comment'>// $Log: lc.cpp,v $</em>
 <a id='L2' name='L2'></a><em class='comment'>// Revision 1.3  2011/04/14 15:13:09  doug</em>
 <a id='L3' name='L3'></a><em class='comment'>// get ready for release to wiki and server</em>
 <a id='L4' name='L4'></a><em class='comment'>//</em>
 <a id='L5' name='L5'></a><em class='comment'>//</em>
 <a id='L6' name='L6'></a>
 <a id='L7' name='L7'></a><em class='comment'>// ---------------------------------------------------</em>
-<a id='L8' name='L8'></a><em class='comment'>// dir.cpp      21-Feb-11   Running on Mac OS X 10.6.6</em>
+<a id='L8' name='L8'></a><em class='comment'>// lc.cpp       21-Feb-11   Running on Mac OS X 10.6.6</em>
 <a id='L9' name='L9'></a><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
 <a id='L10' name='L10'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
 <a id='L11' name='L11'></a><em class='comment'>// ---------------------------------------------------</em>
@@ -44,151 +44,47 @@ This source file includes following definitions.
 <a id='L24' name='L24'></a><em class='comment'>// You should have received a copy of the GNU General Public License</em>
 <a id='L25' name='L25'></a><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
 <a id='L26' name='L26'></a><em class='comment'>//</em>
-<a id='L27' name='L27'></a><em class='comment'>//#define __TRACE</em>
+<a id='L27' name='L27'></a><em class='comment'>// 2/4/2011 dwg - cloned from the Borland version</em>
 <a id='L28' name='L28'></a>
-<a id='L29' name='L29'></a><strong class='reserved'>static</strong> <strong class='reserved'>char</strong> szDirCpp[] = "$Id: dir.cpp,v 1.3 2011/04/14 15:13:09 doug Exp $";
+<a id='L29' name='L29'></a><strong class='reserved'>static</strong> <strong class='reserved'>char</strong> szLcCpp[] = "$Id: lc.cpp,v 1.3 2011/04/14 15:13:09 doug Exp $";
 <a id='L30' name='L30'></a>
 <a id='L31' name='L31'></a><em class='sharp'>#include</em> "<a href='../I/196.html'>asdefs.hpp</a>"
-<a id='L32' name='L32'></a><em class='sharp'>#define</em> <a href='../R/46.html' title='Multiple referred from 2 places.'>DWGALLOC</a>
-<a id='L33' name='L33'></a><em class='sharp'>#define</em> <a href='../R/66.html' title='Multiple referred from 2 places.'>INIBIND</a>
-<a id='L34' name='L34'></a><em class='sharp'>#define</em> <a href='../R/36.html' title='Multiple referred from 2 places.'>DIRCLASS</a>
-<a id='L35' name='L35'></a><em class='sharp'>#include</em> "<a href='../I/324.html'>includes.hpp</a>"
-<a id='L36' name='L36'></a><em class='sharp'>#include</em> &lt;assert.h&gt;
-<a id='L37' name='L37'></a><em class='sharp'>#include</em> &lt;sys/types.h&gt;
-<a id='L38' name='L38'></a><em class='sharp'>#include</em> &lt;sys/dir.h&gt;
-<a id='L39' name='L39'></a>
-<a id='L40' name='L40'></a><em class='sharp'>#include</em> &lt;errno.h&gt;
-<a id='L41' name='L41'></a><em class='sharp'>#include</em> &lt;unistd.h&gt;
-<a id='L42' name='L42'></a>
-<a id='L43' name='L43'></a><em class='comment'>//#define SHOW_NAMLEN</em>
-<a id='L44' name='L44'></a><em class='comment'>//#define SHOW_TYPE</em>
-<a id='L45' name='L45'></a><em class='sharp'>#define</em> <a href='../R/111.html' title='Multiple referred from 2 places.'>SHOW_SIZE_BEFORE</a>
-<a id='L46' name='L46'></a><em class='comment'>//#define SHOW_ERRNO</em>
-<a id='L47' name='L47'></a><em class='sharp'>#define</em> <a href='../R/108.html' title='Multiple referred from 2 places.'>SHOW_NAME</a>
-<a id='L48' name='L48'></a><em class='comment'>//#define SHOW_SIZE_AFTER</em>
-<a id='L49' name='L49'></a><em class='sharp'>#define</em> <a href='../R/109.html' title='Multiple referred from 2 places.'>SHOW_NEWLINE</a>
-<a id='L50' name='L50'></a>
-<a id='L51' name='L51'></a><em class='comment'>/*</em>
-<a id='L52' name='L52'></a><em class='comment'> * The dirent structure defines the format of directory entries.</em>
-<a id='L53' name='L53'></a><em class='comment'> *</em>
-<a id='L54' name='L54'></a><em class='comment'> * A directory entry has a struct dirent at the front of it, containing its</em>
-<a id='L55' name='L55'></a><em class='comment'> * inode number, the length of the entry, and the length of the name</em>
-<a id='L56' name='L56'></a><em class='comment'> * contained in the entry.  These are followed by the name padded to a 4</em>
-<a id='L57' name='L57'></a><em class='comment'> * byte boundary with null g_ucBytes.  All names are guaranteed null terminated.</em>
-<a id='L58' name='L58'></a><em class='comment'> * The maximum length of a name in a directory is MAXNAMLEN when 32-bit</em>
-<a id='L59' name='L59'></a><em class='comment'> * ino_t is in effect; (MAXPATHLEN - 1) when 64-bit ino_t is in effect.</em>
-<a id='L60' name='L60'></a><em class='comment'> */</em>
+<a id='L32' name='L32'></a><em class='sharp'>#define</em> <a href='../R/66.html' title='Multiple referred from 2 places.'>INIBIND</a>
+<a id='L33' name='L33'></a><em class='sharp'>#include</em> "<a href='../I/324.html'>includes.hpp</a>"
+<a id='L34' name='L34'></a>
+<a id='L35' name='L35'></a><strong class='reserved'>int</strong> main(<strong class='reserved'>int</strong> argc,<strong class='reserved'>char</strong> **argv)
+<a id='L36' name='L36'></a><em class='brace'>{</em>
+<a id='L37' name='L37'></a>        <strong class='reserved'>char</strong> *p;
+<a id='L38' name='L38'></a>        <strong class='reserved'>char</strong> buffer[255];
+<a id='L39' name='L39'></a>        FILE *fp;
+<a id='L40' name='L40'></a>        <strong class='reserved'>int</strong> lines;
+<a id='L41' name='L41'></a>                        
+<a id='L42' name='L42'></a>        <a href='../D/440.html' title='Multiple defined in 2 places.'>Version</a>(argv[0]);
+<a id='L43' name='L43'></a>
+<a id='L44' name='L44'></a>        <strong class='reserved'>if</strong>(2 != argc) <em class='brace'>{</em>
+<a id='L45' name='L45'></a>                printf("usage - %s &lt;filespec&gt;\n",argv[0]);
+<a id='L46' name='L46'></a>                exit(EXIT_FAILURE);     
+<a id='L47' name='L47'></a>        <em class='brace'>}</em>
+<a id='L48' name='L48'></a>        
+<a id='L49' name='L49'></a>        fp = fopen(argv[1],"r");
+<a id='L50' name='L50'></a>        <strong class='reserved'>if</strong>(NULL == fp) <em class='brace'>{</em>
+<a id='L51' name='L51'></a>                printf("Sorry, cannot open %s for input\n",argv[1]);
+<a id='L52' name='L52'></a>                exit(EXIT_FAILURE);
+<a id='L53' name='L53'></a>        <em class='brace'>}</em>       
+<a id='L54' name='L54'></a>        lines = 0;
+<a id='L55' name='L55'></a>        p = fgets(buffer,<strong class='reserved'>sizeof</strong>(buffer),fp);
+<a id='L56' name='L56'></a>        <strong class='reserved'>while</strong>(NULL != p) <em class='brace'>{</em>
+<a id='L57' name='L57'></a>                lines++;
+<a id='L58' name='L58'></a>                p = fgets(buffer,<strong class='reserved'>sizeof</strong>(buffer),fp);
+<a id='L59' name='L59'></a>        <em class='brace'>}</em>
+<a id='L60' name='L60'></a>        fclose(fp);
 <a id='L61' name='L61'></a>
-<a id='L62' name='L62'></a><em class='comment'>//#define __DARWIN_MAXPATHLEN   1024</em>
-<a id='L63' name='L63'></a>
-<a id='L64' name='L64'></a><em class='comment'>//#define __DARWIN_STRUCT_DIRENTRY { \</em>
-<a id='L65' name='L65'></a><em class='comment'>//      __uint64_t  d_ino;      /* file number of entry */ \</em>
-<a id='L66' name='L66'></a><em class='comment'>//      __uint64_t  d_seekoff;  /* seek offset (optional, used by servers) */ \</em>
-<a id='L67' name='L67'></a><em class='comment'>//      __uint16_t  d_reclen;   /* length of this record */ \</em>
-<a id='L68' name='L68'></a><em class='comment'>//      __uint16_t  d_namlen;   /* length of string in d_name */ \</em>
-<a id='L69' name='L69'></a><em class='comment'>//      __uint8_t   d_type;     /* file type, see below */ \</em>
-<a id='L70' name='L70'></a><em class='comment'>//      char      d_name[__DARWIN_MAXPATHLEN]; </em>
-<a id='L71' name='L71'></a><em class='comment'>//} dirent;</em>
-<a id='L72' name='L72'></a>
-<a id='L73' name='L73'></a><em class='comment'>//#define       MAXNAMLEN       __DARWIN_MAXNAMLEN</em>
-<a id='L74' name='L74'></a>
-<a id='L75' name='L75'></a><em class='comment'>//*</em>
-<a id='L76' name='L76'></a><em class='comment'>//* File types</em>
-<a id='L77' name='L77'></a><em class='comment'>//*</em>
-<a id='L78' name='L78'></a><em class='comment'>//#define       DT_UNKNOWN       0</em>
-<a id='L79' name='L79'></a><em class='comment'>//#define       DT_FIFO          1</em>
-<a id='L80' name='L80'></a><em class='comment'>//#define       DT_CHR           2</em>
-<a id='L81' name='L81'></a><em class='comment'>//#define       DT_DIR           4</em>
-<a id='L82' name='L82'></a><em class='comment'>//#define       DT_BLK           6</em>
-<a id='L83' name='L83'></a><em class='comment'>//#define       DT_REG           8</em>
-<a id='L84' name='L84'></a><em class='comment'>//#define       DT_LNK          10</em>
-<a id='L85' name='L85'></a><em class='comment'>//#define       DT_SOCK         12</em>
-<a id='L86' name='L86'></a><em class='comment'>//#define       DT_WHT          14</em>
-<a id='L87' name='L87'></a>
-<a id='L88' name='L88'></a><strong class='reserved'>int</strong> main(<strong class='reserved'>int</strong> argc,<strong class='reserved'>char</strong> **argv)
-<a id='L89' name='L89'></a><em class='brace'>{</em>
-<a id='L90' name='L90'></a><em class='comment'>//      This version works on Mac OS X</em>
-<a id='L91' name='L91'></a><em class='comment'>//      char g_szBuffer2[__DARWIN_MAXPATHLEN];</em>
-<a id='L92' name='L92'></a>
-<a id='L93' name='L93'></a>        <em class='comment'>// This works anywhere</em>
-<a id='L94' name='L94'></a>        <strong class='reserved'>char</strong> g_szBuffer2[1024];
-<a id='L95' name='L95'></a>
-<a id='L96' name='L96'></a>        <a href='../D/440.html' title='Multiple defined in 2 places.'>Version</a>(argv[0]);
-<a id='L97' name='L97'></a>        
-<a id='L98' name='L98'></a>        <a href='../D/30.html' title='Multiple defined in 6 places.'>CDir</a> *  dir = <strong class='reserved'>new</strong> <a href='../D/30.html' title='Multiple defined in 6 places.'>CDir</a>(".");
-<a id='L99' name='L99'></a>        
-<a id='L100' name='L100'></a>        <strong class='reserved'>int</strong> rc = dir-&gt;<a href='../D/554.html' title='Multiple defined in 2 places.'>read</a>();
-<a id='L101' name='L101'></a>        <strong class='reserved'>while</strong>(EXIT_SUCCESS == rc) <em class='brace'>{</em>
-<a id='L102' name='L102'></a>                dir-&gt;<a href='../D/501.html' title='Multiple defined in 2 places.'>getname</a>(g_szBuffer2);
-<a id='L103' name='L103'></a>
-<a id='L104' name='L104'></a><em class='sharp'>#ifdef</em> SHOW_TYPE
-<a id='L105' name='L105'></a>                <strong class='reserved'>switch</strong>(dir-&gt;<a href='../D/517.html' title='Multiple defined in 2 places.'>gettype</a>()) <em class='brace'>{</em>
-<a id='L106' name='L106'></a>                        <strong class='reserved'>case</strong> <a href='../S/576.html#L126' title='Defined at 126 in doc/dirent.h.'>DT_UNKNOWN</a>: printf("DT_UNKNOWN "); <strong class='reserved'>break</strong>;
-<a id='L107' name='L107'></a>                        <strong class='reserved'>case</strong> <a href='../S/576.html#L127' title='Defined at 127 in doc/dirent.h.'>DT_FIFO</a>:    printf("DT_FIFO    "); <strong class='reserved'>break</strong>;
-<a id='L108' name='L108'></a>                        <strong class='reserved'>case</strong> <a href='../S/576.html#L128' title='Defined at 128 in doc/dirent.h.'>DT_CHR</a>:     printf("DT_CHR     "); <strong class='reserved'>break</strong>;
-<a id='L109' name='L109'></a>                        <strong class='reserved'>case</strong> <a href='../S/576.html#L129' title='Defined at 129 in doc/dirent.h.'>DT_DIR</a>:     printf("DT_DIR     "); <strong class='reserved'>break</strong>;
-<a id='L110' name='L110'></a>                        <strong class='reserved'>case</strong> <a href='../S/576.html#L130' title='Defined at 130 in doc/dirent.h.'>DT_BLK</a>:     printf("DT_BLK     "); <strong class='reserved'>break</strong>;
-<a id='L111' name='L111'></a>                        <strong class='reserved'>case</strong> <a href='../S/576.html#L131' title='Defined at 131 in doc/dirent.h.'>DT_REG</a>:     printf("DT_REG     "); <strong class='reserved'>break</strong>;
-<a id='L112' name='L112'></a>                        <strong class='reserved'>case</strong> <a href='../S/576.html#L132' title='Defined at 132 in doc/dirent.h.'>DT_LNK</a>:     printf("DT_LNK     "); <strong class='reserved'>break</strong>;
-<a id='L113' name='L113'></a>                        <strong class='reserved'>case</strong> <a href='../S/576.html#L133' title='Defined at 133 in doc/dirent.h.'>DT_SOCK</a>:    printf("DT_SOCK    "); <strong class='reserved'>break</strong>;
-<a id='L114' name='L114'></a>                        <strong class='reserved'>case</strong> <a href='../S/576.html#L134' title='Defined at 134 in doc/dirent.h.'>DT_WHT</a>:     printf("DT_WHT     "); <strong class='reserved'>break</strong>;
-<a id='L115' name='L115'></a>                        <strong class='reserved'>default</strong>:         printf("unknown    "); <strong class='reserved'>break</strong>;
-<a id='L116' name='L116'></a>                <em class='brace'>}</em>
-<a id='L117' name='L117'></a><em class='sharp'>#endif</em>
-<a id='L118' name='L118'></a>
-<a id='L119' name='L119'></a><em class='sharp'>#ifdef</em> SHOW_NAMLEN
-<a id='L120' name='L120'></a>                printf("%2d ",dir-&gt;<a href='../D/502.html' title='Multiple defined in 2 places.'>getnamlen</a>());
-<a id='L121' name='L121'></a><em class='sharp'>#endif</em>
-<a id='L122' name='L122'></a>
-<a id='L123' name='L123'></a>                off_t <a href='../S/577.html#L8' title='Defined at 8 in doc/postfix.c.'>size</a> = 0;
-<a id='L124' name='L124'></a>                <strong class='reserved'>if</strong>(<a href='../S/576.html#L131' title='Defined at 131 in doc/dirent.h.'>DT_REG</a> == dir-&gt;<a href='../D/517.html' title='Multiple defined in 2 places.'>gettype</a>()) <em class='brace'>{</em>
-<a id='L125' name='L125'></a>                        FILE * fd = fopen(g_szBuffer2,"r");
-<a id='L126' name='L126'></a>                        <strong class='reserved'>if</strong>(NULL != fd) <em class='brace'>{</em>
-<a id='L127' name='L127'></a>                                fseek(fd,0L,SEEK_END);
-<a id='L128' name='L128'></a>                                <em class='comment'>//size = lseek(fd,0L,SEEK_END);</em>
-<a id='L129' name='L129'></a>                                <a href='../S/577.html#L8' title='Defined at 8 in doc/postfix.c.'>size</a> = ftell(fd);
-<a id='L130' name='L130'></a>                                fclose(fd);
-<a id='L131' name='L131'></a>                        <em class='brace'>}</em>
-<a id='L132' name='L132'></a>                <em class='brace'>}</em>
-<a id='L133' name='L133'></a><em class='comment'>//              printf("%12ld %d %s\n",size,errno,g_szBuffer2);</em>
-<a id='L134' name='L134'></a>
-<a id='L135' name='L135'></a><em class='sharp'>#ifdef</em> <a href='../D/401.html' title='Multiple defined in 2 places.'>SHOW_SIZE_BEFORE</a>
-<a id='L136' name='L136'></a>                printf("%12ld ",<a href='../S/577.html#L8' title='Defined at 8 in doc/postfix.c.'>size</a>);
-<a id='L137' name='L137'></a><em class='sharp'>#endif</em>
-<a id='L138' name='L138'></a>
-<a id='L139' name='L139'></a><em class='sharp'>#ifdef</em> SHOW_ERRNO
-<a id='L140' name='L140'></a>                printf("%d ",errno);
-<a id='L141' name='L141'></a><em class='sharp'>#endif</em>
-<a id='L142' name='L142'></a>
-<a id='L143' name='L143'></a><em class='sharp'>#ifdef</em> <a href='../D/398.html' title='Multiple defined in 8 places.'>SHOW_NAME</a>
-<a id='L144' name='L144'></a>                printf("%s ",g_szBuffer2);
-<a id='L145' name='L145'></a><em class='sharp'>#ifdef</em> <a href='../D/400.html' title='Multiple defined in 6 places.'>SHOW_SIZE_AFTER</a>
-<a id='L146' name='L146'></a>
-<a id='L147' name='L147'></a>                <strong class='reserved'>if</strong>(strlen(g_szBuffer2) &lt; 16) <em class='brace'>{</em>
-<a id='L148' name='L148'></a>                        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> x=0;x&lt;16-strlen(g_szBuffer2);x++) <em class='brace'>{</em>
-<a id='L149' name='L149'></a>                                printf(" ");
-<a id='L150' name='L150'></a>                        <em class='brace'>}</em>
-<a id='L151' name='L151'></a>                <em class='brace'>}</em>
-<a id='L152' name='L152'></a><em class='sharp'>#endif</em>
-<a id='L153' name='L153'></a><em class='sharp'>#endif</em>
-<a id='L154' name='L154'></a>
-<a id='L155' name='L155'></a><em class='sharp'>#ifdef</em> <a href='../D/400.html' title='Multiple defined in 6 places.'>SHOW_SIZE_AFTER</a>
-<a id='L156' name='L156'></a>                printf("%12ld ",<a href='../S/577.html#L8' title='Defined at 8 in doc/postfix.c.'>size</a>);
-<a id='L157' name='L157'></a><em class='sharp'>#endif</em>
-<a id='L158' name='L158'></a>
-<a id='L159' name='L159'></a><em class='sharp'>#ifdef</em> <a href='../D/399.html' title='Multiple defined in 8 places.'>SHOW_NEWLINE</a>
-<a id='L160' name='L160'></a>                printf("\n");
-<a id='L161' name='L161'></a><em class='sharp'>#endif</em>
-<a id='L162' name='L162'></a>
-<a id='L163' name='L163'></a>                rc = dir-&gt;<a href='../D/554.html' title='Multiple defined in 2 places.'>read</a>();
-<a id='L164' name='L164'></a>        <em class='brace'>}</em>
-<a id='L165' name='L165'></a>
-<a id='L166' name='L166'></a>        <strong class='reserved'>return</strong> EXIT_SUCCESS;
-<a id='L167' name='L167'></a><em class='brace'>}</em>
-<a id='L168' name='L168'></a>
+<a id='L62' name='L62'></a>        printf("File %s has %d lines\n",argv[1],lines);
+<a id='L63' name='L63'></a>        exit(EXIT_SUCCESS);
+<a id='L64' name='L64'></a><em class='brace'>}</em>
 </pre>
 <hr />
 <a id='BOTTOM' name='BOTTOM'></a>
-<em class='comment'>/* [&lt;][&gt;][^]<a href='#L88'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L35'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 </body>
 </html>

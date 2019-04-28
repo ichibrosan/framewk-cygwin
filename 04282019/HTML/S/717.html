@@ -1,219 +1,77 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
-<title>base/asoutlst.hpp</title>
+<title>base/sw.cpp</title>
 <meta name='robots' content='noindex,nofollow' />
 <meta name='generator' content='GLOBAL-6.6.3' />
 <meta http-equiv='Content-Style-Type' content='text/css' />
 <link rel='stylesheet' type='text/css' href='../style.css' />
 </head>
 <body>
-<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/846.html'>base</a>/asoutlst.hpp</h2>
-<em class='comment'>/* [&lt;][&gt;]<a href='#L24'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
-<hr />
-<h2 class='header'><a href='../J/205.html' title='Multiple included from 2 places.'>INCLUDED FROM</a></h2>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/817.html'>base</a>/sw.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L36'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 <hr />
 <h2 class='header'>DEFINITIONS</h2>
 This source file includes following definitions.
 <ol>
-<li><a href='#L24' title='Defined at 24.'>asoutlst</a></li>
+<li><a href='#L36' title='Defined at 36.'>main</a></li>
 </ol>
 <hr />
 <pre>
-<a id='L1' name='L1'></a><em class='comment'>// ---------------------------------------------------</em>
-<a id='L2' name='L2'></a><em class='comment'>// asoutlst.hpp 21-Feb-11   Running on Mac OS X 10.6.6</em>
-<a id='L3' name='L3'></a><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
-<a id='L4' name='L4'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
-<a id='L5' name='L5'></a><em class='comment'>// ---------------------------------------------------</em>
-<a id='L6' name='L6'></a><em class='comment'>// This file is part of Vintage Modern Assembler Plus Tools.</em>
-<a id='L7' name='L7'></a><em class='comment'>//</em>
-<a id='L8' name='L8'></a><em class='comment'>// VMAPT is free software: you can redistribute it and/or modify</em>
-<a id='L9' name='L9'></a><em class='comment'>// it under the terms of the GNU General Public License as published by</em>
-<a id='L10' name='L10'></a><em class='comment'>// the Free Software Foundation, either version 3 of the License, or</em>
-<a id='L11' name='L11'></a><em class='comment'>// (at your option) any later version.</em>
-<a id='L12' name='L12'></a><em class='comment'>//</em>
-<a id='L13' name='L13'></a><em class='comment'>// VMAPT is distributed in the hope that it will be useful,</em>
-<a id='L14' name='L14'></a><em class='comment'>// but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
-<a id='L15' name='L15'></a><em class='comment'>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
-<a id='L16' name='L16'></a><em class='comment'>// GNU General Public License for more details.</em>
-<a id='L17' name='L17'></a><em class='comment'>//</em>
-<a id='L18' name='L18'></a><em class='comment'>// You should have received a copy of the GNU General Public License</em>
-<a id='L19' name='L19'></a><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
-<a id='L20' name='L20'></a><em class='comment'>//</em>
-<a id='L21' name='L21'></a>
-<a id='L22' name='L22'></a><strong class='reserved'>static</strong> <strong class='reserved'>char</strong> szAsoutlstHpp[] = "$Id: asoutlst.hpp,v 1.2 2011/03/25 05:48:59 doug Exp $";
-<a id='L23' name='L23'></a>
-<a id='L24' name='L24'></a><strong class='reserved'>void</strong> <a href='../R/165.html' title='Multiple referred from 2 places.'>asoutlst</a>(<strong class='reserved'>void</strong>)
-<a id='L25' name='L25'></a><em class='brace'>{</em>
-<a id='L26' name='L26'></a>        <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> mypc = g_iPc;
+<a id='L1' name='L1'></a><em class='comment'>// $Log: sw.cpp,v $</em>
+<a id='L2' name='L2'></a><em class='comment'>// Revision 1.3  2011/04/14 15:13:09  doug</em>
+<a id='L3' name='L3'></a><em class='comment'>// get ready for release to wiki and server</em>
+<a id='L4' name='L4'></a><em class='comment'>//</em>
+<a id='L5' name='L5'></a><em class='comment'>//</em>
+<a id='L6' name='L6'></a>
+<a id='L7' name='L7'></a><em class='comment'>// ---------------------------------------------------</em>
+<a id='L8' name='L8'></a><em class='comment'>// sw.cpp       21-Feb-11   Running on Mac OS X 10.6.6</em>
+<a id='L9' name='L9'></a><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
+<a id='L10' name='L10'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L11' name='L11'></a><em class='comment'>// ---------------------------------------------------</em>
+<a id='L12' name='L12'></a><em class='comment'>// This file is part of Vintage Modern Assembler Plus Tools.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>// VMAPT is free software: you can redistribute it and/or modify</em>
+<a id='L15' name='L15'></a><em class='comment'>// it under the terms of the GNU General Public License as published by</em>
+<a id='L16' name='L16'></a><em class='comment'>// the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L17' name='L17'></a><em class='comment'>// (at your option) any later version.</em>
+<a id='L18' name='L18'></a><em class='comment'>//</em>
+<a id='L19' name='L19'></a><em class='comment'>// VMAPT is distributed in the hope that it will be useful,</em>
+<a id='L20' name='L20'></a><em class='comment'>// but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L21' name='L21'></a><em class='comment'>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L22' name='L22'></a><em class='comment'>// GNU General Public License for more details.</em>
+<a id='L23' name='L23'></a><em class='comment'>//</em>
+<a id='L24' name='L24'></a><em class='comment'>// You should have received a copy of the GNU General Public License</em>
+<a id='L25' name='L25'></a><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L26' name='L26'></a><em class='comment'>//</em>
 <a id='L27' name='L27'></a>
-<a id='L28' name='L28'></a>        
-<a id='L29' name='L29'></a>        <strong class='reserved'>if</strong>( (g_iBytesIndex == 0) &amp;&amp; (strlen(g_szLabel)==0)  &amp;&amp;
-<a id='L30' name='L30'></a>                                 (strlen(g_szOpcode)==0) &amp;&amp;
-<a id='L31' name='L31'></a>                                 (strlen(g_szParms)==0)  &amp;&amp;
-<a id='L32' name='L32'></a>                                 (strlen(g_szComments)!=0) ) <em class='brace'>{</em>
-<a id='L33' name='L33'></a>        <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
-<a id='L34' name='L34'></a>                <em class='comment'>// this code pads out the fields so they</em>
-<a id='L35' name='L35'></a>                <em class='comment'>// align in the listing file</em>
-<a id='L36' name='L36'></a>                <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> x=0;x&lt;8;x++) <em class='brace'>{</em>
-<a id='L37' name='L37'></a>                        <strong class='reserved'>if</strong>(strlen(g_szLabel) &lt; 8) strcat(g_szLabel," ");
-<a id='L38' name='L38'></a>                <em class='brace'>}</em>
-<a id='L39' name='L39'></a>        
-<a id='L40' name='L40'></a>                <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> y=0;y&lt;8;y++) <em class='brace'>{</em>
-<a id='L41' name='L41'></a>                        <strong class='reserved'>if</strong>(strlen(g_szOpcode) &lt; 9) strcat(g_szOpcode," ");
-<a id='L42' name='L42'></a>                <em class='brace'>}</em>
-<a id='L43' name='L43'></a>        <em class='brace'>}</em>                        
-<a id='L44' name='L44'></a>        
-<a id='L45' name='L45'></a>        
-<a id='L46' name='L46'></a>        <strong class='reserved'>if</strong>( 3 &lt; g_iBytesIndex ) <em class='brace'>{</em>
-<a id='L47' name='L47'></a>
-<a id='L48' name='L48'></a>                <em class='comment'>// if the number of byte &gt; 3, it is</em>
-<a id='L49' name='L49'></a>                <em class='comment'>// necessary to print the original line</em>
-<a id='L50' name='L50'></a>                <em class='comment'>// so you can tell what called the expansion</em>
-<a id='L51' name='L51'></a>                
-<a id='L52' name='L52'></a>                <em class='comment'>// if the number of g_ucBytes is 3 or less, </em>
-<a id='L53' name='L53'></a>                <em class='comment'>// the normal print function handles it.</em>
-<a id='L54' name='L54'></a>                                
-<a id='L55' name='L55'></a>                strcpy(g_szBuffer2,"               ");
-<a id='L56' name='L56'></a>                strcat(g_szBuffer2,g_szLabel);          
-<a id='L57' name='L57'></a>                <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;(10-strlen(g_szLabel));i++) <em class='brace'>{</em>
-<a id='L58' name='L58'></a>                        strcat(g_szBuffer2," ");
-<a id='L59' name='L59'></a>                <em class='brace'>}</em>
-<a id='L60' name='L60'></a>                strcat(g_szBuffer2,g_szOpcode);
-<a id='L61' name='L61'></a>                <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;(11-strlen(g_szOpcode));i++) <em class='brace'>{</em>
-<a id='L62' name='L62'></a>                        strcat(g_szBuffer2," ");
-<a id='L63' name='L63'></a>                <em class='brace'>}</em>
-<a id='L64' name='L64'></a>                strcat(g_szBuffer2,g_szParms);
-<a id='L65' name='L65'></a>                <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;30;i++) <em class='brace'>{</em>
-<a id='L66' name='L66'></a>                        strcat(g_szBuffer2," ");
-<a id='L67' name='L67'></a>                <em class='brace'>}</em>
-<a id='L68' name='L68'></a>                strcat(g_szBuffer2,g_szComments);
-<a id='L69' name='L69'></a>                <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(g_flst);
-<a id='L70' name='L70'></a>
-<a id='L71' name='L71'></a>
-<a id='L72' name='L72'></a>                <strong class='reserved'>if</strong>(g_bDebug) <em class='brace'>{</em>
-<a id='L73' name='L73'></a>                        printf("\nemitlst says g_iBytesIndex &gt; 3\n");
-<a id='L74' name='L74'></a>                <em class='brace'>}</em>
-<a id='L75' name='L75'></a>                g_iTriplets = g_iBytesIndex / 3;
-<a id='L76' name='L76'></a>                <strong class='reserved'>if</strong>(g_bDebug) <em class='brace'>{</em>
-<a id='L77' name='L77'></a>                        printf("\ntriplets = %d\n",g_iTriplets);
-<a id='L78' name='L78'></a>                <em class='brace'>}</em>
-<a id='L79' name='L79'></a>                g_iSobrante = g_iBytesIndex - (g_iTriplets * 3);
-<a id='L80' name='L80'></a>                <strong class='reserved'>if</strong>(g_bDebug) <em class='brace'>{</em>
-<a id='L81' name='L81'></a>                        printf("\nsobrante = %d\n",g_iSobrante);
-<a id='L82' name='L82'></a>                <em class='brace'>}</em>
-<a id='L83' name='L83'></a>                <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> t=0;t&lt;g_iTriplets;t++) <em class='brace'>{</em>
-<a id='L84' name='L84'></a>                        g_iTripoff = t * 3;
-<a id='L85' name='L85'></a>                        <strong class='reserved'>if</strong>(g_bDebug) <em class='brace'>{</em>
-<a id='L86' name='L86'></a>                                printf(" t = %d ",t);
-<a id='L87' name='L87'></a>                        <em class='brace'>}</em>
-<a id='L88' name='L88'></a>                        sprintf(g_szParms,"%03XH,%03XH,%03XH",
-<a id='L89' name='L89'></a>                                g_ucBytes[g_iTripoff],
-<a id='L90' name='L90'></a>                                g_ucBytes[g_iTripoff+1],
-<a id='L91' name='L91'></a>                                g_ucBytes[g_iTripoff+2]);
-<a id='L92' name='L92'></a>                                
-<a id='L93' name='L93'></a>                        sprintf(g_szComments,"; %c%c%c",
-<a id='L94' name='L94'></a>                                g_ucBytes[g_iTripoff],
-<a id='L95' name='L95'></a>                                g_ucBytes[g_iTripoff+1],
-<a id='L96' name='L96'></a>                                g_ucBytes[g_iTripoff+2]);
-<a id='L97' name='L97'></a>                                
-<a id='L98' name='L98'></a>                        sprintf(g_szPc,g_szListRadix,mypc);
-<a id='L99' name='L99'></a>                        sprintf(g_szBuffer,"%s: %02X %02X %02X %s%s%s%s%s%s%s",
-<a id='L100' name='L100'></a>                                g_szPc,
-<a id='L101' name='L101'></a>                                g_ucBytes[g_iTripoff],
-<a id='L102' name='L102'></a>                                g_ucBytes[g_iTripoff+1],
-<a id='L103' name='L103'></a>                                g_ucBytes[g_iTripoff+2],
-<a id='L104' name='L104'></a><em class='comment'>//                              g_szLabel,g_szSep,g_szOpcode,</em>
-<a id='L105' name='L105'></a>                                g_szLabel,g_szSep,"db       ",
-<a id='L106' name='L106'></a>                                g_szSep,g_szParms,g_szSep,g_szComments);
-<a id='L107' name='L107'></a>                        strcpy(g_szBuffer2,g_szBuffer);
-<a id='L108' name='L108'></a>                        <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(g_flst);
-<a id='L109' name='L109'></a>                        mypc += 3;
-<a id='L110' name='L110'></a>                <em class='brace'>}</em>
-<a id='L111' name='L111'></a>                <strong class='reserved'>if</strong>(0 != g_iSobrante) <em class='brace'>{</em> 
-<a id='L112' name='L112'></a>                        g_iSoboff = g_iTriplets * 3;
-<a id='L113' name='L113'></a>                        <strong class='reserved'>switch</strong>(g_iSobrante) <em class='brace'>{</em>
-<a id='L114' name='L114'></a>                                <strong class='reserved'>case</strong> 1:
-<a id='L115' name='L115'></a>                                        sprintf(g_szParms,"%03XH          ",
-<a id='L116' name='L116'></a>                                                g_ucBytes[g_iSoboff]);
-<a id='L117' name='L117'></a>                        
-<a id='L118' name='L118'></a>                                        sprintf(g_szComments,"; %c",
-<a id='L119' name='L119'></a>                                                g_ucBytes[g_iSoboff]);
-<a id='L120' name='L120'></a>                                        
-<a id='L121' name='L121'></a>                                        sprintf(g_szPc,g_szListRadix,mypc);     
-<a id='L122' name='L122'></a>                                        sprintf(g_szBuffer,"%s: %02X       %s%s%s%s%s%s%s",
-<a id='L123' name='L123'></a>                                                g_szPc,
-<a id='L124' name='L124'></a>                                                g_ucBytes[g_iSoboff],
-<a id='L125' name='L125'></a><em class='comment'>//                                              g_szLabel,g_szSep,g_szOpcode,</em>
-<a id='L126' name='L126'></a>                                                g_szLabel,g_szSep,"db       ",
-<a id='L127' name='L127'></a>                                                g_szSep,g_szParms,g_szSep,g_szComments);
-<a id='L128' name='L128'></a>                                        strcpy(g_szBuffer2,g_szBuffer);
-<a id='L129' name='L129'></a>                                        <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(g_flst);
-<a id='L130' name='L130'></a>                                        mypc += 1;
-<a id='L131' name='L131'></a>                                        <strong class='reserved'>break</strong>;                                                          
-<a id='L132' name='L132'></a>                                <strong class='reserved'>case</strong> 2:
-<a id='L133' name='L133'></a>                                        sprintf(g_szParms,"%03XH,%03XH     ",
-<a id='L134' name='L134'></a>                                                g_ucBytes[g_iSoboff],
-<a id='L135' name='L135'></a>                                                g_ucBytes[g_iSoboff+1]);
-<a id='L136' name='L136'></a>                                
-<a id='L137' name='L137'></a>                                        sprintf(g_szComments,"; %c%c",
-<a id='L138' name='L138'></a>                                                g_ucBytes[g_iSoboff],
-<a id='L139' name='L139'></a>                                                g_ucBytes[g_iSoboff+1]);
-<a id='L140' name='L140'></a>
-<a id='L141' name='L141'></a>                                        sprintf(g_szPc,g_szListRadix,mypc);     
-<a id='L142' name='L142'></a>                                        sprintf(g_szBuffer,"%s: %02X %02X    %s%s%s%s%s%s%s",
-<a id='L143' name='L143'></a>                                                g_szPc,
-<a id='L144' name='L144'></a>                                                g_ucBytes[g_iSoboff],
-<a id='L145' name='L145'></a>                                                g_ucBytes[g_iSoboff+1],
-<a id='L146' name='L146'></a><em class='comment'>//                                              g_szLabel,g_szSep,g_szOpcode,</em>
-<a id='L147' name='L147'></a>                                                g_szLabel,g_szSep,"db       ",
-<a id='L148' name='L148'></a>                                                g_szSep,g_szParms,g_szSep,g_szComments);
-<a id='L149' name='L149'></a>                                        strcpy(g_szBuffer2,g_szBuffer);
-<a id='L150' name='L150'></a>                                        <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(g_flst);
-<a id='L151' name='L151'></a>                                        mypc += 2;
-<a id='L152' name='L152'></a>                                        <strong class='reserved'>break</strong>;
-<a id='L153' name='L153'></a>                        <em class='brace'>}</em>;                      
-<a id='L154' name='L154'></a>                <em class='brace'>}</em>
-<a id='L155' name='L155'></a>        <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
-<a id='L156' name='L156'></a>                <strong class='reserved'>switch</strong>(g_iBytesIndex) <em class='brace'>{</em>
-<a id='L157' name='L157'></a>                        <strong class='reserved'>case</strong> 0:
-<a id='L158' name='L158'></a>                                sprintf(g_szPc,g_szListRadix,mypc);
-<a id='L159' name='L159'></a>                                sprintf(g_szBuffer,"%s:          %s%s%s%s%s%s%s",
-<a id='L160' name='L160'></a>                                        g_szPc,g_szLabel,g_szSep,g_szOpcode,g_szSep,g_szParms,g_szSep,g_szComments);
-<a id='L161' name='L161'></a>                                <strong class='reserved'>break</strong>;
-<a id='L162' name='L162'></a>                        <strong class='reserved'>case</strong> 1:
-<a id='L163' name='L163'></a>                                sprintf(g_szPc,g_szListRadix,mypc);
-<a id='L164' name='L164'></a>                                sprintf(g_szBuffer,"%s: %02X       %s%s%s%s%s%s%s",
-<a id='L165' name='L165'></a>                                        g_szPc,g_ucBytes[0],g_szLabel,g_szSep,g_szOpcode,g_szSep,
-<a id='L166' name='L166'></a><em class='comment'>//                                      mypc,g_ucBytes[0],g_szLabel,g_szSep,"db       ",g_szSep,</em>
-<a id='L167' name='L167'></a>                                                g_szParms,g_szSep,g_szComments);
-<a id='L168' name='L168'></a>                                mypc += 1;                              
-<a id='L169' name='L169'></a>                                <strong class='reserved'>break</strong>;
-<a id='L170' name='L170'></a>                        <strong class='reserved'>case</strong> 2:
-<a id='L171' name='L171'></a>                                sprintf(g_szPc,g_szListRadix,mypc);
-<a id='L172' name='L172'></a>                                sprintf(g_szBuffer,"%s: %02X %02X    %s%s%s%s%s%s%s",
-<a id='L173' name='L173'></a>                                        g_szPc,g_ucBytes[0],g_ucBytes[1],g_szLabel,g_szSep,g_szOpcode,
-<a id='L174' name='L174'></a><em class='comment'>//                                      mypc,g_ucBytes[0],g_ucBytes[1],g_szLabel,g_szSep,"db       ",</em>
-<a id='L175' name='L175'></a>                                                g_szSep,g_szParms,g_szSep,g_szComments);
-<a id='L176' name='L176'></a>                                mypc += 2;
-<a id='L177' name='L177'></a>                                <strong class='reserved'>break</strong>;
-<a id='L178' name='L178'></a>                        <strong class='reserved'>case</strong> 3:
-<a id='L179' name='L179'></a>                                sprintf(g_szPc,g_szListRadix,mypc);
-<a id='L180' name='L180'></a>                                sprintf(g_szBuffer,"%s: %02X %02X %02X %s%s%s%s%s%s%s",
-<a id='L181' name='L181'></a>                                        g_szPc,g_ucBytes[0],g_ucBytes[1],g_ucBytes[2],g_szLabel,g_szSep,
-<a id='L182' name='L182'></a>                                        g_szOpcode,g_szSep,g_szParms,g_szSep,g_szComments);
-<a id='L183' name='L183'></a><em class='comment'>//                                      "db       ",g_szSep,g_szParms,g_szSep,g_szComments);</em>
-<a id='L184' name='L184'></a>                                mypc += 3;
-<a id='L185' name='L185'></a>                                <strong class='reserved'>break</strong>;
-<a id='L186' name='L186'></a>                <em class='brace'>}</em>;
-<a id='L187' name='L187'></a>                strcpy(g_szBuffer2,g_szBuffer);
-<a id='L188' name='L188'></a>                <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(g_flst);
-<a id='L189' name='L189'></a>        <em class='brace'>}</em>
-<a id='L190' name='L190'></a><em class='brace'>}</em>       
-<a id='L191' name='L191'></a><em class='comment'>// eof - emitlst.hpp</em>
+<a id='L28' name='L28'></a><strong class='reserved'>static</strong> <strong class='reserved'>char</strong> szSwCpp[] = "$Id: sw.cpp,v 1.3 2011/04/14 15:13:09 doug Exp $";
+<a id='L29' name='L29'></a>
+<a id='L30' name='L30'></a><em class='sharp'>#include</em> "<a href='../I/196.html'>asdefs.hpp</a>"
+<a id='L31' name='L31'></a><em class='sharp'>#define</em> <a href='../R/46.html' title='Multiple referred from 2 places.'>DWGALLOC</a>
+<a id='L32' name='L32'></a><em class='sharp'>#define</em> <a href='../R/66.html' title='Multiple referred from 2 places.'>INIBIND</a>
+<a id='L33' name='L33'></a><em class='sharp'>#define</em> <a href='../R/77.html' title='Multiple referred from 2 places.'>MEMORY</a>
+<a id='L34' name='L34'></a><em class='sharp'>#include</em> "<a href='../I/324.html'>includes.hpp</a>"
+<a id='L35' name='L35'></a>
+<a id='L36' name='L36'></a><strong class='reserved'>int</strong> main(<strong class='reserved'>int</strong> argc,<strong class='reserved'>char</strong> **argv)
+<a id='L37' name='L37'></a><em class='brace'>{</em>
+<a id='L38' name='L38'></a>        <a href='../D/440.html' title='Multiple defined in 2 places.'>Version</a>(argv[0]);
+<a id='L39' name='L39'></a>
+<a id='L40' name='L40'></a>        <strong class='reserved'>if</strong>(3 != argc) <em class='brace'>{</em>
+<a id='L41' name='L41'></a>                printf("usage - sw &lt;address&gt; &lt;data&gt;\n");
+<a id='L42' name='L42'></a>                exit(EXIT_FAILURE);
+<a id='L43' name='L43'></a>        <em class='brace'>}</em>
+<a id='L44' name='L44'></a>
+<a id='L45' name='L45'></a>        <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> offset,value;
+<a id='L46' name='L46'></a>        sscanf(argv[1],"%04X",&amp;offset);
+<a id='L47' name='L47'></a>        sscanf(argv[2],"%04X",&amp;value);
+<a id='L48' name='L48'></a>        
+<a id='L49' name='L49'></a>        <a href='../D/34.html' title='Multiple defined in 8 places.'>CMemory</a> mem(<a href='../D/104.html' title='Multiple defined in 4 places.'>MEMSIZE</a>);
+<a id='L50' name='L50'></a>        mem.<a href='../D/548.html' title='Multiple defined in 2 places.'>pokew</a>(offset,value);
+<a id='L51' name='L51'></a><em class='brace'>}</em>
 </pre>
 <hr />
 <a id='BOTTOM' name='BOTTOM'></a>
-<em class='comment'>/* [&lt;][&gt;][^]<a href='#L24'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L36'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 </body>
 </html>

@@ -1,14 +1,14 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
-<title>ascommon/symlist.hpp</title>
+<title>ascommon/dstrz.hpp</title>
 <meta name='robots' content='noindex,nofollow' />
 <meta name='generator' content='GLOBAL-6.6.3' />
 <meta http-equiv='Content-Style-Type' content='text/css' />
 <link rel='stylesheet' type='text/css' href='../style.css' />
 </head>
 <body>
-<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/842.html'>ascommon</a>/symlist.hpp</h2>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/813.html'>ascommon</a>/dstrz.hpp</h2>
 <em class='comment'>/* [&lt;][&gt;]<a href='#L13'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 <hr />
 <h2 class='header'>DEFINITIONS</h2>
@@ -18,7 +18,7 @@ This source file includes following definitions.
 </ol>
 <hr />
 <pre>
-<a id='L1' name='L1'></a><em class='comment'>// $Log: symlist.hpp,v $</em>
+<a id='L1' name='L1'></a><em class='comment'>// $Log: dstrz.hpp,v $</em>
 <a id='L2' name='L2'></a><em class='comment'>// Revision 1.2  2011/03/25 21:47:31  doug</em>
 <a id='L3' name='L3'></a><em class='comment'>// *** empty log message ***</em>
 <a id='L4' name='L4'></a><em class='comment'>//</em>
@@ -26,58 +26,25 @@ This source file includes following definitions.
 <a id='L6' name='L6'></a><em class='comment'>// Initial revision</em>
 <a id='L7' name='L7'></a><em class='comment'>//</em>
 <a id='L8' name='L8'></a>
-<a id='L9' name='L9'></a><strong class='reserved'>char</strong> dir_symlist[] = "$Id: symlist.hpp,v 1.2 2011/03/25 21:47:31 doug Exp $";
+<a id='L9' name='L9'></a><strong class='reserved'>char</strong> dir_dstrz[] = "$Id: dstrz.hpp,v 1.2 2011/03/25 21:47:31 doug Exp $";
 <a id='L10' name='L10'></a>
 <a id='L11' name='L11'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
 <a id='L12' name='L12'></a>
-<a id='L13' name='L13'></a><strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>("SYMLIST",<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode))) <em class='brace'>{</em>
-<a id='L14' name='L14'></a>        g_iErrorNo   ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
-<a id='L15' name='L15'></a>        g_iLineType = <a href='../D/422.html' title='Multiple defined in 2 places.'>TYPE_DIR</a>;
-<a id='L16' name='L16'></a>
-<a id='L17' name='L17'></a>        <strong class='reserved'>if</strong>(<a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a> == g_bPass2) <em class='brace'>{</em>
-<a id='L18' name='L18'></a>
-<a id='L19' name='L19'></a>                <strong class='reserved'>int</strong> bDone = <a href='../D/84.html' title='Multiple defined in 2 places.'>FALSE</a>;
-<a id='L20' name='L20'></a>        
-<a id='L21' name='L21'></a>                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>("STRING",<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms))) <em class='brace'>{</em>
-<a id='L22' name='L22'></a>                        g_pCSymbols-&gt;<a href='../D/485.html' title='Multiple defined in 6 places.'>dump</a>(<a href='../D/434.html' title='Multiple defined in 2 places.'>TYPE_STRING</a>,g_flst);
-<a id='L23' name='L23'></a>                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
-<a id='L24' name='L24'></a>                <em class='brace'>}</em>
-<a id='L25' name='L25'></a>
-<a id='L26' name='L26'></a>                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>("META",<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms))) <em class='brace'>{</em>
-<a id='L27' name='L27'></a>                        g_pCSymbols-&gt;<a href='../D/485.html' title='Multiple defined in 6 places.'>dump</a>(<a href='../D/429.html' title='Multiple defined in 2 places.'>TYPE_META</a>,g_flst);
-<a id='L28' name='L28'></a>                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
-<a id='L29' name='L29'></a>                <em class='brace'>}</em>
-<a id='L30' name='L30'></a>
-<a id='L31' name='L31'></a>                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>("U8",<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms))) <em class='brace'>{</em>
-<a id='L32' name='L32'></a>                        g_pCSymbols-&gt;<a href='../D/485.html' title='Multiple defined in 6 places.'>dump</a>(<a href='../D/438.html' title='Multiple defined in 2 places.'>TYPE_U8</a>,g_flst);
-<a id='L33' name='L33'></a>                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
-<a id='L34' name='L34'></a>                <em class='brace'>}</em>
-<a id='L35' name='L35'></a>
-<a id='L36' name='L36'></a>                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>("U16",<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms))) <em class='brace'>{</em>
-<a id='L37' name='L37'></a>                        g_pCSymbols-&gt;<a href='../D/485.html' title='Multiple defined in 6 places.'>dump</a>(<a href='../D/435.html' title='Multiple defined in 2 places.'>TYPE_U16</a>,g_flst);
-<a id='L38' name='L38'></a>                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
-<a id='L39' name='L39'></a>                <em class='brace'>}</em>
-<a id='L40' name='L40'></a>
-<a id='L41' name='L41'></a>                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>("U32",<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms))) <em class='brace'>{</em>
-<a id='L42' name='L42'></a>                        g_pCSymbols-&gt;<a href='../D/485.html' title='Multiple defined in 6 places.'>dump</a>(<a href='../D/436.html' title='Multiple defined in 2 places.'>TYPE_U32</a>,g_flst);
-<a id='L43' name='L43'></a>                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
-<a id='L44' name='L44'></a>                <em class='brace'>}</em>
-<a id='L45' name='L45'></a>
-<a id='L46' name='L46'></a>                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>("U64",<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms))) <em class='brace'>{</em>
-<a id='L47' name='L47'></a>                        g_pCSymbols-&gt;<a href='../D/485.html' title='Multiple defined in 6 places.'>dump</a>(<a href='../D/437.html' title='Multiple defined in 2 places.'>TYPE_U64</a>,g_flst);
-<a id='L48' name='L48'></a>                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
-<a id='L49' name='L49'></a>                <em class='brace'>}</em>
-<a id='L50' name='L50'></a>
-<a id='L51' name='L51'></a>                <strong class='reserved'>if</strong>(<a href='../D/84.html' title='Multiple defined in 2 places.'>FALSE</a> == bDone) <em class='brace'>{</em>
-<a id='L52' name='L52'></a>                        g_iErrorNo |= <a href='../D/78.html' title='Multiple defined in 2 places.'>ERROR_SYMTYPE</a>;
-<a id='L53' name='L53'></a>                <em class='brace'>}</em>
-<a id='L54' name='L54'></a>        <em class='brace'>}</em>
-<a id='L55' name='L55'></a><em class='brace'>}</em>
-<a id='L56' name='L56'></a>
-<a id='L57' name='L57'></a><em class='comment'>///////////////////////</em>
-<a id='L58' name='L58'></a><em class='comment'>// eof - symlist.hpp //</em>
-<a id='L59' name='L59'></a><em class='comment'>///////////////////////</em>
-<a id='L60' name='L60'></a>
+<a id='L13' name='L13'></a><strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"DSTRZ")) <em class='brace'>{</em>
+<a id='L14' name='L14'></a>        fprintf(g_flog,"Processing DSTRZ directive\n");
+<a id='L15' name='L15'></a>        <strong class='reserved'>char</strong> szDSTRZtemp[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
+<a id='L16' name='L16'></a>        memset(szDSTRZtemp,0,<strong class='reserved'>sizeof</strong>(szDSTRZtemp));
+<a id='L17' name='L17'></a>        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> o=0;o&lt;strlen(g_szParms);o++) <em class='brace'>{</em>
+<a id='L18' name='L18'></a>                g_ucBytes[g_iBytesIndex++] = g_szParms[o];
+<a id='L19' name='L19'></a>                szDSTRZtemp[o] = g_szParms[o];
+<a id='L20' name='L20'></a>        <em class='brace'>}</em>
+<a id='L21' name='L21'></a>        g_ucBytes[g_iBytesIndex++] = 0;
+<a id='L22' name='L22'></a>        <em class='comment'>//szDSTRZtemp[strlen(szDSTRZtemp)] = 0;</em>
+<a id='L23' name='L23'></a>        g_iLineType = <a href='../D/422.html' title='Multiple defined in 2 places.'>TYPE_DIR</a>;
+<a id='L24' name='L24'></a>        g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L25' name='L25'></a>        g_pCSymbols-&gt;<a href='../D/455.html' title='Multiple defined in 14 places.'>add</a>(g_szLabel,<a href='../D/434.html' title='Multiple defined in 2 places.'>TYPE_STRING</a>,szDSTRZtemp);
+<a id='L26' name='L26'></a><em class='brace'>}</em>
+<a id='L27' name='L27'></a>
 </pre>
 <hr />
 <a id='BOTTOM' name='BOTTOM'></a>

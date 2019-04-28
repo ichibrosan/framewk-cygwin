@@ -1,4 +1,4 @@
-test8085.lst     Page 1 ../assemble Ver 19.04.28i
+test8085.lst     Page 1 ../assemble Ver 19.04.28j
 $Id: test8085.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
 COPR 2011 Douglas Goodall
    1:U:1 0000:                    title      $Id: test8085.asm,v 1.2 2011/03/+
@@ -51,7 +51,7 @@ COPR 2011 Douglas Goodall
   22:U:1 1000:                    .org       1000  
   23:U:1 1000:                                
   24:U:1 1000: 00       start     nop          
-test8085.lst     Page 2 ../assemble Ver 19.04.28i
+test8085.lst     Page 2 ../assemble Ver 19.04.28j
 $Id: test8085.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
 COPR 2011 Douglas Goodall
   25:U:1 1001: 01 34 12           lxi        b,idata16  
@@ -101,7 +101,7 @@ COPR 2011 Douglas Goodall
   69:U:1 1036: 2B                 dcx        h  
   70:U:1 1037: 2C                 inr        l  
   71:U:1 1038: 2D                 dcr        l  
-test8085.lst     Page 3 ../assemble Ver 19.04.28i
+test8085.lst     Page 3 ../assemble Ver 19.04.28j
 $Id: test8085.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
 COPR 2011 Douglas Goodall
   72:U:1 1039: 2E 12              mvi        l,idata8  
@@ -151,7 +151,7 @@ COPR 2011 Douglas Goodall
  116:U:1 106A: 57                 mov        d,a  
  117:U:1 106B: 58                 mov        e,b  
  118:U:1 106C: 59                 mov        e,c  
-test8085.lst     Page 4 ../assemble Ver 19.04.28i
+test8085.lst     Page 4 ../assemble Ver 19.04.28j
 $Id: test8085.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
 COPR 2011 Douglas Goodall
  119:U:1 106D: 5A                 mov        e,d  
@@ -201,7 +201,7 @@ COPR 2011 Douglas Goodall
  163:U:1 1096: 83                 add        e  
  164:U:1 1097: 84                 add        h  
  165:U:1 1098: 85                 add        l  
-test8085.lst     Page 5 ../assemble Ver 19.04.28i
+test8085.lst     Page 5 ../assemble Ver 19.04.28j
 $Id: test8085.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
 COPR 2011 Douglas Goodall
  166:U:1 1099: 86                 add        m  
@@ -251,7 +251,7 @@ COPR 2011 Douglas Goodall
  210:U:1 10C3:                                
  211:U:1 10C3: B0                 ora        b                 ; b0
  212:U:1 10C4: B1                 ora        c  
-test8085.lst     Page 6 ../assemble Ver 19.04.28i
+test8085.lst     Page 6 ../assemble Ver 19.04.28j
 $Id: test8085.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
 COPR 2011 Douglas Goodall
  213:U:1 10C5: B2                 ora        d  
@@ -301,7 +301,7 @@ COPR 2011 Douglas Goodall
  257:U:1 1104: DC 00 10           cc         start  
  258:U:1 1107:                ;       ---
  259:U:1 1107: DE 12              sbi        idata8  
-test8085.lst     Page 7 ../assemble Ver 19.04.28i
+test8085.lst     Page 7 ../assemble Ver 19.04.28j
 $Id: test8085.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
 COPR 2011 Douglas Goodall
  260:U:1 1109: DF                 rst        3  
@@ -341,7 +341,7 @@ COPR 2011 Douglas Goodall
  294:U:1 113B: FF                 rst        7  
  295:U:1 113C:                                
  296:U:1 113C:                    END          
-test8085.lst     Page 8 ../assemble Ver 19.04.28i
+test8085.lst     Page 8 ../assemble Ver 19.04.28j
 $Id: test8085.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
 COPR 2011 Douglas Goodall
  296:U:1 ----------------------------------------------
@@ -391,7 +391,7 @@ COPR 2011 Douglas Goodall
  296:U:1 asdecz80.mta, "$Id: asdecz80.hpp,v 1.1 2011/03/24 11:58:05 doug Exp +
  296+U+1 113C:          $"
  296:U:1 asoutlst.mta, "$Id: asoutlst.hpp,v 1.2 2011/03/25 05:48:59 doug Exp +
-test8085.lst     Page 9 ../assemble Ver 19.04.28i
+test8085.lst     Page 9 ../assemble Ver 19.04.28j
 $Id: test8085.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
 COPR 2011 Douglas Goodall
  296+U+1 113C:          $"

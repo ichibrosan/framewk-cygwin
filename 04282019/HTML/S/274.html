@@ -1,53 +1,57 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
-<title>ascommon/dotequ.hpp</title>
+<title>ascommon/listradx.hpp</title>
 <meta name='robots' content='noindex,nofollow' />
 <meta name='generator' content='GLOBAL-6.6.3' />
 <meta http-equiv='Content-Style-Type' content='text/css' />
 <link rel='stylesheet' type='text/css' href='../style.css' />
 </head>
 <body>
-<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/842.html'>ascommon</a>/dotequ.hpp</h2>
-<em class='comment'>/* [&lt;][&gt;]<a href='#L13'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/813.html'>ascommon</a>/listradx.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L14'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 <hr />
 <h2 class='header'>DEFINITIONS</h2>
 This source file includes following definitions.
 <ol>
-<li><a href='#L13' title='Defined at 13.'>strcmp</a></li>
+<li><a href='#L14' title='Defined at 14.'>strcmp</a></li>
 </ol>
 <hr />
 <pre>
-<a id='L1' name='L1'></a><em class='comment'>// $Log: dotequ.hpp,v $</em>
+<a id='L1' name='L1'></a><em class='comment'>// $Log: listradx.hpp,v $</em>
 <a id='L2' name='L2'></a><em class='comment'>// Revision 1.2  2011/03/25 21:47:31  doug</em>
 <a id='L3' name='L3'></a><em class='comment'>// *** empty log message ***</em>
 <a id='L4' name='L4'></a><em class='comment'>//</em>
-<a id='L5' name='L5'></a><em class='comment'>// Revision 1.1  2011/03/25 07:19:17  doug</em>
+<a id='L5' name='L5'></a><em class='comment'>// Revision 1.1  2011/03/25 18:30:42  doug</em>
 <a id='L6' name='L6'></a><em class='comment'>// Initial revision</em>
 <a id='L7' name='L7'></a><em class='comment'>//</em>
-<a id='L8' name='L8'></a>
-<a id='L9' name='L9'></a><strong class='reserved'>char</strong> dir_dotequ[] = "$Id: dotequ.hpp,v 1.2 2011/03/25 21:47:31 doug Exp $";
-<a id='L10' name='L10'></a>
-<a id='L11' name='L11'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
-<a id='L12' name='L12'></a>        
-<a id='L13' name='L13'></a>        <strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),".EQU")) <em class='brace'>{</em>
-<a id='L14' name='L14'></a>                fprintf(g_flog,"Processing .EQU directive\n");
-<a id='L15' name='L15'></a>                <strong class='reserved'>if</strong>(0 != strlen(g_szParms)) <em class='brace'>{</em>
-<a id='L16' name='L16'></a>                        g_iLineType = <a href='../D/422.html' title='Multiple defined in 2 places.'>TYPE_DIR</a>;
-<a id='L17' name='L17'></a>          g_pCSymbols-&gt;<a href='../D/455.html' title='Multiple defined in 14 places.'>add</a>(g_szLabel,<a href='../D/438.html' title='Multiple defined in 2 places.'>TYPE_U8</a>, 
-<a id='L18' name='L18'></a>                           (<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>)<a href='../D/559.html' title='Multiple defined in 2 places.'>resolvep64</a>(g_szParms));
-<a id='L19' name='L19'></a>          g_pCSymbols-&gt;<a href='../D/455.html' title='Multiple defined in 14 places.'>add</a>(g_szLabel,<a href='../D/435.html' title='Multiple defined in 2 places.'>TYPE_U16</a>,
-<a id='L20' name='L20'></a>                           (<strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>)<a href='../D/559.html' title='Multiple defined in 2 places.'>resolvep64</a>(g_szParms));
-<a id='L21' name='L21'></a>          g_pCSymbols-&gt;<a href='../D/455.html' title='Multiple defined in 14 places.'>add</a>(g_szLabel,<a href='../D/436.html' title='Multiple defined in 2 places.'>TYPE_U32</a>,
-<a id='L22' name='L22'></a>                           (<strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong>)<a href='../D/559.html' title='Multiple defined in 2 places.'>resolvep64</a>(g_szParms));
-<a id='L23' name='L23'></a>          g_pCSymbols-&gt;<a href='../D/455.html' title='Multiple defined in 14 places.'>add</a>(g_szLabel,<a href='../D/437.html' title='Multiple defined in 2 places.'>TYPE_U64</a>,
-<a id='L24' name='L24'></a>                           (<strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong>)<a href='../D/559.html' title='Multiple defined in 2 places.'>resolvep64</a>(g_szParms));
-<a id='L25' name='L25'></a>                        g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
-<a id='L26' name='L26'></a>                <em class='brace'>}</em> 
-<a id='L27' name='L27'></a>        <em class='brace'>}</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a>
+<a id='L10' name='L10'></a><em class='comment'>// Copyright (C) 2011 Douglas Goodall</em>
+<a id='L11' name='L11'></a>
+<a id='L12' name='L12'></a><strong class='reserved'>char</strong> dir_listradix[] = "$Id: listradx.hpp,v 1.2 2011/03/25 21:47:31 doug Exp $";
+<a id='L13' name='L13'></a>
+<a id='L14' name='L14'></a><strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"LISTRADIX")) <em class='brace'>{</em>
+<a id='L15' name='L15'></a>        g_iLineType = <a href='../D/422.html' title='Multiple defined in 2 places.'>TYPE_DIR</a>;
+<a id='L16' name='L16'></a>        fprintf(g_flog,"Processing LISTRADIX directive\n");
+<a id='L17' name='L17'></a>        <strong class='reserved'>if</strong>(0 != strlen(g_szParms)) <em class='brace'>{</em>
+<a id='L18' name='L18'></a>                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"DECIMAL")) <em class='brace'>{</em>
+<a id='L19' name='L19'></a>                        strcpy(g_szListRadix,g_szListRadixDec);
+<a id='L20' name='L20'></a>                        g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L21' name='L21'></a>                <em class='brace'>}</em>               
+<a id='L22' name='L22'></a>                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"HEX")) <em class='brace'>{</em>
+<a id='L23' name='L23'></a>                        strcpy(g_szListRadix,g_szListRadixHex);
+<a id='L24' name='L24'></a>                        g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L25' name='L25'></a>                <em class='brace'>}</em>               
+<a id='L26' name='L26'></a>                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"HEXADECIMAL")) <em class='brace'>{</em>
+<a id='L27' name='L27'></a>                        strcpy(g_szListRadix,g_szListRadixHex);
+<a id='L28' name='L28'></a>                        g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L29' name='L29'></a>                <em class='brace'>}</em>               
+<a id='L30' name='L30'></a>        <em class='brace'>}</em>
+<a id='L31' name='L31'></a><em class='brace'>}</em>
 </pre>
 <hr />
 <a id='BOTTOM' name='BOTTOM'></a>
-<em class='comment'>/* [&lt;][&gt;][^]<a href='#L13'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L14'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 </body>
 </html>

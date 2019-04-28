@@ -9,248 +9,248 @@
 </head>
 <body>
 <pre>
-<span class='curline'><a href='../S/95.html#L11'>TRACE</a>              11 as8085/dcr_85.hpp 	TRACE("processing 8085 dcr g_szOpcode");</span>
-<span class='curline'><a href='../S/601.html#L73'>TRACE</a>              73 aseval.hpp     	TRACE("CEval::CEval() started");</span>
-<span class='curline'><a href='../S/601.html#L80'>TRACE</a>              80 aseval.hpp     	TRACE("CEval::gather() started");</span>
-<span class='curline'><a href='../S/601.html#L107'>TRACE</a>             107 aseval.hpp     	TRACE("CEval::clear() started");</span>
-<span class='curline'><a href='../S/601.html#L114'>TRACE</a>             114 aseval.hpp     	TRACE("CEval::bIsAlpha() called");</span>
-<span class='curline'><a href='../S/601.html#L129'>TRACE</a>             129 aseval.hpp     	TRACE("CEval::bIsNumeric()O started");</span>
-<span class='curline'><a href='../S/601.html#L131'>TRACE</a>             131 aseval.hpp     		TRACE("CEval::bIsNumeric detected 0-9");</span>
-<span class='curline'><a href='../S/601.html#L135'>TRACE</a>             135 aseval.hpp     		TRACE("CEval::bIsNumeric detected $");</span>
-<span class='curline'><a href='../S/601.html#L143'>TRACE</a>             143 aseval.hpp     	TRACE("CEval::bIsOperator() called");</span>
-<span class='curline'><a href='../S/601.html#L153'>TRACE</a>             153 aseval.hpp     	TRACE("CEval::bIsParen() called");</span>
-<span class='curline'><a href='../S/601.html#L163'>TRACE</a>             163 aseval.hpp     	TRACE("CEval::bIsWhitespace() called");</span>
-<span class='curline'><a href='../S/601.html#L172'>TRACE</a>             172 aseval.hpp     	TRACE("CEval::bExpression() called");</span>
-<span class='curline'><a href='../S/601.html#L193'>TRACE</a>             193 aseval.hpp     	TRACE("CEval::iGotAlphaToken() started");</span>
-<span class='curline'><a href='../S/601.html#L207'>TRACE</a>             207 aseval.hpp     	TRACE("CEval::iGotNumericToken() started");</span>
-<span class='curline'><a href='../S/601.html#L217'>TRACE</a>             217 aseval.hpp     	TRACE("CEval::iGotOperatorToken() started");</span>
-<span class='curline'><a href='../S/601.html#L225'>TRACE</a>             225 aseval.hpp     	TRACE("CEval::iGotParenToken() started");</span>
-<span class='curline'><a href='../S/601.html#L233'>TRACE</a>             233 aseval.hpp     	TRACE("CEval::dump() called");</span>
-<span class='curline'><a href='../S/601.html#L292'>TRACE</a>             292 aseval.hpp     	TRACE("CEval::tokenize() called");</span>
-<span class='curline'><a href='../S/601.html#L295'>TRACE</a>             295 aseval.hpp       TRACE("tokenize starting");</span>
-<span class='curline'><a href='../S/601.html#L297'>TRACE</a>             297 aseval.hpp       TRACE("Clearing alpha buffer");</span>
-<span class='curline'><a href='../S/601.html#L302'>TRACE</a>             302 aseval.hpp       TRACE("Clearing numeric buffer");</span>
-<span class='curline'><a href='../S/601.html#L307'>TRACE</a>             307 aseval.hpp       TRACE("Clearing tokens structure");</span>
-<span class='curline'><a href='../S/601.html#L338'>TRACE</a>             338 aseval.hpp       TRACE("starting tokenization");</span>
-<span class='curline'><a href='../S/601.html#L340'>TRACE</a>             340 aseval.hpp         TRACE("iBufferdex &lt; iLength");</span>
-<span class='curline'><a href='../S/601.html#L345'>TRACE</a>             345 aseval.hpp             TRACE("case 1");</span>
-<span class='curline'><a href='../S/601.html#L350'>TRACE</a>             350 aseval.hpp     		TRACE("its char");</span>
-<span class='curline'><a href='../S/601.html#L356'>TRACE</a>             356 aseval.hpp               TRACE("its alpha");</span>
-<span class='curline'><a href='../S/601.html#L362'>TRACE</a>             362 aseval.hpp     	  TRACE("its numeric");</span>
-<span class='curline'><a href='../S/601.html#L373'>TRACE</a>             373 aseval.hpp               TRACE("its an operator");</span>
-<span class='curline'><a href='../S/601.html#L378'>TRACE</a>             378 aseval.hpp               TRACE("its a paren ");</span>
-<span class='curline'><a href='../S/601.html#L383'>TRACE</a>             383 aseval.hpp             TRACE("case 2");</span>
-<span class='curline'><a href='../S/601.html#L385'>TRACE</a>             385 aseval.hpp     	  TRACE("its whitespace");</span>
-<span class='curline'><a href='../S/601.html#L394'>TRACE</a>             394 aseval.hpp     	  TRACE("its an operator");</span>
-<span class='curline'><a href='../S/601.html#L405'>TRACE</a>             405 aseval.hpp     	  TRACE("its a paren");</span>
-<span class='curline'><a href='../S/601.html#L418'>TRACE</a>             418 aseval.hpp             TRACE("case 3, collecting numeric token");</span>
-<span class='curline'><a href='../S/601.html#L421'>TRACE</a>             421 aseval.hpp               TRACE("its whitespace");</span>
-<span class='curline'><a href='../S/601.html#L432'>TRACE</a>             432 aseval.hpp               TRACE("its an operator");</span>
-<span class='curline'><a href='../S/601.html#L445'>TRACE</a>             445 aseval.hpp               TRACE("its a paren");</span>
-<span class='curline'><a href='../S/601.html#L491'>TRACE</a>             491 aseval.hpp       TRACE("CEval::evaluate() called");</span>
-<span class='curline'><a href='../S/601.html#L504'>TRACE</a>             504 aseval.hpp         TRACE("index &lt; iLength");</span>
-<span class='curline'><a href='../S/555.html#L57'>TRACE</a>              57 asmall.cpp     	TRACE("getdate() starting");</span>
-<span class='curline'><a href='../S/555.html#L74'>TRACE</a>              74 asmall.cpp       TRACE("makemake() starting");</span>
-<span class='curline'><a href='../S/555.html#L75'>TRACE</a>              75 asmall.cpp       TRACE(szFilename);</span>
-<span class='curline'><a href='../S/555.html#L138'>TRACE</a>             138 asmall.cpp       TRACE("main() starting");</span>
-<span class='curline'><a href='../S/555.html#L145'>TRACE</a>             145 asmall.cpp       TRACE("clearing buffers");</span>
-<span class='curline'><a href='../S/555.html#L163'>TRACE</a>             163 asmall.cpp       TRACE("doing asm scan");</span>
-<span class='curline'><a href='../S/555.html#L186'>TRACE</a>             186 asmall.cpp       TRACE("done with dir1");</span>
-<span class='curline'><a href='../S/555.html#L188'>TRACE</a>             188 asmall.cpp       TRACE("doing inc scan");</span>
-<span class='curline'><a href='../S/555.html#L194'>TRACE</a>             194 asmall.cpp       TRACE("calling dir2 read");</span>
-<span class='curline'><a href='../S/555.html#L197'>TRACE</a>             197 asmall.cpp         TRACE("calling dir2 getname");</span>
-<span class='curline'><a href='../S/555.html#L199'>TRACE</a>             199 asmall.cpp         TRACE(g_szBuffer2);</span>
-<span class='curline'><a href='../S/555.html#L200'>TRACE</a>             200 asmall.cpp         TRACE("calling dir2 gettype");</span>
-<span class='curline'><a href='../S/555.html#L202'>TRACE</a>             202 asmall.cpp           TRACE("is regular file");</span>
-<span class='curline'><a href='../S/555.html#L204'>TRACE</a>             204 asmall.cpp             TRACE("is long enough");</span>
-<span class='curline'><a href='../S/555.html#L206'>TRACE</a>             206 asmall.cpp                     TRACE("is a .inc");</span>
-<span class='curline'><a href='../S/555.html#L208'>TRACE</a>             208 asmall.cpp     		TRACE("copy to szTgtFileName");</span>
-<span class='curline'><a href='../S/555.html#L210'>TRACE</a>             210 asmall.cpp     		TRACE("trimming extension");</span>
-<span class='curline'><a href='../S/555.html#L212'>TRACE</a>             212 asmall.cpp     		TRACE("appending inc buffer");</span>
-<span class='curline'><a href='../S/555.html#L223'>TRACE</a>             223 asmall.cpp       TRACE("done with dir2");</span>
-<span class='curline'><a href='../S/555.html#L225'>TRACE</a>             225 asmall.cpp       TRACE("writing main makefile");</span>
-<span class='curline'><a href='../S/555.html#L251'>TRACE</a>             251 asmall.cpp       TRACE("doing main asm scan");</span>
-<span class='curline'><a href='../S/555.html#L259'>TRACE</a>             259 asmall.cpp     		TRACE("calling makemake");</span>
-<span class='curline'><a href='../S/555.html#L261'>TRACE</a>             261 asmall.cpp     		TRACE("returned from makemake");</span>
-<span class='curline'><a href='../S/555.html#L293'>TRACE</a>             293 asmall.cpp       TRACE("done with dir3");</span>
-<span class='curline'><a href='../S/586.html#L35'>TRACE</a>              35 asresolv.hpp         TRACE("X8() started");</span>
-<span class='curline'><a href='../S/586.html#L104'>TRACE</a>             104 asresolv.hpp   	TRACE("X16() started");</span>
-<span class='curline'><a href='../S/586.html#L157'>TRACE</a>             157 asresolv.hpp   	TRACE("X32() started");</span>
-<span class='curline'><a href='../S/590.html#L393'>TRACE</a>             393 assemble.cpp   	TRACE("starting pass1");</span>
-<span class='curline'><a href='../S/590.html#L442'>TRACE</a>             442 assemble.cpp   		TRACE("adding label if present");</span>
-<span class='curline'><a href='../S/590.html#L504'>TRACE</a>             504 assemble.cpp   	TRACE("starting pass2");</span>
-<span class='curline'><a href='../S/590.html#L598'>TRACE</a>             598 assemble.cpp                   TRACE("adding label if present");</span>
-<span class='curline'><a href='../S/590.html#L648'>TRACE</a>             648 assemble.cpp   		TRACE("end of pass2 while loop");</span>
-<span class='curline'><a href='../S/773.html#L69'>TRACE</a>              69 base/aseval.hpp 	TRACE("CEval::CEval() started");</span>
-<span class='curline'><a href='../S/773.html#L76'>TRACE</a>              76 base/aseval.hpp 	TRACE("CEval::gather() started");</span>
-<span class='curline'><a href='../S/773.html#L103'>TRACE</a>             103 base/aseval.hpp 	TRACE("CEval::clear() started");</span>
-<span class='curline'><a href='../S/773.html#L110'>TRACE</a>             110 base/aseval.hpp 	TRACE("CEval::bIsAlpha() called");</span>
-<span class='curline'><a href='../S/773.html#L118'>TRACE</a>             118 base/aseval.hpp 	TRACE("CEval::bIsNumeric()O started");</span>
-<span class='curline'><a href='../S/773.html#L120'>TRACE</a>             120 base/aseval.hpp 		TRACE("CEval::bIsNumeric detected 0-9");</span>
-<span class='curline'><a href='../S/773.html#L124'>TRACE</a>             124 base/aseval.hpp 		TRACE("CEval::bIsNumeric detected $");</span>
-<span class='curline'><a href='../S/773.html#L132'>TRACE</a>             132 base/aseval.hpp 	TRACE("CEval::bIsOperator() called");</span>
-<span class='curline'><a href='../S/773.html#L142'>TRACE</a>             142 base/aseval.hpp 	TRACE("CEval::bIsParen() called");</span>
-<span class='curline'><a href='../S/773.html#L152'>TRACE</a>             152 base/aseval.hpp 	TRACE("CEval::bIsWhitespace() called");</span>
-<span class='curline'><a href='../S/773.html#L161'>TRACE</a>             161 base/aseval.hpp 	TRACE("CEval::bExpression() called");</span>
-<span class='curline'><a href='../S/773.html#L182'>TRACE</a>             182 base/aseval.hpp 	TRACE("CEval::iGotAlphaToken() started");</span>
-<span class='curline'><a href='../S/773.html#L196'>TRACE</a>             196 base/aseval.hpp 	TRACE("CEval::iGotNumericToken() started");</span>
-<span class='curline'><a href='../S/773.html#L206'>TRACE</a>             206 base/aseval.hpp 	TRACE("CEval::iGotOperatorToken() started");</span>
-<span class='curline'><a href='../S/773.html#L214'>TRACE</a>             214 base/aseval.hpp 	TRACE("CEval::iGotParenToken() started");</span>
-<span class='curline'><a href='../S/773.html#L222'>TRACE</a>             222 base/aseval.hpp 	TRACE("CEval::dump() called");</span>
-<span class='curline'><a href='../S/773.html#L281'>TRACE</a>             281 base/aseval.hpp 	TRACE("CEval::tokenize() called");</span>
-<span class='curline'><a href='../S/773.html#L284'>TRACE</a>             284 base/aseval.hpp   TRACE("tokenize starting");</span>
-<span class='curline'><a href='../S/773.html#L286'>TRACE</a>             286 base/aseval.hpp   TRACE("Clearing alpha buffer");</span>
-<span class='curline'><a href='../S/773.html#L291'>TRACE</a>             291 base/aseval.hpp   TRACE("Clearing numeric buffer");</span>
-<span class='curline'><a href='../S/773.html#L296'>TRACE</a>             296 base/aseval.hpp   TRACE("Clearing tokens structure");</span>
-<span class='curline'><a href='../S/773.html#L327'>TRACE</a>             327 base/aseval.hpp   TRACE("starting tokenization");</span>
-<span class='curline'><a href='../S/773.html#L329'>TRACE</a>             329 base/aseval.hpp     TRACE("iBufferdex &lt; iLength");</span>
-<span class='curline'><a href='../S/773.html#L334'>TRACE</a>             334 base/aseval.hpp         TRACE("case 1");</span>
-<span class='curline'><a href='../S/773.html#L337'>TRACE</a>             337 base/aseval.hpp           TRACE("its alpha");</span>
-<span class='curline'><a href='../S/773.html#L343'>TRACE</a>             343 base/aseval.hpp 	  TRACE("its numeric");</span>
-<span class='curline'><a href='../S/773.html#L354'>TRACE</a>             354 base/aseval.hpp           TRACE("its an operator");</span>
-<span class='curline'><a href='../S/773.html#L359'>TRACE</a>             359 base/aseval.hpp           TRACE("its a paren ");</span>
-<span class='curline'><a href='../S/773.html#L364'>TRACE</a>             364 base/aseval.hpp         TRACE("case 2");</span>
-<span class='curline'><a href='../S/773.html#L366'>TRACE</a>             366 base/aseval.hpp 	  TRACE("its whitespace");</span>
-<span class='curline'><a href='../S/773.html#L375'>TRACE</a>             375 base/aseval.hpp 	  TRACE("its an operator");</span>
-<span class='curline'><a href='../S/773.html#L386'>TRACE</a>             386 base/aseval.hpp 	  TRACE("its a paren");</span>
-<span class='curline'><a href='../S/773.html#L399'>TRACE</a>             399 base/aseval.hpp         TRACE("case 3, collecting numeric token");</span>
-<span class='curline'><a href='../S/773.html#L402'>TRACE</a>             402 base/aseval.hpp           TRACE("its whitespace");</span>
-<span class='curline'><a href='../S/773.html#L413'>TRACE</a>             413 base/aseval.hpp           TRACE("its an operator");</span>
-<span class='curline'><a href='../S/773.html#L426'>TRACE</a>             426 base/aseval.hpp           TRACE("its a paren");</span>
-<span class='curline'><a href='../S/773.html#L460'>TRACE</a>             460 base/aseval.hpp   TRACE("CEval::evaluate() called");</span>
-<span class='curline'><a href='../S/773.html#L473'>TRACE</a>             473 base/aseval.hpp     TRACE("index &lt; iLength");</span>
-<span class='curline'><a href='../S/744.html#L57'>TRACE</a>              57 base/asmall.cpp 	TRACE("getdate() starting");</span>
-<span class='curline'><a href='../S/744.html#L74'>TRACE</a>              74 base/asmall.cpp   TRACE("makemake() starting");</span>
-<span class='curline'><a href='../S/744.html#L75'>TRACE</a>              75 base/asmall.cpp   TRACE(szFilename);</span>
-<span class='curline'><a href='../S/744.html#L138'>TRACE</a>             138 base/asmall.cpp   TRACE("main() starting");</span>
-<span class='curline'><a href='../S/744.html#L145'>TRACE</a>             145 base/asmall.cpp   TRACE("clearing buffers");</span>
-<span class='curline'><a href='../S/744.html#L163'>TRACE</a>             163 base/asmall.cpp   TRACE("doing asm scan");</span>
-<span class='curline'><a href='../S/744.html#L186'>TRACE</a>             186 base/asmall.cpp   TRACE("done with dir1");</span>
-<span class='curline'><a href='../S/744.html#L188'>TRACE</a>             188 base/asmall.cpp   TRACE("doing inc scan");</span>
-<span class='curline'><a href='../S/744.html#L194'>TRACE</a>             194 base/asmall.cpp   TRACE("calling dir2 read");</span>
-<span class='curline'><a href='../S/744.html#L197'>TRACE</a>             197 base/asmall.cpp     TRACE("calling dir2 getname");</span>
-<span class='curline'><a href='../S/744.html#L199'>TRACE</a>             199 base/asmall.cpp     TRACE(g_szBuffer2);</span>
-<span class='curline'><a href='../S/744.html#L200'>TRACE</a>             200 base/asmall.cpp     TRACE("calling dir2 gettype");</span>
-<span class='curline'><a href='../S/744.html#L202'>TRACE</a>             202 base/asmall.cpp       TRACE("is regular file");</span>
-<span class='curline'><a href='../S/744.html#L204'>TRACE</a>             204 base/asmall.cpp         TRACE("is long enough");</span>
-<span class='curline'><a href='../S/744.html#L206'>TRACE</a>             206 base/asmall.cpp                 TRACE("is a .inc");</span>
-<span class='curline'><a href='../S/744.html#L208'>TRACE</a>             208 base/asmall.cpp 		TRACE("copy to szTgtFileName");</span>
-<span class='curline'><a href='../S/744.html#L210'>TRACE</a>             210 base/asmall.cpp 		TRACE("trimming extension");</span>
-<span class='curline'><a href='../S/744.html#L212'>TRACE</a>             212 base/asmall.cpp 		TRACE("appending inc buffer");</span>
-<span class='curline'><a href='../S/744.html#L223'>TRACE</a>             223 base/asmall.cpp   TRACE("done with dir2");</span>
-<span class='curline'><a href='../S/744.html#L225'>TRACE</a>             225 base/asmall.cpp   TRACE("writing main makefile");</span>
-<span class='curline'><a href='../S/744.html#L249'>TRACE</a>             249 base/asmall.cpp   TRACE("doing main asm scan");</span>
-<span class='curline'><a href='../S/744.html#L257'>TRACE</a>             257 base/asmall.cpp 		TRACE("calling makemake");</span>
-<span class='curline'><a href='../S/744.html#L259'>TRACE</a>             259 base/asmall.cpp 		TRACE("returned from makemake");</span>
-<span class='curline'><a href='../S/744.html#L291'>TRACE</a>             291 base/asmall.cpp   TRACE("done with dir3");</span>
-<span class='curline'><a href='../S/762.html#L35'>TRACE</a>              35 base/asresolv.hpp       TRACE("X8() started");</span>
-<span class='curline'><a href='../S/762.html#L97'>TRACE</a>              97 base/asresolv.hpp 	TRACE("X16() started");</span>
-<span class='curline'><a href='../S/762.html#L150'>TRACE</a>             150 base/asresolv.hpp 	TRACE("X32() started");</span>
-<span class='curline'><a href='../S/763.html#L393'>TRACE</a>             393 base/assemble.cpp 	TRACE("starting pass1");</span>
-<span class='curline'><a href='../S/763.html#L442'>TRACE</a>             442 base/assemble.cpp 		TRACE("adding label if present");</span>
-<span class='curline'><a href='../S/763.html#L504'>TRACE</a>             504 base/assemble.cpp 	TRACE("starting pass2");</span>
-<span class='curline'><a href='../S/763.html#L597'>TRACE</a>             597 base/assemble.cpp                 TRACE("adding label if present");</span>
-<span class='curline'><a href='../S/763.html#L647'>TRACE</a>             647 base/assemble.cpp 		TRACE("end of pass2 while loop");</span>
-<span class='curline'><a href='../S/721.html#L51'>TRACE</a>              51 base/bin2com.cpp 	TRACE("starting main...");</span>
-<span class='curline'><a href='../S/721.html#L59'>TRACE</a>              59 base/bin2com.cpp 	TRACE("opening output file for writing");</span>
-<span class='curline'><a href='../S/726.html#L141'>TRACE</a>             141 base/inibind.hpp 	TRACE("ini_read2() starting");</span>
-<span class='curline'><a href='../S/726.html#L158'>TRACE</a>             158 base/inibind.hpp 	TRACE("open ini for write");</span>
-<span class='curline'><a href='../S/726.html#L159'>TRACE</a>             159 base/inibind.hpp 	TRACE(szIni);</span>
-<span class='curline'><a href='../S/720.html#L209'>TRACE</a>             209 base/makemake.cpp   TRACE("clearing buffers");</span>
-<span class='curline'><a href='../S/720.html#L227'>TRACE</a>             227 base/makemake.cpp   TRACE("starting dir1 - ./*.cpp");</span>
-<span class='curline'><a href='../S/720.html#L263'>TRACE</a>             263 base/makemake.cpp   TRACE("starting dir2 - ./*.hpp");</span>
-<span class='curline'><a href='../S/720.html#L287'>TRACE</a>             287 base/makemake.cpp   TRACE("starting dir3 - ascommon/*.hpp");</span>
-<span class='curline'><a href='../S/720.html#L309'>TRACE</a>             309 base/makemake.cpp   TRACE("starting dir4 - as8080/*.hpp");</span>
-<span class='curline'><a href='../S/720.html#L331'>TRACE</a>             331 base/makemake.cpp   TRACE("starting dir5 - as6502/*.hpp");</span>
-<span class='curline'><a href='../S/720.html#L353'>TRACE</a>             353 base/makemake.cpp   TRACE("starting dir7 - as68000/*.hpp");</span>
-<span class='curline'><a href='../S/720.html#L376'>TRACE</a>             376 base/makemake.cpp   TRACE("starting dir8 - as8080/*.hpp");</span>
-<span class='curline'><a href='../S/720.html#L382'>TRACE</a>             382 base/makemake.cpp   TRACE("doing dir8 initial read");</span>
-<span class='curline'><a href='../S/720.html#L384'>TRACE</a>             384 base/makemake.cpp   TRACE("back from initial read");</span>
-<span class='curline'><a href='../S/720.html#L387'>TRACE</a>             387 base/makemake.cpp     TRACE("dir8 data is:");</span>
-<span class='curline'><a href='../S/720.html#L388'>TRACE</a>             388 base/makemake.cpp     TRACE(g_szBuffer2);</span>
-<span class='curline'><a href='../S/720.html#L401'>TRACE</a>             401 base/makemake.cpp   TRACE("done with dir8");</span>
-<span class='curline'><a href='../S/720.html#L449'>TRACE</a>             449 base/makemake.cpp   TRACE("opening Makefile");</span>
-<span class='curline'><a href='../S/720.html#L456'>TRACE</a>             456 base/makemake.cpp   TRACE("writing banner");</span>
-<span class='curline'><a href='../S/720.html#L468'>TRACE</a>             468 base/makemake.cpp   TRACE("writing macros");</span>
-<span class='curline'><a href='../S/720.html#L503'>TRACE</a>             503 base/makemake.cpp   TRACE("writing rules");</span>
-<span class='curline'><a href='../S/720.html#L514'>TRACE</a>             514 base/makemake.cpp   TRACE("starting dir6 - ./*.cpp");</span>
-<span class='curline'><a href='../S/720.html#L526'>TRACE</a>             526 base/makemake.cpp 	  TRACE("calling makemake()");</span>
-<span class='curline'><a href='../S/720.html#L538'>TRACE</a>             538 base/makemake.cpp 	  TRACE("create root and target");</span>
-<span class='curline'><a href='../S/720.html#L543'>TRACE</a>             543 base/makemake.cpp           TRACE("create backup makefile name");</span>
-<span class='curline'><a href='../S/720.html#L548'>TRACE</a>             548 base/makemake.cpp  	  TRACE("create build rule");</span>
-<span class='curline'><a href='../S/720.html#L558'>TRACE</a>             558 base/makemake.cpp 	  TRACE("add makefile dependencies");</span>
-<span class='curline'><a href='../S/766.html#L47'>TRACE</a>              47 base/memory.hpp 	TRACE("starting CMemory::CMemory...");</span>
-<span class='curline'><a href='../S/766.html#L61'>TRACE</a>              61 base/memory.hpp 	TRACE("...ending CMemory::CMemory");</span>
-<span class='curline'><a href='../S/766.html#L66'>TRACE</a>              66 base/memory.hpp         TRACE("starting CMemory::CMemory...");</span>
-<span class='curline'><a href='../S/766.html#L80'>TRACE</a>              80 base/memory.hpp         TRACE("...ending CMemory::CMemory");</span>
-<span class='curline'><a href='../S/766.html#L86'>TRACE</a>              86 base/memory.hpp 	TRACE("starting CMemory::peekb...");</span>
-<span class='curline'><a href='../S/766.html#L88'>TRACE</a>              88 base/memory.hpp 	TRACE("...ending CMemory::peekb");</span>
-<span class='curline'><a href='../S/766.html#L95'>TRACE</a>              95 base/memory.hpp 	TRACE("starting CMemory::peekw...");</span>
-<span class='curline'><a href='../S/766.html#L97'>TRACE</a>              97 base/memory.hpp 	TRACE("...ending CMemory::peekw");</span>
-<span class='curline'><a href='../S/766.html#L104'>TRACE</a>             104 base/memory.hpp 	TRACE("starting CMemory::pokeb...");</span>
-<span class='curline'><a href='../S/766.html#L106'>TRACE</a>             106 base/memory.hpp 	TRACE("...ending CMemory::pokeb");</span>
-<span class='curline'><a href='../S/766.html#L114'>TRACE</a>             114 base/memory.hpp 	TRACE("starting CMemory::pokew...");</span>
-<span class='curline'><a href='../S/766.html#L119'>TRACE</a>             119 base/memory.hpp 	TRACE("...ending CMemory::pokew");</span>
-<span class='curline'><a href='../S/766.html#L124'>TRACE</a>             124 base/memory.hpp 	TRACE("starting CMemory::~CMemory...");</span>
-<span class='curline'><a href='../S/766.html#L130'>TRACE</a>             130 base/memory.hpp 	TRACE("...ending CMemory::~CMemory");</span>
-<span class='curline'><a href='../S/711.html#L59'>TRACE</a>              59 base/mkbindef.cpp 	TRACE("Entering hello.cpp's main routine");</span>
-<span class='curline'><a href='../S/711.html#L96'>TRACE</a>              96 base/mkbindef.cpp 	TRACE("Exiting hello.cpp's main routine");</span>
-<span class='curline'><a href='../S/697.html#L48'>TRACE</a>              48 base/shex.cpp  	TRACE("starting main...");</span>
-<span class='curline'><a href='../S/697.html#L63'>TRACE</a>              63 base/shex.cpp  	TRACE("opening output file for writing");</span>
-<span class='curline'><a href='../S/697.html#L98'>TRACE</a>              98 base/shex.cpp  	TRACE("...ending main");</span>
-<span class='curline'><a href='../S/759.html#L41'>TRACE</a>              41 base/testdefs.cpp 	TRACE("Entering hello.cpp's main routine");</span>
-<span class='curline'><a href='../S/759.html#L47'>TRACE</a>              47 base/testdefs.cpp 	TRACE("Exiting hello.cpp's main routine");</span>
-<span class='curline'><a href='../S/789.html#L56'>TRACE</a>              56 base/versbind.hpp 	TRACE("CVersion::CVersion() starting");</span>
-<span class='curline'><a href='../S/315.html#L51'>TRACE</a>              51 bin2com.cpp    	TRACE("starting main...");</span>
-<span class='curline'><a href='../S/315.html#L59'>TRACE</a>              59 bin2com.cpp    	TRACE("opening output file for writing");</span>
-<span class='curline'><a href='../S/319.html#L141'>TRACE</a>             141 inibind.hpp    	TRACE("ini_read2() starting");</span>
-<span class='curline'><a href='../S/319.html#L158'>TRACE</a>             158 inibind.hpp    	TRACE("open ini for write");</span>
-<span class='curline'><a href='../S/319.html#L159'>TRACE</a>             159 inibind.hpp    	TRACE(szIni);</span>
-<span class='curline'><a href='../S/313.html#L209'>TRACE</a>             209 makemake.cpp     TRACE("clearing buffers");</span>
-<span class='curline'><a href='../S/313.html#L227'>TRACE</a>             227 makemake.cpp     TRACE("starting dir1 - ./*.cpp");</span>
-<span class='curline'><a href='../S/313.html#L263'>TRACE</a>             263 makemake.cpp     TRACE("starting dir2 - ./*.hpp");</span>
-<span class='curline'><a href='../S/313.html#L287'>TRACE</a>             287 makemake.cpp     TRACE("starting dir3 - ascommon/*.hpp");</span>
-<span class='curline'><a href='../S/313.html#L309'>TRACE</a>             309 makemake.cpp     TRACE("starting dir4 - as8080/*.hpp");</span>
-<span class='curline'><a href='../S/313.html#L331'>TRACE</a>             331 makemake.cpp     TRACE("starting dir5 - as6502/*.hpp");</span>
-<span class='curline'><a href='../S/313.html#L353'>TRACE</a>             353 makemake.cpp     TRACE("starting dir7 - as68000/*.hpp");</span>
-<span class='curline'><a href='../S/313.html#L376'>TRACE</a>             376 makemake.cpp     TRACE("starting dir8 - as8080/*.hpp");</span>
-<span class='curline'><a href='../S/313.html#L382'>TRACE</a>             382 makemake.cpp     TRACE("doing dir8 initial read");</span>
-<span class='curline'><a href='../S/313.html#L384'>TRACE</a>             384 makemake.cpp     TRACE("back from initial read");</span>
-<span class='curline'><a href='../S/313.html#L387'>TRACE</a>             387 makemake.cpp       TRACE("dir8 data is:");</span>
-<span class='curline'><a href='../S/313.html#L388'>TRACE</a>             388 makemake.cpp       TRACE(g_szBuffer2);</span>
-<span class='curline'><a href='../S/313.html#L401'>TRACE</a>             401 makemake.cpp     TRACE("done with dir8");</span>
-<span class='curline'><a href='../S/313.html#L449'>TRACE</a>             449 makemake.cpp     TRACE("opening Makefile");</span>
-<span class='curline'><a href='../S/313.html#L456'>TRACE</a>             456 makemake.cpp     TRACE("writing banner");</span>
-<span class='curline'><a href='../S/313.html#L468'>TRACE</a>             468 makemake.cpp     TRACE("writing macros");</span>
-<span class='curline'><a href='../S/313.html#L503'>TRACE</a>             503 makemake.cpp     TRACE("writing rules");</span>
-<span class='curline'><a href='../S/313.html#L514'>TRACE</a>             514 makemake.cpp     TRACE("starting dir6 - ./*.cpp");</span>
-<span class='curline'><a href='../S/313.html#L526'>TRACE</a>             526 makemake.cpp   	  TRACE("calling makemake()");</span>
-<span class='curline'><a href='../S/313.html#L538'>TRACE</a>             538 makemake.cpp   	  TRACE("create root and target");</span>
-<span class='curline'><a href='../S/313.html#L543'>TRACE</a>             543 makemake.cpp             TRACE("create backup makefile name");</span>
-<span class='curline'><a href='../S/313.html#L548'>TRACE</a>             548 makemake.cpp    	  TRACE("create build rule");</span>
-<span class='curline'><a href='../S/313.html#L558'>TRACE</a>             558 makemake.cpp   	  TRACE("add makefile dependencies");</span>
-<span class='curline'><a href='../S/595.html#L47'>TRACE</a>              47 memory.hpp     	TRACE("starting CMemory::CMemory...");</span>
-<span class='curline'><a href='../S/595.html#L61'>TRACE</a>              61 memory.hpp     	TRACE("...ending CMemory::CMemory");</span>
-<span class='curline'><a href='../S/595.html#L66'>TRACE</a>              66 memory.hpp             TRACE("starting CMemory::CMemory...");</span>
-<span class='curline'><a href='../S/595.html#L80'>TRACE</a>              80 memory.hpp             TRACE("...ending CMemory::CMemory");</span>
-<span class='curline'><a href='../S/595.html#L86'>TRACE</a>              86 memory.hpp     	TRACE("starting CMemory::peekb...");</span>
-<span class='curline'><a href='../S/595.html#L88'>TRACE</a>              88 memory.hpp     	TRACE("...ending CMemory::peekb");</span>
-<span class='curline'><a href='../S/595.html#L95'>TRACE</a>              95 memory.hpp     	TRACE("starting CMemory::peekw...");</span>
-<span class='curline'><a href='../S/595.html#L97'>TRACE</a>              97 memory.hpp     	TRACE("...ending CMemory::peekw");</span>
-<span class='curline'><a href='../S/595.html#L104'>TRACE</a>             104 memory.hpp     	TRACE("starting CMemory::pokeb...");</span>
-<span class='curline'><a href='../S/595.html#L106'>TRACE</a>             106 memory.hpp     	TRACE("...ending CMemory::pokeb");</span>
-<span class='curline'><a href='../S/595.html#L114'>TRACE</a>             114 memory.hpp     	TRACE("starting CMemory::pokew...");</span>
-<span class='curline'><a href='../S/595.html#L119'>TRACE</a>             119 memory.hpp     	TRACE("...ending CMemory::pokew");</span>
-<span class='curline'><a href='../S/595.html#L124'>TRACE</a>             124 memory.hpp     	TRACE("starting CMemory::~CMemory...");</span>
-<span class='curline'><a href='../S/595.html#L130'>TRACE</a>             130 memory.hpp     	TRACE("...ending CMemory::~CMemory");</span>
-<span class='curline'><a href='../S/222.html#L59'>TRACE</a>              59 mkbindef.cpp   	TRACE("Entering hello.cpp's main routine");</span>
-<span class='curline'><a href='../S/222.html#L96'>TRACE</a>              96 mkbindef.cpp   	TRACE("Exiting hello.cpp's main routine");</span>
-<span class='curline'><a href='../S/122.html#L48'>TRACE</a>              48 shex.cpp       	TRACE("starting main...");</span>
-<span class='curline'><a href='../S/122.html#L63'>TRACE</a>              63 shex.cpp       	TRACE("opening output file for writing");</span>
-<span class='curline'><a href='../S/122.html#L98'>TRACE</a>              98 shex.cpp       	TRACE("...ending main");</span>
-<span class='curline'><a href='../S/583.html#L41'>TRACE</a>              41 testdefs.cpp   	TRACE("Entering hello.cpp's main routine");</span>
-<span class='curline'><a href='../S/583.html#L47'>TRACE</a>              47 testdefs.cpp   	TRACE("Exiting hello.cpp's main routine");</span>
-<span class='curline'><a href='../S/835.html#L56'>TRACE</a>              56 versbind.hpp   	TRACE("CVersion::CVersion() starting");</span>
+<span class='curline'><a href='../S/94.html#L11'>TRACE</a>              11 as8085/dcr_85.hpp 	TRACE("processing 8085 dcr g_szOpcode");</span>
+<span class='curline'><a href='../S/578.html#L73'>TRACE</a>              73 aseval.hpp     	TRACE("CEval::CEval() started");</span>
+<span class='curline'><a href='../S/578.html#L80'>TRACE</a>              80 aseval.hpp     	TRACE("CEval::gather() started");</span>
+<span class='curline'><a href='../S/578.html#L107'>TRACE</a>             107 aseval.hpp     	TRACE("CEval::clear() started");</span>
+<span class='curline'><a href='../S/578.html#L114'>TRACE</a>             114 aseval.hpp     	TRACE("CEval::bIsAlpha() called");</span>
+<span class='curline'><a href='../S/578.html#L129'>TRACE</a>             129 aseval.hpp     	TRACE("CEval::bIsNumeric()O started");</span>
+<span class='curline'><a href='../S/578.html#L131'>TRACE</a>             131 aseval.hpp     		TRACE("CEval::bIsNumeric detected 0-9");</span>
+<span class='curline'><a href='../S/578.html#L135'>TRACE</a>             135 aseval.hpp     		TRACE("CEval::bIsNumeric detected $");</span>
+<span class='curline'><a href='../S/578.html#L143'>TRACE</a>             143 aseval.hpp     	TRACE("CEval::bIsOperator() called");</span>
+<span class='curline'><a href='../S/578.html#L153'>TRACE</a>             153 aseval.hpp     	TRACE("CEval::bIsParen() called");</span>
+<span class='curline'><a href='../S/578.html#L163'>TRACE</a>             163 aseval.hpp     	TRACE("CEval::bIsWhitespace() called");</span>
+<span class='curline'><a href='../S/578.html#L172'>TRACE</a>             172 aseval.hpp     	TRACE("CEval::bExpression() called");</span>
+<span class='curline'><a href='../S/578.html#L193'>TRACE</a>             193 aseval.hpp     	TRACE("CEval::iGotAlphaToken() started");</span>
+<span class='curline'><a href='../S/578.html#L207'>TRACE</a>             207 aseval.hpp     	TRACE("CEval::iGotNumericToken() started");</span>
+<span class='curline'><a href='../S/578.html#L217'>TRACE</a>             217 aseval.hpp     	TRACE("CEval::iGotOperatorToken() started");</span>
+<span class='curline'><a href='../S/578.html#L225'>TRACE</a>             225 aseval.hpp     	TRACE("CEval::iGotParenToken() started");</span>
+<span class='curline'><a href='../S/578.html#L233'>TRACE</a>             233 aseval.hpp     	TRACE("CEval::dump() called");</span>
+<span class='curline'><a href='../S/578.html#L292'>TRACE</a>             292 aseval.hpp     	TRACE("CEval::tokenize() called");</span>
+<span class='curline'><a href='../S/578.html#L295'>TRACE</a>             295 aseval.hpp       TRACE("tokenize starting");</span>
+<span class='curline'><a href='../S/578.html#L297'>TRACE</a>             297 aseval.hpp       TRACE("Clearing alpha buffer");</span>
+<span class='curline'><a href='../S/578.html#L302'>TRACE</a>             302 aseval.hpp       TRACE("Clearing numeric buffer");</span>
+<span class='curline'><a href='../S/578.html#L307'>TRACE</a>             307 aseval.hpp       TRACE("Clearing tokens structure");</span>
+<span class='curline'><a href='../S/578.html#L338'>TRACE</a>             338 aseval.hpp       TRACE("starting tokenization");</span>
+<span class='curline'><a href='../S/578.html#L340'>TRACE</a>             340 aseval.hpp         TRACE("iBufferdex &lt; iLength");</span>
+<span class='curline'><a href='../S/578.html#L345'>TRACE</a>             345 aseval.hpp             TRACE("case 1");</span>
+<span class='curline'><a href='../S/578.html#L350'>TRACE</a>             350 aseval.hpp     		TRACE("its char");</span>
+<span class='curline'><a href='../S/578.html#L356'>TRACE</a>             356 aseval.hpp               TRACE("its alpha");</span>
+<span class='curline'><a href='../S/578.html#L362'>TRACE</a>             362 aseval.hpp     	  TRACE("its numeric");</span>
+<span class='curline'><a href='../S/578.html#L373'>TRACE</a>             373 aseval.hpp               TRACE("its an operator");</span>
+<span class='curline'><a href='../S/578.html#L378'>TRACE</a>             378 aseval.hpp               TRACE("its a paren ");</span>
+<span class='curline'><a href='../S/578.html#L383'>TRACE</a>             383 aseval.hpp             TRACE("case 2");</span>
+<span class='curline'><a href='../S/578.html#L385'>TRACE</a>             385 aseval.hpp     	  TRACE("its whitespace");</span>
+<span class='curline'><a href='../S/578.html#L394'>TRACE</a>             394 aseval.hpp     	  TRACE("its an operator");</span>
+<span class='curline'><a href='../S/578.html#L405'>TRACE</a>             405 aseval.hpp     	  TRACE("its a paren");</span>
+<span class='curline'><a href='../S/578.html#L418'>TRACE</a>             418 aseval.hpp             TRACE("case 3, collecting numeric token");</span>
+<span class='curline'><a href='../S/578.html#L421'>TRACE</a>             421 aseval.hpp               TRACE("its whitespace");</span>
+<span class='curline'><a href='../S/578.html#L432'>TRACE</a>             432 aseval.hpp               TRACE("its an operator");</span>
+<span class='curline'><a href='../S/578.html#L445'>TRACE</a>             445 aseval.hpp               TRACE("its a paren");</span>
+<span class='curline'><a href='../S/578.html#L491'>TRACE</a>             491 aseval.hpp       TRACE("CEval::evaluate() called");</span>
+<span class='curline'><a href='../S/578.html#L504'>TRACE</a>             504 aseval.hpp         TRACE("index &lt; iLength");</span>
+<span class='curline'><a href='../S/541.html#L57'>TRACE</a>              57 asmall.cpp     	TRACE("getdate() starting");</span>
+<span class='curline'><a href='../S/541.html#L74'>TRACE</a>              74 asmall.cpp       TRACE("makemake() starting");</span>
+<span class='curline'><a href='../S/541.html#L75'>TRACE</a>              75 asmall.cpp       TRACE(szFilename);</span>
+<span class='curline'><a href='../S/541.html#L138'>TRACE</a>             138 asmall.cpp       TRACE("main() starting");</span>
+<span class='curline'><a href='../S/541.html#L145'>TRACE</a>             145 asmall.cpp       TRACE("clearing buffers");</span>
+<span class='curline'><a href='../S/541.html#L163'>TRACE</a>             163 asmall.cpp       TRACE("doing asm scan");</span>
+<span class='curline'><a href='../S/541.html#L186'>TRACE</a>             186 asmall.cpp       TRACE("done with dir1");</span>
+<span class='curline'><a href='../S/541.html#L188'>TRACE</a>             188 asmall.cpp       TRACE("doing inc scan");</span>
+<span class='curline'><a href='../S/541.html#L194'>TRACE</a>             194 asmall.cpp       TRACE("calling dir2 read");</span>
+<span class='curline'><a href='../S/541.html#L197'>TRACE</a>             197 asmall.cpp         TRACE("calling dir2 getname");</span>
+<span class='curline'><a href='../S/541.html#L199'>TRACE</a>             199 asmall.cpp         TRACE(g_szBuffer2);</span>
+<span class='curline'><a href='../S/541.html#L200'>TRACE</a>             200 asmall.cpp         TRACE("calling dir2 gettype");</span>
+<span class='curline'><a href='../S/541.html#L202'>TRACE</a>             202 asmall.cpp           TRACE("is regular file");</span>
+<span class='curline'><a href='../S/541.html#L204'>TRACE</a>             204 asmall.cpp             TRACE("is long enough");</span>
+<span class='curline'><a href='../S/541.html#L206'>TRACE</a>             206 asmall.cpp                     TRACE("is a .inc");</span>
+<span class='curline'><a href='../S/541.html#L208'>TRACE</a>             208 asmall.cpp     		TRACE("copy to szTgtFileName");</span>
+<span class='curline'><a href='../S/541.html#L210'>TRACE</a>             210 asmall.cpp     		TRACE("trimming extension");</span>
+<span class='curline'><a href='../S/541.html#L212'>TRACE</a>             212 asmall.cpp     		TRACE("appending inc buffer");</span>
+<span class='curline'><a href='../S/541.html#L223'>TRACE</a>             223 asmall.cpp       TRACE("done with dir2");</span>
+<span class='curline'><a href='../S/541.html#L225'>TRACE</a>             225 asmall.cpp       TRACE("writing main makefile");</span>
+<span class='curline'><a href='../S/541.html#L251'>TRACE</a>             251 asmall.cpp       TRACE("doing main asm scan");</span>
+<span class='curline'><a href='../S/541.html#L259'>TRACE</a>             259 asmall.cpp     		TRACE("calling makemake");</span>
+<span class='curline'><a href='../S/541.html#L261'>TRACE</a>             261 asmall.cpp     		TRACE("returned from makemake");</span>
+<span class='curline'><a href='../S/541.html#L293'>TRACE</a>             293 asmall.cpp       TRACE("done with dir3");</span>
+<span class='curline'><a href='../S/568.html#L35'>TRACE</a>              35 asresolv.hpp         TRACE("X8() started");</span>
+<span class='curline'><a href='../S/568.html#L104'>TRACE</a>             104 asresolv.hpp   	TRACE("X16() started");</span>
+<span class='curline'><a href='../S/568.html#L157'>TRACE</a>             157 asresolv.hpp   	TRACE("X32() started");</span>
+<span class='curline'><a href='../S/569.html#L393'>TRACE</a>             393 assemble.cpp   	TRACE("starting pass1");</span>
+<span class='curline'><a href='../S/569.html#L442'>TRACE</a>             442 assemble.cpp   		TRACE("adding label if present");</span>
+<span class='curline'><a href='../S/569.html#L504'>TRACE</a>             504 assemble.cpp   	TRACE("starting pass2");</span>
+<span class='curline'><a href='../S/569.html#L598'>TRACE</a>             598 assemble.cpp                   TRACE("adding label if present");</span>
+<span class='curline'><a href='../S/569.html#L648'>TRACE</a>             648 assemble.cpp   		TRACE("end of pass2 while loop");</span>
+<span class='curline'><a href='../S/748.html#L69'>TRACE</a>              69 base/aseval.hpp 	TRACE("CEval::CEval() started");</span>
+<span class='curline'><a href='../S/748.html#L76'>TRACE</a>              76 base/aseval.hpp 	TRACE("CEval::gather() started");</span>
+<span class='curline'><a href='../S/748.html#L103'>TRACE</a>             103 base/aseval.hpp 	TRACE("CEval::clear() started");</span>
+<span class='curline'><a href='../S/748.html#L110'>TRACE</a>             110 base/aseval.hpp 	TRACE("CEval::bIsAlpha() called");</span>
+<span class='curline'><a href='../S/748.html#L118'>TRACE</a>             118 base/aseval.hpp 	TRACE("CEval::bIsNumeric()O started");</span>
+<span class='curline'><a href='../S/748.html#L120'>TRACE</a>             120 base/aseval.hpp 		TRACE("CEval::bIsNumeric detected 0-9");</span>
+<span class='curline'><a href='../S/748.html#L124'>TRACE</a>             124 base/aseval.hpp 		TRACE("CEval::bIsNumeric detected $");</span>
+<span class='curline'><a href='../S/748.html#L132'>TRACE</a>             132 base/aseval.hpp 	TRACE("CEval::bIsOperator() called");</span>
+<span class='curline'><a href='../S/748.html#L142'>TRACE</a>             142 base/aseval.hpp 	TRACE("CEval::bIsParen() called");</span>
+<span class='curline'><a href='../S/748.html#L152'>TRACE</a>             152 base/aseval.hpp 	TRACE("CEval::bIsWhitespace() called");</span>
+<span class='curline'><a href='../S/748.html#L161'>TRACE</a>             161 base/aseval.hpp 	TRACE("CEval::bExpression() called");</span>
+<span class='curline'><a href='../S/748.html#L182'>TRACE</a>             182 base/aseval.hpp 	TRACE("CEval::iGotAlphaToken() started");</span>
+<span class='curline'><a href='../S/748.html#L196'>TRACE</a>             196 base/aseval.hpp 	TRACE("CEval::iGotNumericToken() started");</span>
+<span class='curline'><a href='../S/748.html#L206'>TRACE</a>             206 base/aseval.hpp 	TRACE("CEval::iGotOperatorToken() started");</span>
+<span class='curline'><a href='../S/748.html#L214'>TRACE</a>             214 base/aseval.hpp 	TRACE("CEval::iGotParenToken() started");</span>
+<span class='curline'><a href='../S/748.html#L222'>TRACE</a>             222 base/aseval.hpp 	TRACE("CEval::dump() called");</span>
+<span class='curline'><a href='../S/748.html#L281'>TRACE</a>             281 base/aseval.hpp 	TRACE("CEval::tokenize() called");</span>
+<span class='curline'><a href='../S/748.html#L284'>TRACE</a>             284 base/aseval.hpp   TRACE("tokenize starting");</span>
+<span class='curline'><a href='../S/748.html#L286'>TRACE</a>             286 base/aseval.hpp   TRACE("Clearing alpha buffer");</span>
+<span class='curline'><a href='../S/748.html#L291'>TRACE</a>             291 base/aseval.hpp   TRACE("Clearing numeric buffer");</span>
+<span class='curline'><a href='../S/748.html#L296'>TRACE</a>             296 base/aseval.hpp   TRACE("Clearing tokens structure");</span>
+<span class='curline'><a href='../S/748.html#L327'>TRACE</a>             327 base/aseval.hpp   TRACE("starting tokenization");</span>
+<span class='curline'><a href='../S/748.html#L329'>TRACE</a>             329 base/aseval.hpp     TRACE("iBufferdex &lt; iLength");</span>
+<span class='curline'><a href='../S/748.html#L334'>TRACE</a>             334 base/aseval.hpp         TRACE("case 1");</span>
+<span class='curline'><a href='../S/748.html#L337'>TRACE</a>             337 base/aseval.hpp           TRACE("its alpha");</span>
+<span class='curline'><a href='../S/748.html#L343'>TRACE</a>             343 base/aseval.hpp 	  TRACE("its numeric");</span>
+<span class='curline'><a href='../S/748.html#L354'>TRACE</a>             354 base/aseval.hpp           TRACE("its an operator");</span>
+<span class='curline'><a href='../S/748.html#L359'>TRACE</a>             359 base/aseval.hpp           TRACE("its a paren ");</span>
+<span class='curline'><a href='../S/748.html#L364'>TRACE</a>             364 base/aseval.hpp         TRACE("case 2");</span>
+<span class='curline'><a href='../S/748.html#L366'>TRACE</a>             366 base/aseval.hpp 	  TRACE("its whitespace");</span>
+<span class='curline'><a href='../S/748.html#L375'>TRACE</a>             375 base/aseval.hpp 	  TRACE("its an operator");</span>
+<span class='curline'><a href='../S/748.html#L386'>TRACE</a>             386 base/aseval.hpp 	  TRACE("its a paren");</span>
+<span class='curline'><a href='../S/748.html#L399'>TRACE</a>             399 base/aseval.hpp         TRACE("case 3, collecting numeric token");</span>
+<span class='curline'><a href='../S/748.html#L402'>TRACE</a>             402 base/aseval.hpp           TRACE("its whitespace");</span>
+<span class='curline'><a href='../S/748.html#L413'>TRACE</a>             413 base/aseval.hpp           TRACE("its an operator");</span>
+<span class='curline'><a href='../S/748.html#L426'>TRACE</a>             426 base/aseval.hpp           TRACE("its a paren");</span>
+<span class='curline'><a href='../S/748.html#L460'>TRACE</a>             460 base/aseval.hpp   TRACE("CEval::evaluate() called");</span>
+<span class='curline'><a href='../S/748.html#L473'>TRACE</a>             473 base/aseval.hpp     TRACE("index &lt; iLength");</span>
+<span class='curline'><a href='../S/719.html#L57'>TRACE</a>              57 base/asmall.cpp 	TRACE("getdate() starting");</span>
+<span class='curline'><a href='../S/719.html#L74'>TRACE</a>              74 base/asmall.cpp   TRACE("makemake() starting");</span>
+<span class='curline'><a href='../S/719.html#L75'>TRACE</a>              75 base/asmall.cpp   TRACE(szFilename);</span>
+<span class='curline'><a href='../S/719.html#L138'>TRACE</a>             138 base/asmall.cpp   TRACE("main() starting");</span>
+<span class='curline'><a href='../S/719.html#L145'>TRACE</a>             145 base/asmall.cpp   TRACE("clearing buffers");</span>
+<span class='curline'><a href='../S/719.html#L163'>TRACE</a>             163 base/asmall.cpp   TRACE("doing asm scan");</span>
+<span class='curline'><a href='../S/719.html#L186'>TRACE</a>             186 base/asmall.cpp   TRACE("done with dir1");</span>
+<span class='curline'><a href='../S/719.html#L188'>TRACE</a>             188 base/asmall.cpp   TRACE("doing inc scan");</span>
+<span class='curline'><a href='../S/719.html#L194'>TRACE</a>             194 base/asmall.cpp   TRACE("calling dir2 read");</span>
+<span class='curline'><a href='../S/719.html#L197'>TRACE</a>             197 base/asmall.cpp     TRACE("calling dir2 getname");</span>
+<span class='curline'><a href='../S/719.html#L199'>TRACE</a>             199 base/asmall.cpp     TRACE(g_szBuffer2);</span>
+<span class='curline'><a href='../S/719.html#L200'>TRACE</a>             200 base/asmall.cpp     TRACE("calling dir2 gettype");</span>
+<span class='curline'><a href='../S/719.html#L202'>TRACE</a>             202 base/asmall.cpp       TRACE("is regular file");</span>
+<span class='curline'><a href='../S/719.html#L204'>TRACE</a>             204 base/asmall.cpp         TRACE("is long enough");</span>
+<span class='curline'><a href='../S/719.html#L206'>TRACE</a>             206 base/asmall.cpp                 TRACE("is a .inc");</span>
+<span class='curline'><a href='../S/719.html#L208'>TRACE</a>             208 base/asmall.cpp 		TRACE("copy to szTgtFileName");</span>
+<span class='curline'><a href='../S/719.html#L210'>TRACE</a>             210 base/asmall.cpp 		TRACE("trimming extension");</span>
+<span class='curline'><a href='../S/719.html#L212'>TRACE</a>             212 base/asmall.cpp 		TRACE("appending inc buffer");</span>
+<span class='curline'><a href='../S/719.html#L223'>TRACE</a>             223 base/asmall.cpp   TRACE("done with dir2");</span>
+<span class='curline'><a href='../S/719.html#L225'>TRACE</a>             225 base/asmall.cpp   TRACE("writing main makefile");</span>
+<span class='curline'><a href='../S/719.html#L249'>TRACE</a>             249 base/asmall.cpp   TRACE("doing main asm scan");</span>
+<span class='curline'><a href='../S/719.html#L257'>TRACE</a>             257 base/asmall.cpp 		TRACE("calling makemake");</span>
+<span class='curline'><a href='../S/719.html#L259'>TRACE</a>             259 base/asmall.cpp 		TRACE("returned from makemake");</span>
+<span class='curline'><a href='../S/719.html#L291'>TRACE</a>             291 base/asmall.cpp   TRACE("done with dir3");</span>
+<span class='curline'><a href='../S/737.html#L35'>TRACE</a>              35 base/asresolv.hpp       TRACE("X8() started");</span>
+<span class='curline'><a href='../S/737.html#L97'>TRACE</a>              97 base/asresolv.hpp 	TRACE("X16() started");</span>
+<span class='curline'><a href='../S/737.html#L150'>TRACE</a>             150 base/asresolv.hpp 	TRACE("X32() started");</span>
+<span class='curline'><a href='../S/738.html#L393'>TRACE</a>             393 base/assemble.cpp 	TRACE("starting pass1");</span>
+<span class='curline'><a href='../S/738.html#L442'>TRACE</a>             442 base/assemble.cpp 		TRACE("adding label if present");</span>
+<span class='curline'><a href='../S/738.html#L504'>TRACE</a>             504 base/assemble.cpp 	TRACE("starting pass2");</span>
+<span class='curline'><a href='../S/738.html#L597'>TRACE</a>             597 base/assemble.cpp                 TRACE("adding label if present");</span>
+<span class='curline'><a href='../S/738.html#L647'>TRACE</a>             647 base/assemble.cpp 		TRACE("end of pass2 while loop");</span>
+<span class='curline'><a href='../S/696.html#L51'>TRACE</a>              51 base/bin2com.cpp 	TRACE("starting main...");</span>
+<span class='curline'><a href='../S/696.html#L59'>TRACE</a>              59 base/bin2com.cpp 	TRACE("opening output file for writing");</span>
+<span class='curline'><a href='../S/701.html#L141'>TRACE</a>             141 base/inibind.hpp 	TRACE("ini_read2() starting");</span>
+<span class='curline'><a href='../S/701.html#L158'>TRACE</a>             158 base/inibind.hpp 	TRACE("open ini for write");</span>
+<span class='curline'><a href='../S/701.html#L159'>TRACE</a>             159 base/inibind.hpp 	TRACE(szIni);</span>
+<span class='curline'><a href='../S/695.html#L209'>TRACE</a>             209 base/makemake.cpp   TRACE("clearing buffers");</span>
+<span class='curline'><a href='../S/695.html#L227'>TRACE</a>             227 base/makemake.cpp   TRACE("starting dir1 - ./*.cpp");</span>
+<span class='curline'><a href='../S/695.html#L263'>TRACE</a>             263 base/makemake.cpp   TRACE("starting dir2 - ./*.hpp");</span>
+<span class='curline'><a href='../S/695.html#L287'>TRACE</a>             287 base/makemake.cpp   TRACE("starting dir3 - ascommon/*.hpp");</span>
+<span class='curline'><a href='../S/695.html#L309'>TRACE</a>             309 base/makemake.cpp   TRACE("starting dir4 - as8080/*.hpp");</span>
+<span class='curline'><a href='../S/695.html#L331'>TRACE</a>             331 base/makemake.cpp   TRACE("starting dir5 - as6502/*.hpp");</span>
+<span class='curline'><a href='../S/695.html#L353'>TRACE</a>             353 base/makemake.cpp   TRACE("starting dir7 - as68000/*.hpp");</span>
+<span class='curline'><a href='../S/695.html#L376'>TRACE</a>             376 base/makemake.cpp   TRACE("starting dir8 - as8080/*.hpp");</span>
+<span class='curline'><a href='../S/695.html#L382'>TRACE</a>             382 base/makemake.cpp   TRACE("doing dir8 initial read");</span>
+<span class='curline'><a href='../S/695.html#L384'>TRACE</a>             384 base/makemake.cpp   TRACE("back from initial read");</span>
+<span class='curline'><a href='../S/695.html#L387'>TRACE</a>             387 base/makemake.cpp     TRACE("dir8 data is:");</span>
+<span class='curline'><a href='../S/695.html#L388'>TRACE</a>             388 base/makemake.cpp     TRACE(g_szBuffer2);</span>
+<span class='curline'><a href='../S/695.html#L401'>TRACE</a>             401 base/makemake.cpp   TRACE("done with dir8");</span>
+<span class='curline'><a href='../S/695.html#L449'>TRACE</a>             449 base/makemake.cpp   TRACE("opening Makefile");</span>
+<span class='curline'><a href='../S/695.html#L456'>TRACE</a>             456 base/makemake.cpp   TRACE("writing banner");</span>
+<span class='curline'><a href='../S/695.html#L468'>TRACE</a>             468 base/makemake.cpp   TRACE("writing macros");</span>
+<span class='curline'><a href='../S/695.html#L503'>TRACE</a>             503 base/makemake.cpp   TRACE("writing rules");</span>
+<span class='curline'><a href='../S/695.html#L514'>TRACE</a>             514 base/makemake.cpp   TRACE("starting dir6 - ./*.cpp");</span>
+<span class='curline'><a href='../S/695.html#L526'>TRACE</a>             526 base/makemake.cpp 	  TRACE("calling makemake()");</span>
+<span class='curline'><a href='../S/695.html#L538'>TRACE</a>             538 base/makemake.cpp 	  TRACE("create root and target");</span>
+<span class='curline'><a href='../S/695.html#L543'>TRACE</a>             543 base/makemake.cpp           TRACE("create backup makefile name");</span>
+<span class='curline'><a href='../S/695.html#L548'>TRACE</a>             548 base/makemake.cpp  	  TRACE("create build rule");</span>
+<span class='curline'><a href='../S/695.html#L558'>TRACE</a>             558 base/makemake.cpp 	  TRACE("add makefile dependencies");</span>
+<span class='curline'><a href='../S/741.html#L47'>TRACE</a>              47 base/memory.hpp 	TRACE("starting CMemory::CMemory...");</span>
+<span class='curline'><a href='../S/741.html#L61'>TRACE</a>              61 base/memory.hpp 	TRACE("...ending CMemory::CMemory");</span>
+<span class='curline'><a href='../S/741.html#L66'>TRACE</a>              66 base/memory.hpp         TRACE("starting CMemory::CMemory...");</span>
+<span class='curline'><a href='../S/741.html#L80'>TRACE</a>              80 base/memory.hpp         TRACE("...ending CMemory::CMemory");</span>
+<span class='curline'><a href='../S/741.html#L86'>TRACE</a>              86 base/memory.hpp 	TRACE("starting CMemory::peekb...");</span>
+<span class='curline'><a href='../S/741.html#L88'>TRACE</a>              88 base/memory.hpp 	TRACE("...ending CMemory::peekb");</span>
+<span class='curline'><a href='../S/741.html#L95'>TRACE</a>              95 base/memory.hpp 	TRACE("starting CMemory::peekw...");</span>
+<span class='curline'><a href='../S/741.html#L97'>TRACE</a>              97 base/memory.hpp 	TRACE("...ending CMemory::peekw");</span>
+<span class='curline'><a href='../S/741.html#L104'>TRACE</a>             104 base/memory.hpp 	TRACE("starting CMemory::pokeb...");</span>
+<span class='curline'><a href='../S/741.html#L106'>TRACE</a>             106 base/memory.hpp 	TRACE("...ending CMemory::pokeb");</span>
+<span class='curline'><a href='../S/741.html#L114'>TRACE</a>             114 base/memory.hpp 	TRACE("starting CMemory::pokew...");</span>
+<span class='curline'><a href='../S/741.html#L119'>TRACE</a>             119 base/memory.hpp 	TRACE("...ending CMemory::pokew");</span>
+<span class='curline'><a href='../S/741.html#L124'>TRACE</a>             124 base/memory.hpp 	TRACE("starting CMemory::~CMemory...");</span>
+<span class='curline'><a href='../S/741.html#L130'>TRACE</a>             130 base/memory.hpp 	TRACE("...ending CMemory::~CMemory");</span>
+<span class='curline'><a href='../S/686.html#L59'>TRACE</a>              59 base/mkbindef.cpp 	TRACE("Entering hello.cpp's main routine");</span>
+<span class='curline'><a href='../S/686.html#L96'>TRACE</a>              96 base/mkbindef.cpp 	TRACE("Exiting hello.cpp's main routine");</span>
+<span class='curline'><a href='../S/672.html#L48'>TRACE</a>              48 base/shex.cpp  	TRACE("starting main...");</span>
+<span class='curline'><a href='../S/672.html#L63'>TRACE</a>              63 base/shex.cpp  	TRACE("opening output file for writing");</span>
+<span class='curline'><a href='../S/672.html#L98'>TRACE</a>              98 base/shex.cpp  	TRACE("...ending main");</span>
+<span class='curline'><a href='../S/734.html#L41'>TRACE</a>              41 base/testdefs.cpp 	TRACE("Entering hello.cpp's main routine");</span>
+<span class='curline'><a href='../S/734.html#L47'>TRACE</a>              47 base/testdefs.cpp 	TRACE("Exiting hello.cpp's main routine");</span>
+<span class='curline'><a href='../S/764.html#L56'>TRACE</a>              56 base/versbind.hpp 	TRACE("CVersion::CVersion() starting");</span>
+<span class='curline'><a href='../S/304.html#L51'>TRACE</a>              51 bin2com.cpp    	TRACE("starting main...");</span>
+<span class='curline'><a href='../S/304.html#L59'>TRACE</a>              59 bin2com.cpp    	TRACE("opening output file for writing");</span>
+<span class='curline'><a href='../S/308.html#L141'>TRACE</a>             141 inibind.hpp    	TRACE("ini_read2() starting");</span>
+<span class='curline'><a href='../S/308.html#L158'>TRACE</a>             158 inibind.hpp    	TRACE("open ini for write");</span>
+<span class='curline'><a href='../S/308.html#L159'>TRACE</a>             159 inibind.hpp    	TRACE(szIni);</span>
+<span class='curline'><a href='../S/303.html#L213'>TRACE</a>             213 makemake.cpp     TRACE("clearing buffers");</span>
+<span class='curline'><a href='../S/303.html#L231'>TRACE</a>             231 makemake.cpp     TRACE("starting dir1 - ./*.cpp");</span>
+<span class='curline'><a href='../S/303.html#L267'>TRACE</a>             267 makemake.cpp     TRACE("starting dir2 - ./*.hpp");</span>
+<span class='curline'><a href='../S/303.html#L291'>TRACE</a>             291 makemake.cpp     TRACE("starting dir3 - ascommon/*.hpp");</span>
+<span class='curline'><a href='../S/303.html#L313'>TRACE</a>             313 makemake.cpp     TRACE("starting dir4 - as8080/*.hpp");</span>
+<span class='curline'><a href='../S/303.html#L335'>TRACE</a>             335 makemake.cpp     TRACE("starting dir5 - as6502/*.hpp");</span>
+<span class='curline'><a href='../S/303.html#L357'>TRACE</a>             357 makemake.cpp     TRACE("starting dir7 - as68000/*.hpp");</span>
+<span class='curline'><a href='../S/303.html#L380'>TRACE</a>             380 makemake.cpp     TRACE("starting dir8 - as8080/*.hpp");</span>
+<span class='curline'><a href='../S/303.html#L386'>TRACE</a>             386 makemake.cpp     TRACE("doing dir8 initial read");</span>
+<span class='curline'><a href='../S/303.html#L388'>TRACE</a>             388 makemake.cpp     TRACE("back from initial read");</span>
+<span class='curline'><a href='../S/303.html#L391'>TRACE</a>             391 makemake.cpp       TRACE("dir8 data is:");</span>
+<span class='curline'><a href='../S/303.html#L392'>TRACE</a>             392 makemake.cpp       TRACE(g_szBuffer2);</span>
+<span class='curline'><a href='../S/303.html#L405'>TRACE</a>             405 makemake.cpp     TRACE("done with dir8");</span>
+<span class='curline'><a href='../S/303.html#L453'>TRACE</a>             453 makemake.cpp     TRACE("opening Makefile");</span>
+<span class='curline'><a href='../S/303.html#L460'>TRACE</a>             460 makemake.cpp     TRACE("writing banner");</span>
+<span class='curline'><a href='../S/303.html#L472'>TRACE</a>             472 makemake.cpp     TRACE("writing macros");</span>
+<span class='curline'><a href='../S/303.html#L507'>TRACE</a>             507 makemake.cpp     TRACE("writing rules");</span>
+<span class='curline'><a href='../S/303.html#L518'>TRACE</a>             518 makemake.cpp     TRACE("starting dir6 - ./*.cpp");</span>
+<span class='curline'><a href='../S/303.html#L530'>TRACE</a>             530 makemake.cpp   	  TRACE("calling makemake()");</span>
+<span class='curline'><a href='../S/303.html#L542'>TRACE</a>             542 makemake.cpp   	  TRACE("create root and target");</span>
+<span class='curline'><a href='../S/303.html#L547'>TRACE</a>             547 makemake.cpp             TRACE("create backup makefile name");</span>
+<span class='curline'><a href='../S/303.html#L552'>TRACE</a>             552 makemake.cpp    	  TRACE("create build rule");</span>
+<span class='curline'><a href='../S/303.html#L562'>TRACE</a>             562 makemake.cpp   	  TRACE("add makefile dependencies");</span>
+<span class='curline'><a href='../S/572.html#L47'>TRACE</a>              47 memory.hpp     	TRACE("starting CMemory::CMemory...");</span>
+<span class='curline'><a href='../S/572.html#L61'>TRACE</a>              61 memory.hpp     	TRACE("...ending CMemory::CMemory");</span>
+<span class='curline'><a href='../S/572.html#L66'>TRACE</a>              66 memory.hpp             TRACE("starting CMemory::CMemory...");</span>
+<span class='curline'><a href='../S/572.html#L80'>TRACE</a>              80 memory.hpp             TRACE("...ending CMemory::CMemory");</span>
+<span class='curline'><a href='../S/572.html#L86'>TRACE</a>              86 memory.hpp     	TRACE("starting CMemory::peekb...");</span>
+<span class='curline'><a href='../S/572.html#L88'>TRACE</a>              88 memory.hpp     	TRACE("...ending CMemory::peekb");</span>
+<span class='curline'><a href='../S/572.html#L95'>TRACE</a>              95 memory.hpp     	TRACE("starting CMemory::peekw...");</span>
+<span class='curline'><a href='../S/572.html#L97'>TRACE</a>              97 memory.hpp     	TRACE("...ending CMemory::peekw");</span>
+<span class='curline'><a href='../S/572.html#L104'>TRACE</a>             104 memory.hpp     	TRACE("starting CMemory::pokeb...");</span>
+<span class='curline'><a href='../S/572.html#L106'>TRACE</a>             106 memory.hpp     	TRACE("...ending CMemory::pokeb");</span>
+<span class='curline'><a href='../S/572.html#L114'>TRACE</a>             114 memory.hpp     	TRACE("starting CMemory::pokew...");</span>
+<span class='curline'><a href='../S/572.html#L119'>TRACE</a>             119 memory.hpp     	TRACE("...ending CMemory::pokew");</span>
+<span class='curline'><a href='../S/572.html#L124'>TRACE</a>             124 memory.hpp     	TRACE("starting CMemory::~CMemory...");</span>
+<span class='curline'><a href='../S/572.html#L130'>TRACE</a>             130 memory.hpp     	TRACE("...ending CMemory::~CMemory");</span>
+<span class='curline'><a href='../S/213.html#L59'>TRACE</a>              59 mkbindef.cpp   	TRACE("Entering hello.cpp's main routine");</span>
+<span class='curline'><a href='../S/213.html#L96'>TRACE</a>              96 mkbindef.cpp   	TRACE("Exiting hello.cpp's main routine");</span>
+<span class='curline'><a href='../S/116.html#L48'>TRACE</a>              48 shex.cpp       	TRACE("starting main...");</span>
+<span class='curline'><a href='../S/116.html#L63'>TRACE</a>              63 shex.cpp       	TRACE("opening output file for writing");</span>
+<span class='curline'><a href='../S/116.html#L98'>TRACE</a>              98 shex.cpp       	TRACE("...ending main");</span>
+<span class='curline'><a href='../S/565.html#L41'>TRACE</a>              41 testdefs.cpp   	TRACE("Entering hello.cpp's main routine");</span>
+<span class='curline'><a href='../S/565.html#L47'>TRACE</a>              47 testdefs.cpp   	TRACE("Exiting hello.cpp's main routine");</span>
+<span class='curline'><a href='../S/806.html#L56'>TRACE</a>              56 versbind.hpp   	TRACE("CVersion::CVersion() starting");</span>
 </pre>
 </body>
 </html>

@@ -1,14 +1,14 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
-<title>asz80/ret.hpp</title>
+<title>asz80/cp.hpp</title>
 <meta name='robots' content='noindex,nofollow' />
 <meta name='generator' content='GLOBAL-6.6.3' />
 <meta http-equiv='Content-Style-Type' content='text/css' />
 <link rel='stylesheet' type='text/css' href='../style.css' />
 </head>
 <body>
-<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/820.html'>asz80</a>/ret.hpp</h2>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/815.html'>asz80</a>/cp.hpp</h2>
 <em class='comment'>/* [&lt;][&gt;]<a href='#L22'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 <hr />
 <h2 class='header'>DEFINITIONS</h2>
@@ -18,34 +18,115 @@ This source file includes following definitions.
 </ol>
 <hr />
 <pre>
-<a id='L1' name='L1'></a><em class='comment'>// ---------------------------------------------------</em>
-<a id='L2' name='L2'></a><em class='comment'>// ret.hpp      21-Feb-11   Running on Mac OS X 10.6.6</em>
-<a id='L3' name='L3'></a><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
-<a id='L4' name='L4'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
-<a id='L5' name='L5'></a><em class='comment'>// ---------------------------------------------------</em>
-<a id='L6' name='L6'></a><em class='comment'>// This file is part of Vintage Modern Assembler Plus Tools.</em>
-<a id='L7' name='L7'></a><em class='comment'>//</em>
-<a id='L8' name='L8'></a><em class='comment'>// VMAPT is free software: you can redistribute it and/or modify</em>
-<a id='L9' name='L9'></a><em class='comment'>// it under the terms of the GNU General Public License as published by</em>
-<a id='L10' name='L10'></a><em class='comment'>// the Free Software Foundation, either version 3 of the License, or</em>
-<a id='L11' name='L11'></a><em class='comment'>// (at your option) any later version.</em>
-<a id='L12' name='L12'></a><em class='comment'>//</em>
-<a id='L13' name='L13'></a><em class='comment'>// VMAPT is distributed in the hope that it will be useful,</em>
-<a id='L14' name='L14'></a><em class='comment'>// but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
-<a id='L15' name='L15'></a><em class='comment'>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
-<a id='L16' name='L16'></a><em class='comment'>// GNU General Public License for more details.</em>
-<a id='L17' name='L17'></a><em class='comment'>//</em>
-<a id='L18' name='L18'></a><em class='comment'>// You should have received a copy of the GNU General Public License</em>
-<a id='L19' name='L19'></a><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
-<a id='L20' name='L20'></a><em class='comment'>//</em>
+<a id='L1' name='L1'></a><em class='comment'>// ---------------------------------------------------</em>
+<a id='L2' name='L2'></a><em class='comment'>// cp.hpp        3-Mar-11   Running on Mac OS X 10.6.6</em>
+<a id='L3' name='L3'></a><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
+<a id='L4' name='L4'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L5' name='L5'></a><em class='comment'>// ---------------------------------------------------</em>
+<a id='L6' name='L6'></a><em class='comment'>// This file is part of Vintage Modern Assembler Plus Tools.</em>
+<a id='L7' name='L7'></a><em class='comment'>//</em>
+<a id='L8' name='L8'></a><em class='comment'>// VMAPT is free software: you can redistribute it and/or modify</em>
+<a id='L9' name='L9'></a><em class='comment'>// it under the terms of the GNU General Public License as published by</em>
+<a id='L10' name='L10'></a><em class='comment'>// the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L11' name='L11'></a><em class='comment'>// (at your option) any later version.</em>
+<a id='L12' name='L12'></a><em class='comment'>//</em>
+<a id='L13' name='L13'></a><em class='comment'>// VMAPT is distributed in the hope that it will be useful,</em>
+<a id='L14' name='L14'></a><em class='comment'>// but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L15' name='L15'></a><em class='comment'>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L16' name='L16'></a><em class='comment'>// GNU General Public License for more details.</em>
+<a id='L17' name='L17'></a><em class='comment'>//</em>
+<a id='L18' name='L18'></a><em class='comment'>// You should have received a copy of the GNU General Public License</em>
+<a id='L19' name='L19'></a><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L20' name='L20'></a><em class='comment'>//</em>
 <a id='L21' name='L21'></a>
-<a id='L22' name='L22'></a>        <strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"RET")) <em class='brace'>{</em>
-<a id='L23' name='L23'></a>                fprintf(g_flog,"Processing Z80 RET g_szOpcode\n");
-<a id='L24' name='L24'></a>                g_ucBytes[g_iBytesIndex++] = 0xC9;
-<a id='L25' name='L25'></a>                g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
-<a id='L26' name='L26'></a>          g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L22' name='L22'></a><strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"CP")) <em class='brace'>{</em>
+<a id='L23' name='L23'></a>        fprintf(g_flog,"Processing Z80  CP g_szOpcode\n");
+<a id='L24' name='L24'></a>
+<a id='L25' name='L25'></a>        <strong class='reserved'>char</strong> szCPtemp[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
+<a id='L26' name='L26'></a>        <strong class='reserved'>char</strong> szCPtemp2[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
 <a id='L27' name='L27'></a>
-<a id='L28' name='L28'></a>        <em class='brace'>}</em>
+<a id='L28' name='L28'></a>        strcpy(szCPtemp2,g_szParms);
+<a id='L29' name='L29'></a>        strcpy(szCPtemp,<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(szCPtemp2));
+<a id='L30' name='L30'></a>        fprintf(g_flog,"szCPtemp is %s\n",szCPtemp);
+<a id='L31' name='L31'></a>        g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L32' name='L32'></a>
+<a id='L33' name='L33'></a><em class='comment'>//      three kinds of cp exist</em>
+<a id='L34' name='L34'></a><em class='comment'>//              cp (hl)</em>
+<a id='L35' name='L35'></a><em class='comment'>//              cp R</em>
+<a id='L36' name='L36'></a><em class='comment'>//              cp N</em>
+<a id='L37' name='L37'></a>
+<a id='L38' name='L38'></a>        fprintf(g_flog,"g_szParms are %s\n",g_szParms);
+<a id='L39' name='L39'></a>
+<a id='L40' name='L40'></a>        <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>("(HL)",szCPtemp)) <em class='brace'>{</em>
+<a id='L41' name='L41'></a>                fprintf(g_flog,"using cp (HL)");
+<a id='L42' name='L42'></a>                g_ucBytes[g_iBytesIndex++] = 0xBE;
+<a id='L43' name='L43'></a>                g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
+<a id='L44' name='L44'></a>        <em class='brace'>}</em>
+<a id='L45' name='L45'></a>
+<a id='L46' name='L46'></a>        <strong class='reserved'>if</strong>(1 == strlen(g_szParms)) <em class='brace'>{</em>
+<a id='L47' name='L47'></a>
+<a id='L48' name='L48'></a>                <strong class='reserved'>switch</strong>(szCPtemp[0]) <em class='brace'>{</em>
+<a id='L49' name='L49'></a>                        <strong class='reserved'>case</strong> 'A':
+<a id='L50' name='L50'></a>                        <strong class='reserved'>case</strong> 'a':
+<a id='L51' name='L51'></a>                                fprintf(g_flog,"using cp A");
+<a id='L52' name='L52'></a>                                g_ucBytes[g_iBytesIndex++] = 0x80+0x38+0x07;  <em class='comment'>// A</em>
+<a id='L53' name='L53'></a>                                g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
+<a id='L54' name='L54'></a>                                <strong class='reserved'>break</strong>;
+<a id='L55' name='L55'></a>                        <strong class='reserved'>case</strong> 'B':
+<a id='L56' name='L56'></a>                        <strong class='reserved'>case</strong> 'b':       
+<a id='L57' name='L57'></a>                                fprintf(g_flog,"using cp B");
+<a id='L58' name='L58'></a>                                g_ucBytes[g_iBytesIndex++] = 0x80+0x38+0x00;  <em class='comment'>// B</em>
+<a id='L59' name='L59'></a>                                g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
+<a id='L60' name='L60'></a>                                <strong class='reserved'>break</strong>;
+<a id='L61' name='L61'></a>                        <strong class='reserved'>case</strong> 'C':
+<a id='L62' name='L62'></a>                        <strong class='reserved'>case</strong> 'c':                       
+<a id='L63' name='L63'></a>                                fprintf(g_flog,"using cp C");
+<a id='L64' name='L64'></a>                                g_ucBytes[g_iBytesIndex++] = 0x80+0x38+0x01;  <em class='comment'>// C</em>
+<a id='L65' name='L65'></a>                                g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
+<a id='L66' name='L66'></a>                                <strong class='reserved'>break</strong>;
+<a id='L67' name='L67'></a>                        <strong class='reserved'>case</strong> 'D':
+<a id='L68' name='L68'></a>                        <strong class='reserved'>case</strong> 'd':
+<a id='L69' name='L69'></a>                                fprintf(g_flog,"using cp D");
+<a id='L70' name='L70'></a>                                g_ucBytes[g_iBytesIndex++] = 0x80+0x38+0x02;  <em class='comment'>// D</em>
+<a id='L71' name='L71'></a>                                g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
+<a id='L72' name='L72'></a>                                <strong class='reserved'>break</strong>;
+<a id='L73' name='L73'></a>                        <strong class='reserved'>case</strong> 'E':
+<a id='L74' name='L74'></a>                        <strong class='reserved'>case</strong> 'e':
+<a id='L75' name='L75'></a>                                fprintf(g_flog,"using cp E");
+<a id='L76' name='L76'></a>                                g_ucBytes[g_iBytesIndex++] = 0x80+0x38+0x03;  <em class='comment'>// E</em>
+<a id='L77' name='L77'></a>                                g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
+<a id='L78' name='L78'></a>                                <strong class='reserved'>break</strong>;
+<a id='L79' name='L79'></a>                        <strong class='reserved'>case</strong> 'H':
+<a id='L80' name='L80'></a>                        <strong class='reserved'>case</strong> 'h':
+<a id='L81' name='L81'></a>                                fprintf(g_flog,"using cp H");
+<a id='L82' name='L82'></a>                                g_ucBytes[g_iBytesIndex++] = 0x80+0x38+0x04;  <em class='comment'>// H</em>
+<a id='L83' name='L83'></a>                                g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
+<a id='L84' name='L84'></a>                                <strong class='reserved'>break</strong>;
+<a id='L85' name='L85'></a>                        <strong class='reserved'>case</strong> 'L':
+<a id='L86' name='L86'></a>                        <strong class='reserved'>case</strong> 'l':
+<a id='L87' name='L87'></a>                                fprintf(g_flog,"using cp L");
+<a id='L88' name='L88'></a>                                g_ucBytes[g_iBytesIndex++] = 0x80+0x38+0x05;  <em class='comment'>// L</em>
+<a id='L89' name='L89'></a>                                g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
+<a id='L90' name='L90'></a>                                <strong class='reserved'>break</strong>;
+<a id='L91' name='L91'></a>                <em class='brace'>}</em>
+<a id='L92' name='L92'></a>        <em class='brace'>}</em>
+<a id='L93' name='L93'></a>
+<a id='L94' name='L94'></a>        <strong class='reserved'>if</strong>(<a href='../D/428.html' title='Multiple defined in 2 places.'>TYPE_ERR</a> == g_iLineType) <em class='brace'>{</em>
+<a id='L95' name='L95'></a>                fprintf(g_flog,"using cp N");
+<a id='L96' name='L96'></a>                g_ucBytes[g_iBytesIndex++] = 0xC0+0x38+0x06;
+<a id='L97' name='L97'></a>                <strong class='reserved'>if</strong>(0 &lt; strlen(g_szParms)) <em class='brace'>{</em>
+<a id='L98' name='L98'></a>                        g_ucBytes[g_iBytesIndex++] = <a href='../D/560.html' title='Multiple defined in 2 places.'>resolvep8</a>(g_szParms);
+<a id='L99' name='L99'></a>                <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L100' name='L100'></a>                        g_iErrorNo |= <a href='../D/73.html' title='Multiple defined in 2 places.'>ERROR_NOPARM</a>;
+<a id='L101' name='L101'></a>                <em class='brace'>}</em>
+<a id='L102' name='L102'></a>        <em class='brace'>}</em>
+<a id='L103' name='L103'></a>        g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
+<a id='L104' name='L104'></a><em class='brace'>}</em>
+<a id='L105' name='L105'></a>
+<a id='L106' name='L106'></a><em class='comment'>//////////////////</em>
+<a id='L107' name='L107'></a><em class='comment'>// eof - cp.hpp //</em>
+<a id='L108' name='L108'></a><em class='comment'>//////////////////</em>
+<a id='L109' name='L109'></a>
 </pre>
 <hr />
 <a id='BOTTOM' name='BOTTOM'></a>

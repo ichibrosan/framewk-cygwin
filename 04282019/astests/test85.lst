@@ -1,0 +1,428 @@
+test85.lst     Page 1 ../assemble Ver 19.04.28j
+$Id: test85.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
+COPR 2011 Douglas Goodall
+   1:U:1 0000:                    title      $Id: test85.asm,v 1.2 2011/03/25+
+   1+U+1 0000:           09:01:21 doug Exp $  
+   2:U:1 0000:                    subttl     COPR 2011 Douglas Goodall  
+   3:U:1 0000:                ;
+   4:U:1 0000:                ; $Log: test85.asm,v $
+   5:U:1 0000:                ; Revision 1.2  2011/03/25 09:01:21  doug
+   6:U:1 0000:                ; *** empty log message ***
+   7:U:1 0000:                ;
+   8:U:1 0000:                ; Revision 1.1  2011/03/25 08:26:35  doug
+   9:U:1 0000:                ; Initial revision
+  10:U:1 0000:                ;
+  11:U:1 0000:                ;
+  12:U:1 0000:                    include    gplstuff.inc  
+   1:U:2 0000:                ; ------------------------------------
+   2:U:2 0000:                ; This file is part of "Vintage Modern 
+   3:U:2 0000:                ; Assembler Plus Tools (VMAPT)".
+   4:U:2 0000:                ;
+   5:U:2 0000:                ; VMAPT is free software: you can 
+   6:U:2 0000:                ; redistribute it and/or modify it under 
+   7:U:2 0000:                ; the terms of  the GNU General Public 
+   8:U:2 0000:                ; License  as published by the Free
+   9:U:2 0000:                ; Software  Foundation, either version 3
+  10:U:2 0000:                ; of the License, or (at your option)  
+  11:U:2 0000:                ; any later version.
+  12:U:2 0000:                ;
+  13:U:2 0000:                ; VMAPT is distributed in the hope that it 
+  14:U:2 0000:                ; will be useful, but WITHOUT ANY WARRANTY;
+  15:U:2 0000:                ; without even the implied warranty of   
+  16:U:2 0000:                ; MERCHANTABILITY or FITNESS FOR A 
+  17:U:2 0000:                ; PARTICULAR PURPOSE. See the GNU General 
+  18:U:2 0000:                ; Public License for more details.
+  19:U:2 0000:                ;
+  20:U:2 0000:                ; You  should have received a copy of the 
+  21:U:2 0000:                ; GNU General Public License along with 
+  22:U:2 0000:                ; VMAPT. If not,
+  23:U:2 0000:                ; see <http://www.gnu.org/licenses/>.
+  24:U:2 0000:                ; ----------------------------------------
+  25:U:2 0000:                                
+  13:U:1 0000:                                
+  14:U:1 0000:                                
+  15:U:1 0000:                ; Id: test85.asm 1.1 1993/08/02 01:24:21 toma E+
+  15+U+1 0000:          xp 
+  16:U:1 0000:                                
+  17:U:1 0000:                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  18:U:1 0000:                ; TASM  test file
+  19:U:1 0000:                ; Test all instructions and addressing modes.
+  20:U:1 0000:                ; Processor: 8080/8085
+  21:U:1 0000:                ;
+  22:U:1 0000:                    proc       8085  
+  23:U:1 0000:                    radix      hex  
+test85.lst     Page 2 ../assemble Ver 19.04.28j
+$Id: test85.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
+COPR 2011 Douglas Goodall
+  24:U:1 0000:                                
+  25:U:1 0000:          idata16   equ        1234  
+  26:U:1 0000:          idata8    equ        12  
+  27:U:1 0000:          port      equ        34  
+  28:U:1 0000:          addr16    equ        5678  
+  29:U:1 0000:                                
+  30:U:1 1000:                    org        1000  
+  31:U:1 1000:                                
+  32:U:1 1000: 00       start     nop          
+  33:U:1 1001: 01 34 12           lxi        b,idata16  
+  34:U:1 1004: 02                 stax       b  
+  35:U:1 1005: 03                 inx        b  
+  36:U:1 1006: 04                 inr        b  
+  37:U:1 1007: 05                 dcr        b  
+  38:U:1 1008: 06 12              mvi        b,idata8  
+  39:U:1 100A: 07                 rlc          
+  40:U:1 100B:                                
+  41:U:1 100B: 09                 dad        b  
+  42:U:1 100C: 0A                 ldax       b  
+  43:U:1 100D: 0B                 dcx        b  
+  44:U:1 100E: 0C                 inr        c  
+  45:U:1 100F: 0D                 dcr        c  
+  46:U:1 1010: 0E 12              mvi        c,idata8  
+  47:U:1 1012: 0F                 rrc          
+  48:U:1 1013:                                
+  49:U:1 1013:                ;       ---                     ; 10
+  50:U:1 1013: 11 34 12           lxi        d,idata16  
+  51:U:1 1016: 12                 stax       d  
+  52:U:1 1017: 13                 inx        d  
+  53:U:1 1018: 14                 inr        d  
+  54:U:1 1019: 15                 dcr        d  
+  55:U:1 101A: 16 12              mvi        d,idata8  
+  56:U:1 101C: 17                 ral          
+  57:U:1 101D:                ;       ---
+  58:U:1 101D: 19                 dad        d  
+  59:U:1 101E: 1A                 ldax       d  
+  60:U:1 101F: 1B                 dcx        d  
+  61:U:1 1020: 1C                 inr        e  
+  62:U:1 1021: 1D                 dcr        e  
+  63:U:1 1022: 1E 12              mvi        e,idata8  
+  64:U:1 1024: 1F                 rar          
+  65:U:1 1025:                                
+  66:U:1 1025: 20                 rim        ; 20  
+  67:U:1 1026: 21 34 12           lxi        h,idata16  
+  68:U:1 1029: 22 78 56           shld       addr16  
+  69:U:1 102C: 23                 inx        h  
+  70:U:1 102D: 24                 inr        h  
+test85.lst     Page 3 ../assemble Ver 19.04.28j
+$Id: test85.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
+COPR 2011 Douglas Goodall
+  71:U:1 102E: 25                 dcr        h  
+  72:U:1 102F: 26 12              mvi        h,idata8  
+  73:U:1 1031: 27                 daa          
+  74:U:1 1032:                ;       ---
+  75:U:1 1032: 29                 dad        h  
+  76:U:1 1033: 2A 78 56           lhld       addr16  
+  77:U:1 1036: 2B                 dcx        h  
+  78:U:1 1037: 2C                 inr        l  
+  79:U:1 1038: 2D                 dcr        l  
+  80:U:1 1039: 2E 12              mvi        l,idata8  
+  81:U:1 103B: 2F                 cma          
+  82:U:1 103C:                                
+  83:U:1 103C: 30                 sim        ; 30  
+  84:U:1 103D: 31 34 12           lxi        sp,idata16  
+  85:U:1 1040: 32 78 56           sta        addr16  
+  86:U:1 1043: 33                 inx        sp  
+  87:U:1 1044: 34                 inr        m  
+  88:U:1 1045: 35                 dcr        m  
+  89:U:1 1046: 36 12              mvi        m,idata8  
+  90:U:1 1048: 37                 stc          
+  91:U:1 1049:                ;       ---
+  92:U:1 1049: 39                 dad        sp  
+  93:U:1 104A: 3A 78 56           lda        addr16  
+  94:U:1 104D: 3B                 dcx        sp  
+  95:U:1 104E: 3C                 inr        a  
+  96:U:1 104F: 3D                 dcr        a  
+  97:U:1 1050: 3E 12              mvi        a,idata8  
+  98:U:1 1052: 3F                 cmc          
+  99:U:1 1053:                                
+ 100:U:1 1053: 40                 mov        b,b  ; 40
+ 101:U:1 1054: 41                 mov        b,c  
+ 102:U:1 1055: 42                 mov        b,d  
+ 103:U:1 1056: 43                 mov        b,e  
+ 104:U:1 1057: 44                 mov        b,h  
+ 105:U:1 1058: 45                 mov        b,l  
+ 106:U:1 1059: 46                 mov        b,m  
+ 107:U:1 105A: 47                 mov        b,a  
+ 108:U:1 105B: 48                 mov        c,b  
+ 109:U:1 105C: 49                 mov        c,c  
+ 110:U:1 105D: 4A                 mov        c,d  
+ 111:U:1 105E: 4B                 mov        c,e  
+ 112:U:1 105F: 4C                 mov        c,h  
+ 113:U:1 1060: 4D                 mov        c,l  
+ 114:U:1 1061: 4E                 mov        c,m  
+ 115:U:1 1062: 4F                 mov        c,a  
+ 116:U:1 1063:                                
+ 117:U:1 1063: 50                 mov        d,b  ; 50
+test85.lst     Page 4 ../assemble Ver 19.04.28j
+$Id: test85.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
+COPR 2011 Douglas Goodall
+ 118:U:1 1064: 51                 mov        d,c  
+ 119:U:1 1065: 52                 mov        d,d  
+ 120:U:1 1066: 53                 mov        d,e  
+ 121:U:1 1067: 54                 mov        d,h  
+ 122:U:1 1068: 55                 mov        d,l  
+ 123:U:1 1069: 56                 mov        d,m  
+ 124:U:1 106A: 57                 mov        d,a  
+ 125:U:1 106B: 58                 mov        e,b  
+ 126:U:1 106C: 59                 mov        e,c  
+ 127:U:1 106D: 5A                 mov        e,d  
+ 128:U:1 106E: 5B                 mov        e,e  
+ 129:U:1 106F: 5C                 mov        e,h  
+ 130:U:1 1070: 5D                 mov        e,l  
+ 131:U:1 1071: 5E                 mov        e,m  
+ 132:U:1 1072: 5F                 mov        e,a  
+ 133:U:1 1073:                                
+ 134:U:1 1073: 60                 mov        h,b  ; 60
+ 135:U:1 1074: 61                 mov        h,c  
+ 136:U:1 1075: 62                 mov        h,d  
+ 137:U:1 1076: 63                 mov        h,e  
+ 138:U:1 1077: 64                 mov        h,h  
+ 139:U:1 1078: 65                 mov        h,l  
+ 140:U:1 1079: 66                 mov        h,m  
+ 141:U:1 107A: 67                 mov        h,a  
+ 142:U:1 107B: 68                 mov        l,b  
+ 143:U:1 107C: 69                 mov        l,c  
+ 144:U:1 107D: 6A                 mov        l,d  
+ 145:U:1 107E: 6B                 mov        l,e  
+ 146:U:1 107F: 6C                 mov        l,h  
+ 147:U:1 1080: 6D                 mov        l,l  
+ 148:U:1 1081: 6E                 mov        l,m  
+ 149:U:1 1082: 6F                 mov        l,a  
+ 150:U:1 1083:                                
+ 151:U:1 1083: 70                 mov        m,b  ; 70
+ 152:U:1 1084: 71                 mov        m,c  
+ 153:U:1 1085: 72                 mov        m,d  
+ 154:U:1 1086: 73                 mov        m,e  
+ 155:U:1 1087: 74                 mov        m,h  
+ 156:U:1 1088: 75                 mov        m,l  
+ 157:U:1 1089: 76                 hlt          
+ 158:U:1 108A: 77                 mov        m,a  
+ 159:U:1 108B: 78                 mov        a,b  
+ 160:U:1 108C: 79                 mov        a,c  
+ 161:U:1 108D: 7A                 mov        a,d  
+ 162:U:1 108E: 7B                 mov        a,e  
+ 163:U:1 108F: 7C                 mov        a,h  
+ 164:U:1 1090: 7D                 mov        a,l  
+test85.lst     Page 5 ../assemble Ver 19.04.28j
+$Id: test85.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
+COPR 2011 Douglas Goodall
+ 165:U:1 1091: 7E                 mov        a,m  
+ 166:U:1 1092: 7F                 mov        a,a  
+ 167:U:1 1093:                                
+ 168:U:1 1093: 80                 add        b  ; 80
+ 169:U:1 1094: 81                 add        c  
+ 170:U:1 1095: 82                 add        d  
+ 171:U:1 1096: 83                 add        e  
+ 172:U:1 1097: 84                 add        h  
+ 173:U:1 1098: 85                 add        l  
+ 174:U:1 1099: 86                 add        m  
+ 175:U:1 109A: 87                 add        a  
+ 176:U:1 109B: 88                 adc        b  ; 88
+ 177:U:1 109C: 89                 adc        c  
+ 178:U:1 109D: 8A                 adc        d  
+ 179:U:1 109E: 8B                 adc        e  
+ 180:U:1 109F: 8C                 adc        h  
+ 181:U:1 10A0: 8D                 adc        l  
+ 182:U:1 10A1: 8E                 adc        m  
+ 183:U:1 10A2: 8F                 adc        a  
+ 184:U:1 10A3:                                
+ 185:U:1 10A3: 90                 sub        b  ; 90
+ 186:U:1 10A4: 91                 sub        c  
+ 187:U:1 10A5: 92                 sub        d  
+ 188:U:1 10A6: 93                 sub        e  
+ 189:U:1 10A7: 94                 sub        h  
+ 190:U:1 10A8: 95                 sub        l  
+ 191:U:1 10A9: 96                 sub        m  
+ 192:U:1 10AA: 97                 sub        a  
+ 193:U:1 10AB: 98                 sbb        b  ; 98
+ 194:U:1 10AC: 99                 sbb        c  
+ 195:U:1 10AD: 9A                 sbb        d  
+ 196:U:1 10AE: 9B                 sbb        e  
+ 197:U:1 10AF: 9C                 sbb        h  
+ 198:U:1 10B0: 9D                 sbb        l  
+ 199:U:1 10B1: 9E                 sbb        m  
+ 200:U:1 10B2: 9F                 sbb        a  
+ 201:U:1 10B3:                                
+ 202:U:1 10B3: A0                 ana        b  ; a0
+ 203:U:1 10B4: A1                 ana        c  
+ 204:U:1 10B5: A2                 ana        d  
+ 205:U:1 10B6: A3                 ana        e  
+ 206:U:1 10B7: A4                 ana        h  
+ 207:U:1 10B8: A5                 ana        l  
+ 208:U:1 10B9: A6                 ana        m  
+ 209:U:1 10BA: A7                 ana        a  
+ 210:U:1 10BB: A8                 xra        b  ; a8
+ 211:U:1 10BC: A9                 xra        c  
+test85.lst     Page 6 ../assemble Ver 19.04.28j
+$Id: test85.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
+COPR 2011 Douglas Goodall
+ 212:U:1 10BD: AA                 xra        d  
+ 213:U:1 10BE: AB                 xra        e  
+ 214:U:1 10BF: AC                 xra        h  
+ 215:U:1 10C0: AD                 xra        l  
+ 216:U:1 10C1: AE                 xra        m  
+ 217:U:1 10C2: AF                 xra        a  
+ 218:U:1 10C3:                                
+ 219:U:1 10C3: B0                 ora        b  ; b0
+ 220:U:1 10C4: B1                 ora        c  
+ 221:U:1 10C5: B2                 ora        d  
+ 222:U:1 10C6: B3                 ora        e  
+ 223:U:1 10C7: B4                 ora        h  
+ 224:U:1 10C8: B5                 ora        l  
+ 225:U:1 10C9: B6                 ora        m  
+ 226:U:1 10CA: B7                 ora        a  
+ 227:U:1 10CB: B8                 cmp        b  ; b8
+ 228:U:1 10CC: B9                 cmp        c  
+ 229:U:1 10CD: BA                 cmp        d  
+ 230:U:1 10CE: BB                 cmp        e  
+ 231:U:1 10CF: BC                 cmp        h  
+ 232:U:1 10D0: BD                 cmp        l  
+ 233:U:1 10D1: BE                 cmp        m  
+ 234:U:1 10D2: BF                 cmp        a  
+ 235:U:1 10D3:                                
+ 236:U:1 10D3: C0                 rnz        ; c0  
+ 237:U:1 10D4: C1                 pop        b  
+ 238:U:1 10D5: C2 00 10           jnz        start  
+ 239:U:1 10D8: C3 00 10           jmp        start  
+ 240:U:1 10DB: C4 00 10           cnz        start  
+ 241:U:1 10DE: C5                 push       b  
+ 242:U:1 10DF: C6 12              adi        idata8  
+ 243:U:1 10E1: C7                 rst        0  
+ 244:U:1 10E2: C8                 rz           
+ 245:U:1 10E3: C9                 ret          
+ 246:U:1 10E4: CA 00 10           jz         start  
+ 247:U:1 10E7:                ;       ---
+ 248:U:1 10E7: CC 00 10           cz         start  
+ 249:U:1 10EA: CD 00 10           call       start  
+ 250:U:1 10ED: CE 12              aci        idata8  
+ 251:U:1 10EF: CF                 rst        1  
+ 252:U:1 10F0:                                
+ 253:U:1 10F0: D0                 rnc        ; d0  
+ 254:U:1 10F1: D1                 pop        d  
+ 255:U:1 10F2: D2 00 10           jnc        start  
+ 256:U:1 10F5: D3 34              out        port  
+ 257:U:1 10F7: D4 00 10           cnc        start  
+ 258:U:1 10FA: D5                 push       d  
+test85.lst     Page 7 ../assemble Ver 19.04.28j
+$Id: test85.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
+COPR 2011 Douglas Goodall
+ 259:U:1 10FB: D6 12              sui        idata8  
+ 260:U:1 10FD: D7                 rst        2  
+ 261:U:1 10FE: D8                 rc           
+ 262:U:1 10FF:                ;       ---
+ 263:U:1 10FF: DA 00 10           jc         start  
+ 264:U:1 1102: DB 34              in         port  
+ 265:U:1 1104: DC 00 10           cc         start  
+ 266:U:1 1107:                ;       ---
+ 267:U:1 1107: DE 12              sbi        idata8  
+ 268:U:1 1109: DF                 rst        3  
+ 269:U:1 110A:                                
+ 270:U:1 110A: E0                 rpo        ; e0  
+ 271:U:1 110B: E1                 pop        h  
+ 272:U:1 110C: E2 00 10           jpo        start  
+ 273:U:1 110F: E3                 xthl         
+ 274:U:1 1110: E4 00 10           cpo        start  
+ 275:U:1 1113: E5                 push       h  
+ 276:U:1 1114: E6 12              ani        idata8  
+ 277:U:1 1116: E7                 rst        4  
+ 278:U:1 1117: E8                 rpe          
+ 279:U:1 1118: E9                 pchl         
+ 280:U:1 1119: EA 00 10           jpe        start  
+ 281:U:1 111C: EB                 xchg         
+ 282:U:1 111D: EC 00 10           cpe        start  
+ 283:U:1 1120:                ;       ---
+ 284:U:1 1120: EE 12              xri        idata8  
+ 285:U:1 1122: EF                 rst        5  
+ 286:U:1 1123:                                
+ 287:U:1 1123: F0                 rp         ; f0  
+ 288:U:1 1124: F1                 pop        psw  
+ 289:U:1 1125: F2 00 10           jp         start  
+ 290:U:1 1128: F3                 di           
+ 291:U:1 1129: F4 00 10           cp         start  
+ 292:U:1 112C: F5                 push       psw  
+ 293:U:1 112D: F6 12              ori        idata8  
+ 294:U:1 112F: F7                 rst        6  
+ 295:U:1 1130: F8                 rm           
+ 296:U:1 1131: F9                 sphl         
+ 297:U:1 1132: FA 00 10           jm         start  
+ 298:U:1 1135: FB                 ei           
+ 299:U:1 1136: FC 00 10           cm         start  
+ 300:U:1 1139:                ;       ---
+ 301:U:1 1139: FE 12              cpi        idata8  
+ 302:U:1 113B: FF                 rst        7  
+ 303:U:1 113C:                                
+ 304:U:1 113C:                    END          
+test85.lst     Page 8 ../assemble Ver 19.04.28j
+$Id: test85.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
+COPR 2011 Douglas Goodall
+ 304:U:1 ----------------------------------------------
+ 304:U:1 Symbol table byte entries...
+ 304:U:1 port.u8, 0x34 (52)
+ 304:U:1 idata8.u8, 0x12 (18)
+ 304:U:1 addr16.u8, 0x78 (120)
+ 304:U:1 start.u8, 0x00 (0)
+ 304:U:1 idata16.u8, 0x34 (52)
+ 304:U:1 ----------------------------------------------
+ 304:U:1 Symbol table word entries...
+ 304:U:1 addr16.u16, 0x5678 (22136)
+ 304:U:1 pagewdth.u16, 0x004A (74)
+ 304:U:1 start.u16, 0x1000 (4096)
+ 304:U:1 port.u16, 0x0034 (52)
+ 304:U:1 idata16.u16, 0x1234 (4660)
+ 304:U:1 ldefpgwd.u16, 0x004A (74)
+ 304:U:1 ldefpgln.u16, 0x0032 (50)
+ 304:U:1 pagelgth.u16, 0x0032 (50)
+ 304:U:1 idata8.u16, 0x0012 (18)
+ 304:U:1 ----------------------------------------------
+ 304:U:1 Symbol table dword entries...
+ 304:U:1 start.u32, 0x00001000 (4096)
+ 304:U:1 addr16.u32, 0x00005678 (22136)
+ 304:U:1 idata8.u32, 0x00000012 (18)
+ 304:U:1 idata16.u32, 0x00001234 (4660)
+ 304:U:1 port.u32, 0x00000034 (52)
+ 304:U:1 ----------------------------------------------
+ 304:U:1 Symbol table qword entries...
+ 304:U:1 idata8.u64, 0x00000000000000012 (18)
+ 304:U:1 idata16.u64, 0x00000000000001234 (4660)
+ 304:U:1 port.u64, 0x00000000000000034 (52)
+ 304:U:1 start.u64, 0x00000000000001000 (4096)
+ 304:U:1 addr16.u64, 0x00000000000005678 (22136)
+ 304:U:1 ----------------------------------------------
+ 304:U:1 Symbol table meta entries...
+ 304:U:1 asdec68k.mta, "$Id: asdec68k.hpp,v 1.1 2011/03/24 11:58:05 doug Exp +
+ 304+U+1 113C:          $"
+ 304:U:1 asdecdir.mta, "$Id: asdecdir.hpp,v 1.1 2011/03/24 11:58:05 doug Exp +
+ 304+U+1 113C:          $"
+ 304:U:1 hostname.mta, "Douglas-MacBook-Pro.local"
+ 304:U:1 asymbols.mta, "$Id: asymbols.hpp,v 1.6 2011/04/14 15:13:09 doug Exp +
+ 304+U+1 113C:          $"
+ 304:U:1 assemble.mta, "$Id: assemble.cpp,v 1.5 2011/04/14 15:13:09 doug Exp +
+ 304+U+1 113C:          $"
+ 304:U:1 asdec65.mta, "$Id: asdec65.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $"
+ 304:U:1 asdecz80.mta, "$Id: asdecz80.hpp,v 1.1 2011/03/24 11:58:05 doug Exp +
+ 304+U+1 113C:          $"
+ 304:U:1 asoutlst.mta, "$Id: asoutlst.hpp,v 1.2 2011/03/25 05:48:59 doug Exp +
+test85.lst     Page 9 ../assemble Ver 19.04.28j
+$Id: test85.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
+COPR 2011 Douglas Goodall
+ 304+U+1 113C:          $"
+ 304:U:1 username.mta, "doug"
+ 304:U:1 asouthex.mta, "$Id: asouthex.hpp,v 1.1 2011/03/24 11:58:05 doug Exp +
+ 304+U+1 113C:          $"
+ 304:U:1 asoutwrn.mta, "$Id: asoutwrn.hpp,v 1.2 2011/04/14 15:13:09 doug Exp +
+ 304+U+1 113C:          $"
+ 304:U:1 asprint.mta, "$Id: asprint.hpp,v 1.2 2011/03/25 05:48:10 doug Exp $"
+ 304:U:1 ascalc.mta, "$Id: ascalc.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $"
+ 304:U:1 asdec20.mta, "$Id: asdec20.hpp,v 1.1 2011/03/25 05:49:38 doug Exp $"
+ 304:U:1 pwd.mta, "/Users/doug/src/framewk/04282019/astests"
+ 304:U:1 ashexout.mta, "$Id: ashexout.hpp,v 1.1 2011/03/24 11:58:05 doug Exp +
+ 304+U+1 113C:          $"
+ 304:U:1 asouterr.mta, "$Id: asouterr.hpp,v 1.2 2011/04/14 15:13:09 doug Exp +
+ 304+U+1 113C:          $"
+ 304:U:1 asdec80.mta, "$Id: asdec80.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $"
+ 304:U:1 asparse.mta, "$Id: asparse.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $"
+ 304:U:1 asdec85.mta, "$Id: asdec85.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $"
+ 304:U:1 asresolv.mta, "$Id: asresolv.hpp,v 1.3 2011/04/14 15:13:09 doug Exp +
+ 304+U+1 113C:          $"
+ 304:U:1 aseval.mta, "$Id: aseval.hpp,v 1.2 2011/04/14 15:13:09 doug Exp $"
+ 304:U:1 machtype.mta, "x86_64-apple-darwin18"
+ 304:U:1 hosttype.mta, "x86_64"
+ 304:U:1 program.mta, "test85"

@@ -1,97 +1,127 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
-<title>base/asmultip.hpp</title>
+<title>base/mkbindef.cpp</title>
 <meta name='robots' content='noindex,nofollow' />
 <meta name='generator' content='GLOBAL-6.6.3' />
 <meta http-equiv='Content-Style-Type' content='text/css' />
 <link rel='stylesheet' type='text/css' href='../style.css' />
 </head>
 <body>
-<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/822.html'>base</a>/asmultip.hpp</h2>
-<em class='comment'>/* [&lt;][&gt;]<a href='#L30'>[^]</a><a href='#L41'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
-<hr />
-<h2 class='header'><a href='../J/200.html' title='Multiple included from 2 places.'>INCLUDED FROM</a></h2>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/817.html'>base</a>/mkbindef.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L38'>[^]</a><a href='#L57'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 <hr />
 <h2 class='header'>DEFINITIONS</h2>
 This source file includes following definitions.
 <ol>
-<li><a href='#L30' title='Defined at 30.'>iCommaCount</a></li>
-<li><a href='#L41' title='Defined at 41.'>pszParmN</a></li>
+<li><a href='#L38' title='Defined at 38.'>dec2bin</a></li>
+<li><a href='#L57' title='Defined at 57.'>main</a></li>
 </ol>
 <hr />
 <pre>
-<a id='L1' name='L1'></a><em class='comment'>// $Log: asmultip.hpp,v $</em>
-<a id='L2' name='L2'></a><em class='comment'>// Revision 1.1  2011/04/03 05:18:25  doug</em>
-<a id='L3' name='L3'></a><em class='comment'>// Initial revision</em>
+<a id='L1' name='L1'></a><em class='comment'>// $Log: mkbindef.cpp,v $</em>
+<a id='L2' name='L2'></a><em class='comment'>// Revision 1.3  2011/04/14 15:13:09  doug</em>
+<a id='L3' name='L3'></a><em class='comment'>// get ready for release to wiki and server</em>
 <a id='L4' name='L4'></a><em class='comment'>//</em>
 <a id='L5' name='L5'></a><em class='comment'>//</em>
 <a id='L6' name='L6'></a>
-<a id='L7' name='L7'></a>
-<a id='L8' name='L8'></a><em class='comment'>// ---------------------------------------------------</em>
-<a id='L9' name='L9'></a><em class='comment'>// This file is part of Vintage Modern Assembler Plus Tools.</em>
-<a id='L10' name='L10'></a><em class='comment'>//</em>
-<a id='L11' name='L11'></a><em class='comment'>// VMAPT is free software: you can redistribute it and/or modify</em>
-<a id='L12' name='L12'></a><em class='comment'>// it under the terms of the GNU General Public License as published by</em>
-<a id='L13' name='L13'></a><em class='comment'>// the Free Software Foundation, either version 3 of the License, or</em>
-<a id='L14' name='L14'></a><em class='comment'>// (at your option) any later version.</em>
-<a id='L15' name='L15'></a><em class='comment'>//</em>
-<a id='L16' name='L16'></a><em class='comment'>// VMAPT is distributed in the hope that it will be useful,</em>
-<a id='L17' name='L17'></a><em class='comment'>// but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
-<a id='L18' name='L18'></a><em class='comment'>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
-<a id='L19' name='L19'></a><em class='comment'>// GNU General Public License for more details.</em>
-<a id='L20' name='L20'></a><em class='comment'>//</em>
-<a id='L21' name='L21'></a><em class='comment'>// You should have received a copy of the GNU General Public License</em>
-<a id='L22' name='L22'></a><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L7' name='L7'></a><em class='comment'>// ---------------------------------------------------</em>
+<a id='L8' name='L8'></a><em class='comment'>// mkbindef.cpp 21-Feb-11   Running on Mac OS X 10.6.6</em>
+<a id='L9' name='L9'></a><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
+<a id='L10' name='L10'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L11' name='L11'></a><em class='comment'>// ---------------------------------------------------</em>
+<a id='L12' name='L12'></a><em class='comment'>// This file is part of Vintage Modern Assembler Plus Tools.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>// VMAPT is free software: you can redistribute it and/or modify</em>
+<a id='L15' name='L15'></a><em class='comment'>// it under the terms of the GNU General Public License as published by</em>
+<a id='L16' name='L16'></a><em class='comment'>// the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L17' name='L17'></a><em class='comment'>// (at your option) any later version.</em>
+<a id='L18' name='L18'></a><em class='comment'>//</em>
+<a id='L19' name='L19'></a><em class='comment'>// VMAPT is distributed in the hope that it will be useful,</em>
+<a id='L20' name='L20'></a><em class='comment'>// but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L21' name='L21'></a><em class='comment'>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L22' name='L22'></a><em class='comment'>// GNU General Public License for more details.</em>
 <a id='L23' name='L23'></a><em class='comment'>//</em>
-<a id='L24' name='L24'></a>
-<a id='L25' name='L25'></a><em class='comment'>// This function returns the number of commas that occur</em>
-<a id='L26' name='L26'></a><em class='comment'>// in a string that is passed as a parameter. It is most</em>
-<a id='L27' name='L27'></a><em class='comment'>// likely that a directive handler calls this to discover</em>
-<a id='L28' name='L28'></a><em class='comment'>// how many parameters are present prior to parsing.</em>
-<a id='L29' name='L29'></a>
-<a id='L30' name='L30'></a><strong class='reserved'>int</strong> <a href='../R/231.html' title='Multiple referred from 8 places.'>iCommaCount</a>(<strong class='reserved'>char</strong> *szParms)
-<a id='L31' name='L31'></a><em class='brace'>{</em>
-<a id='L32' name='L32'></a>        <strong class='reserved'>int</strong> iCommas = 0;
-<a id='L33' name='L33'></a>        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;strlen(szParms);i++) <em class='brace'>{</em>
-<a id='L34' name='L34'></a>                <strong class='reserved'>if</strong>(',' == szParms[i]) <em class='brace'>{</em>
-<a id='L35' name='L35'></a>                        iCommas++;
-<a id='L36' name='L36'></a>                <em class='brace'>}</em>
-<a id='L37' name='L37'></a>        <em class='brace'>}</em>
-<a id='L38' name='L38'></a>        <strong class='reserved'>return</strong> iCommas;
-<a id='L39' name='L39'></a><em class='brace'>}</em>
-<a id='L40' name='L40'></a>
-<a id='L41' name='L41'></a><strong class='reserved'>char</strong> * <a href='../R/251.html' title='Multiple referred from 8 places.'>pszParmN</a>(<strong class='reserved'>char</strong> *szString,<strong class='reserved'>int</strong> iParmNo)
-<a id='L42' name='L42'></a><em class='brace'>{</em>
-<a id='L43' name='L43'></a>        <strong class='reserved'>int</strong> iEnds[20];
-<a id='L44' name='L44'></a>        memset(&amp;iEnds,0,<strong class='reserved'>sizeof</strong>(iEnds));
-<a id='L45' name='L45'></a>        <strong class='reserved'>int</strong> iStarts[20];
-<a id='L46' name='L46'></a>        memset(&amp;iStarts,0,<strong class='reserved'>sizeof</strong>(iStarts));
-<a id='L47' name='L47'></a>        <strong class='reserved'>char</strong> szLocal[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
-<a id='L48' name='L48'></a>        strcpy(szLocal,szString);  
-<a id='L49' name='L49'></a>        <strong class='reserved'>int</strong> iNumber = 0;
-<a id='L50' name='L50'></a>        iStarts[iNumber] = 0; 
-<a id='L51' name='L51'></a>        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;strlen(szLocal);i++) <em class='brace'>{</em>
-<a id='L52' name='L52'></a>                <strong class='reserved'>if</strong>(',' == szLocal[i]) <em class='brace'>{</em>
-<a id='L53' name='L53'></a>                        iEnds[iNumber++] = i;
-<a id='L54' name='L54'></a>                        iStarts[iNumber] = i+1;
-<a id='L55' name='L55'></a>                <em class='brace'>}</em> 
-<a id='L56' name='L56'></a>        <em class='brace'>}</em>
-<a id='L57' name='L57'></a><em class='comment'>//      for(int j=0;j&lt;iNumber+1;j++) {</em>
-<a id='L58' name='L58'></a><em class='comment'>//              printf("start %2d end %2d\n",iStarts[j],iEnds[j]);</em>
-<a id='L59' name='L59'></a><em class='comment'>//      }</em>
-<a id='L60' name='L60'></a><em class='comment'>//      printf("DEBUG: szLocal is %s\n",szLocal);</em>
-<a id='L61' name='L61'></a>        szLocal[iEnds[iParmNo]] = 0;
-<a id='L62' name='L62'></a>        strcpy(g_szTemp,&amp;szLocal[iStarts[iParmNo]]);
-<a id='L63' name='L63'></a>        <strong class='reserved'>return</strong> g_szTemp;
-<a id='L64' name='L64'></a><em class='brace'>}</em>
-<a id='L65' name='L65'></a>
-<a id='L66' name='L66'></a><em class='comment'>////////////////////////</em>
-<a id='L67' name='L67'></a><em class='comment'>// eof - asexperi.hpp //</em>
-<a id='L68' name='L68'></a><em class='comment'>////////////////////////</em>
+<a id='L24' name='L24'></a><em class='comment'>// You should have received a copy of the GNU General Public License</em>
+<a id='L25' name='L25'></a><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L26' name='L26'></a><em class='comment'>//</em>
+<a id='L27' name='L27'></a><em class='comment'>//#define __TRACE</em>
+<a id='L28' name='L28'></a>
+<a id='L29' name='L29'></a><strong class='reserved'>static</strong> <strong class='reserved'>char</strong> szMkbindefCpp[] = "$Id: mkbindef.cpp,v 1.3 2011/04/14 15:13:09 doug Exp $";
+<a id='L30' name='L30'></a>
+<a id='L31' name='L31'></a><em class='sharp'>#include</em> "<a href='../I/196.html'>asdefs.hpp</a>"
+<a id='L32' name='L32'></a><em class='sharp'>#define</em> <a href='../R/46.html' title='Multiple referred from 2 places.'>DWGALLOC</a>
+<a id='L33' name='L33'></a><em class='sharp'>#define</em> <a href='../R/66.html' title='Multiple referred from 2 places.'>INIBIND</a>
+<a id='L34' name='L34'></a><em class='sharp'>#include</em> "<a href='../I/324.html'>includes.hpp</a>"
+<a id='L35' name='L35'></a>
+<a id='L36' name='L36'></a><strong class='reserved'>char</strong> szBinary[16];
+<a id='L37' name='L37'></a>
+<a id='L38' name='L38'></a><strong class='reserved'>char</strong> * <a href='../R/178.html' title='Multiple referred from 2 places.'>dec2bin</a>(<strong class='reserved'>int</strong> dec)
+<a id='L39' name='L39'></a><em class='brace'>{</em>
+<a id='L40' name='L40'></a>        <strong class='reserved'>int</strong> working = dec;
+<a id='L41' name='L41'></a>        <strong class='reserved'>int</strong> temp;
+<a id='L42' name='L42'></a>        memset(szBinary,0,<strong class='reserved'>sizeof</strong>(szBinary));
+<a id='L43' name='L43'></a>
+<a id='L44' name='L44'></a>        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;8;i++) <em class='brace'>{</em>
+<a id='L45' name='L45'></a>                <strong class='reserved'>if</strong>(working &amp; 1) <em class='brace'>{</em>
+<a id='L46' name='L46'></a>                        szBinary[7-i] = '1';                    
+<a id='L47' name='L47'></a>                <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L48' name='L48'></a>                        szBinary[7-i] = '0';
+<a id='L49' name='L49'></a>                <em class='brace'>}</em>       
+<a id='L50' name='L50'></a>                temp = working;
+<a id='L51' name='L51'></a>                working = temp &gt;&gt; 1;                    
+<a id='L52' name='L52'></a>        <em class='brace'>}</em>
+<a id='L53' name='L53'></a>        <strong class='reserved'>return</strong> szBinary;
+<a id='L54' name='L54'></a><em class='brace'>}</em>
+<a id='L55' name='L55'></a>
+<a id='L56' name='L56'></a>
+<a id='L57' name='L57'></a><strong class='reserved'>int</strong> main(<strong class='reserved'>int</strong> argc,<strong class='reserved'>char</strong> **argv)
+<a id='L58' name='L58'></a><em class='brace'>{</em>
+<a id='L59' name='L59'></a>        <a href='../D/410.html' title='Multiple defined in 2 places.'>TRACE</a>("Entering hello.cpp's main routine");
+<a id='L60' name='L60'></a>        
+<a id='L61' name='L61'></a>        <a href='../D/440.html' title='Multiple defined in 2 places.'>Version</a>(argv[0]);
+<a id='L62' name='L62'></a>
+<a id='L63' name='L63'></a>        FILE * fd = fopen("cbindefs.hpp","w");
+<a id='L64' name='L64'></a>
+<a id='L65' name='L65'></a>        fprintf(fd,"// ---------------------------------------------------\n");
+<a id='L66' name='L66'></a>        fprintf(fd,"// cbindefs.hpp   v%2d.%02d.%02d%c   %s\n",
+<a id='L67' name='L67'></a>                <a href='../D/381.html' title='Multiple defined in 2 places.'>RMJ</a>,<a href='../D/382.html' title='Multiple defined in 2 places.'>RMN</a>,<a href='../D/384.html' title='Multiple defined in 2 places.'>RUP</a>,'a'+<a href='../D/383.html' title='Multiple defined in 2 places.'>RTP</a>,version.<a href='../D/499.html' title='Multiple defined in 4 places.'>getmachtype</a>());
+<a id='L68' name='L68'></a>        fprintf(fd,"// S/n 20%d-%04d-654321    Licensed under the GNU GPL.\n",
+<a id='L69' name='L69'></a>                <a href='../D/381.html' title='Multiple defined in 2 places.'>RMJ</a>,atoi(version.<a href='../D/522.html' title='Multiple defined in 4 places.'>getuid</a>()));
+<a id='L70' name='L70'></a>        fprintf(fd,"// Copyright(c)20%d Douglas W. Goodall, United States.\n",
+<a id='L71' name='L71'></a>                <a href='../D/381.html' title='Multiple defined in 2 places.'>RMJ</a>);
+<a id='L72' name='L72'></a>        fprintf(fd,"// ---------------------------------------------------\n");
+<a id='L73' name='L73'></a>
+<a id='L74' name='L74'></a>        fprintf(fd,"// This file is part of Vintage Modern Assembler Plus Tools.\n");
+<a id='L75' name='L75'></a>        fprintf(fd,"//\n");
+<a id='L76' name='L76'></a>        fprintf(fd,"// VMAPT is free software: you can redistribute it and/or modify\n");
+<a id='L77' name='L77'></a>        fprintf(fd,"// it under the terms of the GNU General Public License as published by\n");
+<a id='L78' name='L78'></a>        fprintf(fd,"// the Free Software Foundation, either version 3 of the License, or\n");
+<a id='L79' name='L79'></a>        fprintf(fd,"// (at your option) any later version.\n");
+<a id='L80' name='L80'></a>        fprintf(fd,"//\n");
+<a id='L81' name='L81'></a>        fprintf(fd,"// VMAPT is distributed in the hope that it will be useful,\n");
+<a id='L82' name='L82'></a>        fprintf(fd,"// but WITHOUT ANY WARRANTY; without even the implied warranty of\n");
+<a id='L83' name='L83'></a>        fprintf(fd,"// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n");
+<a id='L84' name='L84'></a>        fprintf(fd,"// GNU General Public License for more details.\n");
+<a id='L85' name='L85'></a>        fprintf(fd,"//\n");
+<a id='L86' name='L86'></a>        fprintf(fd,"// You should have received a copy of the GNU General Public License\n");
+<a id='L87' name='L87'></a>        fprintf(fd,"// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.\n");
+<a id='L88' name='L88'></a>        fprintf(fd,"//\n");
+<a id='L89' name='L89'></a>
+<a id='L90' name='L90'></a>        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;256;i++) <em class='brace'>{</em>
+<a id='L91' name='L91'></a>
+<a id='L92' name='L92'></a>                fprintf(fd,"#define Ob%s 0x%02X\n",<a href='../D/474.html' title='Multiple defined in 2 places.'>dec2bin</a>(i),i);
+<a id='L93' name='L93'></a>        <em class='brace'>}</em>
+<a id='L94' name='L94'></a>        fprintf(fd,"// eof - cbindefs.hpp\n\n");
+<a id='L95' name='L95'></a>        
+<a id='L96' name='L96'></a>        <a href='../D/410.html' title='Multiple defined in 2 places.'>TRACE</a>("Exiting hello.cpp's main routine");
+<a id='L97' name='L97'></a>        
+<a id='L98' name='L98'></a>        <strong class='reserved'>return</strong> EXIT_SUCCESS;
+<a id='L99' name='L99'></a><em class='brace'>}</em>
+<a id='L100' name='L100'></a>
 </pre>
 <hr />
 <a id='BOTTOM' name='BOTTOM'></a>
-<em class='comment'>/* [&lt;][&gt;]<a href='#L30'>[^]</a><a href='#L41'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L38'>[^]</a><a href='#L57'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 </body>
 </html>

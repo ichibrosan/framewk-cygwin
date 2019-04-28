@@ -1,25 +1,27 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
-<title>asz80/cp.hpp</title>
+<title>base/asdec65.hpp</title>
 <meta name='robots' content='noindex,nofollow' />
 <meta name='generator' content='GLOBAL-6.6.3' />
 <meta http-equiv='Content-Style-Type' content='text/css' />
 <link rel='stylesheet' type='text/css' href='../style.css' />
 </head>
 <body>
-<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/844.html'>asz80</a>/cp.hpp</h2>
-<em class='comment'>/* [&lt;][&gt;]<a href='#L22'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/817.html'>base</a>/asdec65.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L29'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/190.html' title='Multiple included from 2 places.'>INCLUDED FROM</a></h2>
 <hr />
 <h2 class='header'>DEFINITIONS</h2>
 This source file includes following definitions.
 <ol>
-<li><a href='#L22' title='Defined at 22.'>strcmp</a></li>
+<li><a href='#L29' title='Defined at 29.'>decode_6502</a></li>
 </ol>
 <hr />
 <pre>
 <a id='L1' name='L1'></a><em class='comment'>// ---------------------------------------------------</em>
-<a id='L2' name='L2'></a><em class='comment'>// cp.hpp        3-Mar-11   Running on Mac OS X 10.6.6</em>
+<a id='L2' name='L2'></a><em class='comment'>// asdec65.hpp  25-Feb-11   Running on Mac OS X 10.6.6</em>
 <a id='L3' name='L3'></a><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
 <a id='L4' name='L4'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
 <a id='L5' name='L5'></a><em class='comment'>// ---------------------------------------------------</em>
@@ -39,97 +41,58 @@ This source file includes following definitions.
 <a id='L19' name='L19'></a><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
 <a id='L20' name='L20'></a><em class='comment'>//</em>
 <a id='L21' name='L21'></a>
-<a id='L22' name='L22'></a><strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"CP")) <em class='brace'>{</em>
-<a id='L23' name='L23'></a>        fprintf(g_flog,"Processing Z80  CP g_szOpcode\n");
-<a id='L24' name='L24'></a>
-<a id='L25' name='L25'></a>        <strong class='reserved'>char</strong> szCPtemp[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
-<a id='L26' name='L26'></a>        <strong class='reserved'>char</strong> szCPtemp2[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
-<a id='L27' name='L27'></a>
-<a id='L28' name='L28'></a>        strcpy(szCPtemp2,g_szParms);
-<a id='L29' name='L29'></a>        strcpy(szCPtemp,<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(szCPtemp2));
-<a id='L30' name='L30'></a>        fprintf(g_flog,"szCPtemp is %s\n",szCPtemp);
-<a id='L31' name='L31'></a>        g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
-<a id='L32' name='L32'></a>
-<a id='L33' name='L33'></a><em class='comment'>//      three kinds of cp exist</em>
-<a id='L34' name='L34'></a><em class='comment'>//              cp (hl)</em>
-<a id='L35' name='L35'></a><em class='comment'>//              cp R</em>
-<a id='L36' name='L36'></a><em class='comment'>//              cp N</em>
-<a id='L37' name='L37'></a>
-<a id='L38' name='L38'></a>        fprintf(g_flog,"g_szParms are %s\n",g_szParms);
-<a id='L39' name='L39'></a>
-<a id='L40' name='L40'></a>        <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>("(HL)",szCPtemp)) <em class='brace'>{</em>
-<a id='L41' name='L41'></a>                fprintf(g_flog,"using cp (HL)");
-<a id='L42' name='L42'></a>                g_ucBytes[g_iBytesIndex++] = 0xBE;
-<a id='L43' name='L43'></a>                g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
-<a id='L44' name='L44'></a>        <em class='brace'>}</em>
-<a id='L45' name='L45'></a>
-<a id='L46' name='L46'></a>        <strong class='reserved'>if</strong>(1 == strlen(g_szParms)) <em class='brace'>{</em>
-<a id='L47' name='L47'></a>
-<a id='L48' name='L48'></a>                <strong class='reserved'>switch</strong>(szCPtemp[0]) <em class='brace'>{</em>
-<a id='L49' name='L49'></a>                        <strong class='reserved'>case</strong> 'A':
-<a id='L50' name='L50'></a>                        <strong class='reserved'>case</strong> 'a':
-<a id='L51' name='L51'></a>                                fprintf(g_flog,"using cp A");
-<a id='L52' name='L52'></a>                                g_ucBytes[g_iBytesIndex++] = 0x80+0x38+0x07;  <em class='comment'>// A</em>
-<a id='L53' name='L53'></a>                                g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
-<a id='L54' name='L54'></a>                                <strong class='reserved'>break</strong>;
-<a id='L55' name='L55'></a>                        <strong class='reserved'>case</strong> 'B':
-<a id='L56' name='L56'></a>                        <strong class='reserved'>case</strong> 'b':       
-<a id='L57' name='L57'></a>                                fprintf(g_flog,"using cp B");
-<a id='L58' name='L58'></a>                                g_ucBytes[g_iBytesIndex++] = 0x80+0x38+0x00;  <em class='comment'>// B</em>
-<a id='L59' name='L59'></a>                                g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
-<a id='L60' name='L60'></a>                                <strong class='reserved'>break</strong>;
-<a id='L61' name='L61'></a>                        <strong class='reserved'>case</strong> 'C':
-<a id='L62' name='L62'></a>                        <strong class='reserved'>case</strong> 'c':                       
-<a id='L63' name='L63'></a>                                fprintf(g_flog,"using cp C");
-<a id='L64' name='L64'></a>                                g_ucBytes[g_iBytesIndex++] = 0x80+0x38+0x01;  <em class='comment'>// C</em>
-<a id='L65' name='L65'></a>                                g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
-<a id='L66' name='L66'></a>                                <strong class='reserved'>break</strong>;
-<a id='L67' name='L67'></a>                        <strong class='reserved'>case</strong> 'D':
-<a id='L68' name='L68'></a>                        <strong class='reserved'>case</strong> 'd':
-<a id='L69' name='L69'></a>                                fprintf(g_flog,"using cp D");
-<a id='L70' name='L70'></a>                                g_ucBytes[g_iBytesIndex++] = 0x80+0x38+0x02;  <em class='comment'>// D</em>
-<a id='L71' name='L71'></a>                                g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
-<a id='L72' name='L72'></a>                                <strong class='reserved'>break</strong>;
-<a id='L73' name='L73'></a>                        <strong class='reserved'>case</strong> 'E':
-<a id='L74' name='L74'></a>                        <strong class='reserved'>case</strong> 'e':
-<a id='L75' name='L75'></a>                                fprintf(g_flog,"using cp E");
-<a id='L76' name='L76'></a>                                g_ucBytes[g_iBytesIndex++] = 0x80+0x38+0x03;  <em class='comment'>// E</em>
-<a id='L77' name='L77'></a>                                g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
-<a id='L78' name='L78'></a>                                <strong class='reserved'>break</strong>;
-<a id='L79' name='L79'></a>                        <strong class='reserved'>case</strong> 'H':
-<a id='L80' name='L80'></a>                        <strong class='reserved'>case</strong> 'h':
-<a id='L81' name='L81'></a>                                fprintf(g_flog,"using cp H");
-<a id='L82' name='L82'></a>                                g_ucBytes[g_iBytesIndex++] = 0x80+0x38+0x04;  <em class='comment'>// H</em>
-<a id='L83' name='L83'></a>                                g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
-<a id='L84' name='L84'></a>                                <strong class='reserved'>break</strong>;
-<a id='L85' name='L85'></a>                        <strong class='reserved'>case</strong> 'L':
-<a id='L86' name='L86'></a>                        <strong class='reserved'>case</strong> 'l':
-<a id='L87' name='L87'></a>                                fprintf(g_flog,"using cp L");
-<a id='L88' name='L88'></a>                                g_ucBytes[g_iBytesIndex++] = 0x80+0x38+0x05;  <em class='comment'>// L</em>
-<a id='L89' name='L89'></a>                                g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
-<a id='L90' name='L90'></a>                                <strong class='reserved'>break</strong>;
-<a id='L91' name='L91'></a>                <em class='brace'>}</em>
-<a id='L92' name='L92'></a>        <em class='brace'>}</em>
-<a id='L93' name='L93'></a>
-<a id='L94' name='L94'></a>        <strong class='reserved'>if</strong>(<a href='../D/428.html' title='Multiple defined in 2 places.'>TYPE_ERR</a> == g_iLineType) <em class='brace'>{</em>
-<a id='L95' name='L95'></a>                fprintf(g_flog,"using cp N");
-<a id='L96' name='L96'></a>                g_ucBytes[g_iBytesIndex++] = 0xC0+0x38+0x06;
-<a id='L97' name='L97'></a>                <strong class='reserved'>if</strong>(0 &lt; strlen(g_szParms)) <em class='brace'>{</em>
-<a id='L98' name='L98'></a>                        g_ucBytes[g_iBytesIndex++] = <a href='../D/560.html' title='Multiple defined in 2 places.'>resolvep8</a>(g_szParms);
-<a id='L99' name='L99'></a>                <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
-<a id='L100' name='L100'></a>                        g_iErrorNo |= <a href='../D/73.html' title='Multiple defined in 2 places.'>ERROR_NOPARM</a>;
-<a id='L101' name='L101'></a>                <em class='brace'>}</em>
-<a id='L102' name='L102'></a>        <em class='brace'>}</em>
-<a id='L103' name='L103'></a>        g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
-<a id='L104' name='L104'></a><em class='brace'>}</em>
-<a id='L105' name='L105'></a>
-<a id='L106' name='L106'></a><em class='comment'>//////////////////</em>
-<a id='L107' name='L107'></a><em class='comment'>// eof - cp.hpp //</em>
-<a id='L108' name='L108'></a><em class='comment'>//////////////////</em>
-<a id='L109' name='L109'></a>
+<a id='L22' name='L22'></a><strong class='reserved'>static</strong> <strong class='reserved'>char</strong> szAsdec65Hpp[] = "$Id: asdec65.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $";
+<a id='L23' name='L23'></a>
+<a id='L24' name='L24'></a><em class='comment'>/*</em>
+<a id='L25' name='L25'></a><em class='comment'>When calculating branches a forward branch of 6 skips the following 6 g_ucBytes so, effectively the program counter points to the address that is 8 g_ucBytes beyond the address of the branch g_szOpcode; and a backward branch of $FA (256-6) goes to an add</em>
+<a id='L26' name='L26'></a><em class='comment'>ress 7 g_ucBytes before the branch instruction</em>
+<a id='L27' name='L27'></a><em class='comment'>*/</em>
+<a id='L28' name='L28'></a>
+<a id='L29' name='L29'></a><strong class='reserved'>void</strong> <a href='../R/180.html' title='Multiple referred from 4 places.'>decode_6502</a>(<strong class='reserved'>void</strong>)
+<a id='L30' name='L30'></a><em class='brace'>{</em>
+<a id='L31' name='L31'></a>        <strong class='reserved'>int</strong> rc;
+<a id='L32' name='L32'></a>        <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> value;
+<a id='L33' name='L33'></a>                
+<a id='L34' name='L34'></a>        <em class='comment'>// The strupr function happens to fold</em>
+<a id='L35' name='L35'></a>        <em class='comment'>// strings. This code preserves the</em>
+<a id='L36' name='L36'></a>        <em class='comment'>// orginal case, to be restored after</em>
+<a id='L37' name='L37'></a>        <em class='comment'>// g_szOpcode processing (see below)</em>
+<a id='L38' name='L38'></a>        strcpy(g_szRawLabel,g_szLabel);
+<a id='L39' name='L39'></a>        strcpy(g_szRawOpcode,g_szOpcode);
+<a id='L40' name='L40'></a>        strcpy(g_szRawParms,g_szParms);
+<a id='L41' name='L41'></a>        strcpy(g_szRawComments,g_szComments);
+<a id='L42' name='L42'></a>
+<a id='L43' name='L43'></a>        <strong class='reserved'>if</strong>( (strlen(g_szLabel)==0) &amp;&amp; (strlen(g_szOpcode)==0) &amp;&amp;
+<a id='L44' name='L44'></a>            (strlen(g_szParms)==0) &amp;&amp; (strlen(g_szComments)&gt;0) ) <em class='brace'>{</em>
+<a id='L45' name='L45'></a>                g_iLineType = <a href='../D/421.html' title='Multiple defined in 2 places.'>TYPE_COMMENT</a>;   
+<a id='L46' name='L46'></a>                g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L47' name='L47'></a>        <em class='brace'>}</em> 
+<a id='L48' name='L48'></a>
+<a id='L49' name='L49'></a>        <strong class='reserved'>if</strong>( (strlen(g_szLabel)==0) &amp;&amp; (strlen(g_szOpcode)==0) &amp;&amp;
+<a id='L50' name='L50'></a>            (strlen(g_szParms)==0) &amp;&amp; (strlen(g_szComments)==0) ) <em class='brace'>{</em>
+<a id='L51' name='L51'></a>                g_iLineType = <a href='../D/427.html' title='Multiple defined in 2 places.'>TYPE_EMPTY</a>; 
+<a id='L52' name='L52'></a>                g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;  
+<a id='L53' name='L53'></a>        <em class='brace'>}</em> 
+<a id='L54' name='L54'></a>
+<a id='L55' name='L55'></a><em class='comment'>//#ifdef NEVER</em>
+<a id='L56' name='L56'></a>        <strong class='reserved'>if</strong>(0 &lt; strlen(g_szOpcode)) <em class='brace'>{</em>
+<a id='L57' name='L57'></a><em class='sharp'>#include</em> "as6502/decoincl.hpp"
+<a id='L58' name='L58'></a>        <em class='brace'>}</em>
+<a id='L59' name='L59'></a><em class='comment'>//#endif</em>
+<a id='L60' name='L60'></a>
+<a id='L61' name='L61'></a>        <em class='comment'>// This code restores the original case of </em>
+<a id='L62' name='L62'></a>        <em class='comment'>// strings that were unintentionally folded</em>
+<a id='L63' name='L63'></a>        <em class='comment'>// to upper case by strupr function.</em>
+<a id='L64' name='L64'></a>        strcpy(g_szLabel,g_szRawLabel);
+<a id='L65' name='L65'></a>        strcpy(g_szOpcode,g_szRawOpcode);
+<a id='L66' name='L66'></a>        strcpy(g_szParms,g_szRawParms);
+<a id='L67' name='L67'></a>        strcpy(g_szComments,g_szRawComments);
+<a id='L68' name='L68'></a><em class='brace'>}</em>
+<a id='L69' name='L69'></a>
+<a id='L70' name='L70'></a><em class='comment'>// eof - asdec65.hpp</em>
 </pre>
 <hr />
 <a id='BOTTOM' name='BOTTOM'></a>
-<em class='comment'>/* [&lt;][&gt;][^]<a href='#L22'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L29'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 </body>
 </html>

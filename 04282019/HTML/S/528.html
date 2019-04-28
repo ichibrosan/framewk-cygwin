@@ -1,14 +1,14 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
-<title>as68000/illegal.hpp</title>
+<title>as68000/trapv.hpp</title>
 <meta name='robots' content='noindex,nofollow' />
 <meta name='generator' content='GLOBAL-6.6.3' />
 <meta http-equiv='Content-Style-Type' content='text/css' />
 <link rel='stylesheet' type='text/css' href='../style.css' />
 </head>
 <body>
-<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/838.html'>as68000</a>/illegal.hpp</h2>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/809.html'>as68000</a>/trapv.hpp</h2>
 <em class='comment'>/* [&lt;][&gt;]<a href='#L22'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 <hr />
 <h2 class='header'>DEFINITIONS</h2>
@@ -19,7 +19,7 @@ This source file includes following definitions.
 <hr />
 <pre>
 <a id='L1' name='L1'></a><em class='comment'>// ---------------------------------------------------</em>
-<a id='L2' name='L2'></a><em class='comment'>// illegal.hpp  23-Feb-11   Running on Mac OS X 10.6.6</em>
+<a id='L2' name='L2'></a><em class='comment'>// trapv.hpp    23-Feb-11   Running on Mac OS X 10.6.6</em>
 <a id='L3' name='L3'></a><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
 <a id='L4' name='L4'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
 <a id='L5' name='L5'></a><em class='comment'>// ---------------------------------------------------</em>
@@ -39,10 +39,10 @@ This source file includes following definitions.
 <a id='L19' name='L19'></a><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
 <a id='L20' name='L20'></a><em class='comment'>//</em>
 <a id='L21' name='L21'></a>
-<a id='L22' name='L22'></a>        <strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"ILLEGAL")) <em class='brace'>{</em>
-<a id='L23' name='L23'></a>                fprintf(g_flog,"Processing 68000 ILLEGAL g_szOpcode\n");
-<a id='L24' name='L24'></a>                g_ucBytes[g_iBytesIndex++] = 0x4A;
-<a id='L25' name='L25'></a>                g_ucBytes[g_iBytesIndex++] = 0xFA;
+<a id='L22' name='L22'></a>        <strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"TRAPV")) <em class='brace'>{</em>
+<a id='L23' name='L23'></a>                fprintf(g_flog,"Processing 68000 TRAPV g_szOpcode\n");
+<a id='L24' name='L24'></a>                g_ucBytes[g_iBytesIndex++] = 0x4E;
+<a id='L25' name='L25'></a>                g_ucBytes[g_iBytesIndex++] = 0x76;
 <a id='L26' name='L26'></a>                g_iLineType = <a href='../D/417.html' title='Multiple defined in 2 places.'>TYPE_68000</a>;
 <a id='L27' name='L27'></a>                g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
 <a id='L28' name='L28'></a>        <em class='brace'>}</em>

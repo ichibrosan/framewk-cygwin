@@ -123,15 +123,15 @@ This source file includes following definitions.
 <a id='L103' name='L103'></a>
 <a id='L104' name='L104'></a><em class='sharp'>#ifdef</em> SHOW_TYPE
 <a id='L105' name='L105'></a>                <strong class='reserved'>switch</strong>(dir-&gt;<a href='../D/517.html' title='Multiple defined in 2 places.'>gettype</a>()) <em class='brace'>{</em>
-<a id='L106' name='L106'></a>                        <strong class='reserved'>case</strong> <a href='../S/559.html#L126' title='Defined at 126 in doc/dirent.h.'>DT_UNKNOWN</a>: printf("DT_UNKNOWN "); <strong class='reserved'>break</strong>;
-<a id='L107' name='L107'></a>                        <strong class='reserved'>case</strong> <a href='../S/559.html#L127' title='Defined at 127 in doc/dirent.h.'>DT_FIFO</a>:    printf("DT_FIFO    "); <strong class='reserved'>break</strong>;
-<a id='L108' name='L108'></a>                        <strong class='reserved'>case</strong> <a href='../S/559.html#L128' title='Defined at 128 in doc/dirent.h.'>DT_CHR</a>:     printf("DT_CHR     "); <strong class='reserved'>break</strong>;
-<a id='L109' name='L109'></a>                        <strong class='reserved'>case</strong> <a href='../S/559.html#L129' title='Defined at 129 in doc/dirent.h.'>DT_DIR</a>:     printf("DT_DIR     "); <strong class='reserved'>break</strong>;
-<a id='L110' name='L110'></a>                        <strong class='reserved'>case</strong> <a href='../S/559.html#L130' title='Defined at 130 in doc/dirent.h.'>DT_BLK</a>:     printf("DT_BLK     "); <strong class='reserved'>break</strong>;
-<a id='L111' name='L111'></a>                        <strong class='reserved'>case</strong> <a href='../S/559.html#L131' title='Defined at 131 in doc/dirent.h.'>DT_REG</a>:     printf("DT_REG     "); <strong class='reserved'>break</strong>;
-<a id='L112' name='L112'></a>                        <strong class='reserved'>case</strong> <a href='../S/559.html#L132' title='Defined at 132 in doc/dirent.h.'>DT_LNK</a>:     printf("DT_LNK     "); <strong class='reserved'>break</strong>;
-<a id='L113' name='L113'></a>                        <strong class='reserved'>case</strong> <a href='../S/559.html#L133' title='Defined at 133 in doc/dirent.h.'>DT_SOCK</a>:    printf("DT_SOCK    "); <strong class='reserved'>break</strong>;
-<a id='L114' name='L114'></a>                        <strong class='reserved'>case</strong> <a href='../S/559.html#L134' title='Defined at 134 in doc/dirent.h.'>DT_WHT</a>:     printf("DT_WHT     "); <strong class='reserved'>break</strong>;
+<a id='L106' name='L106'></a>                        <strong class='reserved'>case</strong> <a href='../S/558.html#L126' title='Defined at 126 in doc/dirent.h.'>DT_UNKNOWN</a>: printf("DT_UNKNOWN "); <strong class='reserved'>break</strong>;
+<a id='L107' name='L107'></a>                        <strong class='reserved'>case</strong> <a href='../S/558.html#L127' title='Defined at 127 in doc/dirent.h.'>DT_FIFO</a>:    printf("DT_FIFO    "); <strong class='reserved'>break</strong>;
+<a id='L108' name='L108'></a>                        <strong class='reserved'>case</strong> <a href='../S/558.html#L128' title='Defined at 128 in doc/dirent.h.'>DT_CHR</a>:     printf("DT_CHR     "); <strong class='reserved'>break</strong>;
+<a id='L109' name='L109'></a>                        <strong class='reserved'>case</strong> <a href='../S/558.html#L129' title='Defined at 129 in doc/dirent.h.'>DT_DIR</a>:     printf("DT_DIR     "); <strong class='reserved'>break</strong>;
+<a id='L110' name='L110'></a>                        <strong class='reserved'>case</strong> <a href='../S/558.html#L130' title='Defined at 130 in doc/dirent.h.'>DT_BLK</a>:     printf("DT_BLK     "); <strong class='reserved'>break</strong>;
+<a id='L111' name='L111'></a>                        <strong class='reserved'>case</strong> <a href='../S/558.html#L131' title='Defined at 131 in doc/dirent.h.'>DT_REG</a>:     printf("DT_REG     "); <strong class='reserved'>break</strong>;
+<a id='L112' name='L112'></a>                        <strong class='reserved'>case</strong> <a href='../S/558.html#L132' title='Defined at 132 in doc/dirent.h.'>DT_LNK</a>:     printf("DT_LNK     "); <strong class='reserved'>break</strong>;
+<a id='L113' name='L113'></a>                        <strong class='reserved'>case</strong> <a href='../S/558.html#L133' title='Defined at 133 in doc/dirent.h.'>DT_SOCK</a>:    printf("DT_SOCK    "); <strong class='reserved'>break</strong>;
+<a id='L114' name='L114'></a>                        <strong class='reserved'>case</strong> <a href='../S/558.html#L134' title='Defined at 134 in doc/dirent.h.'>DT_WHT</a>:     printf("DT_WHT     "); <strong class='reserved'>break</strong>;
 <a id='L115' name='L115'></a>                        <strong class='reserved'>default</strong>:         printf("unknown    "); <strong class='reserved'>break</strong>;
 <a id='L116' name='L116'></a>                <em class='brace'>}</em>
 <a id='L117' name='L117'></a><em class='sharp'>#endif</em>
@@ -140,20 +140,20 @@ This source file includes following definitions.
 <a id='L120' name='L120'></a>                printf("%2d ",dir-&gt;<a href='../D/502.html' title='Multiple defined in 2 places.'>getnamlen</a>());
 <a id='L121' name='L121'></a><em class='sharp'>#endif</em>
 <a id='L122' name='L122'></a>
-<a id='L123' name='L123'></a>                off_t <a href='../S/560.html#L8' title='Defined at 8 in doc/postfix.c.'>size</a> = 0;
-<a id='L124' name='L124'></a>                <strong class='reserved'>if</strong>(<a href='../S/559.html#L131' title='Defined at 131 in doc/dirent.h.'>DT_REG</a> == dir-&gt;<a href='../D/517.html' title='Multiple defined in 2 places.'>gettype</a>()) <em class='brace'>{</em>
+<a id='L123' name='L123'></a>                off_t <a href='../S/559.html#L8' title='Defined at 8 in doc/postfix.c.'>size</a> = 0;
+<a id='L124' name='L124'></a>                <strong class='reserved'>if</strong>(<a href='../S/558.html#L131' title='Defined at 131 in doc/dirent.h.'>DT_REG</a> == dir-&gt;<a href='../D/517.html' title='Multiple defined in 2 places.'>gettype</a>()) <em class='brace'>{</em>
 <a id='L125' name='L125'></a>                        FILE * fd = fopen(g_szBuffer2,"r");
 <a id='L126' name='L126'></a>                        <strong class='reserved'>if</strong>(NULL != fd) <em class='brace'>{</em>
 <a id='L127' name='L127'></a>                                fseek(fd,0L,SEEK_END);
 <a id='L128' name='L128'></a>                                <em class='comment'>//size = lseek(fd,0L,SEEK_END);</em>
-<a id='L129' name='L129'></a>                                <a href='../S/560.html#L8' title='Defined at 8 in doc/postfix.c.'>size</a> = ftell(fd);
+<a id='L129' name='L129'></a>                                <a href='../S/559.html#L8' title='Defined at 8 in doc/postfix.c.'>size</a> = ftell(fd);
 <a id='L130' name='L130'></a>                                fclose(fd);
 <a id='L131' name='L131'></a>                        <em class='brace'>}</em>
 <a id='L132' name='L132'></a>                <em class='brace'>}</em>
 <a id='L133' name='L133'></a><em class='comment'>//              printf("%12ld %d %s\n",size,errno,g_szBuffer2);</em>
 <a id='L134' name='L134'></a>
 <a id='L135' name='L135'></a><em class='sharp'>#ifdef</em> <a href='../D/401.html' title='Multiple defined in 2 places.'>SHOW_SIZE_BEFORE</a>
-<a id='L136' name='L136'></a>                printf("%12ld ",<a href='../S/560.html#L8' title='Defined at 8 in doc/postfix.c.'>size</a>);
+<a id='L136' name='L136'></a>                printf("%12ld ",<a href='../S/559.html#L8' title='Defined at 8 in doc/postfix.c.'>size</a>);
 <a id='L137' name='L137'></a><em class='sharp'>#endif</em>
 <a id='L138' name='L138'></a>
 <a id='L139' name='L139'></a><em class='sharp'>#ifdef</em> SHOW_ERRNO
@@ -173,7 +173,7 @@ This source file includes following definitions.
 <a id='L153' name='L153'></a><em class='sharp'>#endif</em>
 <a id='L154' name='L154'></a>
 <a id='L155' name='L155'></a><em class='sharp'>#ifdef</em> <a href='../D/400.html' title='Multiple defined in 6 places.'>SHOW_SIZE_AFTER</a>
-<a id='L156' name='L156'></a>                printf("%12ld ",<a href='../S/560.html#L8' title='Defined at 8 in doc/postfix.c.'>size</a>);
+<a id='L156' name='L156'></a>                printf("%12ld ",<a href='../S/559.html#L8' title='Defined at 8 in doc/postfix.c.'>size</a>);
 <a id='L157' name='L157'></a><em class='sharp'>#endif</em>
 <a id='L158' name='L158'></a>
 <a id='L159' name='L159'></a><em class='sharp'>#ifdef</em> <a href='../D/399.html' title='Multiple defined in 8 places.'>SHOW_NEWLINE</a>

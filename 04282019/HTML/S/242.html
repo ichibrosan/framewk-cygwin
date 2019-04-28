@@ -1,65 +1,47 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
-<title>portab.hpp</title>
+<title>ascommon/org.hpp</title>
 <meta name='robots' content='noindex,nofollow' />
 <meta name='generator' content='GLOBAL-6.6.3' />
 <meta http-equiv='Content-Style-Type' content='text/css' />
 <link rel='stylesheet' type='text/css' href='../style.css' />
 </head>
 <body>
-<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/portab.hpp</h2>
-<em class='comment'>/* [&lt;][&gt;][^][v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/813.html'>ascommon</a>/org.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L13'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 <hr />
-<h2 class='header'><a href='../J/338.html' title='Multiple included from 4 places.'>INCLUDED FROM</a></h2>
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L13' title='Defined at 13.'>strcmp</a></li>
+</ol>
 <hr />
 <pre>
-<a id='L1' name='L1'></a><em class='comment'>// ---------------------------------------------------</em>
-<a id='L2' name='L2'></a><em class='comment'>// portab.hpp   22-Feb-11   Running on Mac OS X 10.6.6</em>
-<a id='L3' name='L3'></a><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
-<a id='L4' name='L4'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
-<a id='L5' name='L5'></a><em class='comment'>// ---------------------------------------------------</em>
-<a id='L6' name='L6'></a><em class='comment'>// This file is part of Vintage Modern Assembler Plus Tools.</em>
+<a id='L1' name='L1'></a><em class='comment'>// $Log: org.hpp,v $</em>
+<a id='L2' name='L2'></a><em class='comment'>// Revision 1.2  2011/03/25 21:47:31  doug</em>
+<a id='L3' name='L3'></a><em class='comment'>// *** empty log message ***</em>
+<a id='L4' name='L4'></a><em class='comment'>//</em>
+<a id='L5' name='L5'></a><em class='comment'>// Revision 1.1  2011/03/25 07:19:17  doug</em>
+<a id='L6' name='L6'></a><em class='comment'>// Initial revision</em>
 <a id='L7' name='L7'></a><em class='comment'>//</em>
-<a id='L8' name='L8'></a><em class='comment'>// VMAPT is free software: you can redistribute it and/or modify</em>
-<a id='L9' name='L9'></a><em class='comment'>// it under the terms of the GNU General Public License as published by</em>
-<a id='L10' name='L10'></a><em class='comment'>// the Free Software Foundation, either version 3 of the License, or</em>
-<a id='L11' name='L11'></a><em class='comment'>// (at your option) any later version.</em>
-<a id='L12' name='L12'></a><em class='comment'>//</em>
-<a id='L13' name='L13'></a><em class='comment'>// VMAPT is distributed in the hope that it will be useful,</em>
-<a id='L14' name='L14'></a><em class='comment'>// but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
-<a id='L15' name='L15'></a><em class='comment'>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
-<a id='L16' name='L16'></a><em class='comment'>// GNU General Public License for more details.</em>
-<a id='L17' name='L17'></a><em class='comment'>//</em>
-<a id='L18' name='L18'></a><em class='comment'>// You should have received a copy of the GNU General Public License</em>
-<a id='L19' name='L19'></a><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
-<a id='L20' name='L20'></a><em class='comment'>//</em>
+<a id='L8' name='L8'></a>
+<a id='L9' name='L9'></a><strong class='reserved'>char</strong> dir_org[] = "$Id: org.hpp,v 1.2 2011/03/25 21:47:31 doug Exp $";
+<a id='L10' name='L10'></a>
+<a id='L11' name='L11'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L12' name='L12'></a>
+<a id='L13' name='L13'></a>        <strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"ORG")) <em class='brace'>{</em>
+<a id='L14' name='L14'></a>                fprintf(g_flog,"Processing ORG directive\n");
+<a id='L15' name='L15'></a>                <strong class='reserved'>if</strong>(0 != strlen(g_szParms)) <em class='brace'>{</em>
+<a id='L16' name='L16'></a>                        g_iPc = <a href='../D/557.html' title='Multiple defined in 2 places.'>resolvep16</a>(g_szParms);
+<a id='L17' name='L17'></a>                        g_iLineType = <a href='../D/422.html' title='Multiple defined in 2 places.'>TYPE_DIR</a>;
+<a id='L18' name='L18'></a>                        g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L19' name='L19'></a>                <em class='brace'>}</em>
+<a id='L20' name='L20'></a>        <em class='brace'>}</em>
 <a id='L21' name='L21'></a>
-<a id='L22' name='L22'></a><strong class='reserved'>static</strong> <strong class='reserved'>char</strong> szPortabHpp[] = "$Id: portab.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $";
-<a id='L23' name='L23'></a>
-<a id='L24' name='L24'></a><em class='sharp'>#define</em> <a href='../R/122.html' title='Multiple referred from 531 places.'>TRUE</a>  1
-<a id='L25' name='L25'></a><em class='sharp'>#define</em> <a href='../R/62.html' title='Multiple referred from 173 places.'>FALSE</a> 0
-<a id='L26' name='L26'></a>
-<a id='L27' name='L27'></a><em class='sharp'>#define</em> COPR "©"
-<a id='L28' name='L28'></a>
-<a id='L29' name='L29'></a><em class='comment'>// Comparison strings for $MACHTYPE</em>
-<a id='L30' name='L30'></a><em class='comment'>// used by ../mktoday.cpp</em>
-<a id='L31' name='L31'></a><em class='comment'>//</em>
-<a id='L32' name='L32'></a><em class='comment'>// This string works for Doug's Mac Book Pro</em>
-<a id='L33' name='L33'></a><em class='comment'>// running Snow Leopard 10.6.6</em>
-<a id='L34' name='L34'></a><em class='comment'>//#define MACOSX "x86_64-apple-darwin10.0"</em>
-<a id='L35' name='L35'></a><em class='sharp'>#define</em> <a href='../R/72.html' title='Multiple referred from 6 places.'>MACOSX</a> "x86_64-apple-darwin11"
-<a id='L36' name='L36'></a><em class='comment'>//</em>
-<a id='L37' name='L37'></a><em class='comment'>// This string works for Doug's Server</em>
-<a id='L38' name='L38'></a><em class='comment'>// running Scientific Linux (Red Hat Server)</em>
-<a id='L39' name='L39'></a><em class='sharp'>#define</em> <a href='../R/67.html' title='Multiple referred from 6 places.'>LINUX</a>  "x86_64-redhat-linux-gnu"
-<a id='L40' name='L40'></a>
-<a id='L41' name='L41'></a>
-<a id='L42' name='L42'></a><em class='comment'>// eof - portab.hpp</em>
-<a id='L43' name='L43'></a>
 </pre>
 <hr />
 <a id='BOTTOM' name='BOTTOM'></a>
-<em class='comment'>/* [&lt;][&gt;][^][v]<a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L13'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 </body>
 </html>

@@ -154,6 +154,10 @@ int makemak(char *szFilename,FILE *mfp,char *uid,char *machtype)
 	  szMkFileName,szTimeDate);
   fprintf(fp,"CC = g++\n");
   fprintf(fp,"CCFLAGS = -w");
+
+  // 04/28/2019 dwg - 
+  fprintf(fp,"INSTBIN = ~/src/framewk/bin");
+
 #ifdef __TRACE
   fprintf(fp," -D__TRACE ");
 #endif
@@ -648,7 +652,7 @@ int main(int argc,char **argv)
   fprintf(mfp,"\t$(QUIET)rm -f -r G* HTML\n\n");
 
   fprintf(mfp,"installbins:\n");
-  fprintf(mfp,"\tcp $(BINARIES) ~/bin\n\n");
+  fprintf(mfp,"\tcp $(BINARIES) ~/src/framewk/bin\n\n");
 
   fprintf(mfp,"uninstall:\n");
   fprintf(mfp,"\trm -f $(INSTBINS)\n\n");

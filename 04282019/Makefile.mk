@@ -1,5 +1,5 @@
 # ---------------------------------------------------
-# Makefile  v19.04.28i   for  x86_64-apple-darwin18
+# Makefile  v19.04.28j   for  x86_64-apple-darwin18
 # Serial No. 2019-0501-654321 Licensed under GNU GPL.
 # Copyright (C) 2011 Douglas Goodall,  United States.
 # ---------------------------------------------------
@@ -191,7 +191,7 @@ clean:
 	$(QUIET)rm -f -r G* HTML
 
 installbins:
-	cp $(BINARIES) ~/bin
+	cp $(BINARIES) ~/src/framewk/bin
 
 uninstall:
 	rm -f $(INSTBINS)

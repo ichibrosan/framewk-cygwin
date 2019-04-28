@@ -1,49 +1,143 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
-<title>ascommon/pagewide.hpp</title>
+<title>ascommon/export.hpp</title>
 <meta name='robots' content='noindex,nofollow' />
 <meta name='generator' content='GLOBAL-6.6.3' />
 <meta http-equiv='Content-Style-Type' content='text/css' />
 <link rel='stylesheet' type='text/css' href='../style.css' />
 </head>
 <body>
-<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/842.html'>ascommon</a>/pagewide.hpp</h2>
-<em class='comment'>/* [&lt;][&gt;]<a href='#L13'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/813.html'>ascommon</a>/export.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L8'>[^]</a><a href='#L90'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 <hr />
 <h2 class='header'>DEFINITIONS</h2>
 This source file includes following definitions.
 <ol>
-<li><a href='#L13' title='Defined at 13.'>strcmp</a></li>
+<li><a href='#L8' title='Defined at 8.'>strcmp</a></li>
+<li><a href='#L30' title='Defined at 30.'>strcmp</a></li>
+<li><a href='#L50' title='Defined at 50.'>strcmp</a></li>
+<li><a href='#L70' title='Defined at 70.'>strcmp</a></li>
+<li><a href='#L90' title='Defined at 90.'>strcmp</a></li>
 </ol>
 <hr />
 <pre>
-<a id='L1' name='L1'></a><em class='comment'>// $Log: pagewide.hpp,v $</em>
-<a id='L2' name='L2'></a><em class='comment'>// Revision 1.2  2011/03/25 21:47:31  doug</em>
-<a id='L3' name='L3'></a><em class='comment'>// *** empty log message ***</em>
-<a id='L4' name='L4'></a><em class='comment'>//</em>
-<a id='L5' name='L5'></a><em class='comment'>// Revision 1.1  2011/03/25 07:19:17  doug</em>
-<a id='L6' name='L6'></a><em class='comment'>// Initial revision</em>
-<a id='L7' name='L7'></a><em class='comment'>//</em>
-<a id='L8' name='L8'></a>
-<a id='L9' name='L9'></a><strong class='reserved'>char</strong> dir_pagewide[] = "$Id: pagewide.hpp,v 1.2 2011/03/25 21:47:31 doug Exp $";
-<a id='L10' name='L10'></a>
-<a id='L11' name='L11'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
-<a id='L12' name='L12'></a>        
-<a id='L13' name='L13'></a>        <strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"PAGEWIDTH")) <em class='brace'>{</em>
-<a id='L14' name='L14'></a>                fprintf(g_flog,"Processing PAGEWIDTH directive\n");
-<a id='L15' name='L15'></a>                <strong class='reserved'>if</strong>(0 != strlen(g_szParms)) <em class='brace'>{</em>
-<a id='L16' name='L16'></a>                        g_iLineType = <a href='../D/422.html' title='Multiple defined in 2 places.'>TYPE_DIR</a>;
-<a id='L17' name='L17'></a>                        g_pCSymbols-&gt;<a href='../D/455.html' title='Multiple defined in 14 places.'>add</a>("pagewdth",<a href='../D/435.html' title='Multiple defined in 2 places.'>TYPE_U16</a>,
-<a id='L18' name='L18'></a>                                (<strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>)<a href='../D/560.html' title='Multiple defined in 2 places.'>resolvep8</a>(g_szParms));
-<a id='L19' name='L19'></a>                        g_iPageWidth = <a href='../D/560.html' title='Multiple defined in 2 places.'>resolvep8</a>(g_szParms);
-<a id='L20' name='L20'></a>                        g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
-<a id='L21' name='L21'></a>                <em class='brace'>}</em> 
-<a id='L22' name='L22'></a>        <em class='brace'>}</em>
-<a id='L23' name='L23'></a>
+<a id='L1' name='L1'></a><em class='comment'>// $Log$</em>
+<a id='L2' name='L2'></a><em class='comment'>//</em>
+<a id='L3' name='L3'></a>
+<a id='L4' name='L4'></a><strong class='reserved'>char</strong> dir_export[] = "$Id$";
+<a id='L5' name='L5'></a>
+<a id='L6' name='L6'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L7' name='L7'></a>
+<a id='L8' name='L8'></a><strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"EXPORT")) <em class='brace'>{</em>
+<a id='L9' name='L9'></a>        fprintf(g_flog,"Processing EXPORT directive\n");
+<a id='L10' name='L10'></a>        g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L11' name='L11'></a>        g_iLineType = <a href='../D/422.html' title='Multiple defined in 2 places.'>TYPE_DIR</a>;
+<a id='L12' name='L12'></a>        <strong class='reserved'>if</strong>(0 != strlen(g_szParms)) <em class='brace'>{</em>
+<a id='L13' name='L13'></a>                g_bExported = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L14' name='L14'></a>                <strong class='reserved'>int</strong> rc;
+<a id='L15' name='L15'></a>                <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> uiBuffer;
+<a id='L16' name='L16'></a>                uiBuffer = g_pCSymbols-&gt;<a href='../D/518.html' title='Multiple defined in 2 places.'>getu16</a>(g_szParms,&amp;rc);
+<a id='L17' name='L17'></a>                <strong class='reserved'>if</strong>(EXIT_SUCCESS == rc) <em class='brace'>{</em>
+<a id='L18' name='L18'></a>                        <strong class='reserved'>if</strong>(<a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a> == g_bPass2) <em class='brace'>{</em>
+<a id='L19' name='L19'></a>                                fprintf(g_fexp,"%s\tequ\t$%05X\n",
+<a id='L20' name='L20'></a>                                        g_szParms,uiBuffer);
+<a id='L21' name='L21'></a>                        <em class='brace'>}</em>
+<a id='L22' name='L22'></a>                <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L23' name='L23'></a>                        g_iErrorNo |= <a href='../D/82.html' title='Multiple defined in 2 places.'>ERROR_UNK_EXP</a>;
+<a id='L24' name='L24'></a>                <em class='brace'>}</em>
+<a id='L25' name='L25'></a>        <em class='brace'>}</em>
+<a id='L26' name='L26'></a><em class='brace'>}</em>
+<a id='L27' name='L27'></a>
+<a id='L28' name='L28'></a>
+<a id='L29' name='L29'></a>        
+<a id='L30' name='L30'></a><strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"EXPORT8")) <em class='brace'>{</em>
+<a id='L31' name='L31'></a>        fprintf(g_flog,"Processing EXPORT8 directive\n");
+<a id='L32' name='L32'></a>        g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L33' name='L33'></a>        g_iLineType = <a href='../D/422.html' title='Multiple defined in 2 places.'>TYPE_DIR</a>;
+<a id='L34' name='L34'></a>        <strong class='reserved'>if</strong>(0 != strlen(g_szParms)) <em class='brace'>{</em>
+<a id='L35' name='L35'></a>                g_bExported = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L36' name='L36'></a>                <strong class='reserved'>int</strong> rc;
+<a id='L37' name='L37'></a>                <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> ucBuffer;
+<a id='L38' name='L38'></a>                ucBuffer = g_pCSymbols-&gt;<a href='../D/521.html' title='Multiple defined in 2 places.'>getu8</a>(g_szParms,&amp;rc);
+<a id='L39' name='L39'></a>                <strong class='reserved'>if</strong>(EXIT_SUCCESS == rc) <em class='brace'>{</em>
+<a id='L40' name='L40'></a>                        <strong class='reserved'>if</strong>(<a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a> == g_bPass2) <em class='brace'>{</em>
+<a id='L41' name='L41'></a>                                fprintf(g_fexp,"%s\tequ8\t$%03X\n",
+<a id='L42' name='L42'></a>                                        g_szParms,ucBuffer);
+<a id='L43' name='L43'></a>                        <em class='brace'>}</em>
+<a id='L44' name='L44'></a>                <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L45' name='L45'></a>                        g_iErrorNo |= <a href='../D/82.html' title='Multiple defined in 2 places.'>ERROR_UNK_EXP</a>;
+<a id='L46' name='L46'></a>                <em class='brace'>}</em>
+<a id='L47' name='L47'></a>        <em class='brace'>}</em> 
+<a id='L48' name='L48'></a><em class='brace'>}</em>
+<a id='L49' name='L49'></a>
+<a id='L50' name='L50'></a><strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"EXPORT16")) <em class='brace'>{</em>
+<a id='L51' name='L51'></a>        fprintf(g_flog,"Processing EXPORT16 directive\n");
+<a id='L52' name='L52'></a>        g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L53' name='L53'></a>        g_iLineType = <a href='../D/422.html' title='Multiple defined in 2 places.'>TYPE_DIR</a>;
+<a id='L54' name='L54'></a>        <strong class='reserved'>if</strong>(0 != strlen(g_szParms)) <em class='brace'>{</em>
+<a id='L55' name='L55'></a>                g_bExported = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L56' name='L56'></a>                <strong class='reserved'>int</strong> rc;
+<a id='L57' name='L57'></a>                <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> uiBuffer;
+<a id='L58' name='L58'></a>                uiBuffer = g_pCSymbols-&gt;<a href='../D/518.html' title='Multiple defined in 2 places.'>getu16</a>(g_szParms,&amp;rc);
+<a id='L59' name='L59'></a>                <strong class='reserved'>if</strong>(EXIT_SUCCESS == rc) <em class='brace'>{</em>
+<a id='L60' name='L60'></a>                        <strong class='reserved'>if</strong>(<a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a> == g_bPass2) <em class='brace'>{</em>
+<a id='L61' name='L61'></a>                                fprintf(g_fexp,"%s\tequ16\t$%05X\n",
+<a id='L62' name='L62'></a>                                        g_szParms,uiBuffer);
+<a id='L63' name='L63'></a>                        <em class='brace'>}</em>
+<a id='L64' name='L64'></a>                <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L65' name='L65'></a>                        g_iErrorNo |= <a href='../D/82.html' title='Multiple defined in 2 places.'>ERROR_UNK_EXP</a>;
+<a id='L66' name='L66'></a>                <em class='brace'>}</em>
+<a id='L67' name='L67'></a>        <em class='brace'>}</em>
+<a id='L68' name='L68'></a><em class='brace'>}</em>
+<a id='L69' name='L69'></a>
+<a id='L70' name='L70'></a><strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"EXPORT32")) <em class='brace'>{</em>
+<a id='L71' name='L71'></a>        fprintf(g_flog,"Processing EXPORT32 directive\n");
+<a id='L72' name='L72'></a>        g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L73' name='L73'></a>        g_iLineType = <a href='../D/422.html' title='Multiple defined in 2 places.'>TYPE_DIR</a>;
+<a id='L74' name='L74'></a>        <strong class='reserved'>if</strong>(0 != strlen(g_szParms)) <em class='brace'>{</em>
+<a id='L75' name='L75'></a>                g_bExported = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L76' name='L76'></a>                <strong class='reserved'>int</strong> rc;
+<a id='L77' name='L77'></a>                <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> ulBuffer;
+<a id='L78' name='L78'></a>                ulBuffer = g_pCSymbols-&gt;<a href='../D/519.html' title='Multiple defined in 2 places.'>getu32</a>(g_szParms,&amp;rc);
+<a id='L79' name='L79'></a>                <strong class='reserved'>if</strong>(EXIT_SUCCESS == rc) <em class='brace'>{</em>
+<a id='L80' name='L80'></a>                        <strong class='reserved'>if</strong>(<a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a> == g_bPass2) <em class='brace'>{</em>
+<a id='L81' name='L81'></a>                                fprintf(g_fexp,"%s\tequ32\t$%09X\n",
+<a id='L82' name='L82'></a>                                        g_szParms,ulBuffer);
+<a id='L83' name='L83'></a>                        <em class='brace'>}</em>
+<a id='L84' name='L84'></a>                <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L85' name='L85'></a>                        g_iErrorNo |= <a href='../D/82.html' title='Multiple defined in 2 places.'>ERROR_UNK_EXP</a>;
+<a id='L86' name='L86'></a>                <em class='brace'>}</em>
+<a id='L87' name='L87'></a>        <em class='brace'>}</em>
+<a id='L88' name='L88'></a><em class='brace'>}</em>
+<a id='L89' name='L89'></a>
+<a id='L90' name='L90'></a><strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"EXPORT64")) <em class='brace'>{</em>
+<a id='L91' name='L91'></a>        fprintf(g_flog,"Processing EXPORT64 directive\n");
+<a id='L92' name='L92'></a>        g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L93' name='L93'></a>        g_iLineType = <a href='../D/422.html' title='Multiple defined in 2 places.'>TYPE_DIR</a>;
+<a id='L94' name='L94'></a>        <strong class='reserved'>if</strong>(0 != strlen(g_szParms)) <em class='brace'>{</em>
+<a id='L95' name='L95'></a>                g_bExported = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L96' name='L96'></a>                <strong class='reserved'>int</strong> rc;
+<a id='L97' name='L97'></a>                <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong> ullBuffer;
+<a id='L98' name='L98'></a>                ullBuffer = g_pCSymbols-&gt;<a href='../D/520.html' title='Multiple defined in 2 places.'>getu64</a>(g_szParms,&amp;rc);
+<a id='L99' name='L99'></a>                <strong class='reserved'>if</strong>(EXIT_SUCCESS == rc) <em class='brace'>{</em>
+<a id='L100' name='L100'></a>                        <strong class='reserved'>if</strong>(<a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a> == g_bPass2) <em class='brace'>{</em>
+<a id='L101' name='L101'></a>                                fprintf(g_fexp,"%s\tequ64\t$)017X\n",
+<a id='L102' name='L102'></a>                                        g_szParms,ullBuffer);
+<a id='L103' name='L103'></a>                        <em class='brace'>}</em>
+<a id='L104' name='L104'></a>                <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L105' name='L105'></a>                        g_iErrorNo |= <a href='../D/82.html' title='Multiple defined in 2 places.'>ERROR_UNK_EXP</a>;
+<a id='L106' name='L106'></a>                <em class='brace'>}</em>
+<a id='L107' name='L107'></a>        <em class='brace'>}</em>
+<a id='L108' name='L108'></a><em class='brace'>}</em>
+<a id='L109' name='L109'></a>
+<a id='L110' name='L110'></a><em class='comment'>////////////////////</em>
+<a id='L111' name='L111'></a><em class='comment'>// eof export.hpp //</em>
+<a id='L112' name='L112'></a><em class='comment'>////////////////////</em>
+<a id='L113' name='L113'></a>
 </pre>
 <hr />
 <a id='BOTTOM' name='BOTTOM'></a>
-<em class='comment'>/* [&lt;][&gt;][^]<a href='#L13'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L8'>[^]</a><a href='#L90'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 </body>
 </html>

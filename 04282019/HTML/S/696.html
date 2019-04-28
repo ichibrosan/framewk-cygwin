@@ -1,31 +1,31 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
-<title>base/ascii.cpp</title>
+<title>base/bin2com.cpp</title>
 <meta name='robots' content='noindex,nofollow' />
 <meta name='generator' content='GLOBAL-6.6.3' />
 <meta http-equiv='Content-Style-Type' content='text/css' />
 <link rel='stylesheet' type='text/css' href='../style.css' />
 </head>
 <body>
-<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/822.html'>base</a>/ascii.cpp</h2>
-<em class='comment'>/* [&lt;][&gt;]<a href='#L36'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/817.html'>base</a>/bin2com.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L46'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 <hr />
 <h2 class='header'>DEFINITIONS</h2>
 This source file includes following definitions.
 <ol>
-<li><a href='#L36' title='Defined at 36.'>main</a></li>
+<li><a href='#L46' title='Defined at 46.'>main</a></li>
 </ol>
 <hr />
 <pre>
-<a id='L1' name='L1'></a><em class='comment'>// $Log: ascii.cpp,v $</em>
-<a id='L2' name='L2'></a><em class='comment'>// Revision 1.3  2011/04/14 15:13:09  doug</em>
-<a id='L3' name='L3'></a><em class='comment'>// get ready for release to wiki and server</em>
+<a id='L1' name='L1'></a><em class='comment'>// $Log: bin2com.cpp,v $</em>
+<a id='L2' name='L2'></a><em class='comment'>// Revision 1.1  2011/04/14 15:13:09  doug</em>
+<a id='L3' name='L3'></a><em class='comment'>// Initial revision</em>
 <a id='L4' name='L4'></a><em class='comment'>//</em>
 <a id='L5' name='L5'></a><em class='comment'>//</em>
 <a id='L6' name='L6'></a>
 <a id='L7' name='L7'></a><em class='comment'>// ---------------------------------------------------</em>
-<a id='L8' name='L8'></a><em class='comment'>// ascii.cpp    21-Feb-11   Running on Mac OS X 10.6.6</em>
+<a id='L8' name='L8'></a><em class='comment'>// bin2com.cpp  11-Apr-11   Running on Mac OS X 10.6.6</em>
 <a id='L9' name='L9'></a><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
 <a id='L10' name='L10'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
 <a id='L11' name='L11'></a><em class='comment'>// ---------------------------------------------------</em>
@@ -44,29 +44,82 @@ This source file includes following definitions.
 <a id='L24' name='L24'></a><em class='comment'>// You should have received a copy of the GNU General Public License</em>
 <a id='L25' name='L25'></a><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
 <a id='L26' name='L26'></a><em class='comment'>//</em>
-<a id='L27' name='L27'></a><em class='comment'>//#define __TRACE</em>
+<a id='L27' name='L27'></a><em class='comment'>// 2/4/2011 dwg - cloned from Borland version</em>
 <a id='L28' name='L28'></a>
-<a id='L29' name='L29'></a><strong class='reserved'>static</strong> <strong class='reserved'>char</strong> szAsciiCpp[] = "$Id: ascii.cpp,v 1.3 2011/04/14 15:13:09 doug Exp $";
+<a id='L29' name='L29'></a><strong class='reserved'>static</strong> <strong class='reserved'>char</strong> szBin2comCpp[] = "$Id: bin2com.cpp,v 1.1 2011/04/14 15:13:09 doug Exp $";
 <a id='L30' name='L30'></a>
 <a id='L31' name='L31'></a><em class='sharp'>#include</em> "<a href='../I/196.html'>asdefs.hpp</a>"
 <a id='L32' name='L32'></a><em class='sharp'>#define</em> <a href='../R/46.html' title='Multiple referred from 2 places.'>DWGALLOC</a>
 <a id='L33' name='L33'></a><em class='sharp'>#define</em> <a href='../R/66.html' title='Multiple referred from 2 places.'>INIBIND</a>
-<a id='L34' name='L34'></a><em class='sharp'>#include</em> "<a href='../I/324.html'>includes.hpp</a>"
-<a id='L35' name='L35'></a>
-<a id='L36' name='L36'></a><strong class='reserved'>int</strong> main(<strong class='reserved'>int</strong> argc,<strong class='reserved'>char</strong> **argv)
-<a id='L37' name='L37'></a><em class='brace'>{</em>
-<a id='L38' name='L38'></a>        <a href='../D/440.html' title='Multiple defined in 2 places.'>Version</a>(argv[0]);
-<a id='L39' name='L39'></a>
-<a id='L40' name='L40'></a>        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> x=0;x&lt;256;x++) <em class='brace'>{</em>
-<a id='L41' name='L41'></a>                printf("%d = %c\n",x,x);
-<a id='L42' name='L42'></a>        <em class='brace'>}</em>
-<a id='L43' name='L43'></a>        
-<a id='L44' name='L44'></a>        <strong class='reserved'>return</strong> EXIT_SUCCESS;
-<a id='L45' name='L45'></a><em class='brace'>}</em>
-<a id='L46' name='L46'></a>
+<a id='L34' name='L34'></a><em class='sharp'>#define</em> <a href='../R/77.html' title='Multiple referred from 2 places.'>MEMORY</a>
+<a id='L35' name='L35'></a><em class='sharp'>#include</em> "<a href='../I/324.html'>includes.hpp</a>"
+<a id='L36' name='L36'></a>
+<a id='L37' name='L37'></a>
+<a id='L38' name='L38'></a><em class='comment'>// to create 2's compliment, flip all bits and add 1</em>
+<a id='L39' name='L39'></a><em class='comment'>// (xor with FF ) + 1 does that</em>
+<a id='L40' name='L40'></a>
+<a id='L41' name='L41'></a><em class='comment'>// : &lt;length&gt; &lt;addr&gt; &lt;type&gt; &lt;data&gt; &lt;checksum&gt;</em>
+<a id='L42' name='L42'></a>
+<a id='L43' name='L43'></a><em class='sharp'>#define</em> <a href='../R/23.html' title='Multiple referred from 6 places.'>DATA_RECORD</a> 0x00
+<a id='L44' name='L44'></a><em class='sharp'>#define</em> EOF_RECORD  0x01
+<a id='L45' name='L45'></a>
+<a id='L46' name='L46'></a><strong class='reserved'>int</strong> main(<strong class='reserved'>int</strong> argc,<strong class='reserved'>char</strong> **argv)
+<a id='L47' name='L47'></a><em class='brace'>{</em>
+<a id='L48' name='L48'></a>        <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> buffer[0xff00+1];
+<a id='L49' name='L49'></a>        <strong class='reserved'>char</strong> szCmd[80];
+<a id='L50' name='L50'></a>
+<a id='L51' name='L51'></a>        <a href='../D/410.html' title='Multiple defined in 2 places.'>TRACE</a>("starting main...");
+<a id='L52' name='L52'></a>        
+<a id='L53' name='L53'></a>        <a href='../D/440.html' title='Multiple defined in 2 places.'>Version</a>(argv[0]);
+<a id='L54' name='L54'></a>
+<a id='L55' name='L55'></a>        <strong class='reserved'>if</strong>(1 == argc) <em class='brace'>{</em>
+<a id='L56' name='L56'></a>                printf("usage - bin2com &lt;binfilespec&gt; &lt;comfilespec&gt;\n");
+<a id='L57' name='L57'></a>        <em class='brace'>}</em>
+<a id='L58' name='L58'></a>
+<a id='L59' name='L59'></a>        <a href='../D/410.html' title='Multiple defined in 2 places.'>TRACE</a>("opening output file for writing");
+<a id='L60' name='L60'></a>        FILE * fbin = fopen(argv[1],"r");
+<a id='L61' name='L61'></a>        <strong class='reserved'>if</strong>(NULL == fbin) <em class='brace'>{</em>
+<a id='L62' name='L62'></a>                printf("Sorry, unable to open %s for input\n",argv[1]);
+<a id='L63' name='L63'></a>                exit(EXIT_FAILURE);
+<a id='L64' name='L64'></a>        <em class='brace'>}</em>
+<a id='L65' name='L65'></a>                
+<a id='L66' name='L66'></a>        FILE * fcom = fopen(argv[2],"w");
+<a id='L67' name='L67'></a>        <strong class='reserved'>if</strong>(NULL == fcom) <em class='brace'>{</em>
+<a id='L68' name='L68'></a>                printf("Sorry, unableto open %s for output\n",argv[2]);
+<a id='L69' name='L69'></a>                fclose(fbin);
+<a id='L70' name='L70'></a>                exit(EXIT_FAILURE);
+<a id='L71' name='L71'></a>        <em class='brace'>}</em>
+<a id='L72' name='L72'></a>        
+<a id='L73' name='L73'></a>        <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> uiBytes = fread(buffer,1,0x100,fbin);
+<a id='L74' name='L74'></a>        <strong class='reserved'>if</strong>(0x100 != uiBytes) <em class='brace'>{</em>
+<a id='L75' name='L75'></a>                printf("Sorry, unable to read binary prefix\n");
+<a id='L76' name='L76'></a>                exit(EXIT_FAILURE);
+<a id='L77' name='L77'></a>        <em class='brace'>}</em>
+<a id='L78' name='L78'></a>        
+<a id='L79' name='L79'></a>        uiBytes = fread(buffer,1,0xff00,fbin);
+<a id='L80' name='L80'></a>        <strong class='reserved'>if</strong>(0 == uiBytes) <em class='brace'>{</em>
+<a id='L81' name='L81'></a>                printf("Sorry, unable to read remainder of program\n");
+<a id='L82' name='L82'></a>                exit(EXIT_FAILURE);
+<a id='L83' name='L83'></a>        <em class='brace'>}</em>
+<a id='L84' name='L84'></a>
+<a id='L85' name='L85'></a>        <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> uiBytes2 = fwrite(buffer,1,uiBytes,fcom);
+<a id='L86' name='L86'></a>        <strong class='reserved'>if</strong>(uiBytes != uiBytes2) <em class='brace'>{</em>
+<a id='L87' name='L87'></a>                printf("Sorry, problem writing .COM file\n");
+<a id='L88' name='L88'></a>                fclose(fbin);
+<a id='L89' name='L89'></a>                fclose(fcom);
+<a id='L90' name='L90'></a>                sprintf(szCmd,"rm -f %s\n",argv[2]);
+<a id='L91' name='L91'></a>                system(szCmd);
+<a id='L92' name='L92'></a>                exit(EXIT_FAILURE);
+<a id='L93' name='L93'></a>        <em class='brace'>}</em>
+<a id='L94' name='L94'></a>
+<a id='L95' name='L95'></a>        fclose(fbin);
+<a id='L96' name='L96'></a>        fclose(fcom);
+<a id='L97' name='L97'></a>        printf("%s written successfully\n",argv[2]);
+<a id='L98' name='L98'></a><em class='brace'>}</em>
+<a id='L99' name='L99'></a>
 </pre>
 <hr />
 <a id='BOTTOM' name='BOTTOM'></a>
-<em class='comment'>/* [&lt;][&gt;][^]<a href='#L36'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L46'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 </body>
 </html>

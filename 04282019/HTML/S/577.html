@@ -1,135 +1,223 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
-<title>doc/postfix.c</title>
+<title>asparse2.hpp</title>
 <meta name='robots' content='noindex,nofollow' />
 <meta name='generator' content='GLOBAL-6.6.3' />
 <meta http-equiv='Content-Style-Type' content='text/css' />
 <link rel='stylesheet' type='text/css' href='../style.css' />
 </head>
 <body>
-<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/847.html'>doc</a>/postfix.c</h2>
-<em class='comment'>/* [&lt;][&gt;]<a href='#L23'>[^]</a><a href='#L50'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/asparse2.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L30'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 <hr />
 <h2 class='header'>DEFINITIONS</h2>
 This source file includes following definitions.
 <ol>
-<li><a href='#L23' title='Defined at 23.'>push</a></li>
-<li><a href='#L28' title='Defined at 28.'>pop</a></li>
-<li><a href='#L33' title='Defined at 33.'>mostra</a></li>
-<li><a href='#L41' title='Defined at 41.'>preced</a></li>
-<li><a href='#L50' title='Defined at 50.'>main</a></li>
+<li><a href='#L30' title='Defined at 30.'>asparse</a></li>
 </ol>
 <hr />
 <pre>
-<a id='L1' name='L1'></a><em class='comment'>// Pilha e algoritmo shunting yard (baseado no wikipedia) </em>
-<a id='L2' name='L2'></a><em class='comment'>// Free for use. Done by Luiz Roberto Meier , 2010</em>
-<a id='L3' name='L3'></a>
-<a id='L4' name='L4'></a><em class='sharp'>#include</em> "<a href='../I/324.html'>includes.hpp</a>"
-<a id='L5' name='L5'></a>
-<a id='L6' name='L6'></a><em class='comment'>//#include &lt;string.h&gt;</em>
-<a id='L7' name='L7'></a><em class='comment'>//#include &lt;stdio.h&gt;</em>
-<a id='L8' name='L8'></a><em class='sharp'>#define</em> <a href='../R/260.html' title='Multiple referred from 35 places.'>size</a> 10
-<a id='L9' name='L9'></a>
-<a id='L10' name='L10'></a><strong class='reserved'>char</strong> pilha[<a href='../S/577.html#L8' title='Defined at 8 in doc/postfix.c.'>size</a>]; <em class='comment'>// tamanho da pilha 10 </em>
-<a id='L11' name='L11'></a><strong class='reserved'>int</strong> tos=0, ele; <em class='comment'>// posi��o e elemento</em>
-<a id='L12' name='L12'></a>
-<a id='L13' name='L13'></a><strong class='reserved'>void</strong> <a href='../D/553.html' title='Multiple defined in 3 places.'>push</a>();
-<a id='L14' name='L14'></a><strong class='reserved'>char</strong> <a href='../D/549.html' title='Multiple defined in 3 places.'>pop</a>();
-<a id='L15' name='L15'></a><strong class='reserved'>void</strong> <a href='../D/541.html' title='Multiple defined in 3 places.'>mostra</a>();
-<a id='L16' name='L16'></a><strong class='reserved'>int</strong> isempty();
-<a id='L17' name='L17'></a><strong class='reserved'>int</strong> isfull();
-<a id='L18' name='L18'></a>
-<a id='L19' name='L19'></a><strong class='reserved'>char</strong> infix[30],output[30]; <em class='comment'>// limite pode ser aumentado...</em>
-<a id='L20' name='L20'></a><strong class='reserved'>int</strong> <a href='../D/550.html' title='Multiple defined in 3 places.'>preced</a>(<strong class='reserved'>char</strong>);
-<a id='L21' name='L21'></a>
-<a id='L22' name='L22'></a><em class='comment'>// Fun��es para operar com pilha (baseado no assembly)</em>
-<a id='L23' name='L23'></a><strong class='reserved'>void</strong> <a href='../R/252.html' title='Multiple referred from 15 places.'>push</a>(<strong class='reserved'>int</strong> ele) <em class='brace'>{</em>
-<a id='L24' name='L24'></a>        pilha[tos]=ele;
-<a id='L25' name='L25'></a>        tos++;
-<a id='L26' name='L26'></a><em class='brace'>}</em>
+<a id='L1' name='L1'></a><em class='comment'>// $Log: asparse2.hpp,v $</em>
+<a id='L2' name='L2'></a><em class='comment'>// Revision 1.2  2011/04/14 15:13:09  doug</em>
+<a id='L3' name='L3'></a><em class='comment'>// get ready for release to wiki and server</em>
+<a id='L4' name='L4'></a><em class='comment'>//</em>
+<a id='L5' name='L5'></a><em class='comment'>//</em>
+<a id='L6' name='L6'></a>
+<a id='L7' name='L7'></a><em class='comment'>// ---------------------------------------------------</em>
+<a id='L8' name='L8'></a><em class='comment'>// asparse.hpp  21-Feb-11   Running on Mac OS X 10.6.6</em>
+<a id='L9' name='L9'></a><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
+<a id='L10' name='L10'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L11' name='L11'></a><em class='comment'>// ---------------------------------------------------</em>
+<a id='L12' name='L12'></a><em class='comment'>// This file is part of Vintage Modern Assembler Plus Tools.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>// VMAPT is free software: you can redistribute it and/or modify</em>
+<a id='L15' name='L15'></a><em class='comment'>// it under the terms of the GNU General Public License as published by</em>
+<a id='L16' name='L16'></a><em class='comment'>// the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L17' name='L17'></a><em class='comment'>// (at your option) any later version.</em>
+<a id='L18' name='L18'></a><em class='comment'>//</em>
+<a id='L19' name='L19'></a><em class='comment'>// VMAPT is distributed in the hope that it will be useful,</em>
+<a id='L20' name='L20'></a><em class='comment'>// but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L21' name='L21'></a><em class='comment'>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L22' name='L22'></a><em class='comment'>// GNU General Public License for more details.</em>
+<a id='L23' name='L23'></a><em class='comment'>//</em>
+<a id='L24' name='L24'></a><em class='comment'>// You should have received a copy of the GNU General Public License</em>
+<a id='L25' name='L25'></a><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L26' name='L26'></a><em class='comment'>//</em>
 <a id='L27' name='L27'></a>
-<a id='L28' name='L28'></a><strong class='reserved'>char</strong> <a href='../R/248.html' title='Multiple referred from 15 places.'>pop</a>() <em class='brace'>{</em>
-<a id='L29' name='L29'></a>        tos--;
-<a id='L30' name='L30'></a>        <strong class='reserved'>return</strong>(pilha[tos]);
-<a id='L31' name='L31'></a><em class='brace'>}</em>
-<a id='L32' name='L32'></a>
-<a id='L33' name='L33'></a><strong class='reserved'>void</strong> <a href='../R/240.html' title='Multiple referred from 9 places.'>mostra</a>() <em class='brace'>{</em>
-<a id='L34' name='L34'></a>        <strong class='reserved'>int</strong> x=tos;      
-<a id='L35' name='L35'></a>        printf("\n Elementos da pilha: ");
-<a id='L36' name='L36'></a>        <strong class='reserved'>while</strong>(x!=0)
-<a id='L37' name='L37'></a>        printf("%c, ",pilha[--x]);      
-<a id='L38' name='L38'></a><em class='brace'>}</em>
-<a id='L39' name='L39'></a>
-<a id='L40' name='L40'></a><em class='comment'>// Fun��es para definir a preced�ncia</em>
-<a id='L41' name='L41'></a><strong class='reserved'>int</strong> <a href='../R/249.html' title='Multiple referred from 15 places.'>preced</a>(<strong class='reserved'>char</strong> simb) <em class='brace'>{</em>
-<a id='L42' name='L42'></a>    <strong class='reserved'>if</strong> (simb== '(') <strong class='reserved'>return</strong> 0;
-<a id='L43' name='L43'></a>    <strong class='reserved'>if</strong> (simb== ')') <strong class='reserved'>return</strong> 0;
-<a id='L44' name='L44'></a>    <strong class='reserved'>if</strong> (simb=='+' || simb=='-') <strong class='reserved'>return</strong> 1;
-<a id='L45' name='L45'></a>    <strong class='reserved'>if</strong> (simb=='*' || simb=='/') <strong class='reserved'>return</strong> 2;
-<a id='L46' name='L46'></a>    <strong class='reserved'>if</strong> (simb=='^') <strong class='reserved'>return</strong> 3;
-<a id='L47' name='L47'></a>    <strong class='reserved'>return</strong> 0;
-<a id='L48' name='L48'></a><em class='brace'>}</em>
-<a id='L49' name='L49'></a>
-<a id='L50' name='L50'></a><strong class='reserved'>int</strong> main()
-<a id='L51' name='L51'></a><em class='brace'>{</em>
-<a id='L52' name='L52'></a>        <strong class='reserved'>int</strong> i=0,j=0,k=0,length;
-<a id='L53' name='L53'></a>        <strong class='reserved'>char</strong> temp;
-<a id='L54' name='L54'></a>        printf("\nDigite uma expressao matematica : ");
-<a id='L55' name='L55'></a>        scanf("%s",infix);
-<a id='L56' name='L56'></a>        length=strlen(infix);
-<a id='L57' name='L57'></a>        <strong class='reserved'>for</strong>(i=0;i&lt;length;i++) <em class='brace'>{</em>
-<a id='L58' name='L58'></a>                <em class='comment'>// N�meros s�o separados dos operadores aqui</em>
-<a id='L59' name='L59'></a>                <strong class='reserved'>if</strong>(infix[i]!='+' &amp;&amp; infix[i]!='-' &amp;&amp; infix[i]!='*' &amp;&amp; infix[i]!='/' &amp;&amp; infix[i]!='^' &amp;&amp; infix[i]!=')' &amp;&amp; infix[i]!='(' ) <em class='brace'>{</em>
-<a id='L60' name='L60'></a>          output[j++]=infix[i];
-<a id='L61' name='L61'></a>          printf("\n Elemento adicionado na expressao final : %c",infix[i]);
-<a id='L62' name='L62'></a>                <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em> <em class='comment'>// Se for um ()</em>
-<a id='L63' name='L63'></a>                        <strong class='reserved'>if</strong>(tos==0) <em class='brace'>{</em> <em class='comment'>// Se n�o existir um operador na pilha, adiciona nela</em>
-<a id='L64' name='L64'></a>               <a href='../D/553.html' title='Multiple defined in 3 places.'>push</a>(infix[i]);
-<a id='L65' name='L65'></a>                           printf("\n Elemento adicionado na pilha :%c",infix[i]);
-<a id='L66' name='L66'></a>                        <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em> <em class='comment'>// Operadores s�o retirados e colocados de acordo com a preced�ncia.</em>
-<a id='L67' name='L67'></a>                                <strong class='reserved'>if</strong>(infix[i]!=')' &amp;&amp; infix[i]!='(') <em class='brace'>{</em>
-<a id='L68' name='L68'></a>                                        <strong class='reserved'>if</strong>(<a href='../D/550.html' title='Multiple defined in 3 places.'>preced</a>(infix[i]) &lt;= <a href='../D/550.html' title='Multiple defined in 3 places.'>preced</a>(pilha[tos-1])) <em class='brace'>{</em>
-<a id='L69' name='L69'></a>                      <strong class='reserved'>while</strong> (<a href='../D/550.html' title='Multiple defined in 3 places.'>preced</a>(infix[i]) &amp;&amp; <a href='../D/550.html' title='Multiple defined in 3 places.'>preced</a>(infix[i]) &lt;= <a href='../D/550.html' title='Multiple defined in 3 places.'>preced</a>(pilha[tos-1])) <em class='brace'>{</em>
-<a id='L70' name='L70'></a>                        temp=<a href='../D/549.html' title='Multiple defined in 3 places.'>pop</a>();
-<a id='L71' name='L71'></a>                        printf("\n Elemento retirado da pilha :%c",temp);
-<a id='L72' name='L72'></a>                        output[j++]=temp;
-<a id='L73' name='L73'></a>                      <em class='brace'>}</em>
-<a id='L74' name='L74'></a>                      <a href='../D/553.html' title='Multiple defined in 3 places.'>push</a>(infix[i]);
-<a id='L75' name='L75'></a>                      printf("\n Elemento colocado na pilha :%c",infix[i]);
-<a id='L76' name='L76'></a>                      <a href='../D/541.html' title='Multiple defined in 3 places.'>mostra</a>();
-<a id='L77' name='L77'></a>                                        <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
-<a id='L78' name='L78'></a>                                          <a href='../D/553.html' title='Multiple defined in 3 places.'>push</a>(infix[i]);
-<a id='L79' name='L79'></a>                                          printf("\n Elemento adicionado na pilha : %c",infix[i]);
-<a id='L80' name='L80'></a>                                          <a href='../D/541.html' title='Multiple defined in 3 places.'>mostra</a>();
-<a id='L81' name='L81'></a>                                        <em class='brace'>}</em>
-<a id='L82' name='L82'></a>                                <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>        
-<a id='L83' name='L83'></a>                    <strong class='reserved'>if</strong>(infix[i]=='(') <em class='brace'>{</em>
-<a id='L84' name='L84'></a>                                          <a href='../D/553.html' title='Multiple defined in 3 places.'>push</a>(infix[i]);
-<a id='L85' name='L85'></a>                                          printf("\n Elemento colocado na pilha : %c",infix[i]);
-<a id='L86' name='L86'></a>                                        <em class='brace'>}</em>
-<a id='L87' name='L87'></a>                                        <strong class='reserved'>if</strong>(infix[i]==')') <em class='brace'>{</em>
-<a id='L88' name='L88'></a>                                          temp=<a href='../D/549.html' title='Multiple defined in 3 places.'>pop</a>(); 
-<a id='L89' name='L89'></a>                      <strong class='reserved'>while</strong>(temp!='(') <em class='brace'>{</em>
-<a id='L90' name='L90'></a>                        output[j++]=temp;
-<a id='L91' name='L91'></a>                                            temp=<a href='../D/549.html' title='Multiple defined in 3 places.'>pop</a>();
-<a id='L92' name='L92'></a>                      <em class='brace'>}</em>
-<a id='L93' name='L93'></a>                                        <em class='brace'>}</em>
-<a id='L94' name='L94'></a>                                <em class='brace'>}</em>
-<a id='L95' name='L95'></a>                        <em class='brace'>}</em>
-<a id='L96' name='L96'></a>                <em class='brace'>}</em>       
-<a id='L97' name='L97'></a>        <em class='brace'>}</em>
-<a id='L98' name='L98'></a>        <strong class='reserved'>while</strong>(tos!=0) <em class='brace'>{</em>
-<a id='L99' name='L99'></a>                output[j++]=<a href='../D/549.html' title='Multiple defined in 3 places.'>pop</a>();
-<a id='L100' name='L100'></a>        <em class='brace'>}</em>
-<a id='L101' name='L101'></a>     printf("\n\nA expressao final e : %s\n\n",output);
-<a id='L102' name='L102'></a>     
-<a id='L103' name='L103'></a><em class='comment'>//     system("PAUSE"); </em>
-<a id='L104' name='L104'></a>     <strong class='reserved'>return</strong> 0;
-<a id='L105' name='L105'></a><em class='brace'>}</em>
+<a id='L28' name='L28'></a><strong class='reserved'>static</strong> <strong class='reserved'>char</strong> szAsparseHpp[] = "$Id: asparse2.hpp,v 1.2 2011/04/14 15:13:09 doug Exp $";
+<a id='L29' name='L29'></a>
+<a id='L30' name='L30'></a><strong class='reserved'>void</strong> <a href='../R/167.html' title='Multiple referred from 4 places.'>asparse</a>(<strong class='reserved'>void</strong>)
+<a id='L31' name='L31'></a><em class='brace'>{</em>
+<a id='L32' name='L32'></a>        sprintf(g_szAsparseHpp,"%s %s %s",__FILE__,__TIME__,__DATE__);
+<a id='L33' name='L33'></a>
+<a id='L34' name='L34'></a>        fprintf(g_flog,"\nsrc: %s\n",g_szBuffer);
+<a id='L35' name='L35'></a>
+<a id='L36' name='L36'></a>        memset(g_szLabel,0,<strong class='reserved'>sizeof</strong>(g_szLabel));
+<a id='L37' name='L37'></a>        memset(g_szOpcode,0,<strong class='reserved'>sizeof</strong>(g_szOpcode));
+<a id='L38' name='L38'></a>        memset(g_szParms,0,<strong class='reserved'>sizeof</strong>(g_szParms));
+<a id='L39' name='L39'></a>        memset(g_szComments,0,<strong class='reserved'>sizeof</strong>(g_szComments));
+<a id='L40' name='L40'></a>        <strong class='reserved'>int</strong> pindex = 0;
+<a id='L41' name='L41'></a>        g_iState = 0;
+<a id='L42' name='L42'></a>        g_iBytesIndex = 0;
+<a id='L43' name='L43'></a>        <strong class='reserved'>while</strong>(pindex &lt; strlen(g_szBuffer)) <em class='brace'>{</em>            
+<a id='L44' name='L44'></a>                g_cToken = g_szBuffer[pindex++];
+<a id='L45' name='L45'></a>                <strong class='reserved'>switch</strong>(g_iState) <em class='brace'>{</em>
+<a id='L46' name='L46'></a>                        <strong class='reserved'>case</strong> 0: <em class='comment'>// looking for label start</em>
+<a id='L47' name='L47'></a>                                <strong class='reserved'>if</strong>(g_bDebug) <em class='brace'>{</em>
+<a id='L48' name='L48'></a>                                        printf("0");
+<a id='L49' name='L49'></a>                                <em class='brace'>}</em>
+<a id='L50' name='L50'></a>                                <strong class='reserved'>if</strong>(' ' == g_cToken) <em class='brace'>{</em>
+<a id='L51' name='L51'></a>                                        g_iState = 2;   <em class='comment'>// looking for g_szOpcode start</em>
+<a id='L52' name='L52'></a>                                        <strong class='reserved'>break</strong>;
+<a id='L53' name='L53'></a>                                <em class='brace'>}</em>       
+<a id='L54' name='L54'></a>                                <strong class='reserved'>if</strong>(<a href='../D/15.html' title='Multiple defined in 2 places.'>ASCII_TAB</a> == g_cToken) <em class='brace'>{</em>
+<a id='L55' name='L55'></a>                                        g_iState = 2;   <em class='comment'>// looking for g_szOpcode start</em>
+<a id='L56' name='L56'></a>                                        <strong class='reserved'>break</strong>;
+<a id='L57' name='L57'></a>                                <em class='brace'>}</em>       
+<a id='L58' name='L58'></a>                                <strong class='reserved'>if</strong>(';' == g_cToken) <em class='brace'>{</em>
+<a id='L59' name='L59'></a>                                        g_bComments = 1;
+<a id='L60' name='L60'></a>                                        g_iState = 7;                           
+<a id='L61' name='L61'></a>                                        g_szComments[strlen(g_szComments)] = g_cToken;
+<a id='L62' name='L62'></a>                                        <strong class='reserved'>break</strong>;
+<a id='L63' name='L63'></a>                                <em class='brace'>}</em>
+<a id='L64' name='L64'></a>                                g_iState = 1;
+<a id='L65' name='L65'></a>                                g_szLabel[strlen(g_szLabel)] = g_cToken;
+<a id='L66' name='L66'></a>                                g_bLabel = 1;
+<a id='L67' name='L67'></a>                                <strong class='reserved'>break</strong>;
+<a id='L68' name='L68'></a>                        <strong class='reserved'>case</strong> 1: <em class='comment'>// process label character</em>
+<a id='L69' name='L69'></a>                                <strong class='reserved'>if</strong>(g_bDebug) <em class='brace'>{</em>
+<a id='L70' name='L70'></a>                                        printf("1");
+<a id='L71' name='L71'></a>                                <em class='brace'>}</em>
+<a id='L72' name='L72'></a>                                <strong class='reserved'>if</strong>(':' == g_cToken) <em class='brace'>{</em>
+<a id='L73' name='L73'></a>                                        g_iState = 2;   <em class='comment'>// wait for g_szOpcode</em>
+<a id='L74' name='L74'></a>                                        <strong class='reserved'>break</strong>;
+<a id='L75' name='L75'></a>                                <em class='brace'>}</em>
+<a id='L76' name='L76'></a>                                <strong class='reserved'>if</strong>(' ' == g_cToken) <em class='brace'>{</em>
+<a id='L77' name='L77'></a>                                        g_iState = 2;   <em class='comment'>// wait for g_szOpcode</em>
+<a id='L78' name='L78'></a>                                        <strong class='reserved'>break</strong>;
+<a id='L79' name='L79'></a>                                <em class='brace'>}</em>
+<a id='L80' name='L80'></a>                                <strong class='reserved'>if</strong>(<a href='../D/15.html' title='Multiple defined in 2 places.'>ASCII_TAB</a> == g_cToken) <em class='brace'>{</em>
+<a id='L81' name='L81'></a>                                        g_iState = 2;   <em class='comment'>// wait for g_szOpcode</em>
+<a id='L82' name='L82'></a>                                                        <strong class='reserved'>break</strong>;
+<a id='L83' name='L83'></a>                                <em class='brace'>}</em>
+<a id='L84' name='L84'></a>                                g_szLabel[strlen(g_szLabel)] = g_cToken;                                
+<a id='L85' name='L85'></a>                                g_bLabel = 1;
+<a id='L86' name='L86'></a>                                <strong class='reserved'>break</strong>;
+<a id='L87' name='L87'></a>                        <strong class='reserved'>case</strong> 2: <em class='comment'>// wait for g_szOpcode</em>
+<a id='L88' name='L88'></a>                                <strong class='reserved'>if</strong>(g_bDebug) <em class='brace'>{</em>
+<a id='L89' name='L89'></a>                                        printf("2");
+<a id='L90' name='L90'></a>                                <em class='brace'>}</em>
+<a id='L91' name='L91'></a>                                <strong class='reserved'>if</strong>(';' == g_cToken) <em class='brace'>{</em>
+<a id='L92' name='L92'></a>                                        g_iState = 6;   <em class='comment'>// wait for g_szOpcode</em>
+<a id='L93' name='L93'></a>                                        <strong class='reserved'>break</strong>;
+<a id='L94' name='L94'></a>                                        g_szComments[strlen(g_szComments)] = g_cToken;
+<a id='L95' name='L95'></a>                                        
+<a id='L96' name='L96'></a>                                <em class='brace'>}</em>
+<a id='L97' name='L97'></a>                                <strong class='reserved'>if</strong>(' ' == g_cToken) <em class='brace'>{</em>
+<a id='L98' name='L98'></a>                                        <strong class='reserved'>break</strong>;
+<a id='L99' name='L99'></a>                                <em class='brace'>}</em>
+<a id='L100' name='L100'></a>                                <strong class='reserved'>if</strong>(<a href='../D/15.html' title='Multiple defined in 2 places.'>ASCII_TAB</a> == g_cToken) <em class='brace'>{</em>
+<a id='L101' name='L101'></a>                                        <strong class='reserved'>break</strong>;
+<a id='L102' name='L102'></a>                                <em class='brace'>}</em>       
+<a id='L103' name='L103'></a>                                g_szOpcode[strlen(g_szOpcode)] = g_cToken;
+<a id='L104' name='L104'></a>                                g_bOpcode = 1;
+<a id='L105' name='L105'></a>                                g_iState = 3;
+<a id='L106' name='L106'></a>                                <strong class='reserved'>break</strong>;
+<a id='L107' name='L107'></a>                        
+<a id='L108' name='L108'></a>                        <strong class='reserved'>case</strong> 3: <em class='comment'>// process g_szOpcode</em>
+<a id='L109' name='L109'></a>                                <strong class='reserved'>if</strong>(g_bDebug) <em class='brace'>{</em>
+<a id='L110' name='L110'></a>                                        printf("3");
+<a id='L111' name='L111'></a>                                <em class='brace'>}</em>
+<a id='L112' name='L112'></a>                                <strong class='reserved'>if</strong>(' ' == g_cToken) <em class='brace'>{</em>
+<a id='L113' name='L113'></a>                                        g_iState = 4;   <em class='comment'>// waiting for parm</em>
+<a id='L114' name='L114'></a>                                        <strong class='reserved'>break</strong>;
+<a id='L115' name='L115'></a>                                <em class='brace'>}</em>
+<a id='L116' name='L116'></a>                                <strong class='reserved'>if</strong>(<a href='../D/15.html' title='Multiple defined in 2 places.'>ASCII_TAB</a> == g_cToken) <em class='brace'>{</em>
+<a id='L117' name='L117'></a>                                        g_iState = 4;   <em class='comment'>// waiting for                  parm</em>
+<a id='L118' name='L118'></a>                                        <strong class='reserved'>break</strong>;
+<a id='L119' name='L119'></a>                                <em class='brace'>}</em>                       
+<a id='L120' name='L120'></a>                                g_szOpcode[strlen(g_szOpcode)] = g_cToken;
+<a id='L121' name='L121'></a>                                g_bOpcode = 1;
+<a id='L122' name='L122'></a>                                <strong class='reserved'>break</strong>;
+<a id='L123' name='L123'></a>                        <strong class='reserved'>case</strong> 4: <em class='comment'>// wait for parm</em>
+<a id='L124' name='L124'></a>                                <strong class='reserved'>if</strong>(g_bDebug) <em class='brace'>{</em>
+<a id='L125' name='L125'></a>                                        printf("4");
+<a id='L126' name='L126'></a>                                <em class='brace'>}</em>
+<a id='L127' name='L127'></a>                                <strong class='reserved'>if</strong>(' ' == g_cToken) <em class='brace'>{</em>
+<a id='L128' name='L128'></a>                                        <strong class='reserved'>break</strong>;          
+<a id='L129' name='L129'></a>                                <em class='brace'>}</em>
+<a id='L130' name='L130'></a>                                <strong class='reserved'>if</strong>(<a href='../D/15.html' title='Multiple defined in 2 places.'>ASCII_TAB</a> == g_cToken) <em class='brace'>{</em>
+<a id='L131' name='L131'></a>                                        <strong class='reserved'>break</strong>;
+<a id='L132' name='L132'></a>                                <em class='brace'>}</em>                               
+<a id='L133' name='L133'></a>                                g_iState = 5;   <em class='comment'>// process parm</em>
+<a id='L134' name='L134'></a>                                g_szParms[strlen(g_szParms)] = g_cToken;
+<a id='L135' name='L135'></a>                                g_bParms = 1;
+<a id='L136' name='L136'></a>                                <strong class='reserved'>break</strong>;
+<a id='L137' name='L137'></a>                        <strong class='reserved'>case</strong> 5: <em class='comment'>// process parm</em>
+<a id='L138' name='L138'></a>                                <strong class='reserved'>if</strong>(g_bDebug) <em class='brace'>{</em>
+<a id='L139' name='L139'></a>                                        printf("5");
+<a id='L140' name='L140'></a>                                <em class='brace'>}</em>
+<a id='L141' name='L141'></a>                                <strong class='reserved'>if</strong>(<a href='../D/15.html' title='Multiple defined in 2 places.'>ASCII_TAB</a> == g_cToken) <em class='brace'>{</em>
+<a id='L142' name='L142'></a>                                        g_iState = 6;
+<a id='L143' name='L143'></a>                                        <strong class='reserved'>break</strong>;
+<a id='L144' name='L144'></a>                                <em class='brace'>}</em>
+<a id='L145' name='L145'></a>
+<a id='L146' name='L146'></a><em class='comment'>// tabs are required to separate parms from comments</em>
+<a id='L147' name='L147'></a><em class='comment'>//                              if(ASCII_SPACE == g_cToken) {</em>
+<a id='L148' name='L148'></a><em class='comment'>//                                      g_iState = 6;</em>
+<a id='L149' name='L149'></a><em class='comment'>//                                      break;</em>
+<a id='L150' name='L150'></a><em class='comment'>//                              }</em>
+<a id='L151' name='L151'></a>
+<a id='L152' name='L152'></a>                                <em class='comment'>// added 3/12/2011 dwg - </em>
+<a id='L153' name='L153'></a>                                <em class='comment'>// handle g_szParms succeeded by semicolon</em>
+<a id='L154' name='L154'></a>                                <em class='comment'>// without intervening spaces</em>
+<a id='L155' name='L155'></a>                                <strong class='reserved'>if</strong>(<a href='../D/13.html' title='Multiple defined in 2 places.'>ASCII_SEMI</a> == g_cToken) <em class='brace'>{</em>
+<a id='L156' name='L156'></a>                                  g_iState = 7;
+<a id='L157' name='L157'></a>                                  g_szComments[strlen(g_szComments)] = g_cToken;
+<a id='L158' name='L158'></a>                                  g_bComments = 1;
+<a id='L159' name='L159'></a>                                  <strong class='reserved'>break</strong>;
+<a id='L160' name='L160'></a>                                <em class='brace'>}</em>
+<a id='L161' name='L161'></a>
+<a id='L162' name='L162'></a>                                g_szParms[strlen(g_szParms)] = g_cToken;
+<a id='L163' name='L163'></a>                                g_bParms = 1;
+<a id='L164' name='L164'></a>                                <strong class='reserved'>break</strong>;
+<a id='L165' name='L165'></a>                        <strong class='reserved'>case</strong> 6: <em class='comment'>// waiting for remark</em>
+<a id='L166' name='L166'></a>                                <strong class='reserved'>if</strong>(g_bDebug) <em class='brace'>{</em>
+<a id='L167' name='L167'></a>                                        printf("6");
+<a id='L168' name='L168'></a>                                <em class='brace'>}</em>
+<a id='L169' name='L169'></a>                                <strong class='reserved'>if</strong>(' ' == g_cToken) <em class='brace'>{</em>
+<a id='L170' name='L170'></a>                                        <strong class='reserved'>break</strong>;
+<a id='L171' name='L171'></a>                                <em class='brace'>}</em>
+<a id='L172' name='L172'></a>                                
+<a id='L173' name='L173'></a>                                <strong class='reserved'>if</strong>(<a href='../D/15.html' title='Multiple defined in 2 places.'>ASCII_TAB</a> == g_cToken) <em class='brace'>{</em>
+<a id='L174' name='L174'></a>                                        <strong class='reserved'>break</strong>;
+<a id='L175' name='L175'></a>                                <em class='brace'>}</em>
+<a id='L176' name='L176'></a>                                g_iState = 7;
+<a id='L177' name='L177'></a>                                g_szComments[strlen(g_szComments)] = g_cToken;
+<a id='L178' name='L178'></a>                                g_bComments = 1;
+<a id='L179' name='L179'></a>                                <strong class='reserved'>break</strong>;
+<a id='L180' name='L180'></a>                        <strong class='reserved'>case</strong> 7: <em class='comment'>// process remark</em>
+<a id='L181' name='L181'></a>                                <strong class='reserved'>if</strong>(g_bDebug) <em class='brace'>{</em>
+<a id='L182' name='L182'></a>                                        printf("7");
+<a id='L183' name='L183'></a>                                <em class='brace'>}</em>
+<a id='L184' name='L184'></a>                                <strong class='reserved'>if</strong>('\n' == g_cToken) <em class='brace'>{</em>
+<a id='L185' name='L185'></a>                                        <strong class='reserved'>break</strong>;
+<a id='L186' name='L186'></a>                                <em class='brace'>}</em>                                       
+<a id='L187' name='L187'></a>                                g_szComments[strlen(g_szComments)] = g_cToken;
+<a id='L188' name='L188'></a>                                g_bComments = 1;
+<a id='L189' name='L189'></a>                                <strong class='reserved'>break</strong>;
+<a id='L190' name='L190'></a>                <em class='brace'>}</em>;
+<a id='L191' name='L191'></a>        <em class='brace'>}</em>;
+<a id='L192' name='L192'></a>
+<a id='L193' name='L193'></a>        fprintf(g_flog,"label[%d] g_szOpcode[%d] g_szParms[%d] comments[%d]\n",
+<a id='L194' name='L194'></a>                strlen(g_szLabel),strlen(g_szOpcode),strlen(g_szParms),strlen(g_szComments));
+<a id='L195' name='L195'></a><em class='brace'>}</em>
+<a id='L196' name='L196'></a>        
+<a id='L197' name='L197'></a><em class='comment'>// eof - asparse.hpp</em>
 </pre>
 <hr />
 <a id='BOTTOM' name='BOTTOM'></a>
-<em class='comment'>/* [&lt;][&gt;]<a href='#L23'>[^]</a><a href='#L50'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L30'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 </body>
 </html>

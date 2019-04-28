@@ -1,55 +1,51 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
-<title>as6502/op.hpp</title>
+<title>ascommon/segment.hpp</title>
 <meta name='robots' content='noindex,nofollow' />
 <meta name='generator' content='GLOBAL-6.6.3' />
 <meta http-equiv='Content-Style-Type' content='text/css' />
 <link rel='stylesheet' type='text/css' href='../style.css' />
 </head>
 <body>
-<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/837.html'>as6502</a>/op.hpp</h2>
-<em class='comment'>/* [&lt;][&gt;]<a href='#L22'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/813.html'>ascommon</a>/segment.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L6'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 <hr />
 <h2 class='header'>DEFINITIONS</h2>
 This source file includes following definitions.
 <ol>
-<li><a href='#L22' title='Defined at 22.'>strcmp</a></li>
+<li><a href='#L6' title='Defined at 6.'>strcmp</a></li>
 </ol>
 <hr />
 <pre>
-<a id='L1' name='L1'></a><em class='comment'>// ---------------------------------------------------</em>
-<a id='L2' name='L2'></a><em class='comment'>// bpl.hpp      22-Feb-11   Running on Mac OS X 10.6.6</em>
-<a id='L3' name='L3'></a><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
+<a id='L1' name='L1'></a>
+<a id='L2' name='L2'></a><strong class='reserved'>char</strong> dir_segment[] = "$Id$";
+<a id='L3' name='L3'></a>
 <a id='L4' name='L4'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
-<a id='L5' name='L5'></a><em class='comment'>// ---------------------------------------------------</em>
-<a id='L6' name='L6'></a><em class='comment'>// This file is part of Vintage Modern Assembler Plus Tools.</em>
-<a id='L7' name='L7'></a><em class='comment'>//</em>
-<a id='L8' name='L8'></a><em class='comment'>// VMAPT is free software: you can redistribute it and/or modify</em>
-<a id='L9' name='L9'></a><em class='comment'>// it under the terms of the GNU General Public License as published by</em>
-<a id='L10' name='L10'></a><em class='comment'>// the Free Software Foundation, either version 3 of the License, or</em>
-<a id='L11' name='L11'></a><em class='comment'>// (at your option) any later version.</em>
-<a id='L12' name='L12'></a><em class='comment'>//</em>
-<a id='L13' name='L13'></a><em class='comment'>// VMAPT is distributed in the hope that it will be useful,</em>
-<a id='L14' name='L14'></a><em class='comment'>// but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
-<a id='L15' name='L15'></a><em class='comment'>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
-<a id='L16' name='L16'></a><em class='comment'>// GNU General Public License for more details.</em>
-<a id='L17' name='L17'></a><em class='comment'>//</em>
-<a id='L18' name='L18'></a><em class='comment'>// You should have received a copy of the GNU General Public License</em>
-<a id='L19' name='L19'></a><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
-<a id='L20' name='L20'></a><em class='comment'>//</em>
-<a id='L21' name='L21'></a>
-<a id='L22' name='L22'></a>        <strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"BPL")) <em class='brace'>{</em>
-<a id='L23' name='L23'></a>                fprintf(g_flog,"Processing 6502 BPL g_szOpcode\n");
-<a id='L24' name='L24'></a>                g_ucBytes[g_iBytesIndex++] = 0x10;
-<a id='L25' name='L25'></a>                g_iLineType = <a href='../D/416.html' title='Multiple defined in 2 places.'>TYPE_6502</a>;
-<a id='L26' name='L26'></a>                g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
-<a id='L27' name='L27'></a><em class='sharp'>                #include</em> "<a href='232.html'>_bshort.hpp</a>"
-<a id='L28' name='L28'></a>        <em class='brace'>}</em>
-<a id='L29' name='L29'></a>
+<a id='L5' name='L5'></a>
+<a id='L6' name='L6'></a><strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"SEGMENT")) <em class='brace'>{</em>
+<a id='L7' name='L7'></a>        g_iLineType = <a href='../D/422.html' title='Multiple defined in 2 places.'>TYPE_DIR</a>;
+<a id='L8' name='L8'></a>        g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L9' name='L9'></a>        fprintf(g_flog,"Processing SEGMENT directive\n");
+<a id='L10' name='L10'></a>        <strong class='reserved'>if</strong>(0 != strlen(g_szParms)) <em class='brace'>{</em>
+<a id='L11' name='L11'></a>                <strong class='reserved'>switch</strong>(g_szParms[0]) <em class='brace'>{</em>
+<a id='L12' name='L12'></a>                        <strong class='reserved'>case</strong> 'A':
+<a id='L13' name='L13'></a>                        <strong class='reserved'>case</strong> 'a': g_iSegment = <a href='../D/392.html' title='Multiple defined in 2 places.'>SEG_ABS</a>; <strong class='reserved'>break</strong>;
+<a id='L14' name='L14'></a>                        <strong class='reserved'>case</strong> 'C':
+<a id='L15' name='L15'></a>                        <strong class='reserved'>case</strong> 'c': g_iSegment = <a href='../D/393.html' title='Multiple defined in 2 places.'>SEG_CODE</a>; <strong class='reserved'>break</strong>;
+<a id='L16' name='L16'></a>                        <strong class='reserved'>case</strong> 'D':
+<a id='L17' name='L17'></a>                        <strong class='reserved'>case</strong> 'd': g_iSegment = <a href='../D/394.html' title='Multiple defined in 2 places.'>SEG_DATA</a>; <strong class='reserved'>break</strong>;
+<a id='L18' name='L18'></a>                        <strong class='reserved'>case</strong> 'S':
+<a id='L19' name='L19'></a>                        <strong class='reserved'>case</strong> 's': g_iSegment = <a href='../D/395.html' title='Multiple defined in 2 places.'>SEG_STACK</a>; <strong class='reserved'>break</strong>;
+<a id='L20' name='L20'></a>                        <strong class='reserved'>default</strong>:  g_iSegment = <a href='../D/396.html' title='Multiple defined in 2 places.'>SEG_VAGUE</a>; <strong class='reserved'>break</strong>;
+<a id='L21' name='L21'></a>                <em class='brace'>}</em>
+<a id='L22' name='L22'></a>        <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L23' name='L23'></a>                g_iErrorNo |= <a href='../D/73.html' title='Multiple defined in 2 places.'>ERROR_NOPARM</a>;
+<a id='L24' name='L24'></a>        <em class='brace'>}</em>
+<a id='L25' name='L25'></a><em class='brace'>}</em>
 </pre>
 <hr />
 <a id='BOTTOM' name='BOTTOM'></a>
-<em class='comment'>/* [&lt;][&gt;][^]<a href='#L22'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L6'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 </body>
 </html>

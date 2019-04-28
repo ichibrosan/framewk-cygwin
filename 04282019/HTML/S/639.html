@@ -1,14 +1,14 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
-<title>asz80/jr.hpp</title>
+<title>asz80/outd.hpp</title>
 <meta name='robots' content='noindex,nofollow' />
 <meta name='generator' content='GLOBAL-6.6.3' />
 <meta http-equiv='Content-Style-Type' content='text/css' />
 <link rel='stylesheet' type='text/css' href='../style.css' />
 </head>
 <body>
-<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/844.html'>asz80</a>/jr.hpp</h2>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/815.html'>asz80</a>/outd.hpp</h2>
 <em class='comment'>/* [&lt;][&gt;]<a href='#L7'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 <hr />
 <h2 class='header'>DEFINITIONS</h2>
@@ -19,75 +19,18 @@ This source file includes following definitions.
 <hr />
 <pre>
 <a id='L1' name='L1'></a><em class='comment'>// ---------------------------------------------------</em>
-<a id='L2' name='L2'></a><em class='comment'>// jr.hpp        4-Feb-11 DOSBox-0.74 Version 1.00.00a</em>
+<a id='L2' name='L2'></a><em class='comment'>// OUTD.HPP     28-Jan-11 DOSBox-0.74 Version 1.00.00a</em>
 <a id='L3' name='L3'></a><em class='comment'>// Serial No. 8208-4162-344865    All Rights Reserved.</em>
 <a id='L4' name='L4'></a><em class='comment'>// Copyright (C) 2010 Douglas Goodall,  United States.</em>
 <a id='L5' name='L5'></a><em class='comment'>// ---------------------------------------------------</em>
-<a id='L6' name='L6'></a>
-<a id='L7' name='L7'></a><strong class='reserved'>if</strong>( 0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"JR") ) <em class='brace'>{</em>
-<a id='L8' name='L8'></a>  <strong class='reserved'>char</strong> szJRtemp[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
-<a id='L9' name='L9'></a>  <strong class='reserved'>char</strong> szJRtemp2[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
-<a id='L10' name='L10'></a>  <strong class='reserved'>char</strong> * psz;
-<a id='L11' name='L11'></a>  strcpy(szJRtemp2,g_szParms);
-<a id='L12' name='L12'></a>  strcpy(szJRtemp,<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(szJRtemp2));
-<a id='L13' name='L13'></a>  fprintf(g_flog,"...processing JR g_szOpcode...\n");
-<a id='L14' name='L14'></a>  <strong class='reserved'>if</strong>(<a href='../D/428.html' title='Multiple defined in 2 places.'>TYPE_ERR</a> == g_iLineType) <em class='brace'>{</em>
-<a id='L15' name='L15'></a>    <strong class='reserved'>if</strong>(3 &lt; strlen(g_szParms)) <em class='brace'>{</em>
-<a id='L16' name='L16'></a>      <strong class='reserved'>if</strong>(',' == g_szParms[1]) <em class='brace'>{</em>
-<a id='L17' name='L17'></a>        <strong class='reserved'>switch</strong>(g_szParms[0]) <em class='brace'>{</em>
-<a id='L18' name='L18'></a>          <strong class='reserved'>case</strong> 'Z':
-<a id='L19' name='L19'></a>          <strong class='reserved'>case</strong> 'z':
-<a id='L20' name='L20'></a>            g_ucBytes[g_iBytesIndex++] = 0x28;
-<a id='L21' name='L21'></a>            psz = &amp;g_szParms[2];
-<a id='L22' name='L22'></a><em class='sharp'>            #include</em> "<a href='271.html'>../ascommon/_disp.hpp</a>"
-<a id='L23' name='L23'></a>            g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
-<a id='L24' name='L24'></a>          g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
-<a id='L25' name='L25'></a>            <strong class='reserved'>break</strong>;
-<a id='L26' name='L26'></a>          <strong class='reserved'>case</strong> 'C':
-<a id='L27' name='L27'></a>          <strong class='reserved'>case</strong> 'c':
-<a id='L28' name='L28'></a>            g_ucBytes[g_iBytesIndex++] = 0x38;
-<a id='L29' name='L29'></a>            psz = &amp;g_szParms[2];
-<a id='L30' name='L30'></a><em class='sharp'>            #include</em> "<a href='271.html'>../ascommon/_disp.hpp</a>"
-<a id='L31' name='L31'></a>            g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
-<a id='L32' name='L32'></a>          g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
-<a id='L33' name='L33'></a>            <strong class='reserved'>break</strong>;
-<a id='L34' name='L34'></a>        <em class='brace'>}</em>
-<a id='L35' name='L35'></a>      <em class='brace'>}</em>
-<a id='L36' name='L36'></a>    <em class='brace'>}</em>
-<a id='L37' name='L37'></a>  <em class='brace'>}</em>
-<a id='L38' name='L38'></a>  <strong class='reserved'>if</strong>(<a href='../D/428.html' title='Multiple defined in 2 places.'>TYPE_ERR</a> == g_iLineType) <em class='brace'>{</em>
-<a id='L39' name='L39'></a>    <strong class='reserved'>if</strong>(3 &lt; strlen(g_szParms)) <em class='brace'>{</em>
-<a id='L40' name='L40'></a>      <strong class='reserved'>if</strong>(',' == g_szParms[2]) <em class='brace'>{</em>
-<a id='L41' name='L41'></a>        <strong class='reserved'>if</strong>(0 == strncmp("NZ",szJRtemp,2)) <em class='brace'>{</em>
-<a id='L42' name='L42'></a>            g_ucBytes[g_iBytesIndex++] = 0x20;
-<a id='L43' name='L43'></a>            psz = &amp;g_szParms[3];
-<a id='L44' name='L44'></a><em class='sharp'>            #include</em> "<a href='271.html'>../ascommon/_disp.hpp</a>"
-<a id='L45' name='L45'></a>            g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
-<a id='L46' name='L46'></a>          g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
-<a id='L47' name='L47'></a>        <em class='brace'>}</em>
-<a id='L48' name='L48'></a>        <strong class='reserved'>if</strong>(0 == strncmp("NC",szJRtemp,2)) <em class='brace'>{</em>
-<a id='L49' name='L49'></a>            g_ucBytes[g_iBytesIndex++] = 0x30;
-<a id='L50' name='L50'></a>            psz = &amp;g_szParms[3];
-<a id='L51' name='L51'></a><em class='sharp'>            #include</em> "<a href='271.html'>../ascommon/_disp.hpp</a>"
-<a id='L52' name='L52'></a>            g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
-<a id='L53' name='L53'></a>          g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
-<a id='L54' name='L54'></a>        <em class='brace'>}</em>   
-<a id='L55' name='L55'></a>      <em class='brace'>}</em>
-<a id='L56' name='L56'></a>    <em class='brace'>}</em>
-<a id='L57' name='L57'></a>  <em class='brace'>}</em>
-<a id='L58' name='L58'></a>  <strong class='reserved'>if</strong>(<a href='../D/428.html' title='Multiple defined in 2 places.'>TYPE_ERR</a> == g_iLineType) <em class='brace'>{</em>
-<a id='L59' name='L59'></a>    g_ucBytes[g_iBytesIndex++] = 0x18;
-<a id='L60' name='L60'></a>    psz = g_szParms;
-<a id='L61' name='L61'></a><em class='sharp'>    #include</em> "<a href='271.html'>../ascommon/_disp.hpp</a>"
-<a id='L62' name='L62'></a>    g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
-<a id='L63' name='L63'></a>          g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
-<a id='L64' name='L64'></a>  <em class='brace'>}</em>
-<a id='L65' name='L65'></a><em class='brace'>}</em>
-<a id='L66' name='L66'></a>
-<a id='L67' name='L67'></a><em class='comment'>//////////////////</em>
-<a id='L68' name='L68'></a><em class='comment'>// eof - jr.hpp //</em>
-<a id='L69' name='L69'></a><em class='comment'>//////////////////</em>
-<a id='L70' name='L70'></a>
+<a id='L6' name='L6'></a>        
+<a id='L7' name='L7'></a>        <strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"OUTD")) <em class='brace'>{</em>
+<a id='L8' name='L8'></a>                g_ucBytes[g_iBytesIndex++] = 0xed;
+<a id='L9' name='L9'></a>                g_ucBytes[g_iBytesIndex++] = 0xab;
+<a id='L10' name='L10'></a>                g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
+<a id='L11' name='L11'></a>          g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L12' name='L12'></a>
+<a id='L13' name='L13'></a>        <em class='brace'>}</em>
 </pre>
 <hr />
 <a id='BOTTOM' name='BOTTOM'></a>

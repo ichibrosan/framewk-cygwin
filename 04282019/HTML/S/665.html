@@ -1,38 +1,75 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
-<title>asz80/scf.hpp</title>
+<title>base/asdefs.hpp</title>
 <meta name='robots' content='noindex,nofollow' />
 <meta name='generator' content='GLOBAL-6.6.3' />
 <meta http-equiv='Content-Style-Type' content='text/css' />
 <link rel='stylesheet' type='text/css' href='../style.css' />
 </head>
 <body>
-<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/844.html'>asz80</a>/scf.hpp</h2>
-<em class='comment'>/* [&lt;][&gt;]<a href='#L7'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/817.html'>base</a>/asdefs.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;][^][v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 <hr />
-<h2 class='header'>DEFINITIONS</h2>
-This source file includes following definitions.
-<ol>
-<li><a href='#L7' title='Defined at 7.'>strcmp</a></li>
-</ol>
+<h2 class='header'><a href='../J/196.html' title='Multiple included from 69 places.'>INCLUDED FROM</a></h2>
 <hr />
 <pre>
-<a id='L1' name='L1'></a><em class='comment'>// ---------------------------------------------------</em>
-<a id='L2' name='L2'></a><em class='comment'>// SCF.HPP      28-Jan-11 DOSBox-0.74 Version 1.00.00a</em>
-<a id='L3' name='L3'></a><em class='comment'>// Serial No. 8208-4162-344865    All Rights Reserved.</em>
-<a id='L4' name='L4'></a><em class='comment'>// Copyright (C) 2010 Douglas Goodall,  United States.</em>
-<a id='L5' name='L5'></a><em class='comment'>// ---------------------------------------------------</em>
-<a id='L6' name='L6'></a>        
-<a id='L7' name='L7'></a>        <strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"SCF")) <em class='brace'>{</em>
-<a id='L8' name='L8'></a>                g_ucBytes[g_iBytesIndex++] = 0x37;
-<a id='L9' name='L9'></a>                g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
-<a id='L10' name='L10'></a>          g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
-<a id='L11' name='L11'></a>
-<a id='L12' name='L12'></a>        <em class='brace'>}</em>
+<a id='L1' name='L1'></a><em class='comment'>// $Log: asdefs.hpp,v $</em>
+<a id='L2' name='L2'></a><em class='comment'>// Revision 1.2  2011/04/14 15:13:09  doug</em>
+<a id='L3' name='L3'></a><em class='comment'>// get ready for release to wiki and server</em>
+<a id='L4' name='L4'></a><em class='comment'>//</em>
+<a id='L5' name='L5'></a><em class='comment'>// Revision 1.1  2011/04/03 04:49:55  doug</em>
+<a id='L6' name='L6'></a><em class='comment'>// Initial revision</em>
+<a id='L7' name='L7'></a><em class='comment'>//</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a>
+<a id='L10' name='L10'></a><em class='comment'>// ---------------------------------------------------</em>
+<a id='L11' name='L11'></a><em class='comment'>// defaults.hpp 14-Mar-11   Running on Mac OS X 10.6.6</em>
+<a id='L12' name='L12'></a><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
+<a id='L13' name='L13'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L14' name='L14'></a><em class='comment'>// ---------------------------------------------------</em>
+<a id='L15' name='L15'></a><em class='comment'>// This file is part of Vintage Modern Assembler Plus Tools.</em>
+<a id='L16' name='L16'></a><em class='comment'>//</em>
+<a id='L17' name='L17'></a><em class='comment'>// VMAPT is free software: you can redistribute it and/or modify</em>
+<a id='L18' name='L18'></a><em class='comment'>// it under the terms of the GNU General Public License as published by</em>
+<a id='L19' name='L19'></a><em class='comment'>// the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L20' name='L20'></a><em class='comment'>// (at your option) any later version.</em>
+<a id='L21' name='L21'></a><em class='comment'>//</em>
+<a id='L22' name='L22'></a><em class='comment'>// VMAPT is distributed in the hope that it will be useful,</em>
+<a id='L23' name='L23'></a><em class='comment'>// but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L24' name='L24'></a><em class='comment'>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L25' name='L25'></a><em class='comment'>// GNU General Public License for more details.</em>
+<a id='L26' name='L26'></a><em class='comment'>//</em>
+<a id='L27' name='L27'></a><em class='comment'>// You should have received a copy of the GNU General Public License</em>
+<a id='L28' name='L28'></a><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L29' name='L29'></a><em class='comment'>//</em>
+<a id='L30' name='L30'></a>
+<a id='L31' name='L31'></a><strong class='reserved'>static</strong> <strong class='reserved'>char</strong> szAsdefsHpp[] = "$Id: asdefs.hpp,v 1.2 2011/04/14 15:13:09 doug Exp $";
+<a id='L32' name='L32'></a>
+<a id='L33' name='L33'></a><em class='sharp'>#define</em> <a href='../R/24.html' title='Multiple referred from 2 places.'>DEFAULT_BINARY</a>       <a href='../D/84.html' title='Multiple defined in 2 places.'>FALSE</a>
+<a id='L34' name='L34'></a><em class='sharp'>#define</em> DEFAULT_COLONIZE     <a href='../D/84.html' title='Multiple defined in 2 places.'>FALSE</a>
+<a id='L35' name='L35'></a><em class='sharp'>#define</em> <a href='../R/25.html' title='Multiple referred from 2 places.'>DEFAULT_DEBUG</a>        <a href='../D/84.html' title='Multiple defined in 2 places.'>FALSE</a>
+<a id='L36' name='L36'></a><em class='sharp'>#define</em> <a href='../R/26.html' title='Multiple referred from 2 places.'>DEFAULT_LOG</a>          <a href='../D/84.html' title='Multiple defined in 2 places.'>FALSE</a>
+<a id='L37' name='L37'></a><em class='sharp'>#define</em> <a href='../R/27.html' title='Multiple referred from 2 places.'>DEFAULT_MONITOR</a>      <a href='../D/84.html' title='Multiple defined in 2 places.'>FALSE</a>
+<a id='L38' name='L38'></a><em class='sharp'>#define</em> <a href='../R/31.html' title='Multiple referred from 4 places.'>DEFAULT_TRACE</a>        <a href='../D/84.html' title='Multiple defined in 2 places.'>FALSE</a>
+<a id='L39' name='L39'></a><em class='sharp'>#define</em> <a href='../R/35.html' title='Multiple referred from 4 places.'>DEFAULT_WARN</a>         <a href='../D/84.html' title='Multiple defined in 2 places.'>FALSE</a>
+<a id='L40' name='L40'></a><em class='sharp'>#define</em> <a href='../R/28.html' title='Multiple referred from 2 places.'>DEFAULT_SAVESYMBOLS</a>  <a href='../D/84.html' title='Multiple defined in 2 places.'>FALSE</a>
+<a id='L41' name='L41'></a><em class='sharp'>#define</em> <a href='../R/32.html' title='Multiple referred from 2 places.'>DEFAULT_TYPEINCLUDES</a> <a href='../D/84.html' title='Multiple defined in 2 places.'>FALSE</a>
+<a id='L42' name='L42'></a><em class='sharp'>#define</em> <a href='../R/33.html' title='Multiple referred from 2 places.'>DEFAULT_TYPESOURCE</a>   <a href='../D/84.html' title='Multiple defined in 2 places.'>FALSE</a>
+<a id='L43' name='L43'></a><em class='sharp'>#define</em> <a href='../R/34.html' title='Multiple referred from 2 places.'>DEFAULT_VERBOSITY</a>    0
+<a id='L44' name='L44'></a>
+<a id='L45' name='L45'></a><em class='sharp'>#define</em> <a href='../R/30.html' title='Multiple referred from 129 places.'>DEFAULT_STRSIZE</a>    255
+<a id='L46' name='L46'></a><em class='sharp'>#define</em> <a href='../R/73.html' title='Multiple referred from 14 places.'>MAXNAMLEN</a>          255
+<a id='L47' name='L47'></a>
+<a id='L48' name='L48'></a><em class='sharp'>#define</em> <a href='../R/29.html' title='Multiple referred from 2 places.'>DEFAULT_SERIAL</a>     "654321"
+<a id='L49' name='L49'></a>
+<a id='L50' name='L50'></a><em class='comment'>//////////////////////</em>
+<a id='L51' name='L51'></a><em class='comment'>// eof - asdefs.hpp //</em>
+<a id='L52' name='L52'></a><em class='comment'>//////////////////////</em>
+<a id='L53' name='L53'></a>
 </pre>
 <hr />
 <a id='BOTTOM' name='BOTTOM'></a>
-<em class='comment'>/* [&lt;][&gt;][^]<a href='#L7'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<em class='comment'>/* [&lt;][&gt;][^][v]<a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 </body>
 </html>

@@ -1,14 +1,14 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
-<title>asz80/in.hpp</title>
+<title>asz80/dq.hpp</title>
 <meta name='robots' content='noindex,nofollow' />
 <meta name='generator' content='GLOBAL-6.6.3' />
 <meta http-equiv='Content-Style-Type' content='text/css' />
 <link rel='stylesheet' type='text/css' href='../style.css' />
 </head>
 <body>
-<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/844.html'>asz80</a>/in.hpp</h2>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/815.html'>asz80</a>/dq.hpp</h2>
 <em class='comment'>/* [&lt;][&gt;]<a href='#L22'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
 <hr />
 <h2 class='header'>DEFINITIONS</h2>
@@ -19,7 +19,7 @@ This source file includes following definitions.
 <hr />
 <pre>
 <a id='L1' name='L1'></a><em class='comment'>// ---------------------------------------------------</em>
-<a id='L2' name='L2'></a><em class='comment'>// in.hpp        5-Mar-11   Running on Mac OS X 10.6.6</em>
+<a id='L2' name='L2'></a><em class='comment'>// dq.hpp       23-Feb-11   Running on Mac OS X 10.6.6</em>
 <a id='L3' name='L3'></a><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
 <a id='L4' name='L4'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
 <a id='L5' name='L5'></a><em class='comment'>// ---------------------------------------------------</em>
@@ -39,84 +39,37 @@ This source file includes following definitions.
 <a id='L19' name='L19'></a><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
 <a id='L20' name='L20'></a><em class='comment'>//</em>
 <a id='L21' name='L21'></a>
-<a id='L22' name='L22'></a><strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"IN"))<em class='brace'>{</em>
-<a id='L23' name='L23'></a>  fprintf(g_flog,"Processing Z80 IN g_szOpcode\n");
-<a id='L24' name='L24'></a>  g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
-<a id='L25' name='L25'></a>
-<a id='L26' name='L26'></a>  <strong class='reserved'>char</strong> szINtemp[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
-<a id='L27' name='L27'></a>  <strong class='reserved'>char</strong> szINtemp2[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
-<a id='L28' name='L28'></a>  strcpy(szINtemp2,g_szParms);
-<a id='L29' name='L29'></a>  strcpy(szINtemp,<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(szINtemp2));
-<a id='L30' name='L30'></a>
-<a id='L31' name='L31'></a>  <strong class='reserved'>if</strong>(5 == strlen(szINtemp)) <em class='brace'>{</em>
-<a id='L32' name='L32'></a>    <strong class='reserved'>if</strong>(0 == strncmp(",(C)",&amp;szINtemp[1],4) ) <em class='brace'>{</em>
-<a id='L33' name='L33'></a>      <strong class='reserved'>switch</strong>(szINtemp[0]) <em class='brace'>{</em>
-<a id='L34' name='L34'></a>        <strong class='reserved'>case</strong> 'B':
-<a id='L35' name='L35'></a>          g_ucBytes[g_iBytesIndex++] = 0xED;
-<a id='L36' name='L36'></a>          g_ucBytes[g_iBytesIndex++] = 0x41 + 0x00;
-<a id='L37' name='L37'></a>          <strong class='reserved'>break</strong>;
-<a id='L38' name='L38'></a>        <strong class='reserved'>case</strong> 'C':
-<a id='L39' name='L39'></a>          g_ucBytes[g_iBytesIndex++] = 0xED;
-<a id='L40' name='L40'></a>          g_ucBytes[g_iBytesIndex++] = 0x41 + 0x08;
-<a id='L41' name='L41'></a>          <strong class='reserved'>break</strong>;
-<a id='L42' name='L42'></a>        <strong class='reserved'>case</strong> 'D':
-<a id='L43' name='L43'></a>          g_ucBytes[g_iBytesIndex++] = 0xED;
-<a id='L44' name='L44'></a>          g_ucBytes[g_iBytesIndex++] = 0x41 + 0x10;
-<a id='L45' name='L45'></a>          <strong class='reserved'>break</strong>;
-<a id='L46' name='L46'></a>        <strong class='reserved'>case</strong> 'E':
-<a id='L47' name='L47'></a>          g_ucBytes[g_iBytesIndex++] = 0xED;
-<a id='L48' name='L48'></a>          g_ucBytes[g_iBytesIndex++] = 0x41 + 0x18;
-<a id='L49' name='L49'></a>          <strong class='reserved'>break</strong>;
-<a id='L50' name='L50'></a>        <strong class='reserved'>case</strong> 'H':
-<a id='L51' name='L51'></a>          g_ucBytes[g_iBytesIndex++] = 0xED;
-<a id='L52' name='L52'></a>          g_ucBytes[g_iBytesIndex++] = 0x41 + 0x20;
-<a id='L53' name='L53'></a>          <strong class='reserved'>break</strong>;
-<a id='L54' name='L54'></a>        <strong class='reserved'>case</strong> 'L':
-<a id='L55' name='L55'></a>          g_ucBytes[g_iBytesIndex++] = 0xED;
-<a id='L56' name='L56'></a>          g_ucBytes[g_iBytesIndex++] = 0x41 + 0x28;
-<a id='L57' name='L57'></a>          <strong class='reserved'>break</strong>;
-<a id='L58' name='L58'></a>        <strong class='reserved'>case</strong> 'A':
-<a id='L59' name='L59'></a>          g_ucBytes[g_iBytesIndex++] = 0xED;
-<a id='L60' name='L60'></a>          g_ucBytes[g_iBytesIndex++] = 0x41 + 0x38;
-<a id='L61' name='L61'></a>          <strong class='reserved'>break</strong>;
-<a id='L62' name='L62'></a>        <strong class='reserved'>default</strong>:
-<a id='L63' name='L63'></a>          g_iErrorNo |= <a href='../D/74.html' title='Multiple defined in 2 places.'>ERROR_NOREG</a>;
-<a id='L64' name='L64'></a>          g_iLineType = <a href='../D/428.html' title='Multiple defined in 2 places.'>TYPE_ERR</a>;
-<a id='L65' name='L65'></a>          <strong class='reserved'>break</strong>;
-<a id='L66' name='L66'></a>      <em class='brace'>}</em>
-<a id='L67' name='L67'></a>    <em class='brace'>}</em>
-<a id='L68' name='L68'></a>  <em class='brace'>}</em>
-<a id='L69' name='L69'></a>
-<a id='L70' name='L70'></a>  <em class='comment'>// check for "in a,(n)"  and process if so...</em>
-<a id='L71' name='L71'></a>  <strong class='reserved'>if</strong>(<a href='../D/428.html' title='Multiple defined in 2 places.'>TYPE_ERR</a> == g_iLineType) <em class='brace'>{</em>
-<a id='L72' name='L72'></a>    <strong class='reserved'>if</strong>(0 &lt; strlen(szINtemp)) <em class='brace'>{</em>
-<a id='L73' name='L73'></a>      <strong class='reserved'>if</strong>(0 == strncmp("A,(",szINtemp,3)) <em class='brace'>{</em>
-<a id='L74' name='L74'></a>        <strong class='reserved'>int</strong> bFin = <a href='../D/84.html' title='Multiple defined in 2 places.'>FALSE</a>;
-<a id='L75' name='L75'></a>        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> l=3;l&lt;strlen(szINtemp);l++) <em class='brace'>{</em>
-<a id='L76' name='L76'></a>          <strong class='reserved'>if</strong>(')' == szINtemp[l]) <em class='brace'>{</em>
-<a id='L77' name='L77'></a>            szINtemp[l] = 0;
-<a id='L78' name='L78'></a>            bFin = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
-<a id='L79' name='L79'></a>          <em class='brace'>}</em>
-<a id='L80' name='L80'></a>        <em class='brace'>}</em>  
-<a id='L81' name='L81'></a>        <strong class='reserved'>if</strong>(<a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a> == bFin) <em class='brace'>{</em>
-<a id='L82' name='L82'></a>          g_ucBytes[g_iBytesIndex++] = 0xD3;
-<a id='L83' name='L83'></a>          g_ucBytes[g_iBytesIndex++] = <a href='../D/560.html' title='Multiple defined in 2 places.'>resolvep8</a>(&amp;szINtemp[3]);
-<a id='L84' name='L84'></a>          g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
-<a id='L85' name='L85'></a>        <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
-<a id='L86' name='L86'></a>          g_iErrorNo |= <a href='../D/79.html' title='Multiple defined in 2 places.'>ERROR_SYNTAX</a>;
-<a id='L87' name='L87'></a>        <em class='brace'>}</em>
-<a id='L88' name='L88'></a>      <em class='brace'>}</em>
-<a id='L89' name='L89'></a>    <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
-<a id='L90' name='L90'></a>      g_iErrorNo |= <a href='../D/73.html' title='Multiple defined in 2 places.'>ERROR_NOPARM</a>;
-<a id='L91' name='L91'></a>    <em class='brace'>}</em>
-<a id='L92' name='L92'></a>  <em class='brace'>}</em>
-<a id='L93' name='L93'></a>
-<a id='L94' name='L94'></a><em class='brace'>}</em>
-<a id='L95' name='L95'></a>
-<a id='L96' name='L96'></a><em class='comment'>////////////////// </em>
-<a id='L97' name='L97'></a><em class='comment'>// eof - in.hpp //</em>
-<a id='L98' name='L98'></a><em class='comment'>//////////////////</em>
-<a id='L99' name='L99'></a>
+<a id='L22' name='L22'></a><strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"DQ")) <em class='brace'>{</em>
+<a id='L23' name='L23'></a>        fprintf(g_flog,"Processing Z80 DQ  g_szOpcode\n");
+<a id='L24' name='L24'></a>        g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
+<a id='L25' name='L25'></a>        g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L26' name='L26'></a>        <strong class='reserved'>if</strong>(0 &lt; strlen(g_szParms)) <em class='brace'>{</em>
+<a id='L27' name='L27'></a>
+<a id='L28' name='L28'></a>                <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong> llTemp = <a href='../D/559.html' title='Multiple defined in 2 places.'>resolvep64</a>(g_szParms);
+<a id='L29' name='L29'></a>
+<a id='L30' name='L30'></a>                <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong>       lTempl = llTemp&amp;0x00000000ffffffffLL;
+<a id='L31' name='L31'></a>                <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong>       lTemph = llTemp&gt;&gt;32;
+<a id='L32' name='L32'></a>                <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> lTemp = lTempl;
+<a id='L33' name='L33'></a>                <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>  uiTempl = (<strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>)lTemp &amp; 0x0000ffffL;
+<a id='L34' name='L34'></a>                <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>  uiTemph = (<strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>)lTemp &gt;&gt; 16;
+<a id='L35' name='L35'></a>                g_ucBytes[g_iBytesIndex++] = uiTempl &amp; 0x00ff;
+<a id='L36' name='L36'></a>                g_ucBytes[g_iBytesIndex++] = uiTempl &gt;&gt; 8;
+<a id='L37' name='L37'></a>                g_ucBytes[g_iBytesIndex++] = uiTemph &amp; 0x00ff;
+<a id='L38' name='L38'></a>                g_ucBytes[g_iBytesIndex++] = uiTemph &gt;&gt; 8;
+<a id='L39' name='L39'></a>
+<a id='L40' name='L40'></a>                lTemp = lTemph;
+<a id='L41' name='L41'></a>                uiTempl = (<strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>)lTemp &amp; 0x0000ffffL;
+<a id='L42' name='L42'></a>                uiTemph = (<strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>)lTemp &gt;&gt; 16;
+<a id='L43' name='L43'></a>                g_ucBytes[g_iBytesIndex++] = uiTempl &amp; 0x00ff;
+<a id='L44' name='L44'></a>                g_ucBytes[g_iBytesIndex++] = uiTempl &gt;&gt; 8;
+<a id='L45' name='L45'></a>                g_ucBytes[g_iBytesIndex++] = uiTemph &amp; 0x00ff;
+<a id='L46' name='L46'></a>                g_ucBytes[g_iBytesIndex++] = uiTemph &gt;&gt; 8;
+<a id='L47' name='L47'></a>
+<a id='L48' name='L48'></a>        <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L49' name='L49'></a>                g_iErrorNo |= <a href='../D/73.html' title='Multiple defined in 2 places.'>ERROR_NOPARM</a>;
+<a id='L50' name='L50'></a>        <em class='brace'>}</em>
+<a id='L51' name='L51'></a><em class='brace'>}</em>
+<a id='L52' name='L52'></a>
 </pre>
 <hr />
 <a id='BOTTOM' name='BOTTOM'></a>
