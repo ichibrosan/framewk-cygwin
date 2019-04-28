@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>doc/asreadme.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/829.html'>doc</a>/asreadme.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;][^][v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/362.html' title='Multiple included from 2 places.'>INCLUDED FROM</a></h2>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/*</em>
+<a id='L2' name='L2' /><em class='comment'>A README for the assembler.</em>
+<a id='L3' name='L3' /><em class='comment'></em>
+<a id='L4' name='L4' /><em class='comment'>3/12/2011 dwg - Added warnings, g_iWarningNo &amp; asoutwrn.hpp.</em>
+<a id='L5' name='L5' /><em class='comment'></em>
+<a id='L6' name='L6' /><em class='comment'>3/9/2011 dwg - I made it half way throug the as8085 directory</em>
+<a id='L7' name='L7' /><em class='comment'>adding comprehensive error detection to each g_szOpcode handler.</em>
+<a id='L8' name='L8' /><em class='comment'>A though M are done. It took hours and I will get to the other</em>
+<a id='L9' name='L9' /><em class='comment'>half when I recover :-) I also added a new string directive</em>
+<a id='L10' name='L10' /><em class='comment'>that sets the high order bit on the first byte, called dstrb,</em>
+<a id='L11' name='L11' /><em class='comment'>which stands for, "define string for BASIC". This is to handle</em>
+<a id='L12' name='L12' /><em class='comment'>Joel's basic.asm and basic2.asm.</em>
+<a id='L13' name='L13' /><em class='comment'></em>
+<a id='L14' name='L14' /><em class='comment'>3/8/2011 dwg - I improved the error detection and reporting </em>
+<a id='L15' name='L15' /><em class='comment'>system today. Previously, the error that was being reported </em>
+<a id='L16' name='L16' /><em class='comment'>was an undefined g_szOpcode. But I was aware of places in the </em>
+<a id='L17' name='L17' /><em class='comment'>code where I knw other problems had been encountered, such</em>
+<a id='L18' name='L18' /><em class='comment'>as no parameter supplied, or no valid register name...</em>
+<a id='L19' name='L19' /><em class='comment'></em>
+<a id='L20' name='L20' /><em class='comment'>3/7/2011 dwg - Added support for binary output. The new</em>
+<a id='L21' name='L21' /><em class='comment'>"binary" directive causes output of &lt;program&gt;.bin file.</em>
+<a id='L22' name='L22' /><em class='comment'>Subtle bug fixed in cpostfix.hpp, now reliable. See note</em>
+<a id='L23' name='L23' /><em class='comment'>in wiki about coding standards.</em>
+<a id='L24' name='L24' /><em class='comment'></em>
+<a id='L25' name='L25' /><em class='comment'>3/3/2011 dwg - Some additions to the Z80 support, jp, call</em>
+<a id='L26' name='L26' /><em class='comment'>got more sophisticated code handlers for all modes.</em>
+<a id='L27' name='L27' /><em class='comment'>testz8jp.asm and testzcal.asm are the test programs for these.</em>
+<a id='L28' name='L28' /><em class='comment'></em>
+<a id='L29' name='L29' /><em class='comment'>2/27/2011 dwg - Major fixes to the equ and calc routines.</em>
+<a id='L30' name='L30' /><em class='comment'>Now the test program "mixed.asm" shows things are working</em>
+<a id='L31' name='L31' /><em class='comment'>very well. There was a problem that the calc directive was </em>
+<a id='L32' name='L32' /><em class='comment'>storing a 16 value with the offset of the calc, and this</em>
+<a id='L33' name='L33' /><em class='comment'>would be a problem if you were doing a calc16. Now equ and </em>
+<a id='L34' name='L34' /><em class='comment'>calc both store the value but not the offset. This is as </em>
+<a id='L35' name='L35' /><em class='comment'>it should be. Careful examination of mixed.lst shows things</em>
+<a id='L36' name='L36' /><em class='comment'>are very nice now. Some progress on testeval, which will </em>
+<a id='L37' name='L37' /><em class='comment'>eventually provide what we need to make expression evaluation</em>
+<a id='L38' name='L38' /><em class='comment'>work.</em>
+<a id='L39' name='L39' /><em class='comment'> </em>
+<a id='L40' name='L40' /><em class='comment'>2/24/2011 dwg - Added automatic inclusion of code handlers</em>
+<a id='L41' name='L41' /><em class='comment'>in all the processor and directive subdirectories. The</em>
+<a id='L42' name='L42' /><em class='comment'>makemake program was enhanced to support the new flow of</em>
+<a id='L43' name='L43' /><em class='comment'>information required for all this to work seamlessly.</em>
+<a id='L44' name='L44' /><em class='comment'>Also the postfix code from Luiz Roberto Meier was integrated</em>
+<a id='L45' name='L45' /><em class='comment'>into the framework in the form of a c++ class called CPostfix</em>
+<a id='L46' name='L46' /><em class='comment'>which is in a file called cpostfix.hpp. Thanks Luiz.</em>
+<a id='L47' name='L47' /><em class='comment'>The makefile clean target was enhanced to remove all generated</em>
+<a id='L48' name='L48' /><em class='comment'>files from all the code handler directories except the .ini</em>
+<a id='L49' name='L49' /><em class='comment'>files which are often used to suppress the Banner support in</em>
+<a id='L50' name='L50' /><em class='comment'>the version handler. There is one prime copy of makedeco.mk</em>
+<a id='L51' name='L51' /><em class='comment'>which is copied into the handler directories and renamed</em>
+<a id='L52' name='L52' /><em class='comment'>Makefile. Also there is one prime copy of the makedeco program</em>
+<a id='L53' name='L53' /><em class='comment'>which is called makedeco.ccp and which is copied into the </em>
+<a id='L54' name='L54' /><em class='comment'>handler directories prior to the compilation of the decoders.</em>
+<a id='L55' name='L55' /><em class='comment'> </em>
+<a id='L56' name='L56' /><em class='comment'>2/23/2011 dwg - added support for 68000, and test68k.asm</em>
+<a id='L57' name='L57' /><em class='comment'>for simple g_szOpcodes. Also added storage oriented equates</em>
+<a id='L58' name='L58' /><em class='comment'>to the common directives. EQU8, EQU16, EQU32 and EQU64.</em>
+<a id='L59' name='L59' /><em class='comment'>These equates assure that the symb ols type is correct,</em>
+<a id='L60' name='L60' /><em class='comment'>TYPE_U8,TYPE_U16,TYPE_U32 and TYPE_U64. Also added to the</em>
+<a id='L61' name='L61' /><em class='comment'>8085 g_szOpcodes are Intel endian specific defines, DW, DD</em>
+<a id='L62' name='L62' /><em class='comment'>and DQ. Also added are the stubs for 68000 assembly with</em>
+<a id='L63' name='L63' /><em class='comment'>a few g_szOpcodes to show things are on their way to working.</em>
+<a id='L64' name='L64' /><em class='comment'>In the astests directory are more test programs that show</em>
+<a id='L65' name='L65' /><em class='comment'>today's progress. Specifically, the all8085 now has DD </em>
+<a id='L66' name='L66' /><em class='comment'>and DQ examples, as well as EQU8, EQU16, EQU32 and EQU64. </em>
+<a id='L67' name='L67' /><em class='comment'>The extended precision support was installed in all </em>
+<a id='L68' name='L68' /><em class='comment'>subsystems, including the symbols table at the end of the </em>
+<a id='L69' name='L69' /><em class='comment'>listing file. There is also a test68k.asm file that has</em>
+<a id='L70' name='L70' /><em class='comment'>a number of 68000 g_szOpcodes.</em>
+<a id='L71' name='L71' /><em class='comment'></em>
+<a id='L72' name='L72' /><em class='comment'></em>
+<a id='L73' name='L73' /><em class='comment'>2/22/2011 dwg - added getu8 member funtion to CSymbols</em>
+<a id='L74' name='L74' /><em class='comment'>and symbtest.cpp test program which exercises u8,u16,str</em>
+<a id='L75' name='L75' /><em class='comment'>Added mixed processor support, 8085 and 6502 with "proc"</em>
+<a id='L76' name='L76' /><em class='comment'>directive. Implemented short short branch logic for 6502.</em>
+<a id='L77' name='L77' /><em class='comment'></em>
+<a id='L78' name='L78' /><em class='comment'>2/21/2011 dwg - assemble.cpp cleanup</em>
+<a id='L79' name='L79' /><em class='comment'>The global variables have for the most part been renamed</em>
+<a id='L80' name='L80' /><em class='comment'>with a leading g_ now and also hungarian notation where</em>
+<a id='L81' name='L81' /><em class='comment'>possible. Also a new program called document.cpp causes</em>
+<a id='L82' name='L82' /><em class='comment'>the documents in the doc folder to be included in the HTML</em>
+<a id='L83' name='L83' /><em class='comment'>provided by gpath/hpath.</em>
+<a id='L84' name='L84' /><em class='comment'></em>
+<a id='L85' name='L85' /><em class='comment'>2/20/2011 dwg - Lots more enhancements...</em>
+<a id='L86' name='L86' /><em class='comment'>The versbind.hpp now uses the CEnvironment class to retreive</em>
+<a id='L87' name='L87' /><em class='comment'>MACHTYPE, OSTYPE, PWD and USER from the environment and adds</em>
+<a id='L88' name='L88' /><em class='comment'>them to a new section in each program's ini file.</em>
+<a id='L89' name='L89' /><em class='comment'>The old decode.hpp which was included in each pass, has been</em>
+<a id='L90' name='L90' /><em class='comment'>changed into two new functions, decode_directives() and</em>
+<a id='L91' name='L91' /><em class='comment'>decode_8085() which are now called from each pass. Also as </em>
+<a id='L92' name='L92' /><em class='comment'>an optimization, after the decode_directives() has been called</em>
+<a id='L93' name='L93' /><em class='comment'>the linetype is checked before calling the processor g_szOpcodes.</em>
+<a id='L94' name='L94' /><em class='comment'>If the current g_szOpcode was a directive, this saves a long linear</em>
+<a id='L95' name='L95' /><em class='comment'>search in each pass.</em>
+<a id='L96' name='L96' /><em class='comment'></em>
+<a id='L97' name='L97' /><em class='comment'>2/19/2011 dwg - Lots of enhancements...</em>
+<a id='L98' name='L98' /><em class='comment'>The makemake program now has full dependencies for the</em>
+<a id='L99' name='L99' /><em class='comment'>assembler. All header files in the common and 8085 </em>
+<a id='L100' name='L100' /><em class='comment'>directories are listed as dependenices in the makefile.</em>
+<a id='L101' name='L101' /><em class='comment'>The versbind.hpp has been enhanced to reflect the machine</em>
+<a id='L102' name='L102' /><em class='comment'>type in the full banner. The mktoday.cpp and the makevers.cpp</em>
+<a id='L103' name='L103' /><em class='comment'>programs have been made multi-platform in as much as the user</em>
+<a id='L104' name='L104' /><em class='comment'>pathnames are different between Mac OS X and Linux. Pathnames</em>
+<a id='L105' name='L105' /><em class='comment'>are customized to the users, doug and luiz. To the best of my </em>
+<a id='L106' name='L106' /><em class='comment'>knowledge, the entire framework and assembler is now multi-</em>
+<a id='L107' name='L107' /><em class='comment'>platform and can be compiled without changes on both my local</em>
+<a id='L108' name='L108' /><em class='comment'>Macs, and the Scientific Linux running on server.goodall.com.</em>
+<a id='L109' name='L109' /><em class='comment'></em>
+<a id='L110' name='L110' /><em class='comment'></em>
+<a id='L111' name='L111' /><em class='comment'>2/18/2011 dwg - add CSource class for include handler</em>
+<a id='L112' name='L112' /><em class='comment'>Ten levels of include are configured in ths version</em>
+<a id='L113' name='L113' /><em class='comment'>Changes to as.cpp includes.hpp common/include.hpp. The</em>
+<a id='L114' name='L114' /><em class='comment'>new class is defined in srcclass.hpp.</em>
+<a id='L115' name='L115' /><em class='comment'> </em>
+<a id='L116' name='L116' /><em class='comment'>2/13/2011 dwg - Fixed bug in main module where "spaces"</em>
+<a id='L117' name='L117' /><em class='comment'>wasn't being initialized. "program" now being handled </em>
+<a id='L118' name='L118' /><em class='comment'>correctly in listing header.</em>
+<a id='L119' name='L119' /><em class='comment'></em>
+<a id='L120' name='L120' /><em class='comment'>2/12/2011 dwg - Major enhancements to 8085 code handlers</em>
+<a id='L121' name='L121' /><em class='comment'>A* through MOV. Added automatic page break before symbols</em>
+<a id='L122' name='L122' /><em class='comment'>in listing file. Fixed bug in pagewidth handler. Added </em>
+<a id='L123' name='L123' /><em class='comment'>pagetest.asm to asmtests.</em>
+<a id='L124' name='L124' /><em class='comment'></em>
+<a id='L125' name='L125' /><em class='comment'>2/10/2011 dwg - </em>
+<a id='L126' name='L126' /><em class='comment'>A code review showed there are is a lot of junk code in the code</em>
+<a id='L127' name='L127' /><em class='comment'>handlers that still needs to be sorted out. Some improovements</em>
+<a id='L128' name='L128' /><em class='comment'>were made today, such as the addition of the "end" directive.</em>
+<a id='L129' name='L129' /><em class='comment'>It terminates the assembly  even if further text exists in the </em>
+<a id='L130' name='L130' /><em class='comment'>source file. It still needs a hook into the hex generator to</em>
+<a id='L131' name='L131' /><em class='comment'>add a startupp record to the hex file with the address from the</em>
+<a id='L132' name='L132' /><em class='comment'>parameter provided. That should not be difficult. All the code</em>
+<a id='L133' name='L133' /><em class='comment'>handlers in the 8085 directory now have up to date log generators</em>
+<a id='L134' name='L134' /><em class='comment'>and the log syntax has been cleaned up quite a bit. When an error</em>
+<a id='L135' name='L135' /><em class='comment'>occurs in the assembly, the hex file is deleted, which causes </em>
+<a id='L136' name='L136' /><em class='comment'>further invocations of make to rebuilt that target. It also keeps</em>
+<a id='L137' name='L137' /><em class='comment'>you from assuming the existence of the hex file means things went</em>
+<a id='L138' name='L138' /><em class='comment'>well with the assembly.</em>
+<a id='L139' name='L139' /><em class='comment'></em>
+<a id='L140' name='L140' /><em class='comment'>2/9/2011 dwg - </em>
+<a id='L141' name='L141' /><em class='comment'>In order to make things easier for assembly develoment, a new program</em>
+<a id='L142' name='L142' /><em class='comment'>called "asmall" can be run, which creates a new Makefile that can </em>
+<a id='L143' name='L143' /><em class='comment'>build all the .asm programs in the directory. It also creates a .mak</em>
+<a id='L144' name='L144' /><em class='comment'>file for each program in case you want to assemble just one program</em>
+<a id='L145' name='L145' /><em class='comment'>instead of them all. Syntax like... "make -f test2.mak" does the job.</em>
+<a id='L146' name='L146' /><em class='comment'>Otherwise just running ./asmall will build the Makefile and run it, </em>
+<a id='L147' name='L147' /><em class='comment'>and subsequently just running "make" will update any programs needing</em>
+<a id='L148' name='L148' /><em class='comment'>a reassembly.</em>
+<a id='L149' name='L149' /><em class='comment'></em>
+<a id='L150' name='L150' /><em class='comment'>The test programs help verify the proper operation of the assembler. </em>
+<a id='L151' name='L151' /><em class='comment'>Here are the current test programs and what they test for.</em>
+<a id='L152' name='L152' /><em class='comment'></em>
+<a id='L153' name='L153' /><em class='comment'>test.asm        Verifies the opertion of the "radix" directive as</em>
+<a id='L154' name='L154' /><em class='comment'>                well as the "org" directive, and the ability of the</em>
+<a id='L155' name='L155' /><em class='comment'>                assembler to collect labels into the symbol table.</em>
+<a id='L156' name='L156' /><em class='comment'>test2.asm       Similat to test.asm.</em>
+<a id='L157' name='L157' /><em class='comment'></em>
+<a id='L158' name='L158' /><em class='comment'>test3.asm       Verifies the operation of the "rb" directive.</em>
+<a id='L159' name='L159' /><em class='comment'></em>
+<a id='L160' name='L160' /><em class='comment'>test4.asm       Verifies the ability of the assembler to create</em>
+<a id='L161' name='L161' /><em class='comment'>                the classic "hello world" program suitable for</em>
+<a id='L162' name='L162' /><em class='comment'>                us with CP/M-80.</em>
+<a id='L163' name='L163' /><em class='comment'></em>
+<a id='L164' name='L164' /><em class='comment'>test5.asm       Verifies the operation of the "mvi"  and "lxi"</em>
+<a id='L165' name='L165' /><em class='comment'>                operation codes (8085), as well as the ability </em>
+<a id='L166' name='L166' /><em class='comment'>                of the assembler to deal with backward references.</em>
+<a id='L167' name='L167' /><em class='comment'></em>
+<a id='L168' name='L168' /><em class='comment'>test6.asm       Verifies the operation of the "in" and "out"</em>
+<a id='L169' name='L169' /><em class='comment'>                operation codes, used with an 8-bit operand,</em>
+<a id='L170' name='L170' /><em class='comment'>                numeric literal or symbolic. Althought the binary</em>
+<a id='L171' name='L171' /><em class='comment'>                of the g_szOpcodes are not verified yet.</em>
+<a id='L172' name='L172' /><em class='comment'></em>
+<a id='L173' name='L173' /><em class='comment'>test7.asm       Verifies the proper functionality of the new </em>
+<a id='L174' name='L174' /><em class='comment'>                string directives, "dstr" "dstr4" and "dstrz".</em>
+<a id='L175' name='L175' /><em class='comment'>                The "dstr" assembles a string into a sequence</em>
+<a id='L176' name='L176' /><em class='comment'>                of ascii characters. The "dstr4" assembles</em>
+<a id='L177' name='L177' /><em class='comment'>                a string into a sequence of ASCII characters</em>
+<a id='L178' name='L178' /><em class='comment'>                with the high order bit of the last byte set,</em>
+<a id='L179' name='L179' /><em class='comment'>                as is required when building a forth kernel.</em>
+<a id='L180' name='L180' /><em class='comment'>                The "dstrz" assembles a string into a sequence</em>
+<a id='L181' name='L181' /><em class='comment'>                of ASCII characters, terminated with a zero byte.</em>
+<a id='L182' name='L182' /><em class='comment'></em>
+<a id='L183' name='L183' /><em class='comment'>test8.asm       Verifies the use of the $ parameter which </em>
+<a id='L184' name='L184' /><em class='comment'>                evaluates to the current value of the program</em>
+<a id='L185' name='L185' /><em class='comment'>                counter.</em>
+<a id='L186' name='L186' /><em class='comment'>*/</em>
+<a id='L187' name='L187' /> 
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^][v]<a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>asdec20.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/asdec20.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L24'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/189.html' title='Multiple included from 2 places.'>INCLUDED FROM</a></h2>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L24' title='Defined at 24.'>decode_1620</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// ---------------------------------------------------</em>
+<a id='L2' name='L2' /><em class='comment'>// asdec20.hpp  25-Feb-11   Running on Mac OS X 10.6.6</em>
+<a id='L3' name='L3' /><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
+<a id='L4' name='L4' /><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L5' name='L5' /><em class='comment'>// ---------------------------------------------------</em>
+<a id='L6' name='L6' /><em class='comment'>// This file is part of Vintage Modern Assembler Plus Tools.</em>
+<a id='L7' name='L7' /><em class='comment'>//</em>
+<a id='L8' name='L8' /><em class='comment'>// VMAPT is free software: you can redistribute it and/or modify</em>
+<a id='L9' name='L9' /><em class='comment'>// it under the terms of the GNU General Public License as published by</em>
+<a id='L10' name='L10' /><em class='comment'>// the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L11' name='L11' /><em class='comment'>// (at your option) any later version.</em>
+<a id='L12' name='L12' /><em class='comment'>//</em>
+<a id='L13' name='L13' /><em class='comment'>// VMAPT is distributed in the hope that it will be useful,</em>
+<a id='L14' name='L14' /><em class='comment'>// but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L15' name='L15' /><em class='comment'>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L16' name='L16' /><em class='comment'>// GNU General Public License for more details.</em>
+<a id='L17' name='L17' /><em class='comment'>//</em>
+<a id='L18' name='L18' /><em class='comment'>// You should have received a copy of the GNU General Public License</em>
+<a id='L19' name='L19' /><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L20' name='L20' /><em class='comment'>//</em>
+<a id='L21' name='L21' />
+<a id='L22' name='L22' /><strong class='reserved'>static</strong> <strong class='reserved'>char</strong> szAsdec20Hpp[] = "$Id: asdec20.hpp,v 1.1 2011/03/25 05:49:38 doug Exp $";
+<a id='L23' name='L23' />
+<a id='L24' name='L24' /><strong class='reserved'>void</strong> <a href='../R/179.html' title='Multiple refered from 4 places.'>decode_1620</a>(<strong class='reserved'>void</strong>)
+<a id='L25' name='L25' /><em class='brace'>{</em>
+<a id='L26' name='L26' />        <strong class='reserved'>int</strong> rc;
+<a id='L27' name='L27' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> value;
+<a id='L28' name='L28' />                
+<a id='L29' name='L29' />        <em class='comment'>// The strupr function happens to fold</em>
+<a id='L30' name='L30' />        <em class='comment'>// strings. This code preserves the</em>
+<a id='L31' name='L31' />        <em class='comment'>// orginal case, to be restored after</em>
+<a id='L32' name='L32' />        <em class='comment'>// g_szOpcode processing (see below)</em>
+<a id='L33' name='L33' />        strcpy(g_szRawLabel,g_szLabel);
+<a id='L34' name='L34' />        strcpy(g_szRawOpcode,g_szOpcode);
+<a id='L35' name='L35' />        strcpy(g_szRawParms,g_szParms);
+<a id='L36' name='L36' />        strcpy(g_szRawComments,g_szComments);
+<a id='L37' name='L37' />
+<a id='L38' name='L38' />        <strong class='reserved'>if</strong>( (strlen(g_szLabel)==0) &amp;&amp; (strlen(g_szOpcode)==0) &amp;&amp;
+<a id='L39' name='L39' />            (strlen(g_szParms)==0) &amp;&amp; (strlen(g_szComments)&gt;0) ) <em class='brace'>{</em>
+<a id='L40' name='L40' />                g_iLineType = <a href='../D/421.html' title='Multiple defined in 2 places.'>TYPE_COMMENT</a>;   
+<a id='L41' name='L41' />                g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L42' name='L42' />        <em class='brace'>}</em> 
+<a id='L43' name='L43' />
+<a id='L44' name='L44' />        <strong class='reserved'>if</strong>( (strlen(g_szLabel)==0) &amp;&amp; (strlen(g_szOpcode)==0) &amp;&amp;
+<a id='L45' name='L45' />            (strlen(g_szParms)==0) &amp;&amp; (strlen(g_szComments)==0) ) <em class='brace'>{</em>
+<a id='L46' name='L46' />                g_iLineType = <a href='../D/427.html' title='Multiple defined in 2 places.'>TYPE_EMPTY</a>; 
+<a id='L47' name='L47' />                g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;  
+<a id='L48' name='L48' />        <em class='brace'>}</em> 
+<a id='L49' name='L49' />
+<a id='L50' name='L50' /><em class='comment'>//#ifdef NEVER</em>
+<a id='L51' name='L51' />        <strong class='reserved'>if</strong>(0 &lt; strlen(g_szOpcode)) <em class='brace'>{</em>
+<a id='L52' name='L52' /><em class='sharp'>#include</em> "as1620/decoincl.hpp"
+<a id='L53' name='L53' />        <em class='brace'>}</em>
+<a id='L54' name='L54' /><em class='comment'>//#endif</em>
+<a id='L55' name='L55' />
+<a id='L56' name='L56' />        <em class='comment'>// This code restores the original case of </em>
+<a id='L57' name='L57' />        <em class='comment'>// strings that were unintentionally folded</em>
+<a id='L58' name='L58' />        <em class='comment'>// to upper case by strupr function.</em>
+<a id='L59' name='L59' />        strcpy(g_szLabel,g_szRawLabel);
+<a id='L60' name='L60' />        strcpy(g_szOpcode,g_szRawOpcode);
+<a id='L61' name='L61' />        strcpy(g_szParms,g_szRawParms);
+<a id='L62' name='L62' />        strcpy(g_szComments,g_szRawComments);
+<a id='L63' name='L63' /><em class='brace'>}</em>
+<a id='L64' name='L64' />
+<a id='L65' name='L65' /><em class='comment'>// eof - asdec20.hpp</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L24'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

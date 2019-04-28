@@ -66,25 +66,17 @@ int main(int argc,char **argv)
 	}
 	fgets(szBuffer,sizeof(szBuffer),fd);
 	fclose(fd);
-	//system("rm -f date.tmp");
+	system("rm -f date.tmp");
 
 	memset(szMonth,0,sizeof(szMonth));
 	memset(szDay,0,sizeof(szDay));
 	memset(szYear,0,sizeof(szYear));
 	memset(szHour,0,sizeof(szHour));
 
-	strncpy(szMonth,&szBuffer[5],3);
-	strncpy(szDay,&szBuffer[9],2);
-	strncpy(szYear,&szBuffer[13],4);
-	strncpy(szHour,&szBuffer[18],2);
-
-	printf("szMonth is %s\n",szMonth);
-	printf("szDay   is %s\n",szDay);
-	printf("szYear  is %s\n",szYear);
-	printf("szHour  is %s\n",szHour);
-
-
-
+	strncpy(szMonth,&szBuffer[4],3);
+	strncpy(szDay,&szBuffer[8],2);
+	strncpy(szYear,&szBuffer[24],4);
+	strncpy(szHour,&szBuffer[11],2);
 
 	if(0 == strcmp("Jan",szMonth)) iMonth = 1;
 	if(0 == strcmp("Feb",szMonth)) iMonth = 2;
@@ -98,21 +90,13 @@ int main(int argc,char **argv)
 	if(0 == strcmp("Oct",szMonth)) iMonth = 10;
 	if(0 == strcmp("Nov",szMonth)) iMonth = 11;
 	if(0 == strcmp("Dec",szMonth)) iMonth = 12;
-        
-	sprintf(szDirSpec,"%02d%02d%04d",
+
+        sprintf(szDirSpec,"%02d%02d%04d",
                 iMonth,atoi(szDay),atoi(szYear));
 	FILE * fdsh = fopen("today","w");
 	fprintf(fdsh,"#!/bin/bash\n");
 	fprintf(fdsh,"mkdir %s 2>> today.log\n",szDirSpec);
 	fprintf(fdsh,"cd %s >> today.log\n",szDirSpec);
-
-
-	// CYGWIN
-	if(0 == strcmp(CYGWIN,version.getmachtype())) {
-		sprintf(szMkDirSpec,
-			"/home/%s/src/framewk/%02d%02d%04d/Makefile",
-			version.getuser(),iMonth,atoi(szDay),atoi(szYear));
-	}
 
 	// assemble Makefile string for Mac OS environment
 	if(0 == strcmp(MACOSX,version.getmachtype())) {
@@ -123,7 +107,7 @@ int main(int argc,char **argv)
 	// assemble Makefile string for Linux environment
         if(0 == strcmp(LINUX,version.getmachtype())) {
                 sprintf(szMkDirSpec,
-                        "/home/%s/src/framewk/%02d%02d%04d/Makefile",
+                        "/home/%s/public_html/src/framewk/%02d%02d%04d/Makefile",
                         version.getuser(),iMonth,atoi(szDay),atoi(szYear));
         }
 	// test for existence of Makefile (is build dir populated?)
@@ -138,21 +122,14 @@ int main(int argc,char **argv)
         	if(0 == strcmp(LINUX,
 				version.getmachtype())) {
                 	fprintf(fdsh,
-				"/home/%s/src/framewk/bin/copylast\n",
+				"/home/%s/public_html/src/framewk/bin/copylast\n",
                         	version.getuser());
         	}
-		if(0 == strcmp(CYGWIN,
-				version.getmachtype())) {
-			fprintf(fdsh,
-				"/home/%s/src/framewk/bin/copylast\n",
-				version.getuser());
-		}
-			
 	}
 	if(NULL != fdmk) {
 		fclose(fdmk);
 	}
-//	fprintf(fdsh,"rm ../today\n");
+	fprintf(fdsh,"rm ../today\n");
 	fclose(fdsh);
 	// make today script executable
 	system("chmod +x today");
@@ -167,14 +144,9 @@ int main(int argc,char **argv)
         }
         if(0 == strcmp(LINUX,version.getmachtype())) {
                 sprintf(szLink,
-		  "ln -s /home/%s/src/framewk/%02d%02d%04d latest",
+		  "ln -s /home/%s/public_html/src/framewk/%02d%02d%04d latest",
                   version.getuser(),iMonth,atoi(szDay),atoi(szYear));
         }
-	if(0 == strcmp(CYGWIN,version.getmachtype())) {
-		sprintf(szLink,
-		  "ln -s /home/%s/src/framewk/%02d%02d%04d latest",
-		  version.getuser(),iMonth,atoi(szDay),atoi(szYear));
-	}
 	system(szLink);
 	system("ls");
 	return EXIT_SUCCESS;

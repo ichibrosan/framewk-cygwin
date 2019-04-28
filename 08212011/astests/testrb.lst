@@ -1,0 +1,191 @@
+testrb.lst     Page 1 ../assemble Ver 11.08.21c
+$Id: testrb.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
+COPR 2011 Douglas Goodall
+   1:U:1 0000:                    title      $Id: testrb.asm,v 1.2 2011/03/25+
+   1+U+1 0000:           09:01:21 doug Exp $  
+   2:U:1 0000:                    subttl     COPR 2011 Douglas Goodall  
+   3:U:1 0000:                ;
+   4:U:1 0000:                ; $Log: testrb.asm,v $
+   5:U:1 0000:                ; Revision 1.2  2011/03/25 09:01:21  doug
+   6:U:1 0000:                ; *** empty log message ***
+   7:U:1 0000:                ;
+   8:U:1 0000:                ; Revision 1.1  2011/03/25 08:26:35  doug
+   9:U:1 0000:                ; Initial revision
+  10:U:1 0000:                ;
+  11:U:1 0000:                ;
+  12:U:1 0000:                    include    gplstuff.inc  
+   1:U:2 0000:                ; ------------------------------------
+   2:U:2 0000:                ; This file is part of "Vintage Modern 
+   3:U:2 0000:                ; Assembler Plus Tools (VMAPT)".
+   4:U:2 0000:                ;
+   5:U:2 0000:                ; VMAPT is free software: you can 
+   6:U:2 0000:                ; redistribute it and/or modify it under 
+   7:U:2 0000:                ; the terms of  the GNU General Public 
+   8:U:2 0000:                ; License  as published by the Free
+   9:U:2 0000:                ; Software  Foundation, either version 3
+  10:U:2 0000:                ; of the License, or (at your option)  
+  11:U:2 0000:                ; any later version.
+  12:U:2 0000:                ;
+  13:U:2 0000:                ; VMAPT is distributed in the hope that it 
+  14:U:2 0000:                ; will be useful, but WITHOUT ANY WARRANTY;
+  15:U:2 0000:                ; without even the implied warranty of   
+  16:U:2 0000:                ; MERCHANTABILITY or FITNESS FOR A 
+  17:U:2 0000:                ; PARTICULAR PURPOSE. See the GNU General 
+  18:U:2 0000:                ; Public License for more details.
+  19:U:2 0000:                ;
+  20:U:2 0000:                ; You  should have received a copy of the 
+  21:U:2 0000:                ; GNU General Public License along with 
+  22:U:2 0000:                ; VMAPT. If not,
+  23:U:2 0000:                ; see <http://www.gnu.org/licenses/>.
+  24:U:2 0000:                ; ----------------------------------------
+  25:U:2 0000:                                
+  13:U:1 0000:                                
+  14:U:1 0000:                                
+  15:U:1 0000:                    radix      hex  
+  16:U:1 0000:                                
+  17:U:1 005C:                    org        5c  
+  18:U:1                prifcb    rb         10                              
+  18:U:1 005C: 00 00 00 prifcb    db         000H,000H,000H  ; 
+  18:U:1 005F: 00 00 00 prifcb    db         000H,000H,000H  ; 
+  18:U:1 0062: 00 00 00 prifcb    db         000H,000H,000H  ; 
+  18:U:1 0065: 00 00 00 prifcb    db         000H,000H,000H  ; 
+  18:U:1 0068: 00 00 00 prifcb    db         000H,000H,000H  ; 
+  18:U:1 006B: 00       prifcb    db         000H            ; 
+testrb.lst     Page 2 ../assemble Ver 11.08.21c
+$Id: testrb.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
+COPR 2011 Douglas Goodall
+  19:U:1 006C:                                
+  20:U:1 006C:                    org        6c  
+  21:U:1                secfcb    rb         10                              
+  21:U:1 006C: 00 00 00 secfcb    db         000H,000H,000H  ; 
+  21:U:1 006F: 00 00 00 secfcb    db         000H,000H,000H  ; 
+  21:U:1 0072: 00 00 00 secfcb    db         000H,000H,000H  ; 
+  21:U:1 0075: 00 00 00 secfcb    db         000H,000H,000H  ; 
+  21:U:1 0078: 00 00 00 secfcb    db         000H,000H,000H  ; 
+  21:U:1 007B: 00       secfcb    db         000H            ; 
+  22:U:1 007C:                                
+  23:U:1 0080:                    org        80  
+  24:U:1                defbuf    rb         80                              
+  24:U:1 0080: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 0083: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 0086: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 0089: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 008C: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 008F: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 0092: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 0095: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 0098: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 009B: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 009E: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00A1: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00A4: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00A7: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00AA: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00AD: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00B0: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00B3: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00B6: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00B9: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00BC: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00BF: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00C2: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00C5: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00C8: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00CB: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00CE: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00D1: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00D4: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00D7: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00DA: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00DD: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00E0: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00E3: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00E6: 00 00 00 defbuf    db         000H,000H,000H  ; 
+testrb.lst     Page 3 ../assemble Ver 11.08.21c
+$Id: testrb.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
+COPR 2011 Douglas Goodall
+  24:U:1 00E9: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00EC: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00EF: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00F2: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00F5: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00F8: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00FB: 00 00 00 defbuf    db         000H,000H,000H  ; 
+  24:U:1 00FE: 00 00    defbuf    db         000H,000H       ; 
+  25:U:1 0100:                                
+  26:U:1 0100:                    org        100  
+  27:U:1 0100: 00       start     nop          
+  28:U:1 0101:                                
+  29:U:1 0101: 00 01              end        start  
+testrb.lst     Page 4 ../assemble Ver 11.08.21c
+$Id: testrb.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
+COPR 2011 Douglas Goodall
+  29:U:1 ----------------------------------------------
+  29:U:1 Symbol table byte entries...
+  29:U:1 defbuf.u8, 0x80 (128)
+  29:U:1 prifcb.u8, 0x5C (92)
+  29:U:1 secfcb.u8, 0x6C (108)
+  29:U:1 start.u8, 0x00 (0)
+  29:U:1 ----------------------------------------------
+  29:U:1 Symbol table word entries...
+  29:U:1 defbuf.u16, 0x0080 (128)
+  29:U:1 ldefpgln.u16, 0x0032 (50)
+  29:U:1 ldefpgwd.u16, 0x004A (74)
+  29:U:1 pagelgth.u16, 0x0032 (50)
+  29:U:1 pagewdth.u16, 0x004A (74)
+  29:U:1 prifcb.u16, 0x005C (92)
+  29:U:1 secfcb.u16, 0x006C (108)
+  29:U:1 start.u16, 0x0100 (256)
+  29:U:1 ----------------------------------------------
+  29:U:1 Symbol table dword entries...
+  29:U:1 defbuf.u32, 0x00000080 (128)
+  29:U:1 prifcb.u32, 0x0000005C (92)
+  29:U:1 secfcb.u32, 0x0000006C (108)
+  29:U:1 start.u32, 0x00000100 (256)
+  29:U:1 ----------------------------------------------
+  29:U:1 Symbol table qword entries...
+  29:U:1 defbuf.u64, 0x00000000000000080 (128)
+  29:U:1 prifcb.u64, 0x0000000000000005C (92)
+  29:U:1 secfcb.u64, 0x0000000000000006C (108)
+  29:U:1 start.u64, 0x00000000000000100 (256)
+  29:U:1 ----------------------------------------------
+  29:U:1 Symbol table meta entries...
+  29:U:1 ascalc.mta, "$Id: ascalc.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $"
+  29:U:1 asdec20.mta, "$Id: asdec20.hpp,v 1.1 2011/03/25 05:49:38 doug Exp $"
+  29:U:1 asdec65.mta, "$Id: asdec65.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $"
+  29:U:1 asdec68k.mta, "$Id: asdec68k.hpp,v 1.1 2011/03/24 11:58:05 doug Exp +
+  29+U+1 0103:          $"
+  29:U:1 asdec80.mta, "$Id: asdec80.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $"
+  29:U:1 asdec85.mta, "$Id: asdec85.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $"
+  29:U:1 asdecdir.mta, "$Id: asdecdir.hpp,v 1.1 2011/03/24 11:58:05 doug Exp +
+  29+U+1 0103:          $"
+  29:U:1 asdecz80.mta, "$Id: asdecz80.hpp,v 1.1 2011/03/24 11:58:05 doug Exp +
+  29+U+1 0103:          $"
+  29:U:1 aseval.mta, "$Id: aseval.hpp,v 1.2 2011/04/14 15:13:09 doug Exp $"
+  29:U:1 ashexout.mta, "$Id: ashexout.hpp,v 1.1 2011/03/24 11:58:05 doug Exp +
+  29+U+1 0103:          $"
+  29:U:1 asouterr.mta, "$Id: asouterr.hpp,v 1.2 2011/04/14 15:13:09 doug Exp +
+  29+U+1 0103:          $"
+  29:U:1 asouthex.mta, "$Id: asouthex.hpp,v 1.1 2011/03/24 11:58:05 doug Exp +
+testrb.lst     Page 5 ../assemble Ver 11.08.21c
+$Id: testrb.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
+COPR 2011 Douglas Goodall
+  29+U+1 0103:          $"
+  29:U:1 asoutlst.mta, "$Id: asoutlst.hpp,v 1.2 2011/03/25 05:48:59 doug Exp +
+  29+U+1 0103:          $"
+  29:U:1 asoutwrn.mta, "$Id: asoutwrn.hpp,v 1.2 2011/04/14 15:13:09 doug Exp +
+  29+U+1 0103:          $"
+  29:U:1 asparse.mta, "$Id: asparse.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $"
+  29:U:1 asprint.mta, "$Id: asprint.hpp,v 1.2 2011/03/25 05:48:10 doug Exp $"
+  29:U:1 asresolv.mta, "$Id: asresolv.hpp,v 1.3 2011/04/14 15:13:09 doug Exp +
+  29+U+1 0103:          $"
+  29:U:1 assemble.mta, "$Id: assemble.cpp,v 1.5 2011/04/14 15:13:09 doug Exp +
+  29+U+1 0103:          $"
+  29:U:1 asymbols.mta, "$Id: asymbols.hpp,v 1.6 2011/04/14 15:13:09 doug Exp +
+  29+U+1 0103:          $"
+  29:U:1 hostname.mta, "MacBook-Pro.local"
+  29:U:1 hosttype.mta, "x86_64"
+  29:U:1 machtype.mta, "x86_64-apple-darwin11"
+  29:U:1 program.mta, "testrb"
+  29:U:1 pwd.mta, "/Users/doug/src/framewk/08212011/astests"
+  29:U:1 username.mta, "doug"

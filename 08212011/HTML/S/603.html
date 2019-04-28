@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>base/asresolv.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/828.html'>base</a>/asresolv.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L33'>[^]</a><a href='#L213'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/210.html' title='Multiple included from 2 places.'>INCLUDED FROM</a></h2>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L33' title='Defined at 33.'>X8</a></li>
+<li><a href='#L51' title='Defined at 51.'>resolvep8</a></li>
+<li><a href='#L95' title='Defined at 95.'>X16</a></li>
+<li><a href='#L119' title='Defined at 119.'>resolvep16</a></li>
+<li><a href='#L148' title='Defined at 148.'>X32</a></li>
+<li><a href='#L167' title='Defined at 167.'>resolvep32</a></li>
+<li><a href='#L197' title='Defined at 197.'>X64</a></li>
+<li><a href='#L213' title='Defined at 213.'>resolvep64</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// $Log: asresolv.hpp,v $</em>
+<a id='L2' name='L2' /><em class='comment'>// Revision 1.3  2011/04/14 15:13:09  doug</em>
+<a id='L3' name='L3' /><em class='comment'>// get ready for release to wiki and server</em>
+<a id='L4' name='L4' /><em class='comment'>//</em>
+<a id='L5' name='L5' /><em class='comment'>//</em>
+<a id='L6' name='L6' />
+<a id='L7' name='L7' /><em class='comment'>// ---------------------------------------------------</em>
+<a id='L8' name='L8' /><em class='comment'>// asresolv.hpp  2-Mar-11   Running on Mac OS X 10.6.6</em>
+<a id='L9' name='L9' /><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
+<a id='L10' name='L10' /><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L11' name='L11' /><em class='comment'>// ---------------------------------------------------</em>
+<a id='L12' name='L12' /><em class='comment'>// This file is part of Vintage Modern Assembler Plus Tools.</em>
+<a id='L13' name='L13' /><em class='comment'>//</em>
+<a id='L14' name='L14' /><em class='comment'>// VMAPT is free software: you can redistribute it and/or modify</em>
+<a id='L15' name='L15' /><em class='comment'>// it under the terms of the GNU General Public License as published by</em>
+<a id='L16' name='L16' /><em class='comment'>// the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L17' name='L17' /><em class='comment'>// (at your option) any later version.</em>
+<a id='L18' name='L18' /><em class='comment'>//</em>
+<a id='L19' name='L19' /><em class='comment'>// VMAPT is distributed in the hope that it will be useful,</em>
+<a id='L20' name='L20' /><em class='comment'>// but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L21' name='L21' /><em class='comment'>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L22' name='L22' /><em class='comment'>// GNU General Public License for more details.</em>
+<a id='L23' name='L23' /><em class='comment'>//</em>
+<a id='L24' name='L24' /><em class='comment'>// You should have received a copy of the GNU General Public License</em>
+<a id='L25' name='L25' /><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L26' name='L26' /><em class='comment'>//</em>
+<a id='L27' name='L27' />
+<a id='L28' name='L28' /><strong class='reserved'>static</strong> <strong class='reserved'>char</strong> szAsresolvHpp[] = "$Id: asresolv.hpp,v 1.3 2011/04/14 15:13:09 doug Exp $";
+<a id='L29' name='L29' />
+<a id='L30' name='L30' />
+<a id='L31' name='L31' /><em class='comment'>//---------------------------------------------------</em>
+<a id='L32' name='L32' />
+<a id='L33' name='L33' /><strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> <a href='../R/154.html' title='Multiple refered from 2 places.'>X8</a>(<strong class='reserved'>char</strong> *p)
+<a id='L34' name='L34' /><em class='brace'>{</em>
+<a id='L35' name='L35' />      <a href='../D/410.html' title='Multiple defined in 2 places.'>TRACE</a>("X8() started");
+<a id='L36' name='L36' />          <strong class='reserved'>char</strong> szTemp[255];
+<a id='L37' name='L37' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> ucValue;
+<a id='L38' name='L38' />
+<a id='L39' name='L39' />        strcpy(szTemp,p);
+<a id='L40' name='L40' />        strcat(szTemp," ");
+<a id='L41' name='L41' />        g_pCEval-&gt;<a href='../D/471.html' title='Multiple defined in 2 places.'>clear</a>();
+<a id='L42' name='L42' />        g_pCEval-&gt;<a href='../D/571.html' title='Multiple defined in 2 places.'>tokenize</a>(szTemp);
+<a id='L43' name='L43' />        g_pCEval-&gt;<a href='../D/485.html' title='Multiple defined in 6 places.'>dump</a>();
+<a id='L44' name='L44' />        g_pCEval-&gt;<a href='../D/487.html' title='Multiple defined in 2 places.'>gather</a>(szTemp);
+<a id='L45' name='L45' />        g_pCPostfix-&gt;<a href='../D/472.html' title='Multiple defined in 2 places.'>convert</a>(szTemp);
+<a id='L46' name='L46' />        strcpy(szTemp,g_pCPostfix-&gt;<a href='../D/509.html' title='Multiple defined in 2 places.'>getresult</a>());
+<a id='L47' name='L47' />        ucValue = (<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>)g_pCEval-&gt;<a href='../D/486.html' title='Multiple defined in 2 places.'>evaluate</a>(szTemp);
+<a id='L48' name='L48' />        <strong class='reserved'>return</strong>( ucValue );
+<a id='L49' name='L49' /><em class='brace'>}</em>
+<a id='L50' name='L50' />
+<a id='L51' name='L51' /><strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../R/258.html' title='Multiple refered from 56 places.'>resolvep8</a>(<strong class='reserved'>char</strong> *p)
+<a id='L52' name='L52' /><em class='brace'>{</em>
+<a id='L53' name='L53' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> ucValue;
+<a id='L54' name='L54' />        <strong class='reserved'>int</strong> iValue;
+<a id='L55' name='L55' />        <strong class='reserved'>int</strong>     rc;
+<a id='L56' name='L56' />
+<a id='L57' name='L57' />        <strong class='reserved'>if</strong>(<a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a> == g_pCEval-&gt;<a href='../D/463.html' title='Multiple defined in 2 places.'>bExpression</a>(p)) <em class='brace'>{</em>
+<a id='L58' name='L58' />                <strong class='reserved'>return</strong>(<a href='../D/449.html' title='Multiple defined in 2 places.'>X8</a>(p));
+<a id='L59' name='L59' />        <em class='brace'>}</em>
+<a id='L60' name='L60' />
+<a id='L61' name='L61' />        <strong class='reserved'>if</strong>(0 == strncmp("@",p,1)) <em class='brace'>{</em>
+<a id='L62' name='L62' />                <strong class='reserved'>return</strong> g_iPc;
+<a id='L63' name='L63' />        <em class='brace'>}</em>
+<a id='L64' name='L64' />
+<a id='L65' name='L65' />        <em class='comment'>// handle literal character 'C'</em>
+<a id='L66' name='L66' />        <strong class='reserved'>char</strong> szTick[] = "'";
+<a id='L67' name='L67' />        <strong class='reserved'>if</strong>( (szTick[0] == g_szParms[0]) &amp;&amp;
+<a id='L68' name='L68' />            (szTick[0] == g_szParms[2]) ) <em class='brace'>{</em>
+<a id='L69' name='L69' />                ucValue = g_szParms[1];
+<a id='L70' name='L70' />                <strong class='reserved'>return</strong> ucValue;
+<a id='L71' name='L71' />        <em class='brace'>}</em>
+<a id='L72' name='L72' />
+<a id='L73' name='L73' />        <strong class='reserved'>if</strong>(p[0] == '$') p[0] = '0';
+<a id='L74' name='L74' />        <strong class='reserved'>if</strong>( (p[0] &gt; 0x2f) &amp;&amp; (p[0] &lt; 0x3a) ) <em class='brace'>{</em>
+<a id='L75' name='L75' />                sscanf(p,g_szRadixFormat8,&amp;iValue);
+<a id='L76' name='L76' />                ucValue = (<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>) iValue;
+<a id='L77' name='L77' />                <strong class='reserved'>return</strong> ucValue;
+<a id='L78' name='L78' />        <em class='brace'>}</em> 
+<a id='L79' name='L79' />
+<a id='L80' name='L80' />        ucValue = g_pCSymbols-&gt;<a href='../D/521.html' title='Multiple defined in 2 places.'>getu8</a>(p,&amp;rc);
+<a id='L81' name='L81' />        <strong class='reserved'>if</strong>(EXIT_FAILURE == rc) <em class='brace'>{</em>
+<a id='L82' name='L82' />                <strong class='reserved'>if</strong>(EXIT_SUCCESS == g_pCSymbols-&gt;<a href='../D/497.html' title='Multiple defined in 2 places.'>gete8</a>(p,&amp;rc)) <em class='brace'>{</em>
+<a id='L83' name='L83' />                        g_iWarningNo |= <a href='../D/443.html' title='Multiple defined in 2 places.'>WARNING_EXTERNAL</a>;
+<a id='L84' name='L84' />                        ucValue = 0;
+<a id='L85' name='L85' />                <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L86' name='L86' />                        g_iErrorNo |= <a href='../D/81.html' title='Multiple defined in 2 places.'>ERROR_UNKSYM</a>;
+<a id='L87' name='L87' />                <em class='brace'>}</em>
+<a id='L88' name='L88' />        <em class='brace'>}</em>
+<a id='L89' name='L89' />
+<a id='L90' name='L90' />        <strong class='reserved'>return</strong> ucValue;
+<a id='L91' name='L91' /><em class='brace'>}</em>
+<a id='L92' name='L92' />
+<a id='L93' name='L93' /><em class='comment'>//---------------------------------------------------</em>
+<a id='L94' name='L94' />
+<a id='L95' name='L95' /><strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../R/151.html' title='Multiple refered from 2 places.'>X16</a>(<strong class='reserved'>char</strong> *p)
+<a id='L96' name='L96' /><em class='brace'>{</em>
+<a id='L97' name='L97' />        <a href='../D/410.html' title='Multiple defined in 2 places.'>TRACE</a>("X16() started");
+<a id='L98' name='L98' />        fprintf(g_flog,"X16() called\n");
+<a id='L99' name='L99' />
+<a id='L100' name='L100' />        <strong class='reserved'>char</strong> szTemp[255];
+<a id='L101' name='L101' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong> result;
+<a id='L102' name='L102' />
+<a id='L103' name='L103' />        strcpy(szTemp,p);
+<a id='L104' name='L104' />        strcat(szTemp," ");
+<a id='L105' name='L105' />        g_pCEval-&gt;<a href='../D/471.html' title='Multiple defined in 2 places.'>clear</a>();
+<a id='L106' name='L106' />        g_pCEval-&gt;<a href='../D/571.html' title='Multiple defined in 2 places.'>tokenize</a>(szTemp);
+<a id='L107' name='L107' />        g_pCEval-&gt;<a href='../D/485.html' title='Multiple defined in 6 places.'>dump</a>();
+<a id='L108' name='L108' />        g_pCEval-&gt;<a href='../D/487.html' title='Multiple defined in 2 places.'>gather</a>(szTemp);
+<a id='L109' name='L109' />        g_pCPostfix-&gt;<a href='../D/472.html' title='Multiple defined in 2 places.'>convert</a>(szTemp);
+<a id='L110' name='L110' />        strcpy(szTemp,g_pCPostfix-&gt;<a href='../D/509.html' title='Multiple defined in 2 places.'>getresult</a>());
+<a id='L111' name='L111' />        result = g_pCEval-&gt;<a href='../D/486.html' title='Multiple defined in 2 places.'>evaluate</a>(szTemp);
+<a id='L112' name='L112' />
+<a id='L113' name='L113' />        sprintf(szTemp,"X16(%s) returned 0x%04X (%d)\n",p,result,result);
+<a id='L114' name='L114' />        fprintf(g_flog,"%s",szTemp);
+<a id='L115' name='L115' />
+<a id='L116' name='L116' />        <strong class='reserved'>return</strong>( (<strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>)result );
+<a id='L117' name='L117' /><em class='brace'>}</em>
+<a id='L118' name='L118' />
+<a id='L119' name='L119' /><strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../R/255.html' title='Multiple refered from 71 places.'>resolvep16</a>(<strong class='reserved'>char</strong> *p)
+<a id='L120' name='L120' /><em class='brace'>{</em>
+<a id='L121' name='L121' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> uiValue;
+<a id='L122' name='L122' />        <strong class='reserved'>int</strong>     rc;
+<a id='L123' name='L123' />
+<a id='L124' name='L124' />        <strong class='reserved'>if</strong>(<a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a> == g_pCEval-&gt;<a href='../D/463.html' title='Multiple defined in 2 places.'>bExpression</a>(p)) <em class='brace'>{</em>
+<a id='L125' name='L125' />                <strong class='reserved'>return</strong>(<a href='../D/446.html' title='Multiple defined in 2 places.'>X16</a>(p));
+<a id='L126' name='L126' />        <em class='brace'>}</em>
+<a id='L127' name='L127' />
+<a id='L128' name='L128' />        <strong class='reserved'>if</strong>(0 == strncmp("@",p,1)) <em class='brace'>{</em>
+<a id='L129' name='L129' />                <strong class='reserved'>return</strong> g_iPc;
+<a id='L130' name='L130' />        <em class='brace'>}</em>
+<a id='L131' name='L131' />
+<a id='L132' name='L132' />        <strong class='reserved'>if</strong>(p[0] == '$') p[0] = '0';
+<a id='L133' name='L133' />        <strong class='reserved'>if</strong>( (p[0] &gt; 0x2f) &amp;&amp; (p[0] &lt; 0x3a) ) <em class='brace'>{</em>
+<a id='L134' name='L134' />                sscanf(p,g_szRadixFormat16,&amp;uiValue);
+<a id='L135' name='L135' />                <strong class='reserved'>return</strong> uiValue;
+<a id='L136' name='L136' />        <em class='brace'>}</em>
+<a id='L137' name='L137' />
+<a id='L138' name='L138' />        uiValue = g_pCSymbols-&gt;<a href='../D/518.html' title='Multiple defined in 2 places.'>getu16</a>(p,&amp;rc);
+<a id='L139' name='L139' />        <strong class='reserved'>if</strong>(EXIT_FAILURE == rc) <em class='brace'>{</em>
+<a id='L140' name='L140' />                g_iErrorNo |= <a href='../D/81.html' title='Multiple defined in 2 places.'>ERROR_UNKSYM</a>;
+<a id='L141' name='L141' />        <em class='brace'>}</em>
+<a id='L142' name='L142' />
+<a id='L143' name='L143' />        <strong class='reserved'>return</strong> uiValue;
+<a id='L144' name='L144' /><em class='brace'>}</em>
+<a id='L145' name='L145' />
+<a id='L146' name='L146' /><em class='comment'>//---------------------------------------------------</em>
+<a id='L147' name='L147' />
+<a id='L148' name='L148' /><strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> <a href='../R/152.html' title='Multiple refered from 2 places.'>X32</a>(<strong class='reserved'>char</strong> *p)
+<a id='L149' name='L149' /><em class='brace'>{</em>
+<a id='L150' name='L150' />        <a href='../D/410.html' title='Multiple defined in 2 places.'>TRACE</a>("X32() started");
+<a id='L151' name='L151' />
+<a id='L152' name='L152' />        <strong class='reserved'>char</strong> szTemp[255];
+<a id='L153' name='L153' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> ulValue;
+<a id='L154' name='L154' />
+<a id='L155' name='L155' />        strcpy(szTemp,p);
+<a id='L156' name='L156' />        strcat(szTemp," ");
+<a id='L157' name='L157' />        g_pCEval-&gt;<a href='../D/471.html' title='Multiple defined in 2 places.'>clear</a>();
+<a id='L158' name='L158' />        g_pCEval-&gt;<a href='../D/571.html' title='Multiple defined in 2 places.'>tokenize</a>(szTemp);
+<a id='L159' name='L159' />        g_pCEval-&gt;<a href='../D/485.html' title='Multiple defined in 6 places.'>dump</a>();
+<a id='L160' name='L160' />        g_pCEval-&gt;<a href='../D/487.html' title='Multiple defined in 2 places.'>gather</a>(szTemp);
+<a id='L161' name='L161' />        g_pCPostfix-&gt;<a href='../D/472.html' title='Multiple defined in 2 places.'>convert</a>(szTemp);
+<a id='L162' name='L162' />        strcpy(szTemp,g_pCPostfix-&gt;<a href='../D/509.html' title='Multiple defined in 2 places.'>getresult</a>());
+<a id='L163' name='L163' />        ulValue = (<strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong>)g_pCEval-&gt;<a href='../D/486.html' title='Multiple defined in 2 places.'>evaluate</a>(szTemp);
+<a id='L164' name='L164' />        <strong class='reserved'>return</strong>( ulValue );
+<a id='L165' name='L165' /><em class='brace'>}</em>
+<a id='L166' name='L166' />
+<a id='L167' name='L167' /><strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../R/256.html' title='Multiple refered from 7 places.'>resolvep32</a>(<strong class='reserved'>char</strong> *p)
+<a id='L168' name='L168' /><em class='brace'>{</em>
+<a id='L169' name='L169' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> ulValue;
+<a id='L170' name='L170' />        <strong class='reserved'>int</strong>     rc;
+<a id='L171' name='L171' />
+<a id='L172' name='L172' />        <strong class='reserved'>if</strong>(<a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a> == g_pCEval-&gt;<a href='../D/463.html' title='Multiple defined in 2 places.'>bExpression</a>(p)) <em class='brace'>{</em>
+<a id='L173' name='L173' />                <strong class='reserved'>return</strong>(<a href='../D/447.html' title='Multiple defined in 2 places.'>X32</a>(p));
+<a id='L174' name='L174' />        <em class='brace'>}</em>
+<a id='L175' name='L175' />
+<a id='L176' name='L176' />        <strong class='reserved'>if</strong>(0 == strncmp("@",p,1)) <em class='brace'>{</em>
+<a id='L177' name='L177' />                <strong class='reserved'>return</strong> g_iPc;
+<a id='L178' name='L178' />        <em class='brace'>}</em>
+<a id='L179' name='L179' />
+<a id='L180' name='L180' />        <strong class='reserved'>if</strong>(p[0] == '$') p[0] = '0';
+<a id='L181' name='L181' />        <strong class='reserved'>if</strong>( (p[0] &gt; 0x2f) &amp;&amp; (p[0] &lt; 0x3a) ) <em class='brace'>{</em>
+<a id='L182' name='L182' />                sscanf(p,g_szRadixFormat32,&amp;ulValue);
+<a id='L183' name='L183' />                <strong class='reserved'>return</strong> ulValue;
+<a id='L184' name='L184' />        <em class='brace'>}</em>
+<a id='L185' name='L185' />
+<a id='L186' name='L186' />        ulValue =  g_pCSymbols-&gt;<a href='../D/519.html' title='Multiple defined in 2 places.'>getu32</a>(p,&amp;rc);
+<a id='L187' name='L187' />        <strong class='reserved'>if</strong>(EXIT_FAILURE == rc) <em class='brace'>{</em>
+<a id='L188' name='L188' />                printf("resolvep32(%s) detected error ",p);
+<a id='L189' name='L189' />                g_iErrorNo |= <a href='../D/81.html' title='Multiple defined in 2 places.'>ERROR_UNKSYM</a>;
+<a id='L190' name='L190' />        <em class='brace'>}</em>
+<a id='L191' name='L191' />
+<a id='L192' name='L192' />        <strong class='reserved'>return</strong> ulValue;
+<a id='L193' name='L193' /><em class='brace'>}</em>
+<a id='L194' name='L194' />
+<a id='L195' name='L195' /><em class='comment'>//---------------------------------------------------</em>
+<a id='L196' name='L196' />
+<a id='L197' name='L197' /><strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong> <a href='../R/153.html' title='Multiple refered from 2 places.'>X64</a>(<strong class='reserved'>char</strong> *p)
+<a id='L198' name='L198' /><em class='brace'>{</em>
+<a id='L199' name='L199' />        <strong class='reserved'>char</strong> szTemp[255];
+<a id='L200' name='L200' />        <strong class='reserved'>char</strong> szTemp2[255];
+<a id='L201' name='L201' />        strcpy(szTemp,p);
+<a id='L202' name='L202' />        strcat(szTemp," ");
+<a id='L203' name='L203' />        g_pCEval-&gt;<a href='../D/471.html' title='Multiple defined in 2 places.'>clear</a>();
+<a id='L204' name='L204' />        g_pCEval-&gt;<a href='../D/571.html' title='Multiple defined in 2 places.'>tokenize</a>(szTemp);
+<a id='L205' name='L205' />        g_pCEval-&gt;<a href='../D/485.html' title='Multiple defined in 6 places.'>dump</a>();
+<a id='L206' name='L206' />        g_pCEval-&gt;<a href='../D/487.html' title='Multiple defined in 2 places.'>gather</a>(szTemp);
+<a id='L207' name='L207' />        g_pCPostfix-&gt;<a href='../D/472.html' title='Multiple defined in 2 places.'>convert</a>(szTemp);
+<a id='L208' name='L208' />        strcpy(szTemp,g_pCPostfix-&gt;<a href='../D/509.html' title='Multiple defined in 2 places.'>getresult</a>());
+<a id='L209' name='L209' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong> ullValue = (<strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong>)g_pCEval-&gt;<a href='../D/486.html' title='Multiple defined in 2 places.'>evaluate</a>(szTemp);
+<a id='L210' name='L210' />        <strong class='reserved'>return</strong>( ullValue );
+<a id='L211' name='L211' /><em class='brace'>}</em>
+<a id='L212' name='L212' />
+<a id='L213' name='L213' /><strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong> <a href='../R/257.html' title='Multiple refered from 12 places.'>resolvep64</a>(<strong class='reserved'>char</strong> *p)
+<a id='L214' name='L214' /><em class='brace'>{</em>
+<a id='L215' name='L215' />        <strong class='reserved'>int</strong> rc;
+<a id='L216' name='L216' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong> ullValue;
+<a id='L217' name='L217' />
+<a id='L218' name='L218' />        <strong class='reserved'>if</strong>(<a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a> == g_pCEval-&gt;<a href='../D/463.html' title='Multiple defined in 2 places.'>bExpression</a>(p)) <em class='brace'>{</em>
+<a id='L219' name='L219' />                <strong class='reserved'>return</strong>(<a href='../D/448.html' title='Multiple defined in 2 places.'>X64</a>(p));
+<a id='L220' name='L220' />        <em class='brace'>}</em>
+<a id='L221' name='L221' />
+<a id='L222' name='L222' />        <strong class='reserved'>if</strong>(0 == strncmp("@",p,1)) <em class='brace'>{</em>
+<a id='L223' name='L223' />                <strong class='reserved'>return</strong> (<strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong>)g_iPc;
+<a id='L224' name='L224' />        <em class='brace'>}</em>
+<a id='L225' name='L225' />
+<a id='L226' name='L226' />        <strong class='reserved'>if</strong>(p[0] == '$') p[0] = '0';
+<a id='L227' name='L227' />        <strong class='reserved'>if</strong>( (p[0] &gt; 0x2f) &amp;&amp; (p[0] &lt; 0x3a) ) <em class='brace'>{</em>
+<a id='L228' name='L228' />                sscanf(p,g_szRadixFormat64,&amp;ullValue);
+<a id='L229' name='L229' />                <strong class='reserved'>return</strong> ullValue;
+<a id='L230' name='L230' />        <em class='brace'>}</em>
+<a id='L231' name='L231' />
+<a id='L232' name='L232' />        ullValue = g_pCSymbols-&gt;<a href='../D/520.html' title='Multiple defined in 2 places.'>getu64</a>(p,&amp;rc);
+<a id='L233' name='L233' />        <strong class='reserved'>if</strong>(EXIT_FAILURE == rc) <em class='brace'>{</em>
+<a id='L234' name='L234' />                g_iErrorNo |= <a href='../D/81.html' title='Multiple defined in 2 places.'>ERROR_UNKSYM</a>;
+<a id='L235' name='L235' />        <em class='brace'>}</em>
+<a id='L236' name='L236' />
+<a id='L237' name='L237' />        <strong class='reserved'>return</strong> ullValue;
+<a id='L238' name='L238' /><em class='brace'>}</em>
+<a id='L239' name='L239' />
+<a id='L240' name='L240' /><em class='comment'>////////////////////////</em>
+<a id='L241' name='L241' /><em class='comment'>// eof - asresolv.hpp //</em>
+<a id='L242' name='L242' /><em class='comment'>////////////////////////</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L33'>[^]</a><a href='#L213'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

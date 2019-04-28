@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>doc/postfix.c</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/829.html'>doc</a>/postfix.c</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L23'>[^]</a><a href='#L50'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L23' title='Defined at 23.'>push</a></li>
+<li><a href='#L28' title='Defined at 28.'>pop</a></li>
+<li><a href='#L33' title='Defined at 33.'>mostra</a></li>
+<li><a href='#L41' title='Defined at 41.'>preced</a></li>
+<li><a href='#L50' title='Defined at 50.'>main</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// Pilha e algoritmo shunting yard (baseado no wikipedia) </em>
+<a id='L2' name='L2' /><em class='comment'>// Free for use. Done by Luiz Roberto Meier , 2010</em>
+<a id='L3' name='L3' />
+<a id='L4' name='L4' /><em class='sharp'>#include</em> "<a href='../I/324.html'>includes.hpp</a>"
+<a id='L5' name='L5' />
+<a id='L6' name='L6' /><em class='comment'>//#include &lt;string.h&gt;</em>
+<a id='L7' name='L7' /><em class='comment'>//#include &lt;stdio.h&gt;</em>
+<a id='L8' name='L8' /><em class='sharp'>#define</em> <a href='../R/260.html' title='Multiple refered from 35 places.'>size</a> 10
+<a id='L9' name='L9' />
+<a id='L10' name='L10' /><strong class='reserved'>char</strong> pilha[<a href='../S/716.html#L8' title='Defined at 8 in doc/postfix.c.'>size</a>]; <em class='comment'>// tamanho da pilha 10 </em>
+<a id='L11' name='L11' /><strong class='reserved'>int</strong> tos=0, ele; <em class='comment'>// posi��o e elemento</em>
+<a id='L12' name='L12' />
+<a id='L13' name='L13' /><strong class='reserved'>void</strong> <a href='../D/553.html' title='Multiple defined in 3 places.'>push</a>();
+<a id='L14' name='L14' /><strong class='reserved'>char</strong> <a href='../D/549.html' title='Multiple defined in 3 places.'>pop</a>();
+<a id='L15' name='L15' /><strong class='reserved'>void</strong> <a href='../D/541.html' title='Multiple defined in 3 places.'>mostra</a>();
+<a id='L16' name='L16' /><strong class='reserved'>int</strong> isempty();
+<a id='L17' name='L17' /><strong class='reserved'>int</strong> isfull();
+<a id='L18' name='L18' />
+<a id='L19' name='L19' /><strong class='reserved'>char</strong> infix[30],output[30]; <em class='comment'>// limite pode ser aumentado...</em>
+<a id='L20' name='L20' /><strong class='reserved'>int</strong> <a href='../D/550.html' title='Multiple defined in 3 places.'>preced</a>(<strong class='reserved'>char</strong>);
+<a id='L21' name='L21' />
+<a id='L22' name='L22' /><em class='comment'>// Fun��es para operar com pilha (baseado no assembly)</em>
+<a id='L23' name='L23' /><strong class='reserved'>void</strong> <a href='../R/252.html' title='Multiple refered from 15 places.'>push</a>(<strong class='reserved'>int</strong> ele) <em class='brace'>{</em>
+<a id='L24' name='L24' />        pilha[tos]=ele;
+<a id='L25' name='L25' />        tos++;
+<a id='L26' name='L26' /><em class='brace'>}</em>
+<a id='L27' name='L27' />
+<a id='L28' name='L28' /><strong class='reserved'>char</strong> <a href='../R/248.html' title='Multiple refered from 15 places.'>pop</a>() <em class='brace'>{</em>
+<a id='L29' name='L29' />        tos--;
+<a id='L30' name='L30' />        <strong class='reserved'>return</strong>(pilha[tos]);
+<a id='L31' name='L31' /><em class='brace'>}</em>
+<a id='L32' name='L32' />
+<a id='L33' name='L33' /><strong class='reserved'>void</strong> <a href='../R/240.html' title='Multiple refered from 9 places.'>mostra</a>() <em class='brace'>{</em>
+<a id='L34' name='L34' />        <strong class='reserved'>int</strong> x=tos;      
+<a id='L35' name='L35' />        printf("\n Elementos da pilha: ");
+<a id='L36' name='L36' />        <strong class='reserved'>while</strong>(x!=0)
+<a id='L37' name='L37' />        printf("%c, ",pilha[--x]);      
+<a id='L38' name='L38' /><em class='brace'>}</em>
+<a id='L39' name='L39' />
+<a id='L40' name='L40' /><em class='comment'>// Fun��es para definir a preced�ncia</em>
+<a id='L41' name='L41' /><strong class='reserved'>int</strong> <a href='../R/249.html' title='Multiple refered from 15 places.'>preced</a>(<strong class='reserved'>char</strong> simb) <em class='brace'>{</em>
+<a id='L42' name='L42' />    <strong class='reserved'>if</strong> (simb== '(') <strong class='reserved'>return</strong> 0;
+<a id='L43' name='L43' />    <strong class='reserved'>if</strong> (simb== ')') <strong class='reserved'>return</strong> 0;
+<a id='L44' name='L44' />    <strong class='reserved'>if</strong> (simb=='+' || simb=='-') <strong class='reserved'>return</strong> 1;
+<a id='L45' name='L45' />    <strong class='reserved'>if</strong> (simb=='*' || simb=='/') <strong class='reserved'>return</strong> 2;
+<a id='L46' name='L46' />    <strong class='reserved'>if</strong> (simb=='^') <strong class='reserved'>return</strong> 3;
+<a id='L47' name='L47' />    <strong class='reserved'>return</strong> 0;
+<a id='L48' name='L48' /><em class='brace'>}</em>
+<a id='L49' name='L49' />
+<a id='L50' name='L50' /><strong class='reserved'>int</strong> main()
+<a id='L51' name='L51' /><em class='brace'>{</em>
+<a id='L52' name='L52' />        <strong class='reserved'>int</strong> i=0,j=0,k=0,length;
+<a id='L53' name='L53' />        <strong class='reserved'>char</strong> temp;
+<a id='L54' name='L54' />        printf("\nDigite uma expressao matematica : ");
+<a id='L55' name='L55' />        scanf("%s",infix);
+<a id='L56' name='L56' />        length=strlen(infix);
+<a id='L57' name='L57' />        <strong class='reserved'>for</strong>(i=0;i&lt;length;i++) <em class='brace'>{</em>
+<a id='L58' name='L58' />                <em class='comment'>// N�meros s�o separados dos operadores aqui</em>
+<a id='L59' name='L59' />                <strong class='reserved'>if</strong>(infix[i]!='+' &amp;&amp; infix[i]!='-' &amp;&amp; infix[i]!='*' &amp;&amp; infix[i]!='/' &amp;&amp; infix[i]!='^' &amp;&amp; infix[i]!=')' &amp;&amp; infix[i]!='(' ) <em class='brace'>{</em>
+<a id='L60' name='L60' />          output[j++]=infix[i];
+<a id='L61' name='L61' />          printf("\n Elemento adicionado na expressao final : %c",infix[i]);
+<a id='L62' name='L62' />                <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em> <em class='comment'>// Se for um ()</em>
+<a id='L63' name='L63' />                        <strong class='reserved'>if</strong>(tos==0) <em class='brace'>{</em> <em class='comment'>// Se n�o existir um operador na pilha, adiciona nela</em>
+<a id='L64' name='L64' />               <a href='../D/553.html' title='Multiple defined in 3 places.'>push</a>(infix[i]);
+<a id='L65' name='L65' />                           printf("\n Elemento adicionado na pilha :%c",infix[i]);
+<a id='L66' name='L66' />                        <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em> <em class='comment'>// Operadores s�o retirados e colocados de acordo com a preced�ncia.</em>
+<a id='L67' name='L67' />                                <strong class='reserved'>if</strong>(infix[i]!=')' &amp;&amp; infix[i]!='(') <em class='brace'>{</em>
+<a id='L68' name='L68' />                                        <strong class='reserved'>if</strong>(<a href='../D/550.html' title='Multiple defined in 3 places.'>preced</a>(infix[i]) &lt;= <a href='../D/550.html' title='Multiple defined in 3 places.'>preced</a>(pilha[tos-1])) <em class='brace'>{</em>
+<a id='L69' name='L69' />                      <strong class='reserved'>while</strong> (<a href='../D/550.html' title='Multiple defined in 3 places.'>preced</a>(infix[i]) &amp;&amp; <a href='../D/550.html' title='Multiple defined in 3 places.'>preced</a>(infix[i]) &lt;= <a href='../D/550.html' title='Multiple defined in 3 places.'>preced</a>(pilha[tos-1])) <em class='brace'>{</em>
+<a id='L70' name='L70' />                        temp=<a href='../D/549.html' title='Multiple defined in 3 places.'>pop</a>();
+<a id='L71' name='L71' />                        printf("\n Elemento retirado da pilha :%c",temp);
+<a id='L72' name='L72' />                        output[j++]=temp;
+<a id='L73' name='L73' />                      <em class='brace'>}</em>
+<a id='L74' name='L74' />                      <a href='../D/553.html' title='Multiple defined in 3 places.'>push</a>(infix[i]);
+<a id='L75' name='L75' />                      printf("\n Elemento colocado na pilha :%c",infix[i]);
+<a id='L76' name='L76' />                      <a href='../D/541.html' title='Multiple defined in 3 places.'>mostra</a>();
+<a id='L77' name='L77' />                                        <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L78' name='L78' />                                          <a href='../D/553.html' title='Multiple defined in 3 places.'>push</a>(infix[i]);
+<a id='L79' name='L79' />                                          printf("\n Elemento adicionado na pilha : %c",infix[i]);
+<a id='L80' name='L80' />                                          <a href='../D/541.html' title='Multiple defined in 3 places.'>mostra</a>();
+<a id='L81' name='L81' />                                        <em class='brace'>}</em>
+<a id='L82' name='L82' />                                <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>        
+<a id='L83' name='L83' />                    <strong class='reserved'>if</strong>(infix[i]=='(') <em class='brace'>{</em>
+<a id='L84' name='L84' />                                          <a href='../D/553.html' title='Multiple defined in 3 places.'>push</a>(infix[i]);
+<a id='L85' name='L85' />                                          printf("\n Elemento colocado na pilha : %c",infix[i]);
+<a id='L86' name='L86' />                                        <em class='brace'>}</em>
+<a id='L87' name='L87' />                                        <strong class='reserved'>if</strong>(infix[i]==')') <em class='brace'>{</em>
+<a id='L88' name='L88' />                                          temp=<a href='../D/549.html' title='Multiple defined in 3 places.'>pop</a>(); 
+<a id='L89' name='L89' />                      <strong class='reserved'>while</strong>(temp!='(') <em class='brace'>{</em>
+<a id='L90' name='L90' />                        output[j++]=temp;
+<a id='L91' name='L91' />                                            temp=<a href='../D/549.html' title='Multiple defined in 3 places.'>pop</a>();
+<a id='L92' name='L92' />                      <em class='brace'>}</em>
+<a id='L93' name='L93' />                                        <em class='brace'>}</em>
+<a id='L94' name='L94' />                                <em class='brace'>}</em>
+<a id='L95' name='L95' />                        <em class='brace'>}</em>
+<a id='L96' name='L96' />                <em class='brace'>}</em>       
+<a id='L97' name='L97' />        <em class='brace'>}</em>
+<a id='L98' name='L98' />        <strong class='reserved'>while</strong>(tos!=0) <em class='brace'>{</em>
+<a id='L99' name='L99' />                output[j++]=<a href='../D/549.html' title='Multiple defined in 3 places.'>pop</a>();
+<a id='L100' name='L100' />        <em class='brace'>}</em>
+<a id='L101' name='L101' />     printf("\n\nA expressao final e : %s\n\n",output);
+<a id='L102' name='L102' />     
+<a id='L103' name='L103' /><em class='comment'>//     system("PAUSE"); </em>
+<a id='L104' name='L104' />     <strong class='reserved'>return</strong> 0;
+<a id='L105' name='L105' /><em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L23'>[^]</a><a href='#L50'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

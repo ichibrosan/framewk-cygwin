@@ -1,0 +1,720 @@
+Start of pass one
+
+src:         title   $Id: testeval.asm,v 1.3 2011/04/03 05:20:36 doug Exp $
+label[0] g_szOpcode[5] g_szParms[54] comments[0]
+Processing TITLE directive
+
+src:         subttl  COPR 2011 Douglas Goodall
+label[0] g_szOpcode[6] g_szParms[25] comments[0]
+Processing SUBTTL directive
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; $Log: testeval.asm,v $
+label[0] g_szOpcode[0] g_szParms[0] comments[24]
+
+src: ; Revision 1.3  2011/04/03 05:20:36  doug
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; check back in, all is well
+label[0] g_szOpcode[0] g_szParms[0] comments[28]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; Revision 1.2  2011/03/25 09:01:21  doug
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; *** empty log message ***
+label[0] g_szOpcode[0] g_szParms[0] comments[27]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; Revision 1.1  2011/03/25 08:26:35  doug
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; Initial revision
+label[0] g_szOpcode[0] g_szParms[0] comments[18]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src:         include gplstuff.inc
+label[0] g_szOpcode[7] g_szParms[12] comments[0]
+Processing INCLUDE directive
+
+src: ; ------------------------------------
+label[0] g_szOpcode[0] g_szParms[0] comments[38]
+
+src: ; This file is part of "Vintage Modern 
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; Assembler Plus Tools (VMAPT)".
+label[0] g_szOpcode[0] g_szParms[0] comments[32]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; VMAPT is free software: you can 
+label[0] g_szOpcode[0] g_szParms[0] comments[34]
+
+src: ; redistribute it and/or modify it under 
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; the terms of  the GNU General Public 
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; License  as published by the Free
+label[0] g_szOpcode[0] g_szParms[0] comments[35]
+
+src: ; Software  Foundation, either version 3
+label[0] g_szOpcode[0] g_szParms[0] comments[40]
+
+src: ; of the License, or (at your option)  
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; any later version.
+label[0] g_szOpcode[0] g_szParms[0] comments[20]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; VMAPT is distributed in the hope that it 
+label[0] g_szOpcode[0] g_szParms[0] comments[43]
+
+src: ; will be useful, but WITHOUT ANY WARRANTY;
+label[0] g_szOpcode[0] g_szParms[0] comments[43]
+
+src: ; without even the implied warranty of   
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; MERCHANTABILITY or FITNESS FOR A 
+label[0] g_szOpcode[0] g_szParms[0] comments[35]
+
+src: ; PARTICULAR PURPOSE. See the GNU General 
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: ; Public License for more details.
+label[0] g_szOpcode[0] g_szParms[0] comments[34]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; You  should have received a copy of the 
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: ; GNU General Public License along with 
+label[0] g_szOpcode[0] g_szParms[0] comments[40]
+
+src: ; VMAPT. If not,
+label[0] g_szOpcode[0] g_szParms[0] comments[16]
+
+src: ; see <http://www.gnu.org/licenses/>.
+label[0] g_szOpcode[0] g_szParms[0] comments[37]
+
+src: ; ----------------------------------------
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	include assemble.inc
+label[0] g_szOpcode[7] g_szParms[12] comments[0]
+Processing INCLUDE directive
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; $Log: assemble.inc,v $
+label[0] g_szOpcode[0] g_szParms[0] comments[24]
+
+src: ; Revision 1.1  2011/03/25 08:43:19  doug
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; Initial revision
+label[0] g_szOpcode[0] g_szParms[0] comments[18]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: TRUE	equ8	1
+label[4] g_szOpcode[4] g_szParms[1] comments[0]
+Processing EQU8 directive
+
+src: FALSE	equ8	0
+label[5] g_szOpcode[4] g_szParms[1] comments[0]
+Processing EQU8 directive
+
+src: ;;;;;;;;;;;;;;;;;;;;;;
+label[0] g_szOpcode[0] g_szParms[0] comments[22]
+
+src: ; eof - assemble.inc ;
+label[0] g_szOpcode[0] g_szParms[0] comments[22]
+
+src: ;;;;;;;;;;;;;;;;;;;;;; 
+label[0] g_szOpcode[0] g_szParms[0] comments[23]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: one	equ	1
+label[3] g_szOpcode[3] g_szParms[1] comments[0]
+Processing EQU directive
+result from resolvep64(g_szParms) was 0X00000000000000001
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: two	equ	2
+label[3] g_szOpcode[3] g_szParms[1] comments[0]
+Processing EQU directive
+result from resolvep64(g_szParms) was 0X00000000000000002
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: five	equ	5 
+label[4] g_szOpcode[3] g_szParms[2] comments[0]
+Processing EQU directive
+result from resolvep64(g_szParms) was 0X00000000000000005
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: sum8	db	one+two+five
+label[4] g_szOpcode[2] g_szParms[12] comments[0]
+Processing DB directive
+szinput token is o
+case 1 starting
+szinput token is n
+szinput token is e
+szinput token is +
+szinput token is t
+case 1 starting
+szinput token is w
+szinput token is o
+szinput token is +
+szinput token is f
+case 1 starting
+szinput token is i
+szinput token is v
+szinput token is e
+szinput token is  
+ucTemp is 0x08
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	db	'A'
+label[0] g_szOpcode[2] g_szParms[3] comments[0]
+Processing DB directive
+ucTemp is 0x41
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	db	'A','B'
+label[0] g_szOpcode[2] g_szParms[7] comments[0]
+Processing DB directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	db	'A','B','C'+2
+label[0] g_szOpcode[2] g_szParms[13] comments[0]
+Processing DB directive
+szinput token is '
+case 1 starting
+szinput token is C
+szinput token is '
+szinput token is +
+case 1 starting
+szinput token is 2
+case 1 starting
+case 1 found numeric 2
+case 1 numeric not $
+case 1 setting state 3 to continue numeric
+szinput token is  
+case 3 starting, c is  
+case 3 whitespace detected
+case 3 setting state 1 again
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: sum16	dw	one+two+five
+label[5] g_szOpcode[2] g_szParms[12] comments[0]
+Processing DW directive
+X16() called
+szinput token is o
+case 1 starting
+szinput token is n
+szinput token is e
+szinput token is +
+szinput token is t
+case 1 starting
+szinput token is w
+szinput token is o
+szinput token is +
+szinput token is f
+case 1 starting
+szinput token is i
+szinput token is v
+szinput token is e
+szinput token is  
+X16(one+two+five) returned 0x0008 (8)
+uiTemp is 0x0008
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: sum32	dd	one+two+five
+label[5] g_szOpcode[2] g_szParms[12] comments[0]
+Processing DD directive
+szinput token is o
+case 1 starting
+szinput token is n
+szinput token is e
+szinput token is +
+szinput token is t
+case 1 starting
+szinput token is w
+szinput token is o
+szinput token is +
+szinput token is f
+case 1 starting
+szinput token is i
+szinput token is v
+szinput token is e
+szinput token is  
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: sum64	dq	one+two+five
+label[5] g_szOpcode[2] g_szParms[12] comments[0]
+Processing DQ directive
+szinput token is o
+case 1 starting
+szinput token is n
+szinput token is e
+szinput token is +
+szinput token is t
+case 1 starting
+szinput token is w
+szinput token is o
+szinput token is +
+szinput token is f
+case 1 starting
+szinput token is i
+szinput token is v
+szinput token is e
+szinput token is  
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	end
+label[0] g_szOpcode[3] g_szParms[0] comments[0]
+Processing END directive
+End of pass one
+Start of pass two
+
+src:         title   $Id: testeval.asm,v 1.3 2011/04/03 05:20:36 doug Exp $
+label[0] g_szOpcode[5] g_szParms[54] comments[0]
+Processing TITLE directive
+
+src:         subttl  COPR 2011 Douglas Goodall
+label[0] g_szOpcode[6] g_szParms[25] comments[0]
+Processing SUBTTL directive
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; $Log: testeval.asm,v $
+label[0] g_szOpcode[0] g_szParms[0] comments[24]
+
+src: ; Revision 1.3  2011/04/03 05:20:36  doug
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; check back in, all is well
+label[0] g_szOpcode[0] g_szParms[0] comments[28]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; Revision 1.2  2011/03/25 09:01:21  doug
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; *** empty log message ***
+label[0] g_szOpcode[0] g_szParms[0] comments[27]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; Revision 1.1  2011/03/25 08:26:35  doug
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; Initial revision
+label[0] g_szOpcode[0] g_szParms[0] comments[18]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src:         include gplstuff.inc
+label[0] g_szOpcode[7] g_szParms[12] comments[0]
+Processing INCLUDE directive
+
+src: ; ------------------------------------
+label[0] g_szOpcode[0] g_szParms[0] comments[38]
+
+src: ; This file is part of "Vintage Modern 
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; Assembler Plus Tools (VMAPT)".
+label[0] g_szOpcode[0] g_szParms[0] comments[32]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; VMAPT is free software: you can 
+label[0] g_szOpcode[0] g_szParms[0] comments[34]
+
+src: ; redistribute it and/or modify it under 
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; the terms of  the GNU General Public 
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; License  as published by the Free
+label[0] g_szOpcode[0] g_szParms[0] comments[35]
+
+src: ; Software  Foundation, either version 3
+label[0] g_szOpcode[0] g_szParms[0] comments[40]
+
+src: ; of the License, or (at your option)  
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; any later version.
+label[0] g_szOpcode[0] g_szParms[0] comments[20]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; VMAPT is distributed in the hope that it 
+label[0] g_szOpcode[0] g_szParms[0] comments[43]
+
+src: ; will be useful, but WITHOUT ANY WARRANTY;
+label[0] g_szOpcode[0] g_szParms[0] comments[43]
+
+src: ; without even the implied warranty of   
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; MERCHANTABILITY or FITNESS FOR A 
+label[0] g_szOpcode[0] g_szParms[0] comments[35]
+
+src: ; PARTICULAR PURPOSE. See the GNU General 
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: ; Public License for more details.
+label[0] g_szOpcode[0] g_szParms[0] comments[34]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; You  should have received a copy of the 
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: ; GNU General Public License along with 
+label[0] g_szOpcode[0] g_szParms[0] comments[40]
+
+src: ; VMAPT. If not,
+label[0] g_szOpcode[0] g_szParms[0] comments[16]
+
+src: ; see <http://www.gnu.org/licenses/>.
+label[0] g_szOpcode[0] g_szParms[0] comments[37]
+
+src: ; ----------------------------------------
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	include assemble.inc
+label[0] g_szOpcode[7] g_szParms[12] comments[0]
+Processing INCLUDE directive
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; $Log: assemble.inc,v $
+label[0] g_szOpcode[0] g_szParms[0] comments[24]
+
+src: ; Revision 1.1  2011/03/25 08:43:19  doug
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; Initial revision
+label[0] g_szOpcode[0] g_szParms[0] comments[18]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: TRUE	equ8	1
+label[4] g_szOpcode[4] g_szParms[1] comments[0]
+Processing EQU8 directive
+
+src: FALSE	equ8	0
+label[5] g_szOpcode[4] g_szParms[1] comments[0]
+Processing EQU8 directive
+
+src: ;;;;;;;;;;;;;;;;;;;;;;
+label[0] g_szOpcode[0] g_szParms[0] comments[22]
+
+src: ; eof - assemble.inc ;
+label[0] g_szOpcode[0] g_szParms[0] comments[22]
+
+src: ;;;;;;;;;;;;;;;;;;;;;; 
+label[0] g_szOpcode[0] g_szParms[0] comments[23]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: one	equ	1
+label[3] g_szOpcode[3] g_szParms[1] comments[0]
+Processing EQU directive
+result from resolvep64(g_szParms) was 0X00000000000000001
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: two	equ	2
+label[3] g_szOpcode[3] g_szParms[1] comments[0]
+Processing EQU directive
+result from resolvep64(g_szParms) was 0X00000000000000002
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: five	equ	5 
+label[4] g_szOpcode[3] g_szParms[2] comments[0]
+Processing EQU directive
+result from resolvep64(g_szParms) was 0X00000000000000005
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: sum8	db	one+two+five
+label[4] g_szOpcode[2] g_szParms[12] comments[0]
+Processing DB directive
+szinput token is o
+case 1 starting
+szinput token is n
+szinput token is e
+szinput token is +
+szinput token is t
+case 1 starting
+szinput token is w
+szinput token is o
+szinput token is +
+szinput token is f
+case 1 starting
+szinput token is i
+szinput token is v
+szinput token is e
+szinput token is  
+ucTemp is 0x08
+hexout(pc=0000,count=1,offset=0); called
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	db	'A'
+label[0] g_szOpcode[2] g_szParms[3] comments[0]
+Processing DB directive
+ucTemp is 0x41
+hexout(pc=0001,count=1,offset=0); called
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	db	'A','B'
+label[0] g_szOpcode[2] g_szParms[7] comments[0]
+Processing DB directive
+hexout(pc=0002,count=2,offset=0); called
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	db	'A','B','C'+2
+label[0] g_szOpcode[2] g_szParms[13] comments[0]
+Processing DB directive
+szinput token is '
+case 1 starting
+szinput token is C
+szinput token is '
+szinput token is +
+case 1 starting
+szinput token is 2
+case 1 starting
+case 1 found numeric 2
+case 1 numeric not $
+case 1 setting state 3 to continue numeric
+szinput token is  
+case 3 starting, c is  
+case 3 whitespace detected
+case 3 setting state 1 again
+hexout(pc=0004,count=3,offset=0); called
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: sum16	dw	one+two+five
+label[5] g_szOpcode[2] g_szParms[12] comments[0]
+Processing DW directive
+X16() called
+szinput token is o
+case 1 starting
+szinput token is n
+szinput token is e
+szinput token is +
+szinput token is t
+case 1 starting
+szinput token is w
+szinput token is o
+szinput token is +
+szinput token is f
+case 1 starting
+szinput token is i
+szinput token is v
+szinput token is e
+szinput token is  
+X16(one+two+five) returned 0x0008 (8)
+uiTemp is 0x0008
+hexout(pc=0007,count=2,offset=0); called
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: sum32	dd	one+two+five
+label[5] g_szOpcode[2] g_szParms[12] comments[0]
+Processing DD directive
+szinput token is o
+case 1 starting
+szinput token is n
+szinput token is e
+szinput token is +
+szinput token is t
+case 1 starting
+szinput token is w
+szinput token is o
+szinput token is +
+szinput token is f
+case 1 starting
+szinput token is i
+szinput token is v
+szinput token is e
+szinput token is  
+hexout(pc=0009,count=3,offset=0); called
+hexout(pc=000C,count=1,offset=3); called
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: sum64	dq	one+two+five
+label[5] g_szOpcode[2] g_szParms[12] comments[0]
+Processing DQ directive
+szinput token is o
+case 1 starting
+szinput token is n
+szinput token is e
+szinput token is +
+szinput token is t
+case 1 starting
+szinput token is w
+szinput token is o
+szinput token is +
+szinput token is f
+case 1 starting
+szinput token is i
+szinput token is v
+szinput token is e
+szinput token is  
+hexout(pc=000D,count=3,offset=0); called
+hexout(pc=0010,count=3,offset=3); called
+hexout(pc=0013,count=2,offset=6); called
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	end
+label[0] g_szOpcode[3] g_szParms[0] comments[0]
+Processing END directive
+End of pass two

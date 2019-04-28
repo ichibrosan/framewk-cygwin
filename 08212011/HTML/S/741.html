@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>load.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/load.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L47'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L47' title='Defined at 47.'>main</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// $Log: load.cpp,v $</em>
+<a id='L2' name='L2' /><em class='comment'>// Revision 1.2  2011/04/15 08:24:57  doug</em>
+<a id='L3' name='L3' /><em class='comment'>// without debug lines</em>
+<a id='L4' name='L4' /><em class='comment'>//</em>
+<a id='L5' name='L5' /><em class='comment'>// Revision 1.1  2011/04/14 15:13:09  doug</em>
+<a id='L6' name='L6' /><em class='comment'>// Initial revision</em>
+<a id='L7' name='L7' /><em class='comment'>//</em>
+<a id='L8' name='L8' /><em class='comment'>//</em>
+<a id='L9' name='L9' />
+<a id='L10' name='L10' /><em class='comment'>// ---------------------------------------------------</em>
+<a id='L11' name='L11' /><em class='comment'>// load.cpp     21-Apr-11   Running on Mac OS X 10.6.6</em>
+<a id='L12' name='L12' /><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
+<a id='L13' name='L13' /><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L14' name='L14' /><em class='comment'>// ---------------------------------------------------</em>
+<a id='L15' name='L15' /><em class='comment'>// This file is part of Vintage Modern Assembler Plus Tools.</em>
+<a id='L16' name='L16' /><em class='comment'>//</em>
+<a id='L17' name='L17' /><em class='comment'>// VMAPT is free software: you can redistribute it and/or modify</em>
+<a id='L18' name='L18' /><em class='comment'>// it under the terms of the GNU General Public License as published by</em>
+<a id='L19' name='L19' /><em class='comment'>// the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L20' name='L20' /><em class='comment'>// (at your option) any later version.</em>
+<a id='L21' name='L21' /><em class='comment'>//</em>
+<a id='L22' name='L22' /><em class='comment'>// VMAPT is distributed in the hope that it will be useful,</em>
+<a id='L23' name='L23' /><em class='comment'>// but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L24' name='L24' /><em class='comment'>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L25' name='L25' /><em class='comment'>// GNU General Public License for more details.</em>
+<a id='L26' name='L26' /><em class='comment'>//</em>
+<a id='L27' name='L27' /><em class='comment'>// You should have received a copy of the GNU General Public License</em>
+<a id='L28' name='L28' /><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L29' name='L29' /><em class='comment'>//</em>
+<a id='L30' name='L30' />
+<a id='L31' name='L31' /><strong class='reserved'>static</strong> <strong class='reserved'>char</strong> szLoadCpp[] = "$Id: load.cpp,v 1.2 2011/04/15 08:24:57 doug Exp $";
+<a id='L32' name='L32' />
+<a id='L33' name='L33' /><em class='sharp'>#include</em> "<a href='../I/196.html'>asdefs.hpp</a>"
+<a id='L34' name='L34' /><em class='sharp'>#define</em> <a href='../R/46.html' title='Multiple refered from 2 places.'>DWGALLOC</a>
+<a id='L35' name='L35' /><em class='sharp'>#define</em> <a href='../R/66.html' title='Multiple refered from 2 places.'>INIBIND</a>
+<a id='L36' name='L36' /><em class='sharp'>#define</em> <a href='../R/77.html' title='Multiple refered from 2 places.'>MEMORY</a>
+<a id='L37' name='L37' /><em class='sharp'>#include</em> "<a href='../I/324.html'>includes.hpp</a>"
+<a id='L38' name='L38' />
+<a id='L39' name='L39' /><em class='comment'>// to create 2's compliment, flip all bits and add 1</em>
+<a id='L40' name='L40' /><em class='comment'>// (xor with FF ) + 1 does that</em>
+<a id='L41' name='L41' />
+<a id='L42' name='L42' /><em class='comment'>// : &lt;length&gt; &lt;addr&gt; &lt;type&gt; &lt;data&gt; &lt;checksum&gt;</em>
+<a id='L43' name='L43' />
+<a id='L44' name='L44' /><em class='sharp'>#define</em> <a href='../R/23.html' title='Multiple refered from 6 places.'>DATA_RECORD</a> 0x00
+<a id='L45' name='L45' /><em class='sharp'>#define</em> EOF_RECORD  0x01
+<a id='L46' name='L46' />
+<a id='L47' name='L47' /><strong class='reserved'>int</strong> main(<strong class='reserved'>int</strong> argc,<strong class='reserved'>char</strong> **argv)
+<a id='L48' name='L48' /><em class='brace'>{</em>
+<a id='L49' name='L49' />        <strong class='reserved'>char</strong> g_szBuffer2[128];
+<a id='L50' name='L50' />        <strong class='reserved'>char</strong> szByteBuffer[2+1];
+<a id='L51' name='L51' />        <strong class='reserved'>char</strong> *p;
+<a id='L52' name='L52' />        <strong class='reserved'>int</strong> iTemp;
+<a id='L53' name='L53' />                
+<a id='L54' name='L54' />        <strong class='reserved'>char</strong> cColon;
+<a id='L55' name='L55' />
+<a id='L56' name='L56' />        <strong class='reserved'>char</strong> szLength[2+1];
+<a id='L57' name='L57' />        <strong class='reserved'>int</strong>  iLength;
+<a id='L58' name='L58' />        
+<a id='L59' name='L59' />        <strong class='reserved'>char</strong> szAddress[4+1];
+<a id='L60' name='L60' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> uiAddress;
+<a id='L61' name='L61' />        
+<a id='L62' name='L62' />        <strong class='reserved'>char</strong> szRecordType[2+1];
+<a id='L63' name='L63' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> ucRecordType;
+<a id='L64' name='L64' />        
+<a id='L65' name='L65' />        <strong class='reserved'>char</strong> szData[80];
+<a id='L66' name='L66' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> ucBinBuffer[32+1];
+<a id='L67' name='L67' />        
+<a id='L68' name='L68' />        <strong class='reserved'>char</strong> szChecksum[2+1];
+<a id='L69' name='L69' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> ucChecksum;
+<a id='L70' name='L70' />
+<a id='L71' name='L71' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> uiLastByte = 0;
+<a id='L72' name='L72' />                        
+<a id='L73' name='L73' />        <a href='../D/440.html' title='Multiple defined in 2 places.'>Version</a>(argv[0]);
+<a id='L74' name='L74' />
+<a id='L75' name='L75' />        <strong class='reserved'>if</strong>(1 == argc) <em class='brace'>{</em>
+<a id='L76' name='L76' />                printf("usage - load &lt;hexfilespec&gt;\n");
+<a id='L77' name='L77' />                exit(EXIT_FAILURE);
+<a id='L78' name='L78' />        <em class='brace'>}</em>
+<a id='L79' name='L79' />
+<a id='L80' name='L80' />        <strong class='reserved'>char</strong> szComFile[255];
+<a id='L81' name='L81' />        <strong class='reserved'>char</strong> szHexFile[255];
+<a id='L82' name='L82' />
+<a id='L83' name='L83' />        strcpy(szHexFile,argv[1]);
+<a id='L84' name='L84' />        strcpy(szComFile,argv[1]);
+<a id='L85' name='L85' />
+<a id='L86' name='L86' /><em class='comment'>//        szComFile[strlen(szComFile)-4] = 0;</em>
+<a id='L87' name='L87' />        strcat(szComFile,".com");
+<a id='L88' name='L88' />
+<a id='L89' name='L89' /><em class='comment'>//        szHexFile[strlen(szHexFile)-4] = 0;</em>
+<a id='L90' name='L90' />        strcat(szHexFile,".hex");
+<a id='L91' name='L91' />
+<a id='L92' name='L92' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> memory[0xfff0];
+<a id='L93' name='L93' />        memset(memory,0,<strong class='reserved'>sizeof</strong>(memory));
+<a id='L94' name='L94' />
+<a id='L95' name='L95' />        FILE * fhex = fopen(szHexFile,"r");             
+<a id='L96' name='L96' />        <strong class='reserved'>if</strong>(NULL == fhex) <em class='brace'>{</em>
+<a id='L97' name='L97' />                printf("Sorry, cannot open %s for input\n",szHexFile);
+<a id='L98' name='L98' />                exit(EXIT_FAILURE);
+<a id='L99' name='L99' />        <em class='brace'>}</em>
+<a id='L100' name='L100' />        p = fgets(g_szBuffer2,<strong class='reserved'>sizeof</strong>(g_szBuffer2),fhex);                        
+<a id='L101' name='L101' />        <strong class='reserved'>while</strong>(NULL != p) <em class='brace'>{</em>
+<a id='L102' name='L102' />                g_szBuffer2[strlen(g_szBuffer2)-1] = 0;
+<a id='L103' name='L103' />                cColon = g_szBuffer2[0];
+<a id='L104' name='L104' />                memset(szLength,0,<strong class='reserved'>sizeof</strong>(szLength));
+<a id='L105' name='L105' />                memcpy(szLength,&amp;g_szBuffer2[1],2);
+<a id='L106' name='L106' />                sscanf(szLength,"%02X",&amp;iLength);
+<a id='L107' name='L107' />                memset(szAddress,0,<strong class='reserved'>sizeof</strong>(szAddress));
+<a id='L108' name='L108' />                memcpy(szAddress,&amp;g_szBuffer2[3],4);
+<a id='L109' name='L109' />                sscanf(szAddress,"%04X",&amp;uiAddress);
+<a id='L110' name='L110' />                memset(szRecordType,0,<strong class='reserved'>sizeof</strong>(szRecordType));
+<a id='L111' name='L111' />                memcpy(szRecordType,&amp;g_szBuffer2[7],2);
+<a id='L112' name='L112' />                sscanf(szRecordType,"%02X",&amp;ucRecordType);
+<a id='L113' name='L113' />                <strong class='reserved'>if</strong>(0 == ucRecordType) <em class='brace'>{</em>
+<a id='L114' name='L114' />                        memset(szData,0,<strong class='reserved'>sizeof</strong>(szData));
+<a id='L115' name='L115' />                        memcpy(szData,&amp;g_szBuffer2[9],iLength*2);
+<a id='L116' name='L116' />                        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;iLength;i++) <em class='brace'>{</em>
+<a id='L117' name='L117' />                                memset(szByteBuffer,0,<strong class='reserved'>sizeof</strong>(szByteBuffer));
+<a id='L118' name='L118' />                                memcpy(szByteBuffer,&amp;g_szBuffer2[1+2+4+2+(i*2)],2);
+<a id='L119' name='L119' />                                sscanf(szByteBuffer,"%02X",&amp;iTemp);
+<a id='L120' name='L120' />                                ucBinBuffer[i] = iTemp;
+<a id='L121' name='L121' />
+<a id='L122' name='L122' /><em class='comment'>//                              pMem-&gt;pokeb(uiAddress+i,(unsigned char)iTemp);</em>
+<a id='L123' name='L123' />                                memory[uiAddress+i] = (<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>)iTemp;
+<a id='L124' name='L124' />
+<a id='L125' name='L125' />
+<a id='L126' name='L126' />                        <em class='brace'>}</em>
+<a id='L127' name='L127' />                <em class='brace'>}</em>
+<a id='L128' name='L128' />                memset(szChecksum,0,<strong class='reserved'>sizeof</strong>(szChecksum));
+<a id='L129' name='L129' />                memcpy(szChecksum,&amp;g_szBuffer2[1+2+4+2+(iLength*2)],2);
+<a id='L130' name='L130' />                sscanf(szChecksum,"%02X",&amp;ucChecksum);
+<a id='L131' name='L131' />
+<a id='L132' name='L132' />                <strong class='reserved'>if</strong>(uiLastByte &lt; uiAddress + iLength) <em class='brace'>{</em>
+<a id='L133' name='L133' />                        uiLastByte = uiAddress + iLength;
+<a id='L134' name='L134' />                <em class='brace'>}</em>
+<a id='L135' name='L135' />
+<a id='L136' name='L136' />                p = fgets(g_szBuffer2,<strong class='reserved'>sizeof</strong>(g_szBuffer2),fhex);
+<a id='L137' name='L137' />        <em class='brace'>}</em>
+<a id='L138' name='L138' />        fclose(fhex);
+<a id='L139' name='L139' />
+<a id='L140' name='L140' />        FILE * fcom = fopen(szComFile,"w");
+<a id='L141' name='L141' />        fwrite(&amp;memory[0x100],1,uiLastByte-0x100,fcom);
+<a id='L142' name='L142' />        fclose(fcom);
+<a id='L143' name='L143' />
+<a id='L144' name='L144' /><em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L47'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

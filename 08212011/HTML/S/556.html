@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>asz80/out.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/826.html'>asz80</a>/out.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L22'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L22' title='Defined at 22.'>strcmp</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// ---------------------------------------------------</em>
+<a id='L2' name='L2' /><em class='comment'>// out.hpp       5-Mar-11   Running on Mac OS X 10.6.6</em>
+<a id='L3' name='L3' /><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
+<a id='L4' name='L4' /><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L5' name='L5' /><em class='comment'>// ---------------------------------------------------</em>
+<a id='L6' name='L6' /><em class='comment'>// This file is part of Vintage Modern Assembler Plus Tools.</em>
+<a id='L7' name='L7' /><em class='comment'>//</em>
+<a id='L8' name='L8' /><em class='comment'>// VMAPT is free software: you can redistribute it and/or modify</em>
+<a id='L9' name='L9' /><em class='comment'>// it under the terms of the GNU General Public License as published by</em>
+<a id='L10' name='L10' /><em class='comment'>// the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L11' name='L11' /><em class='comment'>// (at your option) any later version.</em>
+<a id='L12' name='L12' /><em class='comment'>//</em>
+<a id='L13' name='L13' /><em class='comment'>// VMAPT is distributed in the hope that it will be useful,</em>
+<a id='L14' name='L14' /><em class='comment'>// but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L15' name='L15' /><em class='comment'>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L16' name='L16' /><em class='comment'>// GNU General Public License for more details.</em>
+<a id='L17' name='L17' /><em class='comment'>//</em>
+<a id='L18' name='L18' /><em class='comment'>// You should have received a copy of the GNU General Public License</em>
+<a id='L19' name='L19' /><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L20' name='L20' /><em class='comment'>//</em>
+<a id='L21' name='L21' />
+<a id='L22' name='L22' /><strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple refered from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"OUT"))<em class='brace'>{</em>
+<a id='L23' name='L23' />  fprintf(g_flog,"Processing Z80 OUT g_szOpcode\n");
+<a id='L24' name='L24' />
+<a id='L25' name='L25' />  <strong class='reserved'>char</strong> szOUTtemp[128];
+<a id='L26' name='L26' />  <strong class='reserved'>char</strong> szOUTtemp2[128];
+<a id='L27' name='L27' />  strcpy(szOUTtemp2,g_szParms);
+<a id='L28' name='L28' />  strcpy(szOUTtemp,<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(szOUTtemp2));
+<a id='L29' name='L29' />  fprintf(g_flog,"szOUTtemp         is %s\n",szOUTtemp);
+<a id='L30' name='L30' />  fprintf(g_flog,"strlen(szOUTtemp) is %d\n",strlen(szOUTtemp));
+<a id='L31' name='L31' />
+<a id='L32' name='L32' />  <strong class='reserved'>if</strong>(5 == strlen(szOUTtemp)) <em class='brace'>{</em>
+<a id='L33' name='L33' />    fprintf(g_flog,"length was 5 ok\n");
+<a id='L34' name='L34' />    <strong class='reserved'>if</strong>(0 == strncmp("(C),",szOUTtemp,4) ) <em class='brace'>{</em>
+<a id='L35' name='L35' />      fprintf(g_flog,"szOUTtemp[4] is %c\n",szOUTtemp[4]);
+<a id='L36' name='L36' />
+<a id='L37' name='L37' />      <strong class='reserved'>switch</strong>(szOUTtemp[4]) <em class='brace'>{</em>
+<a id='L38' name='L38' />        <strong class='reserved'>case</strong> 'B':
+<a id='L39' name='L39' />          fprintf(g_flog,"out (c),b detected\n");
+<a id='L40' name='L40' />          g_ucBytes[g_iBytesIndex++] = 0xED;
+<a id='L41' name='L41' />          g_ucBytes[g_iBytesIndex++] = 0x41 + 0x00;
+<a id='L42' name='L42' />          g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
+<a id='L43' name='L43' />          g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L44' name='L44' />          <strong class='reserved'>break</strong>;
+<a id='L45' name='L45' />        <strong class='reserved'>case</strong> 'C':
+<a id='L46' name='L46' />          g_ucBytes[g_iBytesIndex++] = 0xED;
+<a id='L47' name='L47' />          g_ucBytes[g_iBytesIndex++] = 0x41 + 0x08;
+<a id='L48' name='L48' />          g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
+<a id='L49' name='L49' />          g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L50' name='L50' />          <strong class='reserved'>break</strong>;
+<a id='L51' name='L51' />        <strong class='reserved'>case</strong> 'D':
+<a id='L52' name='L52' />          g_ucBytes[g_iBytesIndex++] = 0xED;
+<a id='L53' name='L53' />          g_ucBytes[g_iBytesIndex++] = 0x41 + 0x10;
+<a id='L54' name='L54' />          g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
+<a id='L55' name='L55' />          g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L56' name='L56' />          <strong class='reserved'>break</strong>;
+<a id='L57' name='L57' />        <strong class='reserved'>case</strong> 'E':
+<a id='L58' name='L58' />          g_ucBytes[g_iBytesIndex++] = 0xED;
+<a id='L59' name='L59' />          g_ucBytes[g_iBytesIndex++] = 0x41 + 0x18;
+<a id='L60' name='L60' />          g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
+<a id='L61' name='L61' />          g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L62' name='L62' />          <strong class='reserved'>break</strong>;
+<a id='L63' name='L63' />        <strong class='reserved'>case</strong> 'H':
+<a id='L64' name='L64' />          g_ucBytes[g_iBytesIndex++] = 0xED;
+<a id='L65' name='L65' />          g_ucBytes[g_iBytesIndex++] = 0x41 + 0x20;
+<a id='L66' name='L66' />          g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
+<a id='L67' name='L67' />          g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L68' name='L68' />          <strong class='reserved'>break</strong>;
+<a id='L69' name='L69' />        <strong class='reserved'>case</strong> 'L':
+<a id='L70' name='L70' />          g_ucBytes[g_iBytesIndex++] = 0xED;
+<a id='L71' name='L71' />          g_ucBytes[g_iBytesIndex++] = 0x41 + 0x28;
+<a id='L72' name='L72' />          g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
+<a id='L73' name='L73' />          g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L74' name='L74' />          <strong class='reserved'>break</strong>;
+<a id='L75' name='L75' />        <strong class='reserved'>case</strong> 'A':
+<a id='L76' name='L76' />          g_ucBytes[g_iBytesIndex++] = 0xED;
+<a id='L77' name='L77' />          g_ucBytes[g_iBytesIndex++] = 0x41 + 0x38;
+<a id='L78' name='L78' />          g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
+<a id='L79' name='L79' />          g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L80' name='L80' />          <strong class='reserved'>break</strong>;
+<a id='L81' name='L81' />      <em class='brace'>}</em>
+<a id='L82' name='L82' />    <em class='brace'>}</em>
+<a id='L83' name='L83' />  <em class='brace'>}</em>
+<a id='L84' name='L84' />
+<a id='L85' name='L85' />  <em class='comment'>// check for "out (n),a"  and process if so...</em>
+<a id='L86' name='L86' />  <strong class='reserved'>if</strong>(<a href='../D/428.html' title='Multiple defined in 2 places.'>TYPE_ERR</a> == g_iLineType) <em class='brace'>{</em>
+<a id='L87' name='L87' />    <strong class='reserved'>if</strong>('(' == szOUTtemp[0]) <em class='brace'>{</em>
+<a id='L88' name='L88' />      <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> l=1;l&lt;strlen(szOUTtemp);l++) <em class='brace'>{</em>
+<a id='L89' name='L89' />        <strong class='reserved'>if</strong>(')' == szOUTtemp[l]) <em class='brace'>{</em>
+<a id='L90' name='L90' />          szOUTtemp[l] = 0;
+<a id='L91' name='L91' />        <em class='brace'>}</em>
+<a id='L92' name='L92' />      <em class='brace'>}</em>  
+<a id='L93' name='L93' />      g_ucBytes[g_iBytesIndex++] = 0xD3;
+<a id='L94' name='L94' />      g_ucBytes[g_iBytesIndex++] = <a href='../D/560.html' title='Multiple defined in 2 places.'>resolvep8</a>(&amp;szOUTtemp[1]);
+<a id='L95' name='L95' />      g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>; 
+<a id='L96' name='L96' />          g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L97' name='L97' />    <em class='brace'>}</em>
+<a id='L98' name='L98' />  <em class='brace'>}</em>
+<a id='L99' name='L99' />
+<a id='L100' name='L100' /><em class='brace'>}</em>
+<a id='L101' name='L101' /> 
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L22'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

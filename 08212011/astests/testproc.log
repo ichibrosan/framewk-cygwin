@@ -1,0 +1,673 @@
+Start of pass one
+
+src:         title   $Id: testproc.asm,v 1.1 2011/04/13 19:53:46 doug Exp $
+label[0] g_szOpcode[5] g_szParms[54] comments[0]
+Processing TITLE directive
+
+src:         subttl  COPR 2011 Douglas Goodall
+label[0] g_szOpcode[6] g_szParms[25] comments[0]
+Processing SUBTTL directive
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; $Log: testproc.asm,v $
+label[0] g_szOpcode[0] g_szParms[0] comments[24]
+
+src: ; Revision 1.1  2011/04/13 19:53:46  doug
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; Initial revision
+label[0] g_szOpcode[0] g_szParms[0] comments[18]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src:         include gplstuff.inc
+label[0] g_szOpcode[7] g_szParms[12] comments[0]
+Processing INCLUDE directive
+
+src: ; ------------------------------------
+label[0] g_szOpcode[0] g_szParms[0] comments[38]
+
+src: ; This file is part of "Vintage Modern 
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; Assembler Plus Tools (VMAPT)".
+label[0] g_szOpcode[0] g_szParms[0] comments[32]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; VMAPT is free software: you can 
+label[0] g_szOpcode[0] g_szParms[0] comments[34]
+
+src: ; redistribute it and/or modify it under 
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; the terms of  the GNU General Public 
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; License  as published by the Free
+label[0] g_szOpcode[0] g_szParms[0] comments[35]
+
+src: ; Software  Foundation, either version 3
+label[0] g_szOpcode[0] g_szParms[0] comments[40]
+
+src: ; of the License, or (at your option)  
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; any later version.
+label[0] g_szOpcode[0] g_szParms[0] comments[20]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; VMAPT is distributed in the hope that it 
+label[0] g_szOpcode[0] g_szParms[0] comments[43]
+
+src: ; will be useful, but WITHOUT ANY WARRANTY;
+label[0] g_szOpcode[0] g_szParms[0] comments[43]
+
+src: ; without even the implied warranty of   
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; MERCHANTABILITY or FITNESS FOR A 
+label[0] g_szOpcode[0] g_szParms[0] comments[35]
+
+src: ; PARTICULAR PURPOSE. See the GNU General 
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: ; Public License for more details.
+label[0] g_szOpcode[0] g_szParms[0] comments[34]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; You  should have received a copy of the 
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: ; GNU General Public License along with 
+label[0] g_szOpcode[0] g_szParms[0] comments[40]
+
+src: ; VMAPT. If not,
+label[0] g_szOpcode[0] g_szParms[0] comments[16]
+
+src: ; see <http://www.gnu.org/licenses/>.
+label[0] g_szOpcode[0] g_szParms[0] comments[37]
+
+src: ; ----------------------------------------
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	include	assemble.inc
+label[0] g_szOpcode[7] g_szParms[12] comments[0]
+Processing INCLUDE directive
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; $Log: assemble.inc,v $
+label[0] g_szOpcode[0] g_szParms[0] comments[24]
+
+src: ; Revision 1.1  2011/03/25 08:43:19  doug
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; Initial revision
+label[0] g_szOpcode[0] g_szParms[0] comments[18]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: TRUE	equ8	1
+label[4] g_szOpcode[4] g_szParms[1] comments[0]
+Processing EQU8 directive
+
+src: FALSE	equ8	0
+label[5] g_szOpcode[4] g_szParms[1] comments[0]
+Processing EQU8 directive
+
+src: ;;;;;;;;;;;;;;;;;;;;;;
+label[0] g_szOpcode[0] g_szParms[0] comments[22]
+
+src: ; eof - assemble.inc ;
+label[0] g_szOpcode[0] g_szParms[0] comments[22]
+
+src: ;;;;;;;;;;;;;;;;;;;;;; 
+label[0] g_szOpcode[0] g_szParms[0] comments[23]
+
+src: 	include	cpm80.inc
+label[0] g_szOpcode[7] g_szParms[9] comments[0]
+Processing INCLUDE directive
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; $Log: cpm80.inc,v $
+label[0] g_szOpcode[0] g_szParms[0] comments[21]
+
+src: ; Revision 1.1  2011/03/25 08:43:19  doug
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; Initial revision
+label[0] g_szOpcode[0] g_szParms[0] comments[18]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: bdos	equ16	5
+label[4] g_szOpcode[5] g_szParms[1] comments[0]
+Processing EQU16 directive
+
+src: conin	equ8	1
+label[5] g_szOpcode[4] g_szParms[1] comments[0]
+Processing EQU8 directive
+
+src: conout	equ8	2
+label[6] g_szOpcode[4] g_szParms[1] comments[0]
+Processing EQU8 directive
+
+src: prt	equ8	9
+label[3] g_szOpcode[4] g_szParms[1] comments[0]
+Processing EQU8 directive
+
+src: term	equ8	0
+label[4] g_szOpcode[4] g_szParms[1] comments[0]
+Processing EQU8 directive
+
+src: ;;;;;;;;;;;;;;;;;;;
+label[0] g_szOpcode[0] g_szParms[0] comments[19]
+
+src: ; eof - cpm80.inc ;
+label[0] g_szOpcode[0] g_szParms[0] comments[19]
+
+src: ;;;;;;;;;;;;;;;;;;;
+label[0] g_szOpcode[0] g_szParms[0] comments[19]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	radix	hex
+label[0] g_szOpcode[5] g_szParms[3] comments[0]
+Processing RADIX directive
+
+src: 	org	100
+label[0] g_szOpcode[3] g_szParms[3] comments[0]
+Processing ORG directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: start	mvi	c,destbuf-srcbufr
+label[5] g_szOpcode[3] g_szParms[17] comments[0]
+Processing 8085 MVI g_szOpcode
+szinput token is d
+case 1 starting
+szinput token is e
+szinput token is s
+szinput token is t
+szinput token is b
+szinput token is u
+szinput token is f
+szinput token is -
+szinput token is s
+case 1 starting
+szinput token is r
+szinput token is c
+szinput token is b
+szinput token is u
+szinput token is f
+szinput token is r
+szinput token is  
+
+src: 	lxi	d,destbuf
+label[0] g_szOpcode[3] g_szParms[9] comments[0]
+Processing 8085 LXI g_szOpcode
+
+src: 	lxi	h,srcbufr
+label[0] g_szOpcode[3] g_szParms[9] comments[0]
+Processing 8085 LXI g_szOpcode
+
+src: 	proc	z80
+label[0] g_szOpcode[4] g_szParms[3] comments[0]
+Processing PROC directive
+
+src: 	ldir
+label[0] g_szOpcode[4] g_szParms[0] comments[0]
+
+src: 	proc	8085
+label[0] g_szOpcode[4] g_szParms[4] comments[0]
+Processing PROC directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	mvi	c,prt
+label[0] g_szOpcode[3] g_szParms[5] comments[0]
+Processing 8085 MVI g_szOpcode
+
+src: 	lxi	d,donemsg
+label[0] g_szOpcode[3] g_szParms[9] comments[0]
+Processing 8085 LXI g_szOpcode
+
+src: 	call	bdos
+label[0] g_szOpcode[4] g_szParms[4] comments[0]
+Processing 8085 CALL g_szOpcode
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	mvi	c,TERM
+label[0] g_szOpcode[3] g_szParms[6] comments[0]
+Processing 8085 MVI g_szOpcode
+
+src: 	jmp	bdos
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 8085 JMP g_szOpcode
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: srcbufr	dstr	Hello World!!
+label[7] g_szOpcode[4] g_szParms[13] comments[0]
+Processing DSTR directive
+
+src: destbuf	rb	destbuf-srcbufr
+label[7] g_szOpcode[2] g_szParms[15] comments[0]
+Processing RB directive
+X16() called
+szinput token is d
+case 1 starting
+szinput token is e
+szinput token is s
+szinput token is t
+szinput token is b
+szinput token is u
+szinput token is f
+szinput token is -
+szinput token is s
+case 1 starting
+szinput token is r
+szinput token is c
+szinput token is b
+szinput token is u
+szinput token is f
+szinput token is r
+szinput token is  
+X16(destbuf-srcbufr) returned 0x000D (13)
+
+src: donemsg	dstr	Done with mem copy$
+label[7] g_szOpcode[4] g_szParms[19] comments[0]
+Processing DSTR directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	end	start
+label[0] g_szOpcode[3] g_szParms[5] comments[0]
+Processing END directive
+End of pass one
+Start of pass two
+
+src:         title   $Id: testproc.asm,v 1.1 2011/04/13 19:53:46 doug Exp $
+label[0] g_szOpcode[5] g_szParms[54] comments[0]
+Processing TITLE directive
+
+src:         subttl  COPR 2011 Douglas Goodall
+label[0] g_szOpcode[6] g_szParms[25] comments[0]
+Processing SUBTTL directive
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; $Log: testproc.asm,v $
+label[0] g_szOpcode[0] g_szParms[0] comments[24]
+
+src: ; Revision 1.1  2011/04/13 19:53:46  doug
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; Initial revision
+label[0] g_szOpcode[0] g_szParms[0] comments[18]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src:         include gplstuff.inc
+label[0] g_szOpcode[7] g_szParms[12] comments[0]
+Processing INCLUDE directive
+
+src: ; ------------------------------------
+label[0] g_szOpcode[0] g_szParms[0] comments[38]
+
+src: ; This file is part of "Vintage Modern 
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; Assembler Plus Tools (VMAPT)".
+label[0] g_szOpcode[0] g_szParms[0] comments[32]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; VMAPT is free software: you can 
+label[0] g_szOpcode[0] g_szParms[0] comments[34]
+
+src: ; redistribute it and/or modify it under 
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; the terms of  the GNU General Public 
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; License  as published by the Free
+label[0] g_szOpcode[0] g_szParms[0] comments[35]
+
+src: ; Software  Foundation, either version 3
+label[0] g_szOpcode[0] g_szParms[0] comments[40]
+
+src: ; of the License, or (at your option)  
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; any later version.
+label[0] g_szOpcode[0] g_szParms[0] comments[20]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; VMAPT is distributed in the hope that it 
+label[0] g_szOpcode[0] g_szParms[0] comments[43]
+
+src: ; will be useful, but WITHOUT ANY WARRANTY;
+label[0] g_szOpcode[0] g_szParms[0] comments[43]
+
+src: ; without even the implied warranty of   
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; MERCHANTABILITY or FITNESS FOR A 
+label[0] g_szOpcode[0] g_szParms[0] comments[35]
+
+src: ; PARTICULAR PURPOSE. See the GNU General 
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: ; Public License for more details.
+label[0] g_szOpcode[0] g_szParms[0] comments[34]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; You  should have received a copy of the 
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: ; GNU General Public License along with 
+label[0] g_szOpcode[0] g_szParms[0] comments[40]
+
+src: ; VMAPT. If not,
+label[0] g_szOpcode[0] g_szParms[0] comments[16]
+
+src: ; see <http://www.gnu.org/licenses/>.
+label[0] g_szOpcode[0] g_szParms[0] comments[37]
+
+src: ; ----------------------------------------
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	include	assemble.inc
+label[0] g_szOpcode[7] g_szParms[12] comments[0]
+Processing INCLUDE directive
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; $Log: assemble.inc,v $
+label[0] g_szOpcode[0] g_szParms[0] comments[24]
+
+src: ; Revision 1.1  2011/03/25 08:43:19  doug
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; Initial revision
+label[0] g_szOpcode[0] g_szParms[0] comments[18]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: TRUE	equ8	1
+label[4] g_szOpcode[4] g_szParms[1] comments[0]
+Processing EQU8 directive
+
+src: FALSE	equ8	0
+label[5] g_szOpcode[4] g_szParms[1] comments[0]
+Processing EQU8 directive
+
+src: ;;;;;;;;;;;;;;;;;;;;;;
+label[0] g_szOpcode[0] g_szParms[0] comments[22]
+
+src: ; eof - assemble.inc ;
+label[0] g_szOpcode[0] g_szParms[0] comments[22]
+
+src: ;;;;;;;;;;;;;;;;;;;;;; 
+label[0] g_szOpcode[0] g_szParms[0] comments[23]
+
+src: 	include	cpm80.inc
+label[0] g_szOpcode[7] g_szParms[9] comments[0]
+Processing INCLUDE directive
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; $Log: cpm80.inc,v $
+label[0] g_szOpcode[0] g_szParms[0] comments[21]
+
+src: ; Revision 1.1  2011/03/25 08:43:19  doug
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; Initial revision
+label[0] g_szOpcode[0] g_szParms[0] comments[18]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: bdos	equ16	5
+label[4] g_szOpcode[5] g_szParms[1] comments[0]
+Processing EQU16 directive
+
+src: conin	equ8	1
+label[5] g_szOpcode[4] g_szParms[1] comments[0]
+Processing EQU8 directive
+
+src: conout	equ8	2
+label[6] g_szOpcode[4] g_szParms[1] comments[0]
+Processing EQU8 directive
+
+src: prt	equ8	9
+label[3] g_szOpcode[4] g_szParms[1] comments[0]
+Processing EQU8 directive
+
+src: term	equ8	0
+label[4] g_szOpcode[4] g_szParms[1] comments[0]
+Processing EQU8 directive
+
+src: ;;;;;;;;;;;;;;;;;;;
+label[0] g_szOpcode[0] g_szParms[0] comments[19]
+
+src: ; eof - cpm80.inc ;
+label[0] g_szOpcode[0] g_szParms[0] comments[19]
+
+src: ;;;;;;;;;;;;;;;;;;;
+label[0] g_szOpcode[0] g_szParms[0] comments[19]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	radix	hex
+label[0] g_szOpcode[5] g_szParms[3] comments[0]
+Processing RADIX directive
+
+src: 	org	100
+label[0] g_szOpcode[3] g_szParms[3] comments[0]
+Processing ORG directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: start	mvi	c,destbuf-srcbufr
+label[5] g_szOpcode[3] g_szParms[17] comments[0]
+Processing 8085 MVI g_szOpcode
+szinput token is d
+case 1 starting
+szinput token is e
+szinput token is s
+szinput token is t
+szinput token is b
+szinput token is u
+szinput token is f
+szinput token is -
+szinput token is s
+case 1 starting
+szinput token is r
+szinput token is c
+szinput token is b
+szinput token is u
+szinput token is f
+szinput token is r
+szinput token is  
+hexout(pc=0100,count=2,offset=0); called
+
+src: 	lxi	d,destbuf
+label[0] g_szOpcode[3] g_szParms[9] comments[0]
+Processing 8085 LXI g_szOpcode
+hexout(pc=0102,count=3,offset=0); called
+
+src: 	lxi	h,srcbufr
+label[0] g_szOpcode[3] g_szParms[9] comments[0]
+Processing 8085 LXI g_szOpcode
+hexout(pc=0105,count=3,offset=0); called
+
+src: 	proc	z80
+label[0] g_szOpcode[4] g_szParms[3] comments[0]
+Processing PROC directive
+
+src: 	ldir
+label[0] g_szOpcode[4] g_szParms[0] comments[0]
+hexout(pc=0108,count=2,offset=0); called
+
+src: 	proc	8085
+label[0] g_szOpcode[4] g_szParms[4] comments[0]
+Processing PROC directive
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	mvi	c,prt
+label[0] g_szOpcode[3] g_szParms[5] comments[0]
+Processing 8085 MVI g_szOpcode
+hexout(pc=010A,count=2,offset=0); called
+
+src: 	lxi	d,donemsg
+label[0] g_szOpcode[3] g_szParms[9] comments[0]
+Processing 8085 LXI g_szOpcode
+hexout(pc=010C,count=3,offset=0); called
+
+src: 	call	bdos
+label[0] g_szOpcode[4] g_szParms[4] comments[0]
+Processing 8085 CALL g_szOpcode
+hexout(pc=010F,count=3,offset=0); called
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	mvi	c,TERM
+label[0] g_szOpcode[3] g_szParms[6] comments[0]
+Processing 8085 MVI g_szOpcode
+hexout(pc=0112,count=2,offset=0); called
+
+src: 	jmp	bdos
+label[0] g_szOpcode[3] g_szParms[4] comments[0]
+Processing 8085 JMP g_szOpcode
+hexout(pc=0114,count=3,offset=0); called
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: srcbufr	dstr	Hello World!!
+label[7] g_szOpcode[4] g_szParms[13] comments[0]
+Processing DSTR directive
+hexout(pc=0117,count=3,offset=0); called
+hexout(pc=011A,count=3,offset=3); called
+hexout(pc=011D,count=3,offset=6); called
+hexout(pc=0120,count=3,offset=9); called
+hexout(pc=0123,count=1,offset=12); called
+
+src: destbuf	rb	destbuf-srcbufr
+label[7] g_szOpcode[2] g_szParms[15] comments[0]
+Processing RB directive
+X16() called
+szinput token is d
+case 1 starting
+szinput token is e
+szinput token is s
+szinput token is t
+szinput token is b
+szinput token is u
+szinput token is f
+szinput token is -
+szinput token is s
+case 1 starting
+szinput token is r
+szinput token is c
+szinput token is b
+szinput token is u
+szinput token is f
+szinput token is r
+szinput token is  
+X16(destbuf-srcbufr) returned 0x000D (13)
+hexout(pc=0124,count=3,offset=0); called
+hexout(pc=0127,count=3,offset=3); called
+hexout(pc=012A,count=3,offset=6); called
+hexout(pc=012D,count=3,offset=9); called
+hexout(pc=0130,count=1,offset=12); called
+
+src: donemsg	dstr	Done with mem copy$
+label[7] g_szOpcode[4] g_szParms[19] comments[0]
+Processing DSTR directive
+hexout(pc=0131,count=3,offset=0); called
+hexout(pc=0134,count=3,offset=3); called
+hexout(pc=0137,count=3,offset=6); called
+hexout(pc=013A,count=3,offset=9); called
+hexout(pc=013D,count=3,offset=12); called
+hexout(pc=0140,count=3,offset=15); called
+hexout(pc=0143,count=1,offset=18); called
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	end	start
+label[0] g_szOpcode[3] g_szParms[5] comments[0]
+Processing END directive
+hexout(pc=0144,count=2,offset=0); called
+End of pass two

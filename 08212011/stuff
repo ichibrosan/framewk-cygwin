@@ -1,0 +1,94 @@
+
+unsigned char CSymbols::gete8(char * symbol,int * rc)
+{
+        char szFileSpec[128];
+        char g_szBuffer2[128];
+        strcpy(szFileSpec,m_domain);
+        strcat(szFileSpec,"/");
+        strcat(szFileSpec,m_namespace);
+        strcat(szFileSpec,"/");
+        strcat(szFileSpec,symbol);
+        strcat(szFileSpec,".e8");
+        for(int i=0;i<strlen(szFileSpec);i++) {
+                szFileSpec[i] = tolower(szFileSpec[i]);
+        }
+        FILE * fd = fopen(szFileSpec,"r");
+        if(NULL == fd) {
+                *rc = EXIT_FAILURE;
+                return EXIT_FAILURE;
+        }
+        fclose(fd);
+        *rc = (int)EXIT_SUCCESS;
+        return EXIT_SUCCESS;
+}
+
+unsigned int CSymbols::gete16(char *symbol,int *rc)
+{
+	char szFileSpec[128];
+	char g_szBuffer2[128];
+	strcpy(szFileSpec,m_domain);
+	strcat(szFileSpec,"/");
+	strcat(szFileSpec,m_namespace);
+	strcat(szFileSpec,"/");
+	strcat(szFileSpec,symbol);
+	strcat(szFileSpec,".e16");
+        for(int i=0;i<strlen(szFileSpec);i++) {
+                szFileSpec[i] = tolower(szFileSpec[i]);
+        }
+	FILE * fd = fopen(szFileSpec,"r");
+	if(NULL == fd) {
+		*rc = EXIT_FAILURE;
+		return EXIT_FAILURE;
+	}
+	fclose(fd);
+	*rc = (int)EXIT_SUCCESS;	
+	return EXIT_SUCCESS;
+}
+
+unsigned long CSymbols::gete32(char *symbol,int *rc)
+{
+        char szFileSpec[128];
+        char g_szBuffer2[128];
+        strcpy(szFileSpec,m_domain);
+        strcat(szFileSpec,"/");
+        strcat(szFileSpec,m_namespace);
+        strcat(szFileSpec,"/");
+        strcat(szFileSpec,symbol);
+        strcat(szFileSpec,".e32");
+        for(int i=0;i<strlen(szFileSpec);i++) {
+                szFileSpec[i] = tolower(szFileSpec[i]);
+        }
+        FILE * fd = fopen(szFileSpec,"r");
+        if(NULL == fd) {
+		assert(NULL != fd);
+                *rc = EXIT_FAILURE;
+                return EXIT_FAILURE;
+        }
+        fclose(fd);
+        *rc = (int)EXIT_SUCCESS;
+        return EXIT_SUCCESS;
+}
+
+unsigned long long CSymbols::gete64(char *symbol,int *rc)
+{
+        char szFileSpec[128];
+        char g_szBuffer2[128];
+        strcpy(szFileSpec,m_domain);
+        strcat(szFileSpec,"/");
+        strcat(szFileSpec,m_namespace);
+        strcat(szFileSpec,"/");
+        strcat(szFileSpec,symbol);
+        strcat(szFileSpec,".e64");
+        for(int i=0;i<strlen(szFileSpec);i++) {
+                szFileSpec[i] = tolower(szFileSpec[i]);
+        }
+        FILE * fd = fopen(szFileSpec,"r");
+        if(NULL == fd) {
+                *rc = EXIT_FAILURE;
+                return EXIT_FAILURE;
+        }
+        fclose(fd);
+        *rc = (int)EXIT_SUCCESS;
+        return EXIT_SUCCESS;
+}
+

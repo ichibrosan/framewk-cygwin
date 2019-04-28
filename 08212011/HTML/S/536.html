@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>asz80/ini.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/826.html'>asz80</a>/ini.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L7'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L7' title='Defined at 7.'>strcmp</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// ---------------------------------------------------</em>
+<a id='L2' name='L2' /><em class='comment'>// INI.HPP      28-Jan-11 DOSBox-0.74 Version 1.00.00a</em>
+<a id='L3' name='L3' /><em class='comment'>// Serial No. 8208-4162-344865    All Rights Reserved.</em>
+<a id='L4' name='L4' /><em class='comment'>// Copyright (C) 2010 Douglas Goodall,  United States.</em>
+<a id='L5' name='L5' /><em class='comment'>// ---------------------------------------------------</em>
+<a id='L6' name='L6' />        
+<a id='L7' name='L7' />        <strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple refered from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"INI")) <em class='brace'>{</em>
+<a id='L8' name='L8' />                fprintf(g_flog,"...processing INI g_szOpcode...\n");
+<a id='L9' name='L9' />                g_ucBytes[g_iBytesIndex++] = 0xed;
+<a id='L10' name='L10' />                g_ucBytes[g_iBytesIndex++] = 0xa2;
+<a id='L11' name='L11' />                g_iLineType = <a href='../D/439.html' title='Multiple defined in 2 places.'>TYPE_Z80</a>;
+<a id='L12' name='L12' />          g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L13' name='L13' />
+<a id='L14' name='L14' />        <em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L7'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

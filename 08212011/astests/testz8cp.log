@@ -1,0 +1,465 @@
+Start of pass one
+
+src:         title   $Id: testz8cp.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
+label[0] g_szOpcode[5] g_szParms[54] comments[0]
+Processing TITLE directive
+
+src:         subttl  COPR 2011 Douglas Goodall
+label[0] g_szOpcode[6] g_szParms[25] comments[0]
+Processing SUBTTL directive
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; $Log: testz8cp.asm,v $
+label[0] g_szOpcode[0] g_szParms[0] comments[24]
+
+src: ; Revision 1.2  2011/03/25 09:01:21  doug
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; *** empty log message ***
+label[0] g_szOpcode[0] g_szParms[0] comments[27]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; Revision 1.1  2011/03/25 08:26:35  doug
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; Initial revision
+label[0] g_szOpcode[0] g_szParms[0] comments[18]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src:         include gplstuff.inc
+label[0] g_szOpcode[7] g_szParms[12] comments[0]
+Processing INCLUDE directive
+
+src: ; ------------------------------------
+label[0] g_szOpcode[0] g_szParms[0] comments[38]
+
+src: ; This file is part of "Vintage Modern 
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; Assembler Plus Tools (VMAPT)".
+label[0] g_szOpcode[0] g_szParms[0] comments[32]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; VMAPT is free software: you can 
+label[0] g_szOpcode[0] g_szParms[0] comments[34]
+
+src: ; redistribute it and/or modify it under 
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; the terms of  the GNU General Public 
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; License  as published by the Free
+label[0] g_szOpcode[0] g_szParms[0] comments[35]
+
+src: ; Software  Foundation, either version 3
+label[0] g_szOpcode[0] g_szParms[0] comments[40]
+
+src: ; of the License, or (at your option)  
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; any later version.
+label[0] g_szOpcode[0] g_szParms[0] comments[20]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; VMAPT is distributed in the hope that it 
+label[0] g_szOpcode[0] g_szParms[0] comments[43]
+
+src: ; will be useful, but WITHOUT ANY WARRANTY;
+label[0] g_szOpcode[0] g_szParms[0] comments[43]
+
+src: ; without even the implied warranty of   
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; MERCHANTABILITY or FITNESS FOR A 
+label[0] g_szOpcode[0] g_szParms[0] comments[35]
+
+src: ; PARTICULAR PURPOSE. See the GNU General 
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: ; Public License for more details.
+label[0] g_szOpcode[0] g_szParms[0] comments[34]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; You  should have received a copy of the 
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: ; GNU General Public License along with 
+label[0] g_szOpcode[0] g_szParms[0] comments[40]
+
+src: ; VMAPT. If not,
+label[0] g_szOpcode[0] g_szParms[0] comments[16]
+
+src: ; see <http://www.gnu.org/licenses/>.
+label[0] g_szOpcode[0] g_szParms[0] comments[37]
+
+src: ; ----------------------------------------
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: ; The Z80 CP (compare) operation code has three 
+label[0] g_szOpcode[0] g_szParms[0] comments[48]
+
+src: ; forms. The first is "cp <reg>", where <reg> can
+label[0] g_szOpcode[0] g_szParms[0] comments[49]
+
+src: ; be A, B, C, D, E, H and L. The second form is
+label[0] g_szOpcode[0] g_szParms[0] comments[47]
+
+src: ; "cp (hl)". The third form is an immediate mode
+label[0] g_szOpcode[0] g_szParms[0] comments[48]
+
+src: ; where the parameter can be numeric or sumbolic.
+label[0] g_szOpcode[0] g_szParms[0] comments[49]
+
+src: ; "cp <parm". This file tests all three forms.
+label[0] g_szOpcode[0] g_szParms[0] comments[46]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	proc	z80
+label[0] g_szOpcode[4] g_szParms[3] comments[0]
+Processing PROC directive
+
+src: 	radix	hex
+label[0] g_szOpcode[5] g_szParms[3] comments[0]
+Processing RADIX directive
+
+src: value	equ	0E5
+label[5] g_szOpcode[3] g_szParms[3] comments[0]
+Processing EQU directive
+result from resolvep64(g_szParms) was 0X000000000000000E5
+
+src: 	org	100
+label[0] g_szOpcode[3] g_szParms[3] comments[0]
+Processing ORG directive
+
+src: start	cp	a
+label[5] g_szOpcode[2] g_szParms[1] comments[0]
+Processing Z80  CP g_szOpcode
+szCPtemp is A
+g_szParms are a
+using cp A
+src: 	cp	b
+label[0] g_szOpcode[2] g_szParms[1] comments[0]
+Processing Z80  CP g_szOpcode
+szCPtemp is B
+g_szParms are b
+using cp B
+src: 	cp	c
+label[0] g_szOpcode[2] g_szParms[1] comments[0]
+Processing Z80  CP g_szOpcode
+szCPtemp is C
+g_szParms are c
+using cp C
+src: 	cp	d
+label[0] g_szOpcode[2] g_szParms[1] comments[0]
+Processing Z80  CP g_szOpcode
+szCPtemp is D
+g_szParms are d
+using cp D
+src: 	cp	e
+label[0] g_szOpcode[2] g_szParms[1] comments[0]
+Processing Z80  CP g_szOpcode
+szCPtemp is E
+g_szParms are e
+using cp E
+src: 	cp	h
+label[0] g_szOpcode[2] g_szParms[1] comments[0]
+Processing Z80  CP g_szOpcode
+szCPtemp is H
+g_szParms are h
+using cp H
+src: 	cp	l
+label[0] g_szOpcode[2] g_szParms[1] comments[0]
+Processing Z80  CP g_szOpcode
+szCPtemp is L
+g_szParms are l
+using cp L
+src: 	cp	(hl)
+label[0] g_szOpcode[2] g_szParms[4] comments[0]
+Processing Z80  CP g_szOpcode
+szCPtemp is (HL)
+g_szParms are (hl)
+using cp (HL)
+src: 	cp	value
+label[0] g_szOpcode[2] g_szParms[5] comments[0]
+Processing Z80  CP g_szOpcode
+szCPtemp is VALUE
+g_szParms are value
+using cp N
+src: 	cp	7
+label[0] g_szOpcode[2] g_szParms[1] comments[0]
+Processing Z80  CP g_szOpcode
+szCPtemp is 7
+g_szParms are 7
+using cp N
+src: 	end	start
+label[0] g_szOpcode[3] g_szParms[5] comments[0]
+Processing END directive
+End of pass one
+Start of pass two
+
+src:         title   $Id: testz8cp.asm,v 1.2 2011/03/25 09:01:21 doug Exp $
+label[0] g_szOpcode[5] g_szParms[54] comments[0]
+Processing TITLE directive
+
+src:         subttl  COPR 2011 Douglas Goodall
+label[0] g_szOpcode[6] g_szParms[25] comments[0]
+Processing SUBTTL directive
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; $Log: testz8cp.asm,v $
+label[0] g_szOpcode[0] g_szParms[0] comments[24]
+
+src: ; Revision 1.2  2011/03/25 09:01:21  doug
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; *** empty log message ***
+label[0] g_szOpcode[0] g_szParms[0] comments[27]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; Revision 1.1  2011/03/25 08:26:35  doug
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; Initial revision
+label[0] g_szOpcode[0] g_szParms[0] comments[18]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src:         include gplstuff.inc
+label[0] g_szOpcode[7] g_szParms[12] comments[0]
+Processing INCLUDE directive
+
+src: ; ------------------------------------
+label[0] g_szOpcode[0] g_szParms[0] comments[38]
+
+src: ; This file is part of "Vintage Modern 
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; Assembler Plus Tools (VMAPT)".
+label[0] g_szOpcode[0] g_szParms[0] comments[32]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; VMAPT is free software: you can 
+label[0] g_szOpcode[0] g_szParms[0] comments[34]
+
+src: ; redistribute it and/or modify it under 
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; the terms of  the GNU General Public 
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; License  as published by the Free
+label[0] g_szOpcode[0] g_szParms[0] comments[35]
+
+src: ; Software  Foundation, either version 3
+label[0] g_szOpcode[0] g_szParms[0] comments[40]
+
+src: ; of the License, or (at your option)  
+label[0] g_szOpcode[0] g_szParms[0] comments[39]
+
+src: ; any later version.
+label[0] g_szOpcode[0] g_szParms[0] comments[20]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; VMAPT is distributed in the hope that it 
+label[0] g_szOpcode[0] g_szParms[0] comments[43]
+
+src: ; will be useful, but WITHOUT ANY WARRANTY;
+label[0] g_szOpcode[0] g_szParms[0] comments[43]
+
+src: ; without even the implied warranty of   
+label[0] g_szOpcode[0] g_szParms[0] comments[41]
+
+src: ; MERCHANTABILITY or FITNESS FOR A 
+label[0] g_szOpcode[0] g_szParms[0] comments[35]
+
+src: ; PARTICULAR PURPOSE. See the GNU General 
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: ; Public License for more details.
+label[0] g_szOpcode[0] g_szParms[0] comments[34]
+
+src: ;
+label[0] g_szOpcode[0] g_szParms[0] comments[1]
+
+src: ; You  should have received a copy of the 
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: ; GNU General Public License along with 
+label[0] g_szOpcode[0] g_szParms[0] comments[40]
+
+src: ; VMAPT. If not,
+label[0] g_szOpcode[0] g_szParms[0] comments[16]
+
+src: ; see <http://www.gnu.org/licenses/>.
+label[0] g_szOpcode[0] g_szParms[0] comments[37]
+
+src: ; ----------------------------------------
+label[0] g_szOpcode[0] g_szParms[0] comments[42]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: ; The Z80 CP (compare) operation code has three 
+label[0] g_szOpcode[0] g_szParms[0] comments[48]
+
+src: ; forms. The first is "cp <reg>", where <reg> can
+label[0] g_szOpcode[0] g_szParms[0] comments[49]
+
+src: ; be A, B, C, D, E, H and L. The second form is
+label[0] g_szOpcode[0] g_szParms[0] comments[47]
+
+src: ; "cp (hl)". The third form is an immediate mode
+label[0] g_szOpcode[0] g_szParms[0] comments[48]
+
+src: ; where the parameter can be numeric or sumbolic.
+label[0] g_szOpcode[0] g_szParms[0] comments[49]
+
+src: ; "cp <parm". This file tests all three forms.
+label[0] g_szOpcode[0] g_szParms[0] comments[46]
+
+src: 
+label[0] g_szOpcode[0] g_szParms[0] comments[0]
+
+src: 	proc	z80
+label[0] g_szOpcode[4] g_szParms[3] comments[0]
+Processing PROC directive
+
+src: 	radix	hex
+label[0] g_szOpcode[5] g_szParms[3] comments[0]
+Processing RADIX directive
+
+src: value	equ	0E5
+label[5] g_szOpcode[3] g_szParms[3] comments[0]
+Processing EQU directive
+result from resolvep64(g_szParms) was 0X000000000000000E5
+
+src: 	org	100
+label[0] g_szOpcode[3] g_szParms[3] comments[0]
+Processing ORG directive
+
+src: start	cp	a
+label[5] g_szOpcode[2] g_szParms[1] comments[0]
+Processing Z80  CP g_szOpcode
+szCPtemp is A
+g_szParms are a
+using cp Ahexout(pc=0100,count=1,offset=0); called
+
+src: 	cp	b
+label[0] g_szOpcode[2] g_szParms[1] comments[0]
+Processing Z80  CP g_szOpcode
+szCPtemp is B
+g_szParms are b
+using cp Bhexout(pc=0101,count=1,offset=0); called
+
+src: 	cp	c
+label[0] g_szOpcode[2] g_szParms[1] comments[0]
+Processing Z80  CP g_szOpcode
+szCPtemp is C
+g_szParms are c
+using cp Chexout(pc=0102,count=1,offset=0); called
+
+src: 	cp	d
+label[0] g_szOpcode[2] g_szParms[1] comments[0]
+Processing Z80  CP g_szOpcode
+szCPtemp is D
+g_szParms are d
+using cp Dhexout(pc=0103,count=1,offset=0); called
+
+src: 	cp	e
+label[0] g_szOpcode[2] g_szParms[1] comments[0]
+Processing Z80  CP g_szOpcode
+szCPtemp is E
+g_szParms are e
+using cp Ehexout(pc=0104,count=1,offset=0); called
+
+src: 	cp	h
+label[0] g_szOpcode[2] g_szParms[1] comments[0]
+Processing Z80  CP g_szOpcode
+szCPtemp is H
+g_szParms are h
+using cp Hhexout(pc=0105,count=1,offset=0); called
+
+src: 	cp	l
+label[0] g_szOpcode[2] g_szParms[1] comments[0]
+Processing Z80  CP g_szOpcode
+szCPtemp is L
+g_szParms are l
+using cp Lhexout(pc=0106,count=1,offset=0); called
+
+src: 	cp	(hl)
+label[0] g_szOpcode[2] g_szParms[4] comments[0]
+Processing Z80  CP g_szOpcode
+szCPtemp is (HL)
+g_szParms are (hl)
+using cp (HL)hexout(pc=0107,count=1,offset=0); called
+
+src: 	cp	value
+label[0] g_szOpcode[2] g_szParms[5] comments[0]
+Processing Z80  CP g_szOpcode
+szCPtemp is VALUE
+g_szParms are value
+using cp Nhexout(pc=0108,count=2,offset=0); called
+
+src: 	cp	7
+label[0] g_szOpcode[2] g_szParms[1] comments[0]
+Processing Z80  CP g_szOpcode
+szCPtemp is 7
+g_szParms are 7
+using cp Nhexout(pc=010A,count=2,offset=0); called
+
+src: 	end	start
+label[0] g_szOpcode[3] g_szParms[5] comments[0]
+Processing END directive
+hexout(pc=010C,count=2,offset=0); called
+End of pass two

@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>as8085/mov_85.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/822.html'>as8085</a>/mov_85.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L10'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L10' title='Defined at 10.'>strcmp</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// $Log: mov_85.hpp,v $</em>
+<a id='L2' name='L2' /><em class='comment'>// Revision 1.2  2011/03/25 22:47:07  doug</em>
+<a id='L3' name='L3' /><em class='comment'>// add log and trim gpl stuff</em>
+<a id='L4' name='L4' /><em class='comment'>////</em>
+<a id='L5' name='L5' />
+<a id='L6' name='L6' /><strong class='reserved'>char</strong> mov_85[] = "$Id: mov_85.hpp,v 1.2 2011/03/25 22:47:07 doug Exp $";
+<a id='L7' name='L7' />
+<a id='L8' name='L8' /><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L9' name='L9' />
+<a id='L10' name='L10' /><strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple refered from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"MOV")) <em class='brace'>{</em>
+<a id='L11' name='L11' />        fprintf(g_flog,"Processing 8085 MOV g_szOpcode\n");
+<a id='L12' name='L12' />        g_iLineType = <a href='../D/419.html' title='Multiple defined in 2 places.'>TYPE_8085</a>;
+<a id='L13' name='L13' />        g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L14' name='L14' />        <strong class='reserved'>if</strong>(0 &lt; strlen(g_szParms)) <em class='brace'>{</em>
+<a id='L15' name='L15' />                <strong class='reserved'>int</strong> bDone = <a href='../D/84.html' title='Multiple defined in 2 places.'>FALSE</a>;
+<a id='L16' name='L16' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"A,A")) <em class='brace'>{</em>
+<a id='L17' name='L17' />                        g_ucBytes[g_iBytesIndex++] = 0x7F;
+<a id='L18' name='L18' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L19' name='L19' />                <em class='brace'>}</em>
+<a id='L20' name='L20' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"A,B")) <em class='brace'>{</em>
+<a id='L21' name='L21' />                        g_ucBytes[g_iBytesIndex++] = 0x78;
+<a id='L22' name='L22' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L23' name='L23' />                <em class='brace'>}</em>
+<a id='L24' name='L24' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"A,C")) <em class='brace'>{</em>
+<a id='L25' name='L25' />                        g_ucBytes[g_iBytesIndex++] = 0x79;
+<a id='L26' name='L26' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L27' name='L27' />                <em class='brace'>}</em>
+<a id='L28' name='L28' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"A,D")) <em class='brace'>{</em>
+<a id='L29' name='L29' />                        g_ucBytes[g_iBytesIndex++] = 0x7A;
+<a id='L30' name='L30' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L31' name='L31' />                <em class='brace'>}</em>
+<a id='L32' name='L32' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"A,E")) <em class='brace'>{</em>
+<a id='L33' name='L33' />                        g_ucBytes[g_iBytesIndex++] = 0x7B;
+<a id='L34' name='L34' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L35' name='L35' />                <em class='brace'>}</em>
+<a id='L36' name='L36' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"A,H")) <em class='brace'>{</em>
+<a id='L37' name='L37' />                        g_ucBytes[g_iBytesIndex++] = 0x7C;
+<a id='L38' name='L38' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L39' name='L39' />                <em class='brace'>}</em>
+<a id='L40' name='L40' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"A,L")) <em class='brace'>{</em>
+<a id='L41' name='L41' />                        g_ucBytes[g_iBytesIndex++] = 0x7D;
+<a id='L42' name='L42' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L43' name='L43' />                <em class='brace'>}</em>
+<a id='L44' name='L44' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"A,M")) <em class='brace'>{</em>
+<a id='L45' name='L45' />                        g_ucBytes[g_iBytesIndex++] = 0x7E;
+<a id='L46' name='L46' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L47' name='L47' />                <em class='brace'>}</em>
+<a id='L48' name='L48' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"B,A")) <em class='brace'>{</em>
+<a id='L49' name='L49' />                        g_ucBytes[g_iBytesIndex++] = 0x47;
+<a id='L50' name='L50' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L51' name='L51' />                <em class='brace'>}</em>
+<a id='L52' name='L52' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"B,B")) <em class='brace'>{</em>
+<a id='L53' name='L53' />                        g_ucBytes[g_iBytesIndex++] = 0x40;
+<a id='L54' name='L54' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L55' name='L55' />                <em class='brace'>}</em>
+<a id='L56' name='L56' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"B,C")) <em class='brace'>{</em>
+<a id='L57' name='L57' />                        g_ucBytes[g_iBytesIndex++] = 0x41;
+<a id='L58' name='L58' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L59' name='L59' />                <em class='brace'>}</em>
+<a id='L60' name='L60' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"B,D")) <em class='brace'>{</em>
+<a id='L61' name='L61' />                        g_ucBytes[g_iBytesIndex++] = 0x42;
+<a id='L62' name='L62' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L63' name='L63' />                <em class='brace'>}</em>
+<a id='L64' name='L64' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"B,E")) <em class='brace'>{</em>
+<a id='L65' name='L65' />                        g_ucBytes[g_iBytesIndex++] = 0x43;
+<a id='L66' name='L66' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L67' name='L67' />                <em class='brace'>}</em>
+<a id='L68' name='L68' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"B,H")) <em class='brace'>{</em>
+<a id='L69' name='L69' />                        g_ucBytes[g_iBytesIndex++] = 0x44;
+<a id='L70' name='L70' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L71' name='L71' />                <em class='brace'>}</em>
+<a id='L72' name='L72' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"B,L")) <em class='brace'>{</em>
+<a id='L73' name='L73' />                        g_ucBytes[g_iBytesIndex++] = 0x45;
+<a id='L74' name='L74' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L75' name='L75' />                <em class='brace'>}</em>
+<a id='L76' name='L76' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"B,M")) <em class='brace'>{</em>
+<a id='L77' name='L77' />                        g_ucBytes[g_iBytesIndex++] = 0x46;
+<a id='L78' name='L78' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L79' name='L79' />                <em class='brace'>}</em>
+<a id='L80' name='L80' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"C,A")) <em class='brace'>{</em>
+<a id='L81' name='L81' />                        g_ucBytes[g_iBytesIndex++] = 0x4F;
+<a id='L82' name='L82' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L83' name='L83' />                <em class='brace'>}</em>
+<a id='L84' name='L84' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"C,B")) <em class='brace'>{</em>
+<a id='L85' name='L85' />                        g_ucBytes[g_iBytesIndex++] = 0x48;
+<a id='L86' name='L86' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L87' name='L87' />                <em class='brace'>}</em>
+<a id='L88' name='L88' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"C,C")) <em class='brace'>{</em>
+<a id='L89' name='L89' />                        g_ucBytes[g_iBytesIndex++] = 0x49;
+<a id='L90' name='L90' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L91' name='L91' />                <em class='brace'>}</em>
+<a id='L92' name='L92' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"C,D")) <em class='brace'>{</em>
+<a id='L93' name='L93' />                        g_ucBytes[g_iBytesIndex++] = 0x4A;
+<a id='L94' name='L94' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L95' name='L95' />                <em class='brace'>}</em>
+<a id='L96' name='L96' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"C,E")) <em class='brace'>{</em>
+<a id='L97' name='L97' />                        g_ucBytes[g_iBytesIndex++] = 0x4B;
+<a id='L98' name='L98' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L99' name='L99' />                <em class='brace'>}</em>
+<a id='L100' name='L100' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"C,H")) <em class='brace'>{</em>
+<a id='L101' name='L101' />                        g_ucBytes[g_iBytesIndex++] = 0x4C;
+<a id='L102' name='L102' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L103' name='L103' />                <em class='brace'>}</em>
+<a id='L104' name='L104' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"C,L")) <em class='brace'>{</em>
+<a id='L105' name='L105' />                        g_ucBytes[g_iBytesIndex++] = 0x4D;
+<a id='L106' name='L106' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L107' name='L107' />                <em class='brace'>}</em>
+<a id='L108' name='L108' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"C,M")) <em class='brace'>{</em>
+<a id='L109' name='L109' />                        g_ucBytes[g_iBytesIndex++] = 0x4E;
+<a id='L110' name='L110' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L111' name='L111' />                <em class='brace'>}</em>
+<a id='L112' name='L112' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"D,A")) <em class='brace'>{</em>
+<a id='L113' name='L113' />                        g_ucBytes[g_iBytesIndex++] = 0x57;
+<a id='L114' name='L114' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L115' name='L115' />                <em class='brace'>}</em>
+<a id='L116' name='L116' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"D,B")) <em class='brace'>{</em>
+<a id='L117' name='L117' />                        g_ucBytes[g_iBytesIndex++] = 0x50;
+<a id='L118' name='L118' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L119' name='L119' />                <em class='brace'>}</em>
+<a id='L120' name='L120' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"D,C")) <em class='brace'>{</em>
+<a id='L121' name='L121' />                        g_ucBytes[g_iBytesIndex++] = 0x51;
+<a id='L122' name='L122' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L123' name='L123' />                <em class='brace'>}</em>
+<a id='L124' name='L124' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"D,D")) <em class='brace'>{</em>
+<a id='L125' name='L125' />                        g_ucBytes[g_iBytesIndex++] = 0x52;
+<a id='L126' name='L126' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L127' name='L127' />                <em class='brace'>}</em>
+<a id='L128' name='L128' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"D,E")) <em class='brace'>{</em>
+<a id='L129' name='L129' />                        g_ucBytes[g_iBytesIndex++] = 0x53;
+<a id='L130' name='L130' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L131' name='L131' />                <em class='brace'>}</em>
+<a id='L132' name='L132' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"D,H")) <em class='brace'>{</em>
+<a id='L133' name='L133' />                        g_ucBytes[g_iBytesIndex++] = 0x54;
+<a id='L134' name='L134' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L135' name='L135' />                <em class='brace'>}</em>
+<a id='L136' name='L136' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"D,L")) <em class='brace'>{</em>
+<a id='L137' name='L137' />                        g_ucBytes[g_iBytesIndex++] = 0x55;
+<a id='L138' name='L138' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L139' name='L139' />                <em class='brace'>}</em>
+<a id='L140' name='L140' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"D,M")) <em class='brace'>{</em>
+<a id='L141' name='L141' />                        g_ucBytes[g_iBytesIndex++] = 0x56;
+<a id='L142' name='L142' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L143' name='L143' />                <em class='brace'>}</em>
+<a id='L144' name='L144' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"E,A")) <em class='brace'>{</em>
+<a id='L145' name='L145' />                        g_ucBytes[g_iBytesIndex++] = 0x5F;
+<a id='L146' name='L146' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L147' name='L147' />                <em class='brace'>}</em>
+<a id='L148' name='L148' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"E,B")) <em class='brace'>{</em>
+<a id='L149' name='L149' />                        g_ucBytes[g_iBytesIndex++] = 0x58;
+<a id='L150' name='L150' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L151' name='L151' />                <em class='brace'>}</em>
+<a id='L152' name='L152' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"E,C")) <em class='brace'>{</em>
+<a id='L153' name='L153' />                        g_ucBytes[g_iBytesIndex++] = 0x59;
+<a id='L154' name='L154' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L155' name='L155' />                <em class='brace'>}</em>
+<a id='L156' name='L156' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"E,D")) <em class='brace'>{</em>
+<a id='L157' name='L157' />                        g_ucBytes[g_iBytesIndex++] = 0x5A;
+<a id='L158' name='L158' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L159' name='L159' />                <em class='brace'>}</em>
+<a id='L160' name='L160' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"E,E")) <em class='brace'>{</em>
+<a id='L161' name='L161' />                        g_ucBytes[g_iBytesIndex++] = 0x5B;
+<a id='L162' name='L162' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L163' name='L163' />                <em class='brace'>}</em>
+<a id='L164' name='L164' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"E,H")) <em class='brace'>{</em>
+<a id='L165' name='L165' />                        g_ucBytes[g_iBytesIndex++] = 0x5C;
+<a id='L166' name='L166' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L167' name='L167' />                <em class='brace'>}</em>
+<a id='L168' name='L168' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"E,L")) <em class='brace'>{</em>
+<a id='L169' name='L169' />                        g_ucBytes[g_iBytesIndex++] = 0x5D;
+<a id='L170' name='L170' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L171' name='L171' />                <em class='brace'>}</em>
+<a id='L172' name='L172' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"E,M")) <em class='brace'>{</em>
+<a id='L173' name='L173' />                        g_ucBytes[g_iBytesIndex++] = 0x5E;
+<a id='L174' name='L174' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L175' name='L175' />                <em class='brace'>}</em>
+<a id='L176' name='L176' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"H,A")) <em class='brace'>{</em>
+<a id='L177' name='L177' />                        g_ucBytes[g_iBytesIndex++] = 0x67;
+<a id='L178' name='L178' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L179' name='L179' />                <em class='brace'>}</em>
+<a id='L180' name='L180' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"H,B")) <em class='brace'>{</em>
+<a id='L181' name='L181' />                        g_ucBytes[g_iBytesIndex++] = 0x60;
+<a id='L182' name='L182' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L183' name='L183' />                <em class='brace'>}</em>
+<a id='L184' name='L184' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"H,C")) <em class='brace'>{</em>
+<a id='L185' name='L185' />                        g_ucBytes[g_iBytesIndex++] = 0x61;
+<a id='L186' name='L186' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L187' name='L187' />                <em class='brace'>}</em>
+<a id='L188' name='L188' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"H,D")) <em class='brace'>{</em>
+<a id='L189' name='L189' />                        g_ucBytes[g_iBytesIndex++] = 0x62;
+<a id='L190' name='L190' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L191' name='L191' />                <em class='brace'>}</em>
+<a id='L192' name='L192' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"H,E")) <em class='brace'>{</em>
+<a id='L193' name='L193' />                        g_ucBytes[g_iBytesIndex++] = 0x63;
+<a id='L194' name='L194' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L195' name='L195' />                <em class='brace'>}</em>
+<a id='L196' name='L196' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"H,H")) <em class='brace'>{</em>
+<a id='L197' name='L197' />                        g_ucBytes[g_iBytesIndex++] = 0x64;
+<a id='L198' name='L198' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L199' name='L199' />                <em class='brace'>}</em>
+<a id='L200' name='L200' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"H,L")) <em class='brace'>{</em>
+<a id='L201' name='L201' />                        g_ucBytes[g_iBytesIndex++] = 0x65;
+<a id='L202' name='L202' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L203' name='L203' />                <em class='brace'>}</em>
+<a id='L204' name='L204' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"H,M")) <em class='brace'>{</em>
+<a id='L205' name='L205' />                        g_ucBytes[g_iBytesIndex++] = 0x66;
+<a id='L206' name='L206' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L207' name='L207' />                <em class='brace'>}</em>
+<a id='L208' name='L208' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"L,A")) <em class='brace'>{</em>
+<a id='L209' name='L209' />                        g_ucBytes[g_iBytesIndex++] = 0x6F;
+<a id='L210' name='L210' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L211' name='L211' />                <em class='brace'>}</em>
+<a id='L212' name='L212' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"L,B")) <em class='brace'>{</em>
+<a id='L213' name='L213' />                        g_ucBytes[g_iBytesIndex++] = 0x68;
+<a id='L214' name='L214' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L215' name='L215' />                <em class='brace'>}</em>
+<a id='L216' name='L216' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"L,C")) <em class='brace'>{</em>
+<a id='L217' name='L217' />                        g_ucBytes[g_iBytesIndex++] = 0x69;
+<a id='L218' name='L218' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L219' name='L219' />                <em class='brace'>}</em>
+<a id='L220' name='L220' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"L,D")) <em class='brace'>{</em>
+<a id='L221' name='L221' />                        g_ucBytes[g_iBytesIndex++] = 0x6A;
+<a id='L222' name='L222' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L223' name='L223' />                <em class='brace'>}</em>
+<a id='L224' name='L224' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"L,E")) <em class='brace'>{</em>
+<a id='L225' name='L225' />                        g_ucBytes[g_iBytesIndex++] = 0x6B;
+<a id='L226' name='L226' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L227' name='L227' />                <em class='brace'>}</em>
+<a id='L228' name='L228' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"L,H")) <em class='brace'>{</em>
+<a id='L229' name='L229' />                        g_ucBytes[g_iBytesIndex++] = 0x6C;
+<a id='L230' name='L230' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L231' name='L231' />                <em class='brace'>}</em>
+<a id='L232' name='L232' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"L,L")) <em class='brace'>{</em>
+<a id='L233' name='L233' />                        g_ucBytes[g_iBytesIndex++] = 0x6D;
+<a id='L234' name='L234' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L235' name='L235' />                <em class='brace'>}</em>
+<a id='L236' name='L236' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"L,M")) <em class='brace'>{</em>
+<a id='L237' name='L237' />                        g_ucBytes[g_iBytesIndex++] = 0x6E;
+<a id='L238' name='L238' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L239' name='L239' />                <em class='brace'>}</em>
+<a id='L240' name='L240' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"M,A")) <em class='brace'>{</em>
+<a id='L241' name='L241' />                        g_ucBytes[g_iBytesIndex++] = 0x77;
+<a id='L242' name='L242' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L243' name='L243' />                <em class='brace'>}</em>
+<a id='L244' name='L244' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"M,B")) <em class='brace'>{</em>
+<a id='L245' name='L245' />                        g_ucBytes[g_iBytesIndex++] = 0x70;
+<a id='L246' name='L246' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L247' name='L247' />                <em class='brace'>}</em>
+<a id='L248' name='L248' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"M,C")) <em class='brace'>{</em>
+<a id='L249' name='L249' />                        g_ucBytes[g_iBytesIndex++] = 0x71;
+<a id='L250' name='L250' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L251' name='L251' />                <em class='brace'>}</em>
+<a id='L252' name='L252' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"M,D")) <em class='brace'>{</em>
+<a id='L253' name='L253' />                        g_ucBytes[g_iBytesIndex++] = 0x72;
+<a id='L254' name='L254' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L255' name='L255' />                <em class='brace'>}</em>
+<a id='L256' name='L256' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"M,E")) <em class='brace'>{</em>
+<a id='L257' name='L257' />                        g_ucBytes[g_iBytesIndex++] = 0x73;
+<a id='L258' name='L258' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L259' name='L259' />                <em class='brace'>}</em>
+<a id='L260' name='L260' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"M,H")) <em class='brace'>{</em>
+<a id='L261' name='L261' />                        g_ucBytes[g_iBytesIndex++] = 0x74;
+<a id='L262' name='L262' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L263' name='L263' />                <em class='brace'>}</em>
+<a id='L264' name='L264' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"M,L")) <em class='brace'>{</em>
+<a id='L265' name='L265' />                        g_ucBytes[g_iBytesIndex++] = 0x75;
+<a id='L266' name='L266' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L267' name='L267' />                <em class='brace'>}</em>
+<a id='L268' name='L268' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"M,M")) <em class='brace'>{</em>
+<a id='L269' name='L269' />                        g_ucBytes[g_iBytesIndex++] = 0x7F;
+<a id='L270' name='L270' />                        bDone = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>;
+<a id='L271' name='L271' />                <em class='brace'>}</em>
+<a id='L272' name='L272' />                <strong class='reserved'>if</strong>(<a href='../D/84.html' title='Multiple defined in 2 places.'>FALSE</a> == bDone) <em class='brace'>{</em>
+<a id='L273' name='L273' />                        g_iErrorNo |= <a href='../D/74.html' title='Multiple defined in 2 places.'>ERROR_NOREG</a>;
+<a id='L274' name='L274' />                <em class='brace'>}</em>
+<a id='L275' name='L275' />        <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L276' name='L276' />                g_iErrorNo |= <a href='../D/73.html' title='Multiple defined in 2 places.'>ERROR_NOPARM</a>;
+<a id='L277' name='L277' />        <em class='brace'>}</em>
+<a id='L278' name='L278' /><em class='brace'>}</em>
+<a id='L279' name='L279' />
+<a id='L280' name='L280' /><em class='comment'>///////////////////</em>
+<a id='L281' name='L281' /><em class='comment'>// eof - mov.hpp //</em>
+<a id='L282' name='L282' /><em class='comment'>///////////////////</em>
+<a id='L283' name='L283' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L10'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

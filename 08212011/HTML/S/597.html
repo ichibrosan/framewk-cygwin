@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>base/asouthex.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/828.html'>base</a>/asouthex.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L24'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/204.html' title='Multiple included from 2 places.'>INCLUDED FROM</a></h2>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L24' title='Defined at 24.'>asouthex</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// ---------------------------------------------------</em>
+<a id='L2' name='L2' /><em class='comment'>// asouthex.hpp  6-Mar-11   Running on Mac OS X 10.6.6</em>
+<a id='L3' name='L3' /><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
+<a id='L4' name='L4' /><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L5' name='L5' /><em class='comment'>// ---------------------------------------------------</em>
+<a id='L6' name='L6' /><em class='comment'>// This file is part of Vintage Modern Assembler Plus Tools.</em>
+<a id='L7' name='L7' /><em class='comment'>//</em>
+<a id='L8' name='L8' /><em class='comment'>// VMAPT is free software: you can redistribute it and/or modify</em>
+<a id='L9' name='L9' /><em class='comment'>// it under the terms of the GNU General Public License as published by</em>
+<a id='L10' name='L10' /><em class='comment'>// the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L11' name='L11' /><em class='comment'>// (at your option) any later version.</em>
+<a id='L12' name='L12' /><em class='comment'>//</em>
+<a id='L13' name='L13' /><em class='comment'>// VMAPT is distributed in the hope that it will be useful,</em>
+<a id='L14' name='L14' /><em class='comment'>// but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L15' name='L15' /><em class='comment'>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L16' name='L16' /><em class='comment'>// GNU General Public License for more details.</em>
+<a id='L17' name='L17' /><em class='comment'>//</em>
+<a id='L18' name='L18' /><em class='comment'>// You should have received a copy of the GNU General Public License</em>
+<a id='L19' name='L19' /><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L20' name='L20' /><em class='comment'>//</em>
+<a id='L21' name='L21' />
+<a id='L22' name='L22' /><strong class='reserved'>static</strong> <strong class='reserved'>char</strong> szAsouthexHpp[] = "$Id: asouthex.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $";
+<a id='L23' name='L23' />
+<a id='L24' name='L24' /><strong class='reserved'>void</strong> <a href='../R/164.html' title='Multiple refered from 2 places.'>asouthex</a>(<strong class='reserved'>void</strong>)
+<a id='L25' name='L25' /><em class='brace'>{</em>
+<a id='L26' name='L26' />        <strong class='reserved'>int</strong> mypc = g_iPc;
+<a id='L27' name='L27' />        
+<a id='L28' name='L28' />        <strong class='reserved'>if</strong>( 3 &lt; g_iBytesIndex ) <em class='brace'>{</em>
+<a id='L29' name='L29' />                <strong class='reserved'>if</strong>(g_bDebug) <em class='brace'>{</em>
+<a id='L30' name='L30' />                        printf("\nemitlst says g_iBytesIndex &gt; 3\n");
+<a id='L31' name='L31' />                <em class='brace'>}</em>
+<a id='L32' name='L32' />                g_iTriplets = g_iBytesIndex / 3;
+<a id='L33' name='L33' />                <strong class='reserved'>if</strong>(g_bDebug) <em class='brace'>{</em>
+<a id='L34' name='L34' />                        printf("\ntriplets = %d\n",g_iTriplets);
+<a id='L35' name='L35' />                <em class='brace'>}</em>
+<a id='L36' name='L36' />                g_iSobrante = g_iBytesIndex - (g_iTriplets * 3);
+<a id='L37' name='L37' />                <strong class='reserved'>if</strong>(g_bDebug) <em class='brace'>{</em>
+<a id='L38' name='L38' />                        printf("\nsobrante = %d\n",g_iSobrante);
+<a id='L39' name='L39' />                <em class='brace'>}</em>
+<a id='L40' name='L40' />                <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> t=0;t&lt;g_iTriplets;t++) <em class='brace'>{</em>
+<a id='L41' name='L41' />                        g_iTripoff = t * 3;
+<a id='L42' name='L42' />                        <strong class='reserved'>if</strong>(g_bDebug) <em class='brace'>{</em>
+<a id='L43' name='L43' />                                printf(" t = %d ",t);
+<a id='L44' name='L44' />                        <em class='brace'>}</em>
+<a id='L45' name='L45' />                        <a href='../D/526.html' title='Multiple defined in 2 places.'>hexout</a>(mypc,3,g_iTripoff);
+<a id='L46' name='L46' />                        mypc += 3;
+<a id='L47' name='L47' />                <em class='brace'>}</em>
+<a id='L48' name='L48' />                <strong class='reserved'>if</strong>(0 != g_iSobrante) <em class='brace'>{</em> 
+<a id='L49' name='L49' />                        g_iSoboff = g_iTriplets * 3;
+<a id='L50' name='L50' />                        <strong class='reserved'>switch</strong>(g_iSobrante) <em class='brace'>{</em>
+<a id='L51' name='L51' />                                <strong class='reserved'>case</strong> 1:
+<a id='L52' name='L52' />                                        <a href='../D/526.html' title='Multiple defined in 2 places.'>hexout</a>(mypc,1,g_iSoboff);
+<a id='L53' name='L53' />                                        mypc += 1;
+<a id='L54' name='L54' />                                        <strong class='reserved'>break</strong>;                                                          
+<a id='L55' name='L55' />                                <strong class='reserved'>case</strong> 2:
+<a id='L56' name='L56' />                                        <a href='../D/526.html' title='Multiple defined in 2 places.'>hexout</a>(mypc,2,g_iSoboff);
+<a id='L57' name='L57' />                                        mypc += 2;
+<a id='L58' name='L58' />                                        <strong class='reserved'>break</strong>;
+<a id='L59' name='L59' />                        <em class='brace'>}</em>;                      
+<a id='L60' name='L60' />                <em class='brace'>}</em>
+<a id='L61' name='L61' />        <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L62' name='L62' />                <strong class='reserved'>switch</strong>(g_iBytesIndex) <em class='brace'>{</em>
+<a id='L63' name='L63' />                        <strong class='reserved'>case</strong> 1:
+<a id='L64' name='L64' />                                <a href='../D/526.html' title='Multiple defined in 2 places.'>hexout</a>(mypc,1,0);
+<a id='L65' name='L65' />                                mypc += 1;
+<a id='L66' name='L66' />                                <strong class='reserved'>break</strong>;
+<a id='L67' name='L67' />                        <strong class='reserved'>case</strong> 2:
+<a id='L68' name='L68' />                                <a href='../D/526.html' title='Multiple defined in 2 places.'>hexout</a>(mypc,2,0);
+<a id='L69' name='L69' />                                mypc += 2;
+<a id='L70' name='L70' />                                <strong class='reserved'>break</strong>;
+<a id='L71' name='L71' />                        <strong class='reserved'>case</strong> 3:
+<a id='L72' name='L72' />                                <a href='../D/526.html' title='Multiple defined in 2 places.'>hexout</a>(mypc,3,0);
+<a id='L73' name='L73' />                                mypc += 3;
+<a id='L74' name='L74' />                                <strong class='reserved'>break</strong>;
+<a id='L75' name='L75' />                <em class='brace'>}</em>;
+<a id='L76' name='L76' />        <em class='brace'>}</em>
+<a id='L77' name='L77' /><em class='brace'>}</em>
+<a id='L78' name='L78' />
+<a id='L79' name='L79' /><em class='comment'>////////////////////////</em>
+<a id='L80' name='L80' /><em class='comment'>// eof - asouthex.hpp //</em>
+<a id='L81' name='L81' /><em class='comment'>////////////////////////</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L24'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

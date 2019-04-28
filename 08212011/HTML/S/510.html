@@ -1,0 +1,962 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>asymbols.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/asymbols.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L120'>[^]</a><a href='#L875'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/212.html' title='Multiple included from 2 places.'>INCLUDED FROM</a></h2>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L120' title='Defined at 120.'>mynamespace</a></li>
+<li><a href='#L144' title='Defined at 144.'>add</a></li>
+<li><a href='#L165' title='Defined at 165.'>add</a></li>
+<li><a href='#L192' title='Defined at 192.'>add</a></li>
+<li><a href='#L217' title='Defined at 217.'>add</a></li>
+<li><a href='#L243' title='Defined at 243.'>add</a></li>
+<li><a href='#L268' title='Defined at 268.'>add</a></li>
+<li><a href='#L291' title='Defined at 291.'>del</a></li>
+<li><a href='#L319' title='Defined at 319.'>dump</a></li>
+<li><a href='#L533' title='Defined at 533.'>getu8</a></li>
+<li><a href='#L563' title='Defined at 563.'>getu16</a></li>
+<li><a href='#L593' title='Defined at 593.'>getu32</a></li>
+<li><a href='#L624' title='Defined at 624.'>getu64</a></li>
+<li><a href='#L654' title='Defined at 654.'>getstr</a></li>
+<li><a href='#L680' title='Defined at 680.'>getmeta</a></li>
+<li><a href='#L708' title='Defined at 708.'>gete8</a></li>
+<li><a href='#L731' title='Defined at 731.'>gete16</a></li>
+<li><a href='#L754' title='Defined at 754.'>gete32</a></li>
+<li><a href='#L778' title='Defined at 778.'>gete64</a></li>
+<li><a href='#L805' title='Defined at 805.'>getp8</a></li>
+<li><a href='#L828' title='Defined at 828.'>getp16</a></li>
+<li><a href='#L851' title='Defined at 851.'>getp32</a></li>
+<li><a href='#L875' title='Defined at 875.'>getp64</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// $Log: asymbols.hpp,v $</em>
+<a id='L2' name='L2' /><em class='comment'>// Revision 1.6  2011/04/14 15:13:09  doug</em>
+<a id='L3' name='L3' /><em class='comment'>// get ready for release to wiki and server</em>
+<a id='L4' name='L4' /><em class='comment'>//</em>
+<a id='L5' name='L5' /><em class='comment'>// Revision 1.5  2011/04/05 10:48:58  doug</em>
+<a id='L6' name='L6' /><em class='comment'>// added externals to dump member function</em>
+<a id='L7' name='L7' /><em class='comment'>//</em>
+<a id='L8' name='L8' /><em class='comment'>// Revision 1.4  2011/04/05 10:08:45  doug</em>
+<a id='L9' name='L9' /><em class='comment'>// make some arrangements for externals</em>
+<a id='L10' name='L10' /><em class='comment'>//</em>
+<a id='L11' name='L11' /><em class='comment'>//</em>
+<a id='L12' name='L12' /><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L13' name='L13' /><em class='comment'>// ---------------------------------------------------</em>
+<a id='L14' name='L14' /><em class='comment'>// This file is part of Vintage Modern Assembler Plus Tools.</em>
+<a id='L15' name='L15' /><em class='comment'>//</em>
+<a id='L16' name='L16' /><em class='comment'>// VMAPT is free software: you can redistribute it and/or modify</em>
+<a id='L17' name='L17' /><em class='comment'>// it under the terms of the GNU General Public License as published by</em>
+<a id='L18' name='L18' /><em class='comment'>// the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L19' name='L19' /><em class='comment'>// (at your option) any later version.</em>
+<a id='L20' name='L20' /><em class='comment'>//</em>
+<a id='L21' name='L21' /><em class='comment'>// VMAPT is distributed in the hope that it will be useful,</em>
+<a id='L22' name='L22' /><em class='comment'>// but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L23' name='L23' /><em class='comment'>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L24' name='L24' /><em class='comment'>// GNU General Public License for more details.</em>
+<a id='L25' name='L25' /><em class='comment'>//</em>
+<a id='L26' name='L26' /><em class='comment'>// You should have received a copy of the GNU General Public License</em>
+<a id='L27' name='L27' /><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L28' name='L28' /><em class='comment'>//</em>
+<a id='L29' name='L29' />
+<a id='L30' name='L30' /><strong class='reserved'>static</strong> <strong class='reserved'>char</strong> szAsymbolsHpp[] = "$Id: asymbols.hpp,v 1.6 2011/04/14 15:13:09 doug Exp $";
+<a id='L31' name='L31' />
+<a id='L32' name='L32' /><em class='comment'>// 03/12/2011 dwg - The CTOR is passed a domain string which </em>
+<a id='L33' name='L33' /><em class='comment'>// has been the name of the program being assembled (w/out ext).</em>
+<a id='L34' name='L34' /><em class='comment'>// I added ".sym" today so that the clean rule of the Makefile</em>
+<a id='L35' name='L35' /><em class='comment'>// can remove all symbol directories with "rm -r *.sym".</em>
+<a id='L36' name='L36' />
+<a id='L37' name='L37' /><em class='comment'>// 02/21/2011 dwg - added getstr method (tested ok)</em>
+<a id='L38' name='L38' />
+<a id='L39' name='L39' /><em class='comment'>// 02/04/2011 dwg - copied from my Borland version</em>
+<a id='L40' name='L40' />
+<a id='L41' name='L41' /><em class='comment'>// 01/19/2011 dwg - instead of calling the add member</em>
+<a id='L42' name='L42' /><em class='comment'>// function with a void * value, dependent on the type,</em>
+<a id='L43' name='L43' /><em class='comment'>// now we are overloading the add function with three</em>
+<a id='L44' name='L44' /><em class='comment'>// types of value parameters, char *, unsigned char,</em>
+<a id='L45' name='L45' /><em class='comment'>// and unsigned int. This is more straightforward.</em>
+<a id='L46' name='L46' /><em class='comment'>// The old add function was having trouble guessing the </em>
+<a id='L47' name='L47' /><em class='comment'>// radix of the numeric contents of the value string.</em>
+<a id='L48' name='L48' />
+<a id='L49' name='L49' /><em class='comment'>// 12/30/2010 - added getu16 to support the "jp" g_szOpcode</em>
+<a id='L50' name='L50' />
+<a id='L51' name='L51' /><strong class='reserved'>enum</strong> <em class='brace'>{</em>
+<a id='L52' name='L52' />        TYPE_ALL,
+<a id='L53' name='L53' />        <a href='../R/140.html' title='Multiple refered from 19 places.'>TYPE_STRING</a>,
+<a id='L54' name='L54' />        <a href='../R/144.html' title='Multiple refered from 19 places.'>TYPE_U8</a>,
+<a id='L55' name='L55' />        <a href='../R/141.html' title='Multiple refered from 29 places.'>TYPE_U16</a>,
+<a id='L56' name='L56' />        <a href='../R/142.html' title='Multiple refered from 19 places.'>TYPE_U32</a>,
+<a id='L57' name='L57' />        <a href='../R/143.html' title='Multiple refered from 19 places.'>TYPE_U64</a>,
+<a id='L58' name='L58' />        <a href='../R/135.html' title='Multiple refered from 61 places.'>TYPE_META</a>,
+<a id='L59' name='L59' />        <a href='../R/132.html' title='Multiple refered from 9 places.'>TYPE_E8</a>,
+<a id='L60' name='L60' />        <a href='../R/129.html' title='Multiple refered from 9 places.'>TYPE_E16</a>,
+<a id='L61' name='L61' />        <a href='../R/130.html' title='Multiple refered from 9 places.'>TYPE_E32</a>,
+<a id='L62' name='L62' />        <a href='../R/131.html' title='Multiple refered from 9 places.'>TYPE_E64</a>,
+<a id='L63' name='L63' />        <a href='../R/139.html' title='Multiple refered from 9 places.'>TYPE_P8</a>,
+<a id='L64' name='L64' />        <a href='../R/136.html' title='Multiple refered from 9 places.'>TYPE_P16</a>,
+<a id='L65' name='L65' />        <a href='../R/137.html' title='Multiple refered from 9 places.'>TYPE_P32</a>,
+<a id='L66' name='L66' />        <a href='../R/138.html' title='Multiple refered from 9 places.'>TYPE_P64</a>,
+<a id='L67' name='L67' />        NUM_TYPES
+<a id='L68' name='L68' /><em class='brace'>}</em>;
+<a id='L69' name='L69' />
+<a id='L70' name='L70' /><strong class='reserved'>class</strong> <a href='../R/21.html' title='Multiple refered from 58 places.'>CSymbols</a> <em class='brace'>{</em>
+<a id='L71' name='L71' />        <strong class='reserved'>char</strong> m_domain[128];
+<a id='L72' name='L72' />        <strong class='reserved'>char</strong> m_namespace[128];
+<a id='L73' name='L73' /><strong class='reserved'>public</strong>:
+<a id='L74' name='L74' />        <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>(<strong class='reserved'>char</strong> *);
+<a id='L75' name='L75' />        <strong class='reserved'>void</strong> <a href='../D/543.html' title='Multiple defined in 2 places.'>mynamespace</a>(<strong class='reserved'>char</strong> *);
+<a id='L76' name='L76' />        <strong class='reserved'>int</strong> <a href='../D/455.html' title='Multiple defined in 14 places.'>add</a>(<strong class='reserved'>char</strong> *,<strong class='reserved'>int</strong>,<strong class='reserved'>char</strong> *);
+<a id='L77' name='L77' />        <strong class='reserved'>int</strong> <a href='../D/455.html' title='Multiple defined in 14 places.'>add</a>(<strong class='reserved'>char</strong> *,<strong class='reserved'>int</strong>,<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *);
+<a id='L78' name='L78' />        <strong class='reserved'>int</strong> <a href='../D/455.html' title='Multiple defined in 14 places.'>add</a>(<strong class='reserved'>char</strong> *,<strong class='reserved'>int</strong>,<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>);
+<a id='L79' name='L79' />        <strong class='reserved'>int</strong> <a href='../D/455.html' title='Multiple defined in 14 places.'>add</a>(<strong class='reserved'>char</strong> *,<strong class='reserved'>int</strong>,<strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>);
+<a id='L80' name='L80' />        <strong class='reserved'>int</strong> <a href='../D/455.html' title='Multiple defined in 14 places.'>add</a>(<strong class='reserved'>char</strong> *,<strong class='reserved'>int</strong>,<strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong>);
+<a id='L81' name='L81' />        <strong class='reserved'>int</strong> <a href='../D/455.html' title='Multiple defined in 14 places.'>add</a>(<strong class='reserved'>char</strong> *,<strong class='reserved'>int</strong>,<strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong>);
+<a id='L82' name='L82' />        <strong class='reserved'>int</strong> <a href='../D/482.html' title='Multiple defined in 2 places.'>del</a>(<strong class='reserved'>char</strong> *,<strong class='reserved'>int</strong>);
+<a id='L83' name='L83' />        <strong class='reserved'>int</strong> <a href='../D/485.html' title='Multiple defined in 6 places.'>dump</a>(<strong class='reserved'>int</strong>,FILE *);
+<a id='L84' name='L84' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> <a href='../D/521.html' title='Multiple defined in 2 places.'>getu8</a>( <strong class='reserved'>char</strong> *,<strong class='reserved'>int</strong> *);
+<a id='L85' name='L85' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>  <a href='../D/518.html' title='Multiple defined in 2 places.'>getu16</a>(<strong class='reserved'>char</strong> *,<strong class='reserved'>int</strong> *);
+<a id='L86' name='L86' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../D/519.html' title='Multiple defined in 2 places.'>getu32</a>(<strong class='reserved'>char</strong> *,<strong class='reserved'>int</strong> *);
+<a id='L87' name='L87' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong> <a href='../D/520.html' title='Multiple defined in 2 places.'>getu64</a>(<strong class='reserved'>char</strong> *,<strong class='reserved'>int</strong> *);
+<a id='L88' name='L88' />
+<a id='L89' name='L89' />        <strong class='reserved'>int</strong> <a href='../D/497.html' title='Multiple defined in 2 places.'>gete8</a>(<strong class='reserved'>char</strong> *,<strong class='reserved'>int</strong> *);
+<a id='L90' name='L90' />        <strong class='reserved'>int</strong> <a href='../D/494.html' title='Multiple defined in 2 places.'>gete16</a>(<strong class='reserved'>char</strong> *,<strong class='reserved'>int</strong> *);
+<a id='L91' name='L91' />        <strong class='reserved'>int</strong> <a href='../D/495.html' title='Multiple defined in 2 places.'>gete32</a>(<strong class='reserved'>char</strong> *,<strong class='reserved'>int</strong> *);
+<a id='L92' name='L92' />        <strong class='reserved'>int</strong> <a href='../D/496.html' title='Multiple defined in 2 places.'>gete64</a>(<strong class='reserved'>char</strong> *,<strong class='reserved'>int</strong> *);
+<a id='L93' name='L93' />
+<a id='L94' name='L94' />        <strong class='reserved'>int</strong> <a href='../D/507.html' title='Multiple defined in 2 places.'>getp8</a>(<strong class='reserved'>char</strong> *,<strong class='reserved'>int</strong> *);
+<a id='L95' name='L95' />        <strong class='reserved'>int</strong> <a href='../D/504.html' title='Multiple defined in 2 places.'>getp16</a>(<strong class='reserved'>char</strong> *,<strong class='reserved'>int</strong> *);
+<a id='L96' name='L96' />        <strong class='reserved'>int</strong> <a href='../D/505.html' title='Multiple defined in 2 places.'>getp32</a>(<strong class='reserved'>char</strong> *,<strong class='reserved'>int</strong> *);
+<a id='L97' name='L97' />        <strong class='reserved'>int</strong> <a href='../D/506.html' title='Multiple defined in 2 places.'>getp64</a>(<strong class='reserved'>char</strong> *,<strong class='reserved'>int</strong> *);
+<a id='L98' name='L98' />
+<a id='L99' name='L99' />        <strong class='reserved'>char</strong> * <a href='../D/510.html' title='Multiple defined in 2 places.'>getstr</a>(<strong class='reserved'>char</strong> *,<strong class='reserved'>int</strong> *);
+<a id='L100' name='L100' />        <strong class='reserved'>char</strong> * <a href='../D/500.html' title='Multiple defined in 2 places.'>getmeta</a>(<strong class='reserved'>char</strong> *,<strong class='reserved'>int</strong> *);
+<a id='L101' name='L101' />        ~<a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>();
+<a id='L102' name='L102' /><em class='brace'>}</em>;
+<a id='L103' name='L103' />
+<a id='L104' name='L104' /><a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/21.html' title='Multiple refered from 58 places.'>CSymbols</a>(<strong class='reserved'>char</strong> *mydomain)
+<a id='L105' name='L105' /><em class='brace'>{</em>
+<a id='L106' name='L106' />        assert(mydomain);
+<a id='L107' name='L107' />
+<a id='L108' name='L108' />        <strong class='reserved'>char</strong> szCommand[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
+<a id='L109' name='L109' />        strcpy(m_domain,mydomain);
+<a id='L110' name='L110' />        strcat(m_domain,".sym");
+<a id='L111' name='L111' />
+<a id='L112' name='L112' /><em class='comment'>//      printf("asymbols: CSymbols::CSymbols(%s) says m_domain is %s\n",</em>
+<a id='L113' name='L113' /><em class='comment'>//              mydomain,m_domain);</em>
+<a id='L114' name='L114' />
+<a id='L115' name='L115' />        sprintf(szCommand,"mkdir %s &gt;assemble.tmp 2&gt;assemble.tmp",m_domain);
+<a id='L116' name='L116' />        system(szCommand);
+<a id='L117' name='L117' />        system("rm -f assemble.tmp");
+<a id='L118' name='L118' /><em class='brace'>}</em>
+<a id='L119' name='L119' />
+<a id='L120' name='L120' /><strong class='reserved'>void</strong> <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/242.html' title='Multiple refered from 7 places.'>mynamespace</a>(<strong class='reserved'>char</strong> *ns)
+<a id='L121' name='L121' /><em class='brace'>{</em>
+<a id='L122' name='L122' />        assert(m_domain);
+<a id='L123' name='L123' />        assert(ns);
+<a id='L124' name='L124' />
+<a id='L125' name='L125' />        <strong class='reserved'>char</strong> szDirSpec[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
+<a id='L126' name='L126' />        <strong class='reserved'>char</strong> szCommand[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
+<a id='L127' name='L127' />
+<a id='L128' name='L128' />        <strong class='reserved'>if</strong>(NULL == ns) <em class='brace'>{</em>
+<a id='L129' name='L129' />                strcpy(m_namespace,"default.nsp");
+<a id='L130' name='L130' />        <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L131' name='L131' />                strcpy(m_namespace,ns);
+<a id='L132' name='L132' />                strcat(m_namespace,".nsp");
+<a id='L133' name='L133' />        <em class='brace'>}</em>
+<a id='L134' name='L134' />
+<a id='L135' name='L135' />        strcpy(szDirSpec,m_domain);
+<a id='L136' name='L136' />        strcat(szDirSpec,"/");
+<a id='L137' name='L137' />        strcat(szDirSpec,m_namespace);
+<a id='L138' name='L138' />        sprintf(szCommand,"mkdir %s &gt;assemble.tmp 2&gt;assemble.tmp",szDirSpec);
+<a id='L139' name='L139' />        system(szCommand);
+<a id='L140' name='L140' />        system("rm -f assemble.tmp");
+<a id='L141' name='L141' /><em class='brace'>}</em>
+<a id='L142' name='L142' />
+<a id='L143' name='L143' /><em class='comment'>// TYPE_STRING</em>
+<a id='L144' name='L144' /><strong class='reserved'>int</strong> <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/160.html' title='Multiple refered from 126 places.'>add</a>(<strong class='reserved'>char</strong> *name,<strong class='reserved'>int</strong> type,<strong class='reserved'>char</strong> * value)
+<a id='L145' name='L145' /><em class='brace'>{</em>
+<a id='L146' name='L146' />        <strong class='reserved'>char</strong> szFilename[128];
+<a id='L147' name='L147' />
+<a id='L148' name='L148' />        strcpy(szFilename,m_domain);
+<a id='L149' name='L149' />        strcat(szFilename,"/");
+<a id='L150' name='L150' />        strcat(szFilename,m_namespace);
+<a id='L151' name='L151' />        strcat(szFilename,"/");
+<a id='L152' name='L152' />        strcat(szFilename,name);
+<a id='L153' name='L153' />        strcat(szFilename,".str");
+<a id='L154' name='L154' /><em class='comment'>//      printf("asymbols.hpp: CSymbols::add(%s,%d,%s) "</em>
+<a id='L155' name='L155' /><em class='comment'>//             "says szFilename is %s\n",</em>
+<a id='L156' name='L156' /><em class='comment'>//              name,type,value,szFilename);</em>
+<a id='L157' name='L157' />        FILE * fd = fopen(szFilename,"w");
+<a id='L158' name='L158' />        assert(NULL != fd);
+<a id='L159' name='L159' />        fprintf(fd,"%s\n",value);
+<a id='L160' name='L160' />        fclose(fd);
+<a id='L161' name='L161' />        <strong class='reserved'>return</strong> EXIT_SUCCESS;
+<a id='L162' name='L162' /><em class='brace'>}</em>
+<a id='L163' name='L163' />
+<a id='L164' name='L164' /><em class='comment'>// TYPE_U8</em>
+<a id='L165' name='L165' /><strong class='reserved'>int</strong> <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/160.html' title='Multiple refered from 126 places.'>add</a>(<strong class='reserved'>char</strong> *name,<strong class='reserved'>int</strong> type,<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> ucValue)
+<a id='L166' name='L166' /><em class='brace'>{</em>
+<a id='L167' name='L167' />        <strong class='reserved'>char</strong> szFilename[128];
+<a id='L168' name='L168' />        strcpy(szFilename,m_domain);
+<a id='L169' name='L169' />        strcat(szFilename,"/");
+<a id='L170' name='L170' />        strcat(szFilename,m_namespace);
+<a id='L171' name='L171' />        strcat(szFilename,"/");
+<a id='L172' name='L172' />        strcat(szFilename,name);
+<a id='L173' name='L173' />        <strong class='reserved'>switch</strong>(type) <em class='brace'>{</em>
+<a id='L174' name='L174' />                <strong class='reserved'>case</strong> <a href='../D/438.html' title='Multiple defined in 2 places.'>TYPE_U8</a>: strcat(szFilename,".u8"); g_bU8 = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>; <strong class='reserved'>break</strong>;
+<a id='L175' name='L175' />                <strong class='reserved'>case</strong> <a href='../D/426.html' title='Multiple defined in 2 places.'>TYPE_E8</a>: strcat(szFilename,".e8"); g_bE8 = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>; <strong class='reserved'>break</strong>;
+<a id='L176' name='L176' />                <strong class='reserved'>case</strong> <a href='../D/433.html' title='Multiple defined in 2 places.'>TYPE_P8</a>: strcat(szFilename,".p8"); g_bP8 = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>; <strong class='reserved'>break</strong>;
+<a id='L177' name='L177' />        <em class='brace'>}</em>
+<a id='L178' name='L178' />        <em class='comment'>// This helps things work on a system with a case</em>
+<a id='L179' name='L179' />        <em class='comment'>// sensitive file system.</em>
+<a id='L180' name='L180' />        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;strlen(szFilename);i++) <em class='brace'>{</em>
+<a id='L181' name='L181' />                szFilename[i] = tolower(szFilename[i]);
+<a id='L182' name='L182' />        <em class='brace'>}</em>
+<a id='L183' name='L183' />        
+<a id='L184' name='L184' />        FILE * fd = fopen(szFilename,"w");
+<a id='L185' name='L185' />        assert(NULL != fd);
+<a id='L186' name='L186' />        fprintf(fd,"%02X\n",ucValue);
+<a id='L187' name='L187' />        fclose(fd);
+<a id='L188' name='L188' />        <strong class='reserved'>return</strong> EXIT_SUCCESS;
+<a id='L189' name='L189' /><em class='brace'>}</em>
+<a id='L190' name='L190' />
+<a id='L191' name='L191' /><em class='comment'>// TYPE_U16</em>
+<a id='L192' name='L192' /><strong class='reserved'>int</strong> <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/160.html' title='Multiple refered from 126 places.'>add</a>(<strong class='reserved'>char</strong> *name,<strong class='reserved'>int</strong> type,<strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> uiValue)
+<a id='L193' name='L193' /><em class='brace'>{</em>
+<a id='L194' name='L194' />        <strong class='reserved'>char</strong> szFilename[128];
+<a id='L195' name='L195' />        strcpy(szFilename,m_domain);
+<a id='L196' name='L196' />        strcat(szFilename,"/");
+<a id='L197' name='L197' />        strcat(szFilename,m_namespace);
+<a id='L198' name='L198' />        strcat(szFilename,"/");
+<a id='L199' name='L199' />        strcat(szFilename,name);
+<a id='L200' name='L200' />        <strong class='reserved'>switch</strong>(type) <em class='brace'>{</em>
+<a id='L201' name='L201' />                <strong class='reserved'>case</strong> <a href='../D/435.html' title='Multiple defined in 2 places.'>TYPE_U16</a>: strcat(szFilename,".u16"); g_bU16 = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>; <strong class='reserved'>break</strong>;
+<a id='L202' name='L202' />                <strong class='reserved'>case</strong> <a href='../D/423.html' title='Multiple defined in 2 places.'>TYPE_E16</a>: strcat(szFilename,".e16"); g_bE16 = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>; <strong class='reserved'>break</strong>;
+<a id='L203' name='L203' />                <strong class='reserved'>case</strong> <a href='../D/430.html' title='Multiple defined in 2 places.'>TYPE_P16</a>: strcat(szFilename,".p16"); g_bP16 = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>; <strong class='reserved'>break</strong>;
+<a id='L204' name='L204' />        <em class='brace'>}</em>
+<a id='L205' name='L205' />        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;strlen(szFilename);i++) <em class='brace'>{</em>
+<a id='L206' name='L206' />                szFilename[i] = tolower(szFilename[i]);
+<a id='L207' name='L207' />        <em class='brace'>}</em>
+<a id='L208' name='L208' />
+<a id='L209' name='L209' />        FILE * fd = fopen(szFilename,"w");
+<a id='L210' name='L210' />        assert(NULL != fd);
+<a id='L211' name='L211' />        fprintf(fd,"%04X\n",uiValue);
+<a id='L212' name='L212' />        fclose(fd);
+<a id='L213' name='L213' />        <strong class='reserved'>return</strong> EXIT_SUCCESS;
+<a id='L214' name='L214' /><em class='brace'>}</em>
+<a id='L215' name='L215' />
+<a id='L216' name='L216' /><em class='comment'>// TYPE_U32</em>
+<a id='L217' name='L217' /><strong class='reserved'>int</strong> <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/160.html' title='Multiple refered from 126 places.'>add</a>(<strong class='reserved'>char</strong> *name,<strong class='reserved'>int</strong> type,<strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> ulValue)
+<a id='L218' name='L218' /><em class='brace'>{</em>
+<a id='L219' name='L219' />        <strong class='reserved'>char</strong> szFilename[128];
+<a id='L220' name='L220' />        strcpy(szFilename,m_domain);
+<a id='L221' name='L221' />        strcat(szFilename,"/");
+<a id='L222' name='L222' />        strcat(szFilename,m_namespace);
+<a id='L223' name='L223' />        strcat(szFilename,"/");
+<a id='L224' name='L224' />        strcat(szFilename,name);
+<a id='L225' name='L225' />        <strong class='reserved'>switch</strong>(type) <em class='brace'>{</em>
+<a id='L226' name='L226' />                <strong class='reserved'>case</strong> <a href='../D/436.html' title='Multiple defined in 2 places.'>TYPE_U32</a>: strcat(szFilename,".u32"); g_bU32 = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>; <strong class='reserved'>break</strong>;
+<a id='L227' name='L227' />                <strong class='reserved'>case</strong> <a href='../D/424.html' title='Multiple defined in 2 places.'>TYPE_E32</a>: strcat(szFilename,".e32"); g_bE32 = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>; <strong class='reserved'>break</strong>;
+<a id='L228' name='L228' />                <strong class='reserved'>case</strong> <a href='../D/431.html' title='Multiple defined in 2 places.'>TYPE_P32</a>: strcat(szFilename,".p32"); g_bP32 = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>; <strong class='reserved'>break</strong>;
+<a id='L229' name='L229' />        <em class='brace'>}</em>
+<a id='L230' name='L230' />
+<a id='L231' name='L231' />        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;strlen(szFilename);i++) <em class='brace'>{</em>
+<a id='L232' name='L232' />                szFilename[i] = tolower(szFilename[i]);
+<a id='L233' name='L233' />        <em class='brace'>}</em>
+<a id='L234' name='L234' />
+<a id='L235' name='L235' />        FILE * fd = fopen(szFilename,"w");
+<a id='L236' name='L236' />        assert(NULL != fd);
+<a id='L237' name='L237' />        fprintf(fd,"%08lX\n",ulValue);
+<a id='L238' name='L238' />        fclose(fd);
+<a id='L239' name='L239' />        <strong class='reserved'>return</strong> EXIT_SUCCESS;
+<a id='L240' name='L240' /><em class='brace'>}</em>
+<a id='L241' name='L241' />
+<a id='L242' name='L242' /><em class='comment'>// TYPE_U64</em>
+<a id='L243' name='L243' /><strong class='reserved'>int</strong> <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/160.html' title='Multiple refered from 126 places.'>add</a>(<strong class='reserved'>char</strong> *name,<strong class='reserved'>int</strong> type,<strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong> ullValue)
+<a id='L244' name='L244' /><em class='brace'>{</em>
+<a id='L245' name='L245' />        <strong class='reserved'>char</strong> szFilename[128];
+<a id='L246' name='L246' />        strcpy(szFilename,m_domain);
+<a id='L247' name='L247' />        strcat(szFilename,"/");
+<a id='L248' name='L248' />        strcat(szFilename,m_namespace);
+<a id='L249' name='L249' />        strcat(szFilename,"/");
+<a id='L250' name='L250' />        strcat(szFilename,name);
+<a id='L251' name='L251' />        <strong class='reserved'>switch</strong>(type) <em class='brace'>{</em>
+<a id='L252' name='L252' />                <strong class='reserved'>case</strong> <a href='../D/437.html' title='Multiple defined in 2 places.'>TYPE_U64</a>: strcat(szFilename,".u64"); g_bU64 = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>; <strong class='reserved'>break</strong>;
+<a id='L253' name='L253' />                <strong class='reserved'>case</strong> <a href='../D/425.html' title='Multiple defined in 2 places.'>TYPE_E64</a>: strcat(szFilename,".e64"); g_bE64 = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>; <strong class='reserved'>break</strong>;
+<a id='L254' name='L254' />                <strong class='reserved'>case</strong> <a href='../D/432.html' title='Multiple defined in 2 places.'>TYPE_P64</a>: strcat(szFilename,".p64"); g_bP64 = <a href='../D/414.html' title='Multiple defined in 2 places.'>TRUE</a>; <strong class='reserved'>break</strong>;
+<a id='L255' name='L255' />        <em class='brace'>}</em>
+<a id='L256' name='L256' />        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;strlen(szFilename);i++) <em class='brace'>{</em>
+<a id='L257' name='L257' />                szFilename[i] = tolower(szFilename[i]);
+<a id='L258' name='L258' />        <em class='brace'>}</em>
+<a id='L259' name='L259' />
+<a id='L260' name='L260' />        FILE * fd = fopen(szFilename,"w");
+<a id='L261' name='L261' />        assert(NULL != fd);
+<a id='L262' name='L262' />        fprintf(fd,"%16llX\n",ullValue);
+<a id='L263' name='L263' />        fclose(fd);
+<a id='L264' name='L264' />        <strong class='reserved'>return</strong> EXIT_SUCCESS;
+<a id='L265' name='L265' /><em class='brace'>}</em>
+<a id='L266' name='L266' />
+<a id='L267' name='L267' /><em class='comment'>// TYPE_META</em>
+<a id='L268' name='L268' /><strong class='reserved'>int</strong> <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/160.html' title='Multiple refered from 126 places.'>add</a>(<strong class='reserved'>char</strong> *name,<strong class='reserved'>int</strong> type,<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> * value)
+<a id='L269' name='L269' /><em class='brace'>{</em>
+<a id='L270' name='L270' />        <strong class='reserved'>char</strong> szFilename[128];
+<a id='L271' name='L271' />
+<a id='L272' name='L272' />        strcpy(szFilename,m_domain);
+<a id='L273' name='L273' />        strcat(szFilename,"/");
+<a id='L274' name='L274' />        strcat(szFilename,m_namespace);
+<a id='L275' name='L275' />        strcat(szFilename,"/");
+<a id='L276' name='L276' />        strcat(szFilename,name);
+<a id='L277' name='L277' />        strcat(szFilename,".mta");
+<a id='L278' name='L278' />
+<a id='L279' name='L279' /><em class='comment'>//      printf("asymbols.hpp: CSymbols::add(%s,%d,%s) "</em>
+<a id='L280' name='L280' /><em class='comment'>//             "says szFilename is %s\n",</em>
+<a id='L281' name='L281' /><em class='comment'>//              name,type,value,szFilename);</em>
+<a id='L282' name='L282' />
+<a id='L283' name='L283' />        FILE * fd = fopen(szFilename,"w");
+<a id='L284' name='L284' />        assert(NULL != fd);
+<a id='L285' name='L285' />        fprintf(fd,"%s\n",value);
+<a id='L286' name='L286' />        fclose(fd);
+<a id='L287' name='L287' />        <strong class='reserved'>return</strong> EXIT_SUCCESS;
+<a id='L288' name='L288' /><em class='brace'>}</em>
+<a id='L289' name='L289' />
+<a id='L290' name='L290' />
+<a id='L291' name='L291' /><strong class='reserved'>int</strong> <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/186.html' title='Multiple refered from 2 places.'>del</a>(<strong class='reserved'>char</strong> *name,<strong class='reserved'>int</strong> type)
+<a id='L292' name='L292' /><em class='brace'>{</em>
+<a id='L293' name='L293' />        <strong class='reserved'>char</strong> szFilename[128];
+<a id='L294' name='L294' />        <strong class='reserved'>char</strong> szCommand[128];
+<a id='L295' name='L295' />
+<a id='L296' name='L296' />        strcpy(szFilename,m_domain);
+<a id='L297' name='L297' />        strcat(szFilename,"/");
+<a id='L298' name='L298' />        strcat(szFilename,m_namespace);
+<a id='L299' name='L299' />        strcat(szFilename,"/");
+<a id='L300' name='L300' />        strcat(szFilename,name);
+<a id='L301' name='L301' />        <strong class='reserved'>switch</strong>(type) <em class='brace'>{</em>
+<a id='L302' name='L302' />                <strong class='reserved'>case</strong> <a href='../D/434.html' title='Multiple defined in 2 places.'>TYPE_STRING</a>: strcat(szFilename,".str"); <strong class='reserved'>break</strong>;
+<a id='L303' name='L303' />                <strong class='reserved'>case</strong> <a href='../D/438.html' title='Multiple defined in 2 places.'>TYPE_U8</a>:     strcat(szFilename,".u8");  <strong class='reserved'>break</strong>;
+<a id='L304' name='L304' />                <strong class='reserved'>case</strong> <a href='../D/435.html' title='Multiple defined in 2 places.'>TYPE_U16</a>:    strcat(szFilename,".u16"); <strong class='reserved'>break</strong>;
+<a id='L305' name='L305' />                <strong class='reserved'>case</strong> <a href='../D/436.html' title='Multiple defined in 2 places.'>TYPE_U32</a>:    strcat(szFilename,".u32"); <strong class='reserved'>break</strong>;
+<a id='L306' name='L306' />                <strong class='reserved'>case</strong> <a href='../D/437.html' title='Multiple defined in 2 places.'>TYPE_U64</a>:    strcat(szFilename,".u64"); <strong class='reserved'>break</strong>;
+<a id='L307' name='L307' />                <strong class='reserved'>case</strong> <a href='../D/429.html' title='Multiple defined in 2 places.'>TYPE_META</a>:   strcat(szFilename,".mta"); <strong class='reserved'>break</strong>;
+<a id='L308' name='L308' />                <strong class='reserved'>default</strong>:          assert(1==2);
+<a id='L309' name='L309' />        <em class='brace'>}</em>
+<a id='L310' name='L310' />
+<a id='L311' name='L311' />        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;strlen(szFilename);i++) <em class='brace'>{</em>
+<a id='L312' name='L312' />                szFilename[i] = tolower(szFilename[i]);
+<a id='L313' name='L313' />        <em class='brace'>}</em>
+<a id='L314' name='L314' />
+<a id='L315' name='L315' />        sprintf(szCommand,"rm %s",szFilename);
+<a id='L316' name='L316' />        system(szCommand);
+<a id='L317' name='L317' /><em class='brace'>}</em>
+<a id='L318' name='L318' />
+<a id='L319' name='L319' /><strong class='reserved'>int</strong> <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/189.html' title='Multiple refered from 48 places.'>dump</a>(<strong class='reserved'>int</strong> type,FILE *fdout)
+<a id='L320' name='L320' /><em class='brace'>{</em>
+<a id='L321' name='L321' />  <strong class='reserved'>char</strong> szStringBuffer[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
+<a id='L322' name='L322' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> iValue;
+<a id='L323' name='L323' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> lValue;
+<a id='L324' name='L324' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong> llValue;
+<a id='L325' name='L325' />
+<a id='L326' name='L326' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> u8Buffer;
+<a id='L327' name='L327' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>  u16Buffer;
+<a id='L328' name='L328' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> u32Buffer;
+<a id='L329' name='L329' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong> u64Buffer;
+<a id='L330' name='L330' />
+<a id='L331' name='L331' />  <strong class='reserved'>char</strong> szFileSpec[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
+<a id='L332' name='L332' />
+<a id='L333' name='L333' />  strcpy(g_szBuffer2,"----------------------------------------------");
+<a id='L334' name='L334' />  <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout);
+<a id='L335' name='L335' />
+<a id='L336' name='L336' />  <strong class='reserved'>char</strong> szType[3+1+1];
+<a id='L337' name='L337' />  <strong class='reserved'>switch</strong>(type) <em class='brace'>{</em>
+<a id='L338' name='L338' />
+<a id='L339' name='L339' />    <strong class='reserved'>case</strong> <a href='../D/426.html' title='Multiple defined in 2 places.'>TYPE_E8</a>:
+<a id='L340' name='L340' />      sprintf(g_szBuffer2,"Symbol table external bytes...");
+<a id='L341' name='L341' />      <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout);
+<a id='L342' name='L342' />      strcpy(szType,".e8"); 
+<a id='L343' name='L343' />      <strong class='reserved'>break</strong>;
+<a id='L344' name='L344' />    <strong class='reserved'>case</strong> <a href='../D/423.html' title='Multiple defined in 2 places.'>TYPE_E16</a>:
+<a id='L345' name='L345' />      sprintf(g_szBuffer2,"Symbol table external words...");
+<a id='L346' name='L346' />      <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout);
+<a id='L347' name='L347' />      strcpy(szType,".e16");
+<a id='L348' name='L348' />      <strong class='reserved'>break</strong>;
+<a id='L349' name='L349' />    <strong class='reserved'>case</strong> <a href='../D/424.html' title='Multiple defined in 2 places.'>TYPE_E32</a>:
+<a id='L350' name='L350' />      sprintf(g_szBuffer2,"Symbol table external dwords...");
+<a id='L351' name='L351' />      <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout);
+<a id='L352' name='L352' />      strcpy(szType,".e32");
+<a id='L353' name='L353' />      <strong class='reserved'>break</strong>;
+<a id='L354' name='L354' />    <strong class='reserved'>case</strong> <a href='../D/425.html' title='Multiple defined in 2 places.'>TYPE_E64</a>:
+<a id='L355' name='L355' />      sprintf(g_szBuffer2,"Symbol table external qwords...");
+<a id='L356' name='L356' />      <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout);
+<a id='L357' name='L357' />      strcpy(szType,".e64");
+<a id='L358' name='L358' />      <strong class='reserved'>break</strong>;
+<a id='L359' name='L359' />
+<a id='L360' name='L360' />
+<a id='L361' name='L361' />    <strong class='reserved'>case</strong> <a href='../D/433.html' title='Multiple defined in 2 places.'>TYPE_P8</a>:
+<a id='L362' name='L362' />      sprintf(g_szBuffer2,"Symbol table public bytes...");
+<a id='L363' name='L363' />      <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout);
+<a id='L364' name='L364' />      strcpy(szType,".p8");
+<a id='L365' name='L365' />      <strong class='reserved'>break</strong>;
+<a id='L366' name='L366' />    <strong class='reserved'>case</strong> <a href='../D/430.html' title='Multiple defined in 2 places.'>TYPE_P16</a>:
+<a id='L367' name='L367' />      sprintf(g_szBuffer2,"Symbol table public words...");
+<a id='L368' name='L368' />      <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout);
+<a id='L369' name='L369' />      strcpy(szType,".p16");
+<a id='L370' name='L370' />      <strong class='reserved'>break</strong>;
+<a id='L371' name='L371' />    <strong class='reserved'>case</strong> <a href='../D/431.html' title='Multiple defined in 2 places.'>TYPE_P32</a>:
+<a id='L372' name='L372' />      sprintf(g_szBuffer2,"Symbol table public dwords...");
+<a id='L373' name='L373' />      <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout);
+<a id='L374' name='L374' />      strcpy(szType,".p32");
+<a id='L375' name='L375' />      <strong class='reserved'>break</strong>;
+<a id='L376' name='L376' />    <strong class='reserved'>case</strong> <a href='../D/432.html' title='Multiple defined in 2 places.'>TYPE_P64</a>:
+<a id='L377' name='L377' />      sprintf(g_szBuffer2,"Symbol table public qwords...");
+<a id='L378' name='L378' />      <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout);
+<a id='L379' name='L379' />      strcpy(szType,".p64");
+<a id='L380' name='L380' />      <strong class='reserved'>break</strong>;
+<a id='L381' name='L381' />
+<a id='L382' name='L382' />
+<a id='L383' name='L383' />
+<a id='L384' name='L384' />    <strong class='reserved'>case</strong> <a href='../D/434.html' title='Multiple defined in 2 places.'>TYPE_STRING</a>:
+<a id='L385' name='L385' />                        sprintf(g_szBuffer2,"Symbol table string entries...");
+<a id='L386' name='L386' />                        <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout);
+<a id='L387' name='L387' />                        strcpy(szType,".str");
+<a id='L388' name='L388' />                        <strong class='reserved'>break</strong>;
+<a id='L389' name='L389' />                <strong class='reserved'>case</strong> <a href='../D/438.html' title='Multiple defined in 2 places.'>TYPE_U8</a>:
+<a id='L390' name='L390' />                        sprintf(g_szBuffer2,"Symbol table byte entries...");
+<a id='L391' name='L391' />                        <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout);
+<a id='L392' name='L392' />                        strcpy(szType,".u8");                   
+<a id='L393' name='L393' />                        <strong class='reserved'>break</strong>;
+<a id='L394' name='L394' />                <strong class='reserved'>case</strong> <a href='../D/435.html' title='Multiple defined in 2 places.'>TYPE_U16</a>:
+<a id='L395' name='L395' />                        sprintf(g_szBuffer2,"Symbol table word entries...");
+<a id='L396' name='L396' />                        <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout);
+<a id='L397' name='L397' />                        strcpy(szType,".u16");
+<a id='L398' name='L398' />                        <strong class='reserved'>break</strong>;
+<a id='L399' name='L399' />                <strong class='reserved'>case</strong> <a href='../D/436.html' title='Multiple defined in 2 places.'>TYPE_U32</a>:
+<a id='L400' name='L400' />                        sprintf(g_szBuffer2,"Symbol table dword entries...");
+<a id='L401' name='L401' />                        <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout);
+<a id='L402' name='L402' />                        strcpy(szType,".u32");
+<a id='L403' name='L403' />                        <strong class='reserved'>break</strong>;
+<a id='L404' name='L404' />                <strong class='reserved'>case</strong> <a href='../D/437.html' title='Multiple defined in 2 places.'>TYPE_U64</a>:
+<a id='L405' name='L405' />                        sprintf(g_szBuffer2,"Symbol table qword entries...");
+<a id='L406' name='L406' />                        <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout);
+<a id='L407' name='L407' />                        strcpy(szType,".u64");
+<a id='L408' name='L408' />                        <strong class='reserved'>break</strong>;
+<a id='L409' name='L409' />                <strong class='reserved'>case</strong> <a href='../D/429.html' title='Multiple defined in 2 places.'>TYPE_META</a>:
+<a id='L410' name='L410' />                        sprintf(g_szBuffer2,"Symbol table meta entries...");
+<a id='L411' name='L411' />                        <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout);
+<a id='L412' name='L412' />                        strcpy(szType,".mta");
+<a id='L413' name='L413' />                        <strong class='reserved'>break</strong>;
+<a id='L414' name='L414' />
+<a id='L415' name='L415' />        <em class='brace'>}</em>
+<a id='L416' name='L416' />
+<a id='L417' name='L417' />        <strong class='reserved'>char</strong> szDirSpec[128];
+<a id='L418' name='L418' />        strcpy(szDirSpec,m_domain);
+<a id='L419' name='L419' />        strcat(szDirSpec,"/");
+<a id='L420' name='L420' />        strcat(szDirSpec,m_namespace);
+<a id='L421' name='L421' />        <a href='../D/30.html' title='Multiple defined in 6 places.'>CDir</a> * mydir = <strong class='reserved'>new</strong> <a href='../D/30.html' title='Multiple defined in 6 places.'>CDir</a>(szDirSpec);
+<a id='L422' name='L422' />        <strong class='reserved'>int</strong> rc = mydir-&gt;<a href='../D/554.html' title='Multiple defined in 2 places.'>read</a>();
+<a id='L423' name='L423' />        <strong class='reserved'>while</strong>(0 == rc) <em class='brace'>{</em>
+<a id='L424' name='L424' />
+<a id='L425' name='L425' />                <strong class='reserved'>char</strong> szFileTemp[128];
+<a id='L426' name='L426' />                mydir-&gt;<a href='../D/501.html' title='Multiple defined in 2 places.'>getname</a>(szFileTemp);
+<a id='L427' name='L427' />                <strong class='reserved'>int</strong> index;      
+<a id='L428' name='L428' />                <strong class='reserved'>for</strong>(index=0;index&lt;strlen(szFileTemp);index++) <em class='brace'>{</em>
+<a id='L429' name='L429' />                        <strong class='reserved'>if</strong>('.' == szFileTemp[index]) <em class='brace'>{</em>
+<a id='L430' name='L430' />                                <strong class='reserved'>break</strong>;
+<a id='L431' name='L431' />                        <em class='brace'>}</em>
+<a id='L432' name='L432' />                <em class='brace'>}</em>
+<a id='L433' name='L433' />
+<a id='L434' name='L434' />                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(szType,&amp;szFileTemp[index])) <em class='brace'>{</em>
+<a id='L435' name='L435' />
+<a id='L436' name='L436' />                        sprintf(szFileSpec,"%s/%s",szDirSpec,szFileTemp);
+<a id='L437' name='L437' />                        FILE * fdin = fopen(szFileSpec,"r");
+<a id='L438' name='L438' />                        assert(fdin);
+<a id='L439' name='L439' />                        fgets(szStringBuffer,<strong class='reserved'>sizeof</strong>(szStringBuffer),fdin);
+<a id='L440' name='L440' />                        szStringBuffer[strlen(szStringBuffer)-1] = 0;
+<a id='L441' name='L441' />                
+<a id='L442' name='L442' />                        <strong class='reserved'>switch</strong>(type) <em class='brace'>{</em>
+<a id='L443' name='L443' />                                <strong class='reserved'>case</strong> <a href='../D/434.html' title='Multiple defined in 2 places.'>TYPE_STRING</a>:
+<a id='L444' name='L444' />                                        sprintf(g_szBuffer2,
+<a id='L445' name='L445' />                                                "%s, \"%s\"",
+<a id='L446' name='L446' />                                                szFileTemp,szStringBuffer);
+<a id='L447' name='L447' />                                        <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout);
+<a id='L448' name='L448' />                                        <strong class='reserved'>break</strong>;
+<a id='L449' name='L449' />
+<a id='L450' name='L450' />
+<a id='L451' name='L451' />
+<a id='L452' name='L452' />        <strong class='reserved'>case</strong> <a href='../D/426.html' title='Multiple defined in 2 places.'>TYPE_E8</a>:
+<a id='L453' name='L453' />                sscanf(szStringBuffer, g_szRadixFormat8Hex,&amp;iValue);
+<a id='L454' name='L454' />                sprintf(g_szBuffer2, "%s, 0x%02X (%d)",
+<a id='L455' name='L455' />                        szFileTemp,iValue,iValue);
+<a id='L456' name='L456' />                <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout); <strong class='reserved'>break</strong>;
+<a id='L457' name='L457' />        <strong class='reserved'>case</strong> <a href='../D/423.html' title='Multiple defined in 2 places.'>TYPE_E16</a>:
+<a id='L458' name='L458' />                sscanf(szStringBuffer, g_szRadixFormat16Hex,&amp;iValue);
+<a id='L459' name='L459' />                sprintf(g_szBuffer2, "%s, 0x%04X (%d)",
+<a id='L460' name='L460' />                        szFileTemp,iValue,iValue);
+<a id='L461' name='L461' />                <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout); <strong class='reserved'>break</strong>;
+<a id='L462' name='L462' />        <strong class='reserved'>case</strong> <a href='../D/424.html' title='Multiple defined in 2 places.'>TYPE_E32</a>:
+<a id='L463' name='L463' />                sscanf(szStringBuffer, g_szRadixFormat32Hex,&amp;lValue);
+<a id='L464' name='L464' />                        sprintf(g_szBuffer2, "%s, 0x%08lX (%ld)",
+<a id='L465' name='L465' />                        szFileTemp,lValue,lValue);
+<a id='L466' name='L466' />                <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout); <strong class='reserved'>break</strong>;
+<a id='L467' name='L467' />         <strong class='reserved'>case</strong> <a href='../D/425.html' title='Multiple defined in 2 places.'>TYPE_E64</a>:
+<a id='L468' name='L468' />                sscanf(szStringBuffer, g_szRadixFormat64Hex, &amp;llValue);
+<a id='L469' name='L469' />                sprintf(g_szBuffer2, "%s, 0x%017llX (%lld)",
+<a id='L470' name='L470' />                        szFileTemp,llValue,llValue);
+<a id='L471' name='L471' />                <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout); <strong class='reserved'>break</strong>;
+<a id='L472' name='L472' /> 
+<a id='L473' name='L473' />        <strong class='reserved'>case</strong> <a href='../D/433.html' title='Multiple defined in 2 places.'>TYPE_P8</a>:
+<a id='L474' name='L474' />                sscanf(szStringBuffer, g_szRadixFormat8Hex,&amp;iValue);
+<a id='L475' name='L475' />                sprintf(g_szBuffer2, "%s, 0x%02X (%d)",
+<a id='L476' name='L476' />                        szFileTemp,iValue,iValue);
+<a id='L477' name='L477' />                <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout); <strong class='reserved'>break</strong>;
+<a id='L478' name='L478' />        <strong class='reserved'>case</strong> <a href='../D/430.html' title='Multiple defined in 2 places.'>TYPE_P16</a>:
+<a id='L479' name='L479' />                sscanf(szStringBuffer, g_szRadixFormat16Hex,&amp;iValue);
+<a id='L480' name='L480' />                sprintf(g_szBuffer2, "%s, 0x%04X (%d)",
+<a id='L481' name='L481' />                        szFileTemp,iValue,iValue);
+<a id='L482' name='L482' />                <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout); <strong class='reserved'>break</strong>;
+<a id='L483' name='L483' />        <strong class='reserved'>case</strong> <a href='../D/431.html' title='Multiple defined in 2 places.'>TYPE_P32</a>:
+<a id='L484' name='L484' />                sscanf(szStringBuffer, g_szRadixFormat32Hex,&amp;lValue);
+<a id='L485' name='L485' />                        sprintf(g_szBuffer2, "%s, 0x%08lX (%ld)",
+<a id='L486' name='L486' />                        szFileTemp,lValue,lValue);
+<a id='L487' name='L487' />                <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout); <strong class='reserved'>break</strong>;
+<a id='L488' name='L488' />         <strong class='reserved'>case</strong> <a href='../D/432.html' title='Multiple defined in 2 places.'>TYPE_P64</a>:
+<a id='L489' name='L489' />                sscanf(szStringBuffer, g_szRadixFormat64Hex, &amp;llValue);
+<a id='L490' name='L490' />                sprintf(g_szBuffer2, "%s, 0x%017llX (%lld)",
+<a id='L491' name='L491' />                        szFileTemp,llValue,llValue);
+<a id='L492' name='L492' />                <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout); <strong class='reserved'>break</strong>;
+<a id='L493' name='L493' />
+<a id='L494' name='L494' />
+<a id='L495' name='L495' />
+<a id='L496' name='L496' />        <strong class='reserved'>case</strong> <a href='../D/438.html' title='Multiple defined in 2 places.'>TYPE_U8</a>:
+<a id='L497' name='L497' />                sscanf(szStringBuffer, g_szRadixFormat8Hex,&amp;iValue);
+<a id='L498' name='L498' />                sprintf(g_szBuffer2, "%s, 0x%02X (%d)",
+<a id='L499' name='L499' />                        szFileTemp,iValue,iValue);
+<a id='L500' name='L500' />                <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout); <strong class='reserved'>break</strong>;
+<a id='L501' name='L501' />        <strong class='reserved'>case</strong> <a href='../D/435.html' title='Multiple defined in 2 places.'>TYPE_U16</a>:
+<a id='L502' name='L502' />                sscanf(szStringBuffer, g_szRadixFormat16Hex,&amp;iValue);
+<a id='L503' name='L503' />                sprintf(g_szBuffer2, "%s, 0x%04X (%d)",
+<a id='L504' name='L504' />                        szFileTemp,iValue,iValue);
+<a id='L505' name='L505' />                <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout); <strong class='reserved'>break</strong>;
+<a id='L506' name='L506' />        <strong class='reserved'>case</strong> <a href='../D/436.html' title='Multiple defined in 2 places.'>TYPE_U32</a>:
+<a id='L507' name='L507' />                sscanf(szStringBuffer, g_szRadixFormat32Hex,&amp;lValue);
+<a id='L508' name='L508' />                        sprintf(g_szBuffer2, "%s, 0x%08lX (%ld)",
+<a id='L509' name='L509' />                        szFileTemp,lValue,lValue);
+<a id='L510' name='L510' />                <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout); <strong class='reserved'>break</strong>;
+<a id='L511' name='L511' />         <strong class='reserved'>case</strong> <a href='../D/437.html' title='Multiple defined in 2 places.'>TYPE_U64</a>:
+<a id='L512' name='L512' />                sscanf(szStringBuffer, g_szRadixFormat64Hex, &amp;llValue);
+<a id='L513' name='L513' />                sprintf(g_szBuffer2, "%s, 0x%017llX (%lld)",
+<a id='L514' name='L514' />                        szFileTemp,llValue,llValue);
+<a id='L515' name='L515' />                <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout); <strong class='reserved'>break</strong>;
+<a id='L516' name='L516' />
+<a id='L517' name='L517' />         <strong class='reserved'>case</strong> <a href='../D/429.html' title='Multiple defined in 2 places.'>TYPE_META</a>:
+<a id='L518' name='L518' />                sprintf(g_szBuffer2,
+<a id='L519' name='L519' />                        "%s, \"%s\"",
+<a id='L520' name='L520' />                        szFileTemp,szStringBuffer);
+<a id='L521' name='L521' />                <a href='../D/551.html' title='Multiple defined in 2 places.'>print</a>(fdout);
+<a id='L522' name='L522' />                <strong class='reserved'>break</strong>;
+<a id='L523' name='L523' />                                <strong class='reserved'>default</strong>:
+<a id='L524' name='L524' />                                        assert(1==2);
+<a id='L525' name='L525' />                        <em class='brace'>}</em>
+<a id='L526' name='L526' />                        fclose(fdin);           
+<a id='L527' name='L527' />                <em class='brace'>}</em>
+<a id='L528' name='L528' />                rc = mydir-&gt;<a href='../D/554.html' title='Multiple defined in 2 places.'>read</a>();
+<a id='L529' name='L529' />        <em class='brace'>}</em>
+<a id='L530' name='L530' />        <strong class='reserved'>delete</strong> mydir;
+<a id='L531' name='L531' /><em class='brace'>}</em>
+<a id='L532' name='L532' />
+<a id='L533' name='L533' /><strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/225.html' title='Multiple refered from 6 places.'>getu8</a>(<strong class='reserved'>char</strong> * symbol,<strong class='reserved'>int</strong> * rc)
+<a id='L534' name='L534' /><em class='brace'>{</em>
+<a id='L535' name='L535' />        <strong class='reserved'>char</strong> szFileSpec[128];
+<a id='L536' name='L536' />        <strong class='reserved'>char</strong> g_szBuffer2[128];
+<a id='L537' name='L537' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> u8Buffer;
+<a id='L538' name='L538' />        strcpy(szFileSpec,m_domain);
+<a id='L539' name='L539' />        strcat(szFileSpec,"/");
+<a id='L540' name='L540' />        strcat(szFileSpec,m_namespace);
+<a id='L541' name='L541' />        strcat(szFileSpec,"/");
+<a id='L542' name='L542' />        strcat(szFileSpec,symbol);
+<a id='L543' name='L543' />        strcat(szFileSpec,".u8");
+<a id='L544' name='L544' />
+<a id='L545' name='L545' />        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;strlen(szFileSpec);i++) <em class='brace'>{</em>
+<a id='L546' name='L546' />                szFileSpec[i] = tolower(szFileSpec[i]);
+<a id='L547' name='L547' />        <em class='brace'>}</em>
+<a id='L548' name='L548' />
+<a id='L549' name='L549' />        FILE * fd = fopen(szFileSpec,"r");
+<a id='L550' name='L550' />        <strong class='reserved'>if</strong>(NULL == fd) <em class='brace'>{</em>
+<a id='L551' name='L551' />                *rc = EXIT_FAILURE;
+<a id='L552' name='L552' />                <strong class='reserved'>return</strong> NULL;
+<a id='L553' name='L553' />        <em class='brace'>}</em>
+<a id='L554' name='L554' />        fgets(g_szBuffer2,<strong class='reserved'>sizeof</strong>(g_szBuffer2),fd);
+<a id='L555' name='L555' />        fclose(fd);
+<a id='L556' name='L556' />        g_szBuffer2[strlen(g_szBuffer2)-1] = 0;
+<a id='L557' name='L557' />        sscanf(g_szBuffer2,"%2X",&amp;u8Buffer);
+<a id='L558' name='L558' />
+<a id='L559' name='L559' />        *rc = (<strong class='reserved'>int</strong>)EXIT_SUCCESS;
+<a id='L560' name='L560' />        <strong class='reserved'>return</strong> u8Buffer;
+<a id='L561' name='L561' /><em class='brace'>}</em>
+<a id='L562' name='L562' />
+<a id='L563' name='L563' /><strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/222.html' title='Multiple refered from 8 places.'>getu16</a>(<strong class='reserved'>char</strong> *symbol,<strong class='reserved'>int</strong> *rc)
+<a id='L564' name='L564' /><em class='brace'>{</em>
+<a id='L565' name='L565' />        assert(m_domain);
+<a id='L566' name='L566' />        assert(m_namespace);
+<a id='L567' name='L567' />        <strong class='reserved'>char</strong> szFileSpec[128];
+<a id='L568' name='L568' />        <strong class='reserved'>char</strong> g_szBuffer2[128];
+<a id='L569' name='L569' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> u16Buffer;
+<a id='L570' name='L570' />        strcpy(szFileSpec,m_domain);
+<a id='L571' name='L571' />        strcat(szFileSpec,"/");
+<a id='L572' name='L572' />        strcat(szFileSpec,m_namespace);
+<a id='L573' name='L573' />        strcat(szFileSpec,"/");
+<a id='L574' name='L574' />        strcat(szFileSpec,symbol);
+<a id='L575' name='L575' />        strcat(szFileSpec,".u16");
+<a id='L576' name='L576' />
+<a id='L577' name='L577' />        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;strlen(szFileSpec);i++) <em class='brace'>{</em>
+<a id='L578' name='L578' />                szFileSpec[i] = tolower(szFileSpec[i]);
+<a id='L579' name='L579' />        <em class='brace'>}</em>
+<a id='L580' name='L580' />
+<a id='L581' name='L581' />        FILE * fd = fopen(szFileSpec,"r");
+<a id='L582' name='L582' />        <strong class='reserved'>if</strong>(NULL == fd) <em class='brace'>{</em>
+<a id='L583' name='L583' />                *rc = EXIT_FAILURE;
+<a id='L584' name='L584' />                <strong class='reserved'>return</strong> 0;
+<a id='L585' name='L585' />        <em class='brace'>}</em>
+<a id='L586' name='L586' />        fgets(g_szBuffer2,<strong class='reserved'>sizeof</strong>(g_szBuffer2),fd);
+<a id='L587' name='L587' />        fclose(fd);
+<a id='L588' name='L588' />        sscanf(g_szBuffer2,"%4X",&amp;u16Buffer);
+<a id='L589' name='L589' />        *rc = (<strong class='reserved'>int</strong>)EXIT_SUCCESS;        
+<a id='L590' name='L590' />        <strong class='reserved'>return</strong> u16Buffer;
+<a id='L591' name='L591' /><em class='brace'>}</em>
+<a id='L592' name='L592' />
+<a id='L593' name='L593' /><strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/223.html' title='Multiple refered from 6 places.'>getu32</a>(<strong class='reserved'>char</strong> *symbol,<strong class='reserved'>int</strong> *rc)
+<a id='L594' name='L594' /><em class='brace'>{</em>
+<a id='L595' name='L595' />        assert(m_domain);
+<a id='L596' name='L596' />        assert(m_namespace);
+<a id='L597' name='L597' />        <strong class='reserved'>char</strong> szFileSpec[128];
+<a id='L598' name='L598' />        <strong class='reserved'>char</strong> g_szBuffer2[128];
+<a id='L599' name='L599' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> u32Buffer;
+<a id='L600' name='L600' />        strcpy(szFileSpec,m_domain);
+<a id='L601' name='L601' />        strcat(szFileSpec,"/");
+<a id='L602' name='L602' />        strcat(szFileSpec,m_namespace);
+<a id='L603' name='L603' />        strcat(szFileSpec,"/");
+<a id='L604' name='L604' />        strcat(szFileSpec,symbol);
+<a id='L605' name='L605' />        strcat(szFileSpec,".u32");
+<a id='L606' name='L606' />
+<a id='L607' name='L607' />        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;strlen(szFileSpec);i++) <em class='brace'>{</em>
+<a id='L608' name='L608' />                szFileSpec[i] = tolower(szFileSpec[i]);
+<a id='L609' name='L609' />        <em class='brace'>}</em>
+<a id='L610' name='L610' />
+<a id='L611' name='L611' />        FILE * fd = fopen(szFileSpec,"r");
+<a id='L612' name='L612' />        <strong class='reserved'>if</strong>(NULL == fd) <em class='brace'>{</em>
+<a id='L613' name='L613' />                assert(NULL != fd);
+<a id='L614' name='L614' />                *rc = EXIT_FAILURE;
+<a id='L615' name='L615' />                <strong class='reserved'>return</strong> 0;
+<a id='L616' name='L616' />        <em class='brace'>}</em>
+<a id='L617' name='L617' />        fgets(g_szBuffer2,<strong class='reserved'>sizeof</strong>(g_szBuffer2),fd);
+<a id='L618' name='L618' />        fclose(fd);
+<a id='L619' name='L619' />        sscanf(g_szBuffer2,g_szRadixFormat32Hex,&amp;u32Buffer);
+<a id='L620' name='L620' />        *rc = (<strong class='reserved'>int</strong>)EXIT_SUCCESS;
+<a id='L621' name='L621' />        <strong class='reserved'>return</strong> u32Buffer;
+<a id='L622' name='L622' /><em class='brace'>}</em>
+<a id='L623' name='L623' />
+<a id='L624' name='L624' /><strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong> <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/224.html' title='Multiple refered from 8 places.'>getu64</a>(<strong class='reserved'>char</strong> *symbol,<strong class='reserved'>int</strong> *rc)
+<a id='L625' name='L625' /><em class='brace'>{</em>
+<a id='L626' name='L626' />        assert(m_domain);
+<a id='L627' name='L627' />        assert(m_namespace);
+<a id='L628' name='L628' />        <strong class='reserved'>char</strong> szFileSpec[128];
+<a id='L629' name='L629' />        <strong class='reserved'>char</strong> g_szBuffer2[128];
+<a id='L630' name='L630' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong> u64Buffer;
+<a id='L631' name='L631' />        strcpy(szFileSpec,m_domain);
+<a id='L632' name='L632' />        strcat(szFileSpec,"/");
+<a id='L633' name='L633' />        strcat(szFileSpec,m_namespace);
+<a id='L634' name='L634' />        strcat(szFileSpec,"/");
+<a id='L635' name='L635' />        strcat(szFileSpec,symbol);
+<a id='L636' name='L636' />        strcat(szFileSpec,".u64");
+<a id='L637' name='L637' />
+<a id='L638' name='L638' />        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;strlen(szFileSpec);i++) <em class='brace'>{</em>
+<a id='L639' name='L639' />                szFileSpec[i] = tolower(szFileSpec[i]);
+<a id='L640' name='L640' />        <em class='brace'>}</em>
+<a id='L641' name='L641' />
+<a id='L642' name='L642' />        FILE * fd = fopen(szFileSpec,"r");
+<a id='L643' name='L643' />        <strong class='reserved'>if</strong>(NULL == fd) <em class='brace'>{</em>
+<a id='L644' name='L644' />                *rc = EXIT_FAILURE;
+<a id='L645' name='L645' />                <strong class='reserved'>return</strong> 0;
+<a id='L646' name='L646' />        <em class='brace'>}</em>
+<a id='L647' name='L647' />        fgets(g_szBuffer2,<strong class='reserved'>sizeof</strong>(g_szBuffer2),fd);
+<a id='L648' name='L648' />        fclose(fd);
+<a id='L649' name='L649' />        sscanf(g_szBuffer2,g_szRadixFormat64Hex,&amp;u64Buffer);
+<a id='L650' name='L650' />        *rc = (<strong class='reserved'>int</strong>)EXIT_SUCCESS;
+<a id='L651' name='L651' />        <strong class='reserved'>return</strong> u64Buffer;
+<a id='L652' name='L652' /><em class='brace'>}</em>
+<a id='L653' name='L653' />
+<a id='L654' name='L654' /><strong class='reserved'>char</strong> * <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/214.html' title='Multiple refered from 2 places.'>getstr</a>(<strong class='reserved'>char</strong> *symbol,<strong class='reserved'>int</strong> *rc)
+<a id='L655' name='L655' /><em class='brace'>{</em>       <strong class='reserved'>char</strong> szFileSpec[128];
+<a id='L656' name='L656' />        <strong class='reserved'>char</strong> g_szBuffer2[128];
+<a id='L657' name='L657' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> u16Buffer;
+<a id='L658' name='L658' />        strcpy(szFileSpec,m_domain);
+<a id='L659' name='L659' />        strcat(szFileSpec,"/");
+<a id='L660' name='L660' />        strcat(szFileSpec,m_namespace);
+<a id='L661' name='L661' />        strcat(szFileSpec,"/");
+<a id='L662' name='L662' />        strcat(szFileSpec,symbol);
+<a id='L663' name='L663' />        strcat(szFileSpec,".str");
+<a id='L664' name='L664' />        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;strlen(szFileSpec);i++) <em class='brace'>{</em>
+<a id='L665' name='L665' />                szFileSpec[i] = tolower(szFileSpec[i]);
+<a id='L666' name='L666' />        <em class='brace'>}</em>
+<a id='L667' name='L667' />        FILE * fd = fopen(szFileSpec,"r");
+<a id='L668' name='L668' />        <strong class='reserved'>if</strong>(NULL == fd) <em class='brace'>{</em>
+<a id='L669' name='L669' />                *rc = EXIT_FAILURE;
+<a id='L670' name='L670' />                <strong class='reserved'>return</strong> NULL;
+<a id='L671' name='L671' />        <em class='brace'>}</em>
+<a id='L672' name='L672' />        fgets(g_szBuffer2,<strong class='reserved'>sizeof</strong>(g_szBuffer2),fd);
+<a id='L673' name='L673' />        fclose(fd);
+<a id='L674' name='L674' />        g_szBuffer2[strlen(g_szBuffer2)-1] = 0;
+<a id='L675' name='L675' />        strcpy(g_szStrBuffer,g_szBuffer2);
+<a id='L676' name='L676' />        *rc = (<strong class='reserved'>int</strong>)EXIT_SUCCESS;        
+<a id='L677' name='L677' />        <strong class='reserved'>return</strong> g_szStrBuffer;
+<a id='L678' name='L678' /><em class='brace'>}</em>
+<a id='L679' name='L679' />
+<a id='L680' name='L680' /><strong class='reserved'>char</strong> * <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/204.html' title='Multiple refered from 2 places.'>getmeta</a>(<strong class='reserved'>char</strong> *symbol,<strong class='reserved'>int</strong> *rc)
+<a id='L681' name='L681' /><em class='brace'>{</em>       <strong class='reserved'>char</strong> szFileSpec[128];
+<a id='L682' name='L682' />        <strong class='reserved'>char</strong> g_szBuffer2[128];
+<a id='L683' name='L683' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> u16Buffer;
+<a id='L684' name='L684' />        strcpy(szFileSpec,m_domain);
+<a id='L685' name='L685' />        strcat(szFileSpec,"/");
+<a id='L686' name='L686' />        strcat(szFileSpec,m_namespace);
+<a id='L687' name='L687' />        strcat(szFileSpec,"/");
+<a id='L688' name='L688' />        strcat(szFileSpec,symbol);
+<a id='L689' name='L689' />        strcat(szFileSpec,".mta");
+<a id='L690' name='L690' />        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;strlen(szFileSpec);i++) <em class='brace'>{</em>
+<a id='L691' name='L691' />                szFileSpec[i] = tolower(szFileSpec[i]);
+<a id='L692' name='L692' />        <em class='brace'>}</em>
+<a id='L693' name='L693' />        FILE * fd = fopen(szFileSpec,"r");
+<a id='L694' name='L694' />        <strong class='reserved'>if</strong>(NULL == fd) <em class='brace'>{</em>
+<a id='L695' name='L695' />                *rc = EXIT_FAILURE;
+<a id='L696' name='L696' />                <strong class='reserved'>return</strong> NULL;
+<a id='L697' name='L697' />        <em class='brace'>}</em>
+<a id='L698' name='L698' />        fgets(g_szBuffer2,<strong class='reserved'>sizeof</strong>(g_szBuffer2),fd);
+<a id='L699' name='L699' />        fclose(fd);
+<a id='L700' name='L700' />        g_szBuffer2[strlen(g_szBuffer2)-1] = 0;
+<a id='L701' name='L701' />        strcpy(g_szStrBuffer,g_szBuffer2);
+<a id='L702' name='L702' />        *rc = (<strong class='reserved'>int</strong>)EXIT_SUCCESS;
+<a id='L703' name='L703' />        <strong class='reserved'>return</strong> g_szStrBuffer;
+<a id='L704' name='L704' /><em class='brace'>}</em>
+<a id='L705' name='L705' />
+<a id='L706' name='L706' />
+<a id='L707' name='L707' />
+<a id='L708' name='L708' /><strong class='reserved'>int</strong> <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/201.html' title='Multiple refered from 4 places.'>gete8</a>(<strong class='reserved'>char</strong> * symbol,<strong class='reserved'>int</strong> * rc)
+<a id='L709' name='L709' /><em class='brace'>{</em>
+<a id='L710' name='L710' />        <strong class='reserved'>char</strong> szFileSpec[128];
+<a id='L711' name='L711' />        <strong class='reserved'>char</strong> g_szBuffer2[128];
+<a id='L712' name='L712' />        strcpy(szFileSpec,m_domain);
+<a id='L713' name='L713' />        strcat(szFileSpec,"/");
+<a id='L714' name='L714' />        strcat(szFileSpec,m_namespace);
+<a id='L715' name='L715' />        strcat(szFileSpec,"/");
+<a id='L716' name='L716' />        strcat(szFileSpec,symbol);
+<a id='L717' name='L717' />        strcat(szFileSpec,".e8");
+<a id='L718' name='L718' />        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;strlen(szFileSpec);i++) <em class='brace'>{</em>
+<a id='L719' name='L719' />                szFileSpec[i] = tolower(szFileSpec[i]);
+<a id='L720' name='L720' />        <em class='brace'>}</em>
+<a id='L721' name='L721' />        FILE * fd = fopen(szFileSpec,"r");
+<a id='L722' name='L722' />        <strong class='reserved'>if</strong>(NULL == fd) <em class='brace'>{</em>
+<a id='L723' name='L723' />                *rc = EXIT_FAILURE;
+<a id='L724' name='L724' />                <strong class='reserved'>return</strong> EXIT_FAILURE;
+<a id='L725' name='L725' />        <em class='brace'>}</em>
+<a id='L726' name='L726' />        fclose(fd);
+<a id='L727' name='L727' />        *rc = (<strong class='reserved'>int</strong>)EXIT_SUCCESS;
+<a id='L728' name='L728' />        <strong class='reserved'>return</strong> EXIT_SUCCESS;
+<a id='L729' name='L729' /><em class='brace'>}</em>
+<a id='L730' name='L730' />
+<a id='L731' name='L731' /><strong class='reserved'>int</strong> <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/198.html' title='Multiple refered from 2 places.'>gete16</a>(<strong class='reserved'>char</strong> *symbol,<strong class='reserved'>int</strong> *rc)
+<a id='L732' name='L732' /><em class='brace'>{</em>
+<a id='L733' name='L733' />        <strong class='reserved'>char</strong> szFileSpec[128];
+<a id='L734' name='L734' />        <strong class='reserved'>char</strong> g_szBuffer2[128];
+<a id='L735' name='L735' />        strcpy(szFileSpec,m_domain);
+<a id='L736' name='L736' />        strcat(szFileSpec,"/");
+<a id='L737' name='L737' />        strcat(szFileSpec,m_namespace);
+<a id='L738' name='L738' />        strcat(szFileSpec,"/");
+<a id='L739' name='L739' />        strcat(szFileSpec,symbol);
+<a id='L740' name='L740' />        strcat(szFileSpec,".e16");
+<a id='L741' name='L741' />        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;strlen(szFileSpec);i++) <em class='brace'>{</em>
+<a id='L742' name='L742' />                szFileSpec[i] = tolower(szFileSpec[i]);
+<a id='L743' name='L743' />        <em class='brace'>}</em>
+<a id='L744' name='L744' />        FILE * fd = fopen(szFileSpec,"r");
+<a id='L745' name='L745' />        <strong class='reserved'>if</strong>(NULL == fd) <em class='brace'>{</em>
+<a id='L746' name='L746' />                *rc = EXIT_FAILURE;
+<a id='L747' name='L747' />                <strong class='reserved'>return</strong> EXIT_FAILURE;
+<a id='L748' name='L748' />        <em class='brace'>}</em>
+<a id='L749' name='L749' />        fclose(fd);
+<a id='L750' name='L750' />        *rc = (<strong class='reserved'>int</strong>)EXIT_SUCCESS;        
+<a id='L751' name='L751' />        <strong class='reserved'>return</strong> EXIT_SUCCESS;
+<a id='L752' name='L752' /><em class='brace'>}</em>
+<a id='L753' name='L753' />
+<a id='L754' name='L754' /><strong class='reserved'>int</strong> <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/199.html' title='Multiple refered from 2 places.'>gete32</a>(<strong class='reserved'>char</strong> *symbol,<strong class='reserved'>int</strong> *rc)
+<a id='L755' name='L755' /><em class='brace'>{</em>
+<a id='L756' name='L756' />        <strong class='reserved'>char</strong> szFileSpec[128];
+<a id='L757' name='L757' />        <strong class='reserved'>char</strong> g_szBuffer2[128];
+<a id='L758' name='L758' />        strcpy(szFileSpec,m_domain);
+<a id='L759' name='L759' />        strcat(szFileSpec,"/");
+<a id='L760' name='L760' />        strcat(szFileSpec,m_namespace);
+<a id='L761' name='L761' />        strcat(szFileSpec,"/");
+<a id='L762' name='L762' />        strcat(szFileSpec,symbol);
+<a id='L763' name='L763' />        strcat(szFileSpec,".e32");
+<a id='L764' name='L764' />        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;strlen(szFileSpec);i++) <em class='brace'>{</em>
+<a id='L765' name='L765' />                szFileSpec[i] = tolower(szFileSpec[i]);
+<a id='L766' name='L766' />        <em class='brace'>}</em>
+<a id='L767' name='L767' />        FILE * fd = fopen(szFileSpec,"r");
+<a id='L768' name='L768' />        <strong class='reserved'>if</strong>(NULL == fd) <em class='brace'>{</em>
+<a id='L769' name='L769' />                assert(NULL != fd);
+<a id='L770' name='L770' />                *rc = EXIT_FAILURE;
+<a id='L771' name='L771' />                <strong class='reserved'>return</strong> EXIT_FAILURE;
+<a id='L772' name='L772' />        <em class='brace'>}</em>
+<a id='L773' name='L773' />        fclose(fd);
+<a id='L774' name='L774' />        *rc = (<strong class='reserved'>int</strong>)EXIT_SUCCESS;
+<a id='L775' name='L775' />        <strong class='reserved'>return</strong> EXIT_SUCCESS;
+<a id='L776' name='L776' /><em class='brace'>}</em>
+<a id='L777' name='L777' />
+<a id='L778' name='L778' /><strong class='reserved'>int</strong> <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/200.html' title='Multiple refered from 2 places.'>gete64</a>(<strong class='reserved'>char</strong> *symbol,<strong class='reserved'>int</strong> *rc)
+<a id='L779' name='L779' /><em class='brace'>{</em>
+<a id='L780' name='L780' />        <strong class='reserved'>char</strong> szFileSpec[128];
+<a id='L781' name='L781' />        <strong class='reserved'>char</strong> g_szBuffer2[128];
+<a id='L782' name='L782' />        strcpy(szFileSpec,m_domain);
+<a id='L783' name='L783' />        strcat(szFileSpec,"/");
+<a id='L784' name='L784' />        strcat(szFileSpec,m_namespace);
+<a id='L785' name='L785' />        strcat(szFileSpec,"/");
+<a id='L786' name='L786' />        strcat(szFileSpec,symbol);
+<a id='L787' name='L787' />        strcat(szFileSpec,".e64");
+<a id='L788' name='L788' />        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;strlen(szFileSpec);i++) <em class='brace'>{</em>
+<a id='L789' name='L789' />                szFileSpec[i] = tolower(szFileSpec[i]);
+<a id='L790' name='L790' />        <em class='brace'>}</em>
+<a id='L791' name='L791' />        FILE * fd = fopen(szFileSpec,"r");
+<a id='L792' name='L792' />        <strong class='reserved'>if</strong>(NULL == fd) <em class='brace'>{</em>
+<a id='L793' name='L793' />                *rc = EXIT_FAILURE;
+<a id='L794' name='L794' />                <strong class='reserved'>return</strong> EXIT_FAILURE;
+<a id='L795' name='L795' />        <em class='brace'>}</em>
+<a id='L796' name='L796' />        fclose(fd);
+<a id='L797' name='L797' />        *rc = (<strong class='reserved'>int</strong>)EXIT_SUCCESS;
+<a id='L798' name='L798' />        <strong class='reserved'>return</strong> EXIT_SUCCESS;
+<a id='L799' name='L799' /><em class='brace'>}</em>
+<a id='L800' name='L800' />
+<a id='L801' name='L801' />
+<a id='L802' name='L802' />
+<a id='L803' name='L803' />
+<a id='L804' name='L804' />
+<a id='L805' name='L805' /><strong class='reserved'>int</strong> <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/211.html' title='Multiple refered from 2 places.'>getp8</a>(<strong class='reserved'>char</strong> * symbol,<strong class='reserved'>int</strong> * rc)
+<a id='L806' name='L806' /><em class='brace'>{</em>
+<a id='L807' name='L807' />        <strong class='reserved'>char</strong> szFileSpec[128];
+<a id='L808' name='L808' />        <strong class='reserved'>char</strong> g_szBuffer2[128];
+<a id='L809' name='L809' />        strcpy(szFileSpec,m_domain);
+<a id='L810' name='L810' />        strcat(szFileSpec,"/");
+<a id='L811' name='L811' />        strcat(szFileSpec,m_namespace);
+<a id='L812' name='L812' />        strcat(szFileSpec,"/");
+<a id='L813' name='L813' />        strcat(szFileSpec,symbol);
+<a id='L814' name='L814' />        strcat(szFileSpec,".p8");
+<a id='L815' name='L815' />        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;strlen(szFileSpec);i++) <em class='brace'>{</em>
+<a id='L816' name='L816' />                szFileSpec[i] = tolower(szFileSpec[i]);
+<a id='L817' name='L817' />        <em class='brace'>}</em>
+<a id='L818' name='L818' />        FILE * fd = fopen(szFileSpec,"r");
+<a id='L819' name='L819' />        <strong class='reserved'>if</strong>(NULL == fd) <em class='brace'>{</em>
+<a id='L820' name='L820' />                *rc = EXIT_FAILURE;
+<a id='L821' name='L821' />                <strong class='reserved'>return</strong> EXIT_FAILURE;
+<a id='L822' name='L822' />        <em class='brace'>}</em>
+<a id='L823' name='L823' />        fclose(fd);
+<a id='L824' name='L824' />        *rc = (<strong class='reserved'>int</strong>)EXIT_SUCCESS;
+<a id='L825' name='L825' />        <strong class='reserved'>return</strong> EXIT_SUCCESS;
+<a id='L826' name='L826' /><em class='brace'>}</em>
+<a id='L827' name='L827' />
+<a id='L828' name='L828' /><strong class='reserved'>int</strong> <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/208.html' title='Multiple refered from 2 places.'>getp16</a>(<strong class='reserved'>char</strong> *symbol,<strong class='reserved'>int</strong> *rc)
+<a id='L829' name='L829' /><em class='brace'>{</em>
+<a id='L830' name='L830' />        <strong class='reserved'>char</strong> szFileSpec[128];
+<a id='L831' name='L831' />        <strong class='reserved'>char</strong> g_szBuffer2[128];
+<a id='L832' name='L832' />        strcpy(szFileSpec,m_domain);
+<a id='L833' name='L833' />        strcat(szFileSpec,"/");
+<a id='L834' name='L834' />        strcat(szFileSpec,m_namespace);
+<a id='L835' name='L835' />        strcat(szFileSpec,"/");
+<a id='L836' name='L836' />        strcat(szFileSpec,symbol);
+<a id='L837' name='L837' />        strcat(szFileSpec,".p16");
+<a id='L838' name='L838' />        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;strlen(szFileSpec);i++) <em class='brace'>{</em>
+<a id='L839' name='L839' />                szFileSpec[i] = tolower(szFileSpec[i]);
+<a id='L840' name='L840' />        <em class='brace'>}</em>
+<a id='L841' name='L841' />        FILE * fd = fopen(szFileSpec,"r");
+<a id='L842' name='L842' />        <strong class='reserved'>if</strong>(NULL == fd) <em class='brace'>{</em>
+<a id='L843' name='L843' />                *rc = EXIT_FAILURE;
+<a id='L844' name='L844' />                <strong class='reserved'>return</strong> EXIT_FAILURE;
+<a id='L845' name='L845' />        <em class='brace'>}</em>
+<a id='L846' name='L846' />        fclose(fd);
+<a id='L847' name='L847' />        *rc = (<strong class='reserved'>int</strong>)EXIT_SUCCESS;        
+<a id='L848' name='L848' />        <strong class='reserved'>return</strong> EXIT_SUCCESS;
+<a id='L849' name='L849' /><em class='brace'>}</em>
+<a id='L850' name='L850' />
+<a id='L851' name='L851' /><strong class='reserved'>int</strong> <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/209.html' title='Multiple refered from 2 places.'>getp32</a>(<strong class='reserved'>char</strong> *symbol,<strong class='reserved'>int</strong> *rc)
+<a id='L852' name='L852' /><em class='brace'>{</em>
+<a id='L853' name='L853' />        <strong class='reserved'>char</strong> szFileSpec[128];
+<a id='L854' name='L854' />        <strong class='reserved'>char</strong> g_szBuffer2[128];
+<a id='L855' name='L855' />        strcpy(szFileSpec,m_domain);
+<a id='L856' name='L856' />        strcat(szFileSpec,"/");
+<a id='L857' name='L857' />        strcat(szFileSpec,m_namespace);
+<a id='L858' name='L858' />        strcat(szFileSpec,"/");
+<a id='L859' name='L859' />        strcat(szFileSpec,symbol);
+<a id='L860' name='L860' />        strcat(szFileSpec,".p32");
+<a id='L861' name='L861' />        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;strlen(szFileSpec);i++) <em class='brace'>{</em>
+<a id='L862' name='L862' />                szFileSpec[i] = tolower(szFileSpec[i]);
+<a id='L863' name='L863' />        <em class='brace'>}</em>
+<a id='L864' name='L864' />        FILE * fd = fopen(szFileSpec,"r");
+<a id='L865' name='L865' />        <strong class='reserved'>if</strong>(NULL == fd) <em class='brace'>{</em>
+<a id='L866' name='L866' />                assert(NULL != fd);
+<a id='L867' name='L867' />                *rc = EXIT_FAILURE;
+<a id='L868' name='L868' />                <strong class='reserved'>return</strong> EXIT_FAILURE;
+<a id='L869' name='L869' />        <em class='brace'>}</em>
+<a id='L870' name='L870' />        fclose(fd);
+<a id='L871' name='L871' />        *rc = (<strong class='reserved'>int</strong>)EXIT_SUCCESS;
+<a id='L872' name='L872' />        <strong class='reserved'>return</strong> EXIT_SUCCESS;
+<a id='L873' name='L873' /><em class='brace'>}</em>
+<a id='L874' name='L874' />
+<a id='L875' name='L875' /><strong class='reserved'>int</strong> <a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>::<a href='../R/210.html' title='Multiple refered from 2 places.'>getp64</a>(<strong class='reserved'>char</strong> *symbol,<strong class='reserved'>int</strong> *rc)
+<a id='L876' name='L876' /><em class='brace'>{</em>
+<a id='L877' name='L877' />        <strong class='reserved'>char</strong> szFileSpec[128];
+<a id='L878' name='L878' />        <strong class='reserved'>char</strong> g_szBuffer2[128];
+<a id='L879' name='L879' />        strcpy(szFileSpec,m_domain);
+<a id='L880' name='L880' />        strcat(szFileSpec,"/");
+<a id='L881' name='L881' />        strcat(szFileSpec,m_namespace);
+<a id='L882' name='L882' />        strcat(szFileSpec,"/");
+<a id='L883' name='L883' />        strcat(szFileSpec,symbol);
+<a id='L884' name='L884' />        strcat(szFileSpec,".p64");
+<a id='L885' name='L885' />        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;strlen(szFileSpec);i++) <em class='brace'>{</em>
+<a id='L886' name='L886' />                szFileSpec[i] = tolower(szFileSpec[i]);
+<a id='L887' name='L887' />        <em class='brace'>}</em>
+<a id='L888' name='L888' />        FILE * fd = fopen(szFileSpec,"r");
+<a id='L889' name='L889' />        <strong class='reserved'>if</strong>(NULL == fd) <em class='brace'>{</em>
+<a id='L890' name='L890' />                *rc = EXIT_FAILURE;
+<a id='L891' name='L891' />                <strong class='reserved'>return</strong> EXIT_FAILURE;
+<a id='L892' name='L892' />        <em class='brace'>}</em>
+<a id='L893' name='L893' />        fclose(fd);
+<a id='L894' name='L894' />        *rc = (<strong class='reserved'>int</strong>)EXIT_SUCCESS;
+<a id='L895' name='L895' />        <strong class='reserved'>return</strong> EXIT_SUCCESS;
+<a id='L896' name='L896' /><em class='brace'>}</em>
+<a id='L897' name='L897' />
+<a id='L898' name='L898' />
+<a id='L899' name='L899' />
+<a id='L900' name='L900' />
+<a id='L901' name='L901' /><a href='../R/21.html' title='Multiple refered from 58 places.'>CSymbols</a>::~<a href='../D/39.html' title='Multiple defined in 6 places.'>CSymbols</a>()
+<a id='L902' name='L902' /><em class='brace'>{</em> 
+<a id='L903' name='L903' />        <strong class='reserved'>if</strong>(<a href='../D/84.html' title='Multiple defined in 2 places.'>FALSE</a> == g_bDebug) <em class='brace'>{</em>
+<a id='L904' name='L904' />                sprintf(g_szCommand,"rm -r %s",m_domain);
+<a id='L905' name='L905' />                system(g_szCommand);
+<a id='L906' name='L906' />        <em class='brace'>}</em>
+<a id='L907' name='L907' /><em class='brace'>}</em>
+<a id='L908' name='L908' />
+<a id='L909' name='L909' /><em class='comment'>///////////////////////</em>
+<a id='L910' name='L910' /><em class='comment'>// eof - symbols.hpp //</em>
+<a id='L911' name='L911' /><em class='comment'>///////////////////////</em>
+<a id='L912' name='L912' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L120'>[^]</a><a href='#L875'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

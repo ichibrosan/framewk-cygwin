@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>asz80/old/mkz80dec.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-5.9' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/826.html'>asz80</a>/<a href='../files/827.html'>old</a>/mkz80dec.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L5'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L5' title='Defined at 5.'>main</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='sharp'>#include</em> &lt;stdio.h&gt;
+<a id='L2' name='L2' /><em class='sharp'>#include</em> &lt;stdlib.h&gt;
+<a id='L3' name='L3' /><em class='sharp'>#include</em> &lt;string.h&gt;
+<a id='L4' name='L4' />\
+<a id='L5' name='L5' /><strong class='reserved'>int</strong> main(<strong class='reserved'>int</strong> argc,<strong class='reserved'>char</strong> **argv)
+<a id='L6' name='L6' /><em class='brace'>{</em>
+<a id='L7' name='L7' />        <strong class='reserved'>char</strong> g_szBuffer2[128];
+<a id='L8' name='L8' />
+<a id='L9' name='L9' />        FILE * fd2 = fopen("stuff2","w");
+<a id='L10' name='L10' />        FILE * fd = fopen("stuff","r");
+<a id='L11' name='L11' />        <strong class='reserved'>char</strong> *p = fgets(g_szBuffer2,<strong class='reserved'>sizeof</strong>(g_szBuffer2),fd);
+<a id='L12' name='L12' />        <strong class='reserved'>while</strong>(NULL != p) <em class='brace'>{</em>
+<a id='L13' name='L13' />                g_szBuffer2[strlen(g_szBuffer2)-1] = 0;
+<a id='L14' name='L14' />                fprintf(fd2,"#include \"asz80/%s\"\n",g_szBuffer2);
+<a id='L15' name='L15' />                p = fgets(g_szBuffer2,<strong class='reserved'>sizeof</strong>(g_szBuffer2),fd);
+<a id='L16' name='L16' />        <em class='brace'>}</em>
+<a id='L17' name='L17' />        fclose(fd);
+<a id='L18' name='L18' />        fclose(fd2);
+<a id='L19' name='L19' /><em class='brace'>}</em>
+<a id='L20' name='L20' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L5'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>
