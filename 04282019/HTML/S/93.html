@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>as8085/mvi_85.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.6.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/840.html'>as8085</a>/mvi_85.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L12'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L12' title='Defined at 12.'>strcmp</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>// $Log: mvi_85.hpp,v $</em>
+<a id='L2' name='L2'></a><em class='comment'>// Revision 1.2  2011/03/25 22:47:07  doug</em>
+<a id='L3' name='L3'></a><em class='comment'>// add log and trim gpl stuff</em>
+<a id='L4' name='L4'></a><em class='comment'>////</em>
+<a id='L5' name='L5'></a>
+<a id='L6' name='L6'></a><strong class='reserved'>char</strong> mvi_85[] = "$Id: mvi_85.hpp,v 1.2 2011/03/25 22:47:07 doug Exp $";
+<a id='L7' name='L7'></a>
+<a id='L8' name='L8'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L9' name='L9'></a>
+<a id='L10' name='L10'></a><em class='comment'>// 3/23/2011 dwg - fixed binary "mvi a,"</em>
+<a id='L11' name='L11'></a>
+<a id='L12' name='L12'></a><strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"MVI")) <em class='brace'>{</em>
+<a id='L13' name='L13'></a>        fprintf(g_flog,"Processing 8085 MVI g_szOpcode\n");
+<a id='L14' name='L14'></a>        g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L15' name='L15'></a>        g_iLineType = <a href='../D/419.html' title='Multiple defined in 2 places.'>TYPE_8085</a>;
+<a id='L16' name='L16'></a>        <strong class='reserved'>if</strong>(0 &lt; strlen(g_szParms)) <em class='brace'>{</em>
+<a id='L17' name='L17'></a>                <strong class='reserved'>switch</strong>(g_szParms[0]) <em class='brace'>{</em>
+<a id='L18' name='L18'></a>                        <strong class='reserved'>case</strong> 'a':
+<a id='L19' name='L19'></a>                        <strong class='reserved'>case</strong> 'A':
+<a id='L20' name='L20'></a>                                g_ucBytes[g_iBytesIndex++] = 0x3E;
+<a id='L21' name='L21'></a>                                g_ucBytes[g_iBytesIndex++] = <a href='../D/560.html' title='Multiple defined in 2 places.'>resolvep8</a>(&amp;g_szParms[2])&amp;255;      
+<a id='L22' name='L22'></a>                                <strong class='reserved'>break</strong>;  
+<a id='L23' name='L23'></a>                        <strong class='reserved'>case</strong> 'b':
+<a id='L24' name='L24'></a>                        <strong class='reserved'>case</strong> 'B':
+<a id='L25' name='L25'></a>                                g_ucBytes[g_iBytesIndex++] = 0x06;
+<a id='L26' name='L26'></a>                                g_ucBytes[g_iBytesIndex++] = <a href='../D/560.html' title='Multiple defined in 2 places.'>resolvep8</a>(&amp;g_szParms[2])&amp;255;      
+<a id='L27' name='L27'></a>                                <strong class='reserved'>break</strong>;
+<a id='L28' name='L28'></a>                        <strong class='reserved'>case</strong> 'c':
+<a id='L29' name='L29'></a>                        <strong class='reserved'>case</strong> 'C':
+<a id='L30' name='L30'></a>                                g_ucBytes[g_iBytesIndex++] = 0x0E;
+<a id='L31' name='L31'></a>                                g_ucBytes[g_iBytesIndex++] = <a href='../D/560.html' title='Multiple defined in 2 places.'>resolvep8</a>(&amp;g_szParms[2])&amp;255;      
+<a id='L32' name='L32'></a>                                <strong class='reserved'>break</strong>;
+<a id='L33' name='L33'></a>                        <strong class='reserved'>case</strong> 'd':
+<a id='L34' name='L34'></a>                        <strong class='reserved'>case</strong> 'D':
+<a id='L35' name='L35'></a>                                g_ucBytes[g_iBytesIndex++] = 0x16;
+<a id='L36' name='L36'></a>                                g_ucBytes[g_iBytesIndex++] = <a href='../D/560.html' title='Multiple defined in 2 places.'>resolvep8</a>(&amp;g_szParms[2])&amp;255;      
+<a id='L37' name='L37'></a>                                <strong class='reserved'>break</strong>;
+<a id='L38' name='L38'></a>                        <strong class='reserved'>case</strong> 'e':
+<a id='L39' name='L39'></a>                        <strong class='reserved'>case</strong> 'E':
+<a id='L40' name='L40'></a>                                g_ucBytes[g_iBytesIndex++] = 0x1E;
+<a id='L41' name='L41'></a>                                g_ucBytes[g_iBytesIndex++] = <a href='../D/560.html' title='Multiple defined in 2 places.'>resolvep8</a>(&amp;g_szParms[2])&amp;255;      
+<a id='L42' name='L42'></a>                                <strong class='reserved'>break</strong>;
+<a id='L43' name='L43'></a>                        <strong class='reserved'>case</strong> 'h':
+<a id='L44' name='L44'></a>                        <strong class='reserved'>case</strong> 'H':
+<a id='L45' name='L45'></a>                                g_ucBytes[g_iBytesIndex++] = 0x26;
+<a id='L46' name='L46'></a>                                g_ucBytes[g_iBytesIndex++] = <a href='../D/560.html' title='Multiple defined in 2 places.'>resolvep8</a>(&amp;g_szParms[2])&amp;255;      
+<a id='L47' name='L47'></a>                                <strong class='reserved'>break</strong>;
+<a id='L48' name='L48'></a>                        <strong class='reserved'>case</strong> 'l':
+<a id='L49' name='L49'></a>                        <strong class='reserved'>case</strong> 'L':
+<a id='L50' name='L50'></a>                                g_ucBytes[g_iBytesIndex++] = 0x2E;
+<a id='L51' name='L51'></a>                                g_ucBytes[g_iBytesIndex++] = <a href='../D/560.html' title='Multiple defined in 2 places.'>resolvep8</a>(&amp;g_szParms[2])&amp;255;      
+<a id='L52' name='L52'></a>                                <strong class='reserved'>break</strong>;
+<a id='L53' name='L53'></a>                        <strong class='reserved'>case</strong> 'm':
+<a id='L54' name='L54'></a>                        <strong class='reserved'>case</strong> 'M':
+<a id='L55' name='L55'></a>                                g_ucBytes[g_iBytesIndex++] = 0x36;
+<a id='L56' name='L56'></a>                                g_ucBytes[g_iBytesIndex++] = <a href='../D/560.html' title='Multiple defined in 2 places.'>resolvep8</a>(&amp;g_szParms[2])&amp;255;      
+<a id='L57' name='L57'></a>                                <strong class='reserved'>break</strong>;
+<a id='L58' name='L58'></a>                        <strong class='reserved'>default</strong>:
+<a id='L59' name='L59'></a>                                g_iErrorNo |= <a href='../D/74.html' title='Multiple defined in 2 places.'>ERROR_NOREG</a>;
+<a id='L60' name='L60'></a>                                <strong class='reserved'>break</strong>;
+<a id='L61' name='L61'></a>                <em class='brace'>}</em>
+<a id='L62' name='L62'></a>        <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L63' name='L63'></a>                g_iErrorNo |= <a href='../D/73.html' title='Multiple defined in 2 places.'>ERROR_NOPARM</a>;
+<a id='L64' name='L64'></a>        <em class='brace'>}</em>
+<a id='L65' name='L65'></a><em class='brace'>}</em>
+<a id='L66' name='L66'></a>
+<a id='L67' name='L67'></a><em class='comment'>///////////////////</em>
+<a id='L68' name='L68'></a><em class='comment'>// eof - mvi.hpp //</em>
+<a id='L69' name='L69'></a><em class='comment'>///////////////////</em>
+<a id='L70' name='L70'></a>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L12'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

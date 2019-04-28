@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>base/ascalc.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.6.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/846.html'>base</a>/ascalc.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L24'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/125.html' title='Multiple included from 2 places.'>INCLUDED FROM</a></h2>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L24' title='Defined at 24.'>calc</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>// ---------------------------------------------------</em>
+<a id='L2' name='L2'></a><em class='comment'>// ascalc.hpp   10-Mar-11   Running on Mac OS X 10.6.6</em>
+<a id='L3' name='L3'></a><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
+<a id='L4' name='L4'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L5' name='L5'></a><em class='comment'>// ---------------------------------------------------</em>
+<a id='L6' name='L6'></a><em class='comment'>// This file is part of Vintage Modern Assembler Plus Tools.</em>
+<a id='L7' name='L7'></a><em class='comment'>// VMAPT is free software: you can redistribute it and/or modify</em>
+<a id='L8' name='L8'></a><em class='comment'>// it under the terms of the GNU General Public License as published by</em>
+<a id='L9' name='L9'></a><em class='comment'>// the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L10' name='L10'></a><em class='comment'>// (at your option) any later version.</em>
+<a id='L11' name='L11'></a><em class='comment'>// VMAPT is distributed in the hope that it will be useful,</em>
+<a id='L12' name='L12'></a><em class='comment'>// but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L13' name='L13'></a><em class='comment'>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L14' name='L14'></a><em class='comment'>// GNU General Public License for more details.</em>
+<a id='L15' name='L15'></a><em class='comment'>// You should have received a copy of the GNU General Public License</em>
+<a id='L16' name='L16'></a><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L17' name='L17'></a>
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#ifdef</em> <a href='../D/28.html' title='Multiple defined in 2 places.'>CALC</a>
+<a id='L20' name='L20'></a>
+<a id='L21' name='L21'></a><strong class='reserved'>static</strong> <strong class='reserved'>char</strong> szAscalcHpp[] = "$Id: ascalc.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $";
+<a id='L22' name='L22'></a>
+<a id='L23' name='L23'></a><em class='comment'>// minimal parser for simpletwo term expression</em>
+<a id='L24' name='L24'></a><strong class='reserved'>void</strong> <a href='../R/175.html' title='Multiple referred from 4 places.'>calc</a>(<strong class='reserved'>char</strong> * p,<strong class='reserved'>char</strong> *t1,<strong class='reserved'>char</strong> *op,<strong class='reserved'>char</strong> *t2)
+<a id='L25' name='L25'></a><em class='brace'>{</em>
+<a id='L26' name='L26'></a>        <strong class='reserved'>char</strong> szDelim[]  = "+-*/&amp;|";
+<a id='L27' name='L27'></a>        <strong class='reserved'>char</strong> g_szBuffer2[128];
+<a id='L28' name='L28'></a>        <strong class='reserved'>char</strong> szOp[128];
+<a id='L29' name='L29'></a>        <strong class='reserved'>char</strong> szTerm1[128];
+<a id='L30' name='L30'></a>
+<a id='L31' name='L31'></a>        strcpy(szTerm1,p);
+<a id='L32' name='L32'></a>        strcpy(g_szBuffer2,p);
+<a id='L33' name='L33'></a>        <strong class='reserved'>char</strong> * pDelim = strpbrk(g_szBuffer2,szDelim);
+<a id='L34' name='L34'></a>        <strong class='reserved'>char</strong> * pBuffer = g_szBuffer2;
+<a id='L35' name='L35'></a>        <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> diff = pDelim - pBuffer;
+<a id='L36' name='L36'></a>        <strong class='reserved'>int</strong> iDiff = (<strong class='reserved'>int</strong>)diff;
+<a id='L37' name='L37'></a>        szTerm1[iDiff] = 0;
+<a id='L38' name='L38'></a>        strcpy(t1,szTerm1);
+<a id='L39' name='L39'></a>        strcpy(szOp,&amp;g_szBuffer2[iDiff]);
+<a id='L40' name='L40'></a>        szOp[1] = 0;
+<a id='L41' name='L41'></a>        strcpy(op,szOp);
+<a id='L42' name='L42'></a>        strcpy(t2,&amp;g_szBuffer2[iDiff+1]);
+<a id='L43' name='L43'></a><em class='brace'>}</em>
+<a id='L44' name='L44'></a>
+<a id='L45' name='L45'></a><em class='sharp'>#endif</em>
+<a id='L46' name='L46'></a>
+<a id='L47' name='L47'></a><em class='comment'>//////////////////////</em>
+<a id='L48' name='L48'></a><em class='comment'>// eof - ascalc.cpp //</em>
+<a id='L49' name='L49'></a><em class='comment'>//////////////////////</em>
+<a id='L50' name='L50'></a>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L24'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ascommon/radix.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.6.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/818.html'>ascommon</a>/radix.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L13'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L13' title='Defined at 13.'>strcmp</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>// $Log: radix.hpp,v $</em>
+<a id='L2' name='L2'></a><em class='comment'>// Revision 1.2  2011/03/25 21:47:31  doug</em>
+<a id='L3' name='L3'></a><em class='comment'>// *** empty log message ***</em>
+<a id='L4' name='L4'></a><em class='comment'>//</em>
+<a id='L5' name='L5'></a><em class='comment'>// Revision 1.1  2011/03/25 07:19:17  doug</em>
+<a id='L6' name='L6'></a><em class='comment'>// Initial revision</em>
+<a id='L7' name='L7'></a><em class='comment'>//</em>
+<a id='L8' name='L8'></a>
+<a id='L9' name='L9'></a><strong class='reserved'>char</strong> dir_radix[] = "$Id: radix.hpp,v 1.2 2011/03/25 21:47:31 doug Exp $";
+<a id='L10' name='L10'></a>
+<a id='L11' name='L11'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L12' name='L12'></a>
+<a id='L13' name='L13'></a><strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"RADIX")) <em class='brace'>{</em>
+<a id='L14' name='L14'></a>        g_iLineType = <a href='../D/422.html' title='Multiple defined in 2 places.'>TYPE_DIR</a>;
+<a id='L15' name='L15'></a>        fprintf(g_flog,"Processing RADIX directive\n");
+<a id='L16' name='L16'></a>        <strong class='reserved'>if</strong>(0 != strlen(g_szParms)) <em class='brace'>{</em>
+<a id='L17' name='L17'></a>                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"DECIMAL")) <em class='brace'>{</em>
+<a id='L18' name='L18'></a>                        strcpy(g_szRadixFormat8,  g_szRadixFormat8Decimal);
+<a id='L19' name='L19'></a>                        strcpy(g_szRadixFormat16,g_szRadixFormat16Decimal);
+<a id='L20' name='L20'></a>                        strcpy(g_szRadixFormat32,g_szRadixFormat32Decimal);
+<a id='L21' name='L21'></a>                        strcpy(g_szRadixFormat64,g_szRadixFormat64Decimal);
+<a id='L22' name='L22'></a>                        g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L23' name='L23'></a>                <em class='brace'>}</em>               
+<a id='L24' name='L24'></a>                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"HEX")) <em class='brace'>{</em>
+<a id='L25' name='L25'></a>                        strcpy(g_szRadixFormat8, g_szRadixFormat8Hex);
+<a id='L26' name='L26'></a>                        strcpy(g_szRadixFormat16,g_szRadixFormat16Hex);
+<a id='L27' name='L27'></a>                        strcpy(g_szRadixFormat32,g_szRadixFormat32Hex);
+<a id='L28' name='L28'></a>                        strcpy(g_szRadixFormat64,g_szRadixFormat64Hex);
+<a id='L29' name='L29'></a>                        g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L30' name='L30'></a>                <em class='brace'>}</em>               
+<a id='L31' name='L31'></a>                <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szParms),"HEXADECIMAL")) <em class='brace'>{</em>
+<a id='L32' name='L32'></a>                        strcpy(g_szRadixFormat8, g_szRadixFormat8Hex);
+<a id='L33' name='L33'></a>                        strcpy(g_szRadixFormat16,g_szRadixFormat16Hex);
+<a id='L34' name='L34'></a>                        strcpy(g_szRadixFormat32,g_szRadixFormat32Hex);
+<a id='L35' name='L35'></a>                        strcpy(g_szRadixFormat64,g_szRadixFormat64Hex);
+<a id='L36' name='L36'></a>                        g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L37' name='L37'></a>                <em class='brace'>}</em>               
+<a id='L38' name='L38'></a>        <em class='brace'>}</em>
+<a id='L39' name='L39'></a><em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L13'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

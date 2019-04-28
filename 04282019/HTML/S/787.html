@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>base/mvall.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.6.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/846.html'>base</a>/mvall.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L88'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L88' title='Defined at 88.'>main</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>// $Log: mvall.cpp,v $</em>
+<a id='L2' name='L2'></a><em class='comment'>// Revision 1.2  2011/04/14 15:13:09  doug</em>
+<a id='L3' name='L3'></a><em class='comment'>// get ready for release to wiki and server</em>
+<a id='L4' name='L4'></a><em class='comment'>//</em>
+<a id='L5' name='L5'></a><em class='comment'>//</em>
+<a id='L6' name='L6'></a>
+<a id='L7' name='L7'></a><em class='comment'>// ---------------------------------------------------</em>
+<a id='L8' name='L8'></a><em class='comment'>// editall.cpp  21-Feb-11   Running on Mac OS X 10.6.6</em>
+<a id='L9' name='L9'></a><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
+<a id='L10' name='L10'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L11' name='L11'></a><em class='comment'>// ---------------------------------------------------</em>
+<a id='L12' name='L12'></a><em class='comment'>// This file is part of Vintage Modern Assembler Plus Tools.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>// VMAPT is free software: you can redistribute it and/or modify</em>
+<a id='L15' name='L15'></a><em class='comment'>// it under the terms of the GNU General Public License as published by</em>
+<a id='L16' name='L16'></a><em class='comment'>// the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L17' name='L17'></a><em class='comment'>// (at your option) any later version.</em>
+<a id='L18' name='L18'></a><em class='comment'>//</em>
+<a id='L19' name='L19'></a><em class='comment'>// VMAPT is distributed in the hope that it will be useful,</em>
+<a id='L20' name='L20'></a><em class='comment'>// but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L21' name='L21'></a><em class='comment'>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L22' name='L22'></a><em class='comment'>// GNU General Public License for more details.</em>
+<a id='L23' name='L23'></a><em class='comment'>//</em>
+<a id='L24' name='L24'></a><em class='comment'>// You should have received a copy of the GNU General Public License</em>
+<a id='L25' name='L25'></a><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L26' name='L26'></a><em class='comment'>//</em>
+<a id='L27' name='L27'></a><em class='comment'>//#define __TRACE</em>
+<a id='L28' name='L28'></a>
+<a id='L29' name='L29'></a><strong class='reserved'>static</strong> <strong class='reserved'>char</strong> szEditallCpp[] = "$Id: mvall.cpp,v 1.2 2011/04/14 15:13:09 doug Exp $";
+<a id='L30' name='L30'></a>
+<a id='L31' name='L31'></a><em class='sharp'>#include</em> "<a href='../I/196.html'>asdefs.hpp</a>"
+<a id='L32' name='L32'></a><em class='sharp'>#define</em> <a href='../R/46.html' title='Multiple referred from 2 places.'>DWGALLOC</a>
+<a id='L33' name='L33'></a><em class='sharp'>#define</em> <a href='../R/66.html' title='Multiple referred from 2 places.'>INIBIND</a>
+<a id='L34' name='L34'></a><em class='sharp'>#define</em> <a href='../R/36.html' title='Multiple referred from 2 places.'>DIRCLASS</a>
+<a id='L35' name='L35'></a><em class='sharp'>#include</em> "<a href='../I/324.html'>includes.hpp</a>"
+<a id='L36' name='L36'></a><em class='sharp'>#include</em> &lt;assert.h&gt;
+<a id='L37' name='L37'></a><em class='sharp'>#include</em> &lt;sys/types.h&gt;
+<a id='L38' name='L38'></a><em class='sharp'>#include</em> &lt;sys/dir.h&gt;
+<a id='L39' name='L39'></a>
+<a id='L40' name='L40'></a><em class='sharp'>#include</em> &lt;errno.h&gt;
+<a id='L41' name='L41'></a><em class='sharp'>#include</em> &lt;unistd.h&gt;
+<a id='L42' name='L42'></a>
+<a id='L43' name='L43'></a><em class='comment'>//#define SHOW_NAMLEN</em>
+<a id='L44' name='L44'></a><em class='comment'>//#define SHOW_TYPE</em>
+<a id='L45' name='L45'></a><em class='comment'>//#define SHOW_SIZE_BEFORE</em>
+<a id='L46' name='L46'></a><em class='comment'>//#define SHOW_ERRNO</em>
+<a id='L47' name='L47'></a><em class='sharp'>#define</em> <a href='../R/108.html' title='Multiple referred from 2 places.'>SHOW_NAME</a>
+<a id='L48' name='L48'></a><em class='sharp'>#define</em> <a href='../R/110.html' title='Multiple referred from 4 places.'>SHOW_SIZE_AFTER</a>
+<a id='L49' name='L49'></a><em class='sharp'>#define</em> <a href='../R/109.html' title='Multiple referred from 2 places.'>SHOW_NEWLINE</a>
+<a id='L50' name='L50'></a>
+<a id='L51' name='L51'></a><em class='comment'>/*</em>
+<a id='L52' name='L52'></a><em class='comment'> * The dirent structure defines the format of directory entries.</em>
+<a id='L53' name='L53'></a><em class='comment'> *</em>
+<a id='L54' name='L54'></a><em class='comment'> * A directory entry has a struct dirent at the front of it, containing its</em>
+<a id='L55' name='L55'></a><em class='comment'> * inode number, the length of the entry, and the length of the name</em>
+<a id='L56' name='L56'></a><em class='comment'> * contained in the entry.  These are followed by the name padded to a 4</em>
+<a id='L57' name='L57'></a><em class='comment'> * byte boundary with null g_ucBytes.  All names are guaranteed null terminated.</em>
+<a id='L58' name='L58'></a><em class='comment'> * The maximum length of a name in a directory is MAXNAMLEN when 32-bit</em>
+<a id='L59' name='L59'></a><em class='comment'> * ino_t is in effect; (MAXPATHLEN - 1) when 64-bit ino_t is in effect.</em>
+<a id='L60' name='L60'></a><em class='comment'> */</em>
+<a id='L61' name='L61'></a>
+<a id='L62' name='L62'></a><em class='comment'>//#define __DARWIN_MAXPATHLEN   1024</em>
+<a id='L63' name='L63'></a>
+<a id='L64' name='L64'></a><em class='comment'>//#define __DARWIN_STRUCT_DIRENTRY { \</em>
+<a id='L65' name='L65'></a><em class='comment'>//      __uint64_t  d_ino;      /* file number of entry */ \</em>
+<a id='L66' name='L66'></a><em class='comment'>//      __uint64_t  d_seekoff;  /* seek offset (optional, used by servers) */ \</em>
+<a id='L67' name='L67'></a><em class='comment'>//      __uint16_t  d_reclen;   /* length of this record */ \</em>
+<a id='L68' name='L68'></a><em class='comment'>//      __uint16_t  d_namlen;   /* length of string in d_name */ \</em>
+<a id='L69' name='L69'></a><em class='comment'>//      __uint8_t   d_type;     /* file type, see below */ \</em>
+<a id='L70' name='L70'></a><em class='comment'>//      char      d_name[__DARWIN_MAXPATHLEN]; </em>
+<a id='L71' name='L71'></a><em class='comment'>//} dirent;</em>
+<a id='L72' name='L72'></a>
+<a id='L73' name='L73'></a><em class='comment'>//#define       MAXNAMLEN       __DARWIN_MAXNAMLEN</em>
+<a id='L74' name='L74'></a>
+<a id='L75' name='L75'></a><em class='comment'>//*</em>
+<a id='L76' name='L76'></a><em class='comment'>//* File types</em>
+<a id='L77' name='L77'></a><em class='comment'>//*</em>
+<a id='L78' name='L78'></a><em class='comment'>//#define       DT_UNKNOWN       0</em>
+<a id='L79' name='L79'></a><em class='comment'>//#define       DT_FIFO          1</em>
+<a id='L80' name='L80'></a><em class='comment'>//#define       DT_CHR           2</em>
+<a id='L81' name='L81'></a><em class='comment'>//#define       DT_DIR           4</em>
+<a id='L82' name='L82'></a><em class='comment'>//#define       DT_BLK           6</em>
+<a id='L83' name='L83'></a><em class='comment'>//#define       DT_REG           8</em>
+<a id='L84' name='L84'></a><em class='comment'>//#define       DT_LNK          10</em>
+<a id='L85' name='L85'></a><em class='comment'>//#define       DT_SOCK         12</em>
+<a id='L86' name='L86'></a><em class='comment'>//#define       DT_WHT          14</em>
+<a id='L87' name='L87'></a>
+<a id='L88' name='L88'></a><strong class='reserved'>int</strong> main(<strong class='reserved'>int</strong> argc,<strong class='reserved'>char</strong> **argv)
+<a id='L89' name='L89'></a><em class='brace'>{</em>
+<a id='L90' name='L90'></a>        <a href='../D/440.html' title='Multiple defined in 2 places.'>Version</a>(argv[0]);
+<a id='L91' name='L91'></a>
+<a id='L92' name='L92'></a><em class='comment'>//      This works on Mac OS X</em>
+<a id='L93' name='L93'></a><em class='comment'>//      char g_szBuffer2[__DARWIN_MAXPATHLEN];</em>
+<a id='L94' name='L94'></a>
+<a id='L95' name='L95'></a>        <em class='comment'>// This works anywhere</em>
+<a id='L96' name='L96'></a>        <strong class='reserved'>char</strong> g_szBuffer2[1024];
+<a id='L97' name='L97'></a>        
+<a id='L98' name='L98'></a>        FILE * fd = fopen("mvthem","w");
+<a id='L99' name='L99'></a>        fprintf(fd,"#!/bin/sh\n");
+<a id='L100' name='L100'></a>
+<a id='L101' name='L101'></a>        <a href='../D/30.html' title='Multiple defined in 6 places.'>CDir</a> *  dir = <strong class='reserved'>new</strong> <a href='../D/30.html' title='Multiple defined in 6 places.'>CDir</a>(".");
+<a id='L102' name='L102'></a>        <strong class='reserved'>delete</strong> dir;
+<a id='L103' name='L103'></a>
+<a id='L104' name='L104'></a>        dir = <strong class='reserved'>new</strong> <a href='../D/30.html' title='Multiple defined in 6 places.'>CDir</a>(".");
+<a id='L105' name='L105'></a>        <strong class='reserved'>int</strong> rc = dir-&gt;<a href='../D/554.html' title='Multiple defined in 2 places.'>read</a>();
+<a id='L106' name='L106'></a>        <strong class='reserved'>while</strong>(EXIT_SUCCESS == rc) <em class='brace'>{</em>
+<a id='L107' name='L107'></a>                dir-&gt;<a href='../D/501.html' title='Multiple defined in 2 places.'>getname</a>(g_szBuffer2);
+<a id='L108' name='L108'></a>                <strong class='reserved'>if</strong>(4 &lt; strlen(g_szBuffer2)) <em class='brace'>{</em>
+<a id='L109' name='L109'></a>                        <strong class='reserved'>if</strong>(0 == <a href='../D/568.html' title='Multiple defined in 249 places.'>strcmp</a>(".hpp",&amp;g_szBuffer2[strlen(g_szBuffer2)-4]))<em class='brace'>{</em>
+<a id='L110' name='L110'></a>                                g_szBuffer2[strlen(g_szBuffer2)-4] = 0;
+<a id='L111' name='L111'></a>                                fprintf(fd,"mv %s.hpp %s_85.hpp\n",g_szBuffer2,g_szBuffer2);
+<a id='L112' name='L112'></a>                        <em class='brace'>}</em>
+<a id='L113' name='L113'></a>                <em class='brace'>}</em>
+<a id='L114' name='L114'></a>                rc = dir-&gt;<a href='../D/554.html' title='Multiple defined in 2 places.'>read</a>();
+<a id='L115' name='L115'></a>        <em class='brace'>}</em>
+<a id='L116' name='L116'></a>        <strong class='reserved'>delete</strong> dir;
+<a id='L117' name='L117'></a>
+<a id='L118' name='L118'></a>        fclose(fd);
+<a id='L119' name='L119'></a>        system("chmod +x mvthem");
+<a id='L120' name='L120'></a>        
+<a id='L121' name='L121'></a>        <strong class='reserved'>return</strong> EXIT_SUCCESS;
+<a id='L122' name='L122'></a><em class='brace'>}</em>
+<a id='L123' name='L123'></a>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L88'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

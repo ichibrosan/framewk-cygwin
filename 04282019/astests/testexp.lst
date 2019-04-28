@@ -1,0 +1,147 @@
+testexp.lst     Page 1 ../assemble Ver 19.04.28i
+$Id:$
+COPR 2011 Douglas Goodall
+   1:U:1 0000:                    title      $Id:$  
+   2:U:1 0000:                    subttl     COPR 2011 Douglas Goodall  
+   3:U:1 0000:                ;
+   4:U:1 0000:                    include    gplstuff.inc  
+   1:U:2 0000:                ; ------------------------------------
+   2:U:2 0000:                ; This file is part of "Vintage Modern 
+   3:U:2 0000:                ; Assembler Plus Tools (VMAPT)".
+   4:U:2 0000:                ;
+   5:U:2 0000:                ; VMAPT is free software: you can 
+   6:U:2 0000:                ; redistribute it and/or modify it under 
+   7:U:2 0000:                ; the terms of  the GNU General Public 
+   8:U:2 0000:                ; License  as published by the Free
+   9:U:2 0000:                ; Software  Foundation, either version 3
+  10:U:2 0000:                ; of the License, or (at your option)  
+  11:U:2 0000:                ; any later version.
+  12:U:2 0000:                ;
+  13:U:2 0000:                ; VMAPT is distributed in the hope that it 
+  14:U:2 0000:                ; will be useful, but WITHOUT ANY WARRANTY;
+  15:U:2 0000:                ; without even the implied warranty of   
+  16:U:2 0000:                ; MERCHANTABILITY or FITNESS FOR A 
+  17:U:2 0000:                ; PARTICULAR PURPOSE. See the GNU General 
+  18:U:2 0000:                ; Public License for more details.
+  19:U:2 0000:                ;
+  20:U:2 0000:                ; You  should have received a copy of the 
+  21:U:2 0000:                ; GNU General Public License along with 
+  22:U:2 0000:                ; VMAPT. If not,
+  23:U:2 0000:                ; see <http://www.gnu.org/licenses/>.
+  24:U:2 0000:                ; ----------------------------------------
+  25:U:2 0000:                                
+   5:U:1 0000:                                
+   6:U:1 0000:                    proc       8085  
+   7:U:1 0000:                    radix      hex  
+   8:U:1 0000:                                
+   9:U:1 0100:                    org        100  
+  10:U:1 0100:                                
+  11:U:1 0100: 00       start     nop          
+  12:U:1 0101:                                
+  13:U:1 D000:                    org        0D000  
+  14:U:1 D000: C3 00 E0 jcld      jmp        cold  
+  15:U:1 D003: C3 11 E0 jwrm      jmp        warm  
+  16:U:1 D006: C3 22 E0 jcout     jmp        conout  
+  17:U:1 D009:                                
+  18:U:1 E000:                    org        0E000  
+  19:U:1 E000: 00       cold      nop          
+  20:U:1 E011:                    orgplus    10  
+  21:U:1 E011: 00       warm      nop          
+  22:U:1 E022:                    orgplus    10  
+  23:U:1 E022: 00       conout    nop          
+  24:U:1 E023:                                
+  25:U:1 E023:                    export     jcld  
+testexp.lst     Page 2 ../assemble Ver 19.04.28i
+$Id:$
+COPR 2011 Douglas Goodall
+  26:U:1 E023:                    export     jwrm  
+  27:U:1 E023:                    export     jcout  
+  28:U:1 E023:                    export     cold  
+  29:U:1 E023:                    export     warm  
+  30:U:1 E023:                    export     conout  
+  31:U:1 E023:                                
+  32:U:1 E023: 00 01              end        start  
+testexp.lst     Page 3 ../assemble Ver 19.04.28i
+$Id:$
+COPR 2011 Douglas Goodall
+  32:U:1 ----------------------------------------------
+  32:U:1 Symbol table byte entries...
+  32:U:1 jcld.u8, 0x00 (0)
+  32:U:1 conout.u8, 0x22 (34)
+  32:U:1 jwrm.u8, 0x03 (3)
+  32:U:1 start.u8, 0x00 (0)
+  32:U:1 cold.u8, 0x00 (0)
+  32:U:1 warm.u8, 0x11 (17)
+  32:U:1 jcout.u8, 0x06 (6)
+  32:U:1 ----------------------------------------------
+  32:U:1 Symbol table word entries...
+  32:U:1 cold.u16, 0xE000 (57344)
+  32:U:1 jwrm.u16, 0xD003 (53251)
+  32:U:1 jcld.u16, 0xD000 (53248)
+  32:U:1 pagewdth.u16, 0x004A (74)
+  32:U:1 warm.u16, 0xE011 (57361)
+  32:U:1 start.u16, 0x0100 (256)
+  32:U:1 ldefpgwd.u16, 0x004A (74)
+  32:U:1 ldefpgln.u16, 0x0032 (50)
+  32:U:1 jcout.u16, 0xD006 (53254)
+  32:U:1 pagelgth.u16, 0x0032 (50)
+  32:U:1 conout.u16, 0xE022 (57378)
+  32:U:1 ----------------------------------------------
+  32:U:1 Symbol table dword entries...
+  32:U:1 start.u32, 0x00000100 (256)
+  32:U:1 warm.u32, 0x0000E011 (57361)
+  32:U:1 jwrm.u32, 0x0000D003 (53251)
+  32:U:1 jcld.u32, 0x0000D000 (53248)
+  32:U:1 cold.u32, 0x0000E000 (57344)
+  32:U:1 conout.u32, 0x0000E022 (57378)
+  32:U:1 jcout.u32, 0x0000D006 (53254)
+  32:U:1 ----------------------------------------------
+  32:U:1 Symbol table qword entries...
+  32:U:1 conout.u64, 0x0000000000000E022 (57378)
+  32:U:1 jcout.u64, 0x0000000000000D006 (53254)
+  32:U:1 start.u64, 0x00000000000000100 (256)
+  32:U:1 warm.u64, 0x0000000000000E011 (57361)
+  32:U:1 jwrm.u64, 0x0000000000000D003 (53251)
+  32:U:1 jcld.u64, 0x0000000000000D000 (53248)
+  32:U:1 cold.u64, 0x0000000000000E000 (57344)
+  32:U:1 ----------------------------------------------
+  32:U:1 Symbol table meta entries...
+  32:U:1 asdec68k.mta, "$Id: asdec68k.hpp,v 1.1 2011/03/24 11:58:05 doug Exp +
+  32+U+1 E025:          $"
+  32:U:1 asdecdir.mta, "$Id: asdecdir.hpp,v 1.1 2011/03/24 11:58:05 doug Exp +
+  32+U+1 E025:          $"
+  32:U:1 hostname.mta, "Douglas-MacBook-Pro.local"
+testexp.lst     Page 4 ../assemble Ver 19.04.28i
+$Id:$
+COPR 2011 Douglas Goodall
+  32:U:1 asymbols.mta, "$Id: asymbols.hpp,v 1.6 2011/04/14 15:13:09 doug Exp +
+  32+U+1 E025:          $"
+  32:U:1 assemble.mta, "$Id: assemble.cpp,v 1.5 2011/04/14 15:13:09 doug Exp +
+  32+U+1 E025:          $"
+  32:U:1 asdec65.mta, "$Id: asdec65.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $"
+  32:U:1 asdecz80.mta, "$Id: asdecz80.hpp,v 1.1 2011/03/24 11:58:05 doug Exp +
+  32+U+1 E025:          $"
+  32:U:1 asoutlst.mta, "$Id: asoutlst.hpp,v 1.2 2011/03/25 05:48:59 doug Exp +
+  32+U+1 E025:          $"
+  32:U:1 username.mta, "doug"
+  32:U:1 asouthex.mta, "$Id: asouthex.hpp,v 1.1 2011/03/24 11:58:05 doug Exp +
+  32+U+1 E025:          $"
+  32:U:1 asoutwrn.mta, "$Id: asoutwrn.hpp,v 1.2 2011/04/14 15:13:09 doug Exp +
+  32+U+1 E025:          $"
+  32:U:1 asprint.mta, "$Id: asprint.hpp,v 1.2 2011/03/25 05:48:10 doug Exp $"
+  32:U:1 ascalc.mta, "$Id: ascalc.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $"
+  32:U:1 asdec20.mta, "$Id: asdec20.hpp,v 1.1 2011/03/25 05:49:38 doug Exp $"
+  32:U:1 pwd.mta, "/Users/doug/src/framewk/04282019/astests"
+  32:U:1 ashexout.mta, "$Id: ashexout.hpp,v 1.1 2011/03/24 11:58:05 doug Exp +
+  32+U+1 E025:          $"
+  32:U:1 asouterr.mta, "$Id: asouterr.hpp,v 1.2 2011/04/14 15:13:09 doug Exp +
+  32+U+1 E025:          $"
+  32:U:1 asdec80.mta, "$Id: asdec80.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $"
+  32:U:1 asparse.mta, "$Id: asparse.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $"
+  32:U:1 asdec85.mta, "$Id: asdec85.hpp,v 1.1 2011/03/24 11:58:05 doug Exp $"
+  32:U:1 asresolv.mta, "$Id: asresolv.hpp,v 1.3 2011/04/14 15:13:09 doug Exp +
+  32+U+1 E025:          $"
+  32:U:1 aseval.mta, "$Id: aseval.hpp,v 1.2 2011/04/14 15:13:09 doug Exp $"
+  32:U:1 machtype.mta, "x86_64-apple-darwin18"
+  32:U:1 hosttype.mta, "x86_64"
+  32:U:1 program.mta, "testexp"

@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>doc/dirent.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.6.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/847.html'>doc</a>/dirent.h</h2>
+<em class='comment'>/* [&lt;][&gt;][^][v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/364.html' title='Multiple included from 4 places.'>INCLUDED FROM</a></h2>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>/*</em>
+<a id='L2' name='L2'></a><em class='comment'> * Copyright (c) 2000-2008 Apple Inc. All rights reserved.</em>
+<a id='L3' name='L3'></a><em class='comment'> *</em>
+<a id='L4' name='L4'></a><em class='comment'> * @APPLE_OSREFERENCE_LICENSE_HEADER_START@</em>
+<a id='L5' name='L5'></a><em class='comment'> * </em>
+<a id='L6' name='L6'></a><em class='comment'> * This file contains Original Code and/or Modifications of Original Code</em>
+<a id='L7' name='L7'></a><em class='comment'> * as defined in and that are subject to the Apple Public Source License</em>
+<a id='L8' name='L8'></a><em class='comment'> * Version 2.0 (the 'License'). You may not use this file except in</em>
+<a id='L9' name='L9'></a><em class='comment'> * compliance with the License. The rights granted to you under the License</em>
+<a id='L10' name='L10'></a><em class='comment'> * may not be used to create, or enable the creation or redistribution of,</em>
+<a id='L11' name='L11'></a><em class='comment'> * unlawful or unlicensed copies of an Apple operating system, or to</em>
+<a id='L12' name='L12'></a><em class='comment'> * circumvent, violate, or enable the circumvention or violation of, any</em>
+<a id='L13' name='L13'></a><em class='comment'> * terms of an Apple operating system software license agreement.</em>
+<a id='L14' name='L14'></a><em class='comment'> * </em>
+<a id='L15' name='L15'></a><em class='comment'> * Please obtain a copy of the License at</em>
+<a id='L16' name='L16'></a><em class='comment'> * http://www.opensource.apple.com/apsl/ and read it before using this file.</em>
+<a id='L17' name='L17'></a><em class='comment'> * </em>
+<a id='L18' name='L18'></a><em class='comment'> * The Original Code and all software distributed under the License are</em>
+<a id='L19' name='L19'></a><em class='comment'> * distributed on an 'AS IS' basis, WITHOUT WARRANTY OF ANY KIND, EITHER</em>
+<a id='L20' name='L20'></a><em class='comment'> * EXPRESS OR IMPLIED, AND APPLE HEREBY DISCLAIMS ALL SUCH WARRANTIES,</em>
+<a id='L21' name='L21'></a><em class='comment'> * INCLUDING WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY,</em>
+<a id='L22' name='L22'></a><em class='comment'> * FITNESS FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT OR NON-INFRINGEMENT.</em>
+<a id='L23' name='L23'></a><em class='comment'> * Please see the License for the specific language governing rights and</em>
+<a id='L24' name='L24'></a><em class='comment'> * limitations under the License.</em>
+<a id='L25' name='L25'></a><em class='comment'> * </em>
+<a id='L26' name='L26'></a><em class='comment'> * @APPLE_OSREFERENCE_LICENSE_HEADER_END@</em>
+<a id='L27' name='L27'></a><em class='comment'> */</em>
+<a id='L28' name='L28'></a><em class='comment'>/* Copyright (c) 1995 NeXT Computer, Inc. All Rights Reserved */</em>
+<a id='L29' name='L29'></a><em class='comment'>/*-</em>
+<a id='L30' name='L30'></a><em class='comment'> * Copyright (c) 1989, 1993</em>
+<a id='L31' name='L31'></a><em class='comment'> *      The Regents of the University of California.  All rights reserved.</em>
+<a id='L32' name='L32'></a><em class='comment'> *</em>
+<a id='L33' name='L33'></a><em class='comment'> * Redistribution and use in source and binary forms, with or without</em>
+<a id='L34' name='L34'></a><em class='comment'> * modification, are permitted provided that the following conditions</em>
+<a id='L35' name='L35'></a><em class='comment'> * are met:</em>
+<a id='L36' name='L36'></a><em class='comment'> * 1. Redistributions of source code must retain the above copyright</em>
+<a id='L37' name='L37'></a><em class='comment'> *    notice, this list of conditions and the following disclaimer.</em>
+<a id='L38' name='L38'></a><em class='comment'> * 2. Redistributions in binary form must reproduce the above copyright</em>
+<a id='L39' name='L39'></a><em class='comment'> *    notice, this list of conditions and the following disclaimer in the</em>
+<a id='L40' name='L40'></a><em class='comment'> *    documentation and/or other materials provided with the distribution.</em>
+<a id='L41' name='L41'></a><em class='comment'> * 3. All advertising materials mentioning features or use of this software</em>
+<a id='L42' name='L42'></a><em class='comment'> *    must display the following acknowledgement:</em>
+<a id='L43' name='L43'></a><em class='comment'> *      This product includes software developed by the University of</em>
+<a id='L44' name='L44'></a><em class='comment'> *      California, Berkeley and its contributors.</em>
+<a id='L45' name='L45'></a><em class='comment'> * 4. Neither the name of the University nor the names of its contributors</em>
+<a id='L46' name='L46'></a><em class='comment'> *    may be used to endorse or promote products derived from this software</em>
+<a id='L47' name='L47'></a><em class='comment'> *    without specific prior written permission.</em>
+<a id='L48' name='L48'></a><em class='comment'> *</em>
+<a id='L49' name='L49'></a><em class='comment'> * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND</em>
+<a id='L50' name='L50'></a><em class='comment'> * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</em>
+<a id='L51' name='L51'></a><em class='comment'> * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE</em>
+<a id='L52' name='L52'></a><em class='comment'> * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE</em>
+<a id='L53' name='L53'></a><em class='comment'> * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL</em>
+<a id='L54' name='L54'></a><em class='comment'> * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS</em>
+<a id='L55' name='L55'></a><em class='comment'> * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)</em>
+<a id='L56' name='L56'></a><em class='comment'> * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT</em>
+<a id='L57' name='L57'></a><em class='comment'> * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY</em>
+<a id='L58' name='L58'></a><em class='comment'> * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF</em>
+<a id='L59' name='L59'></a><em class='comment'> * SUCH DAMAGE.</em>
+<a id='L60' name='L60'></a><em class='comment'> *</em>
+<a id='L61' name='L61'></a><em class='comment'> *      @(#)dirent.h    8.3 (Berkeley) 8/10/94</em>
+<a id='L62' name='L62'></a><em class='comment'> */</em>
+<a id='L63' name='L63'></a>
+<a id='L64' name='L64'></a><em class='comment'>/*</em>
+<a id='L65' name='L65'></a><em class='comment'> * The dirent structure defines the format of directory entries.</em>
+<a id='L66' name='L66'></a><em class='comment'> *</em>
+<a id='L67' name='L67'></a><em class='comment'> * A directory entry has a struct dirent at the front of it, containing its</em>
+<a id='L68' name='L68'></a><em class='comment'> * inode number, the length of the entry, and the length of the name</em>
+<a id='L69' name='L69'></a><em class='comment'> * contained in the entry.  These are followed by the name padded to a 4</em>
+<a id='L70' name='L70'></a><em class='comment'> * byte boundary with null bytes.  All names are guaranteed null terminated.</em>
+<a id='L71' name='L71'></a><em class='comment'> * The maximum length of a name in a directory is MAXNAMLEN when 32-bit</em>
+<a id='L72' name='L72'></a><em class='comment'> * ino_t is in effect; (MAXPATHLEN - 1) when 64-bit ino_t is in effect.</em>
+<a id='L73' name='L73'></a><em class='comment'> */</em>
+<a id='L74' name='L74'></a>
+<a id='L75' name='L75'></a><em class='sharp'>#ifndef</em> <a href='../S/576.html#L76' title='Defined at 76 in doc/dirent.h.'>_SYS_DIRENT_H</a> 
+<a id='L76' name='L76'></a><em class='sharp'>#define</em> <a href='../S/576.html#L75' title='Referred from 75 in doc/dirent.h.'>_SYS_DIRENT_H</a> 
+<a id='L77' name='L77'></a>
+<a id='L78' name='L78'></a><em class='sharp'>#include</em> &lt;sys/_types.h&gt;
+<a id='L79' name='L79'></a><em class='sharp'>#include</em> &lt;sys/cdefs.h&gt;
+<a id='L80' name='L80'></a>
+<a id='L81' name='L81'></a><em class='sharp'>#ifndef</em> <a href='../S/576.html#L83' title='Defined at 83 in doc/dirent.h.'>_INO_T</a>
+<a id='L82' name='L82'></a><strong class='reserved'>typedef</strong> __darwin_ino_t  <a href='../S/576.html#L93' title='Referred from 93 in doc/dirent.h.'>ino_t</a>;          <em class='comment'>/* inode number */</em>
+<a id='L83' name='L83'></a><em class='sharp'>#define</em> <a href='../S/576.html#L81' title='Referred from 81 in doc/dirent.h.'>_INO_T</a>
+<a id='L84' name='L84'></a><em class='sharp'>#endif</em>
+<a id='L85' name='L85'></a>
+<a id='L86' name='L86'></a>
+<a id='L87' name='L87'></a><em class='sharp'>#define</em> <a href='../R/157.html' title='Multiple referred from 2 places.'>__DARWIN_MAXNAMLEN</a>      255
+<a id='L88' name='L88'></a>
+<a id='L89' name='L89'></a><em class='sharp'>#pragma</em> pack(4)
+<a id='L90' name='L90'></a>
+<a id='L91' name='L91'></a><em class='sharp'>#if</em> !__DARWIN_64_BIT_INO_T
+<a id='L92' name='L92'></a><strong class='reserved'>struct</strong> <a href='../R/187.html' title='Multiple referred from 3 places.'>dirent</a> <em class='brace'>{</em>
+<a id='L93' name='L93'></a>        <a href='../S/576.html#L82' title='Defined at 82 in doc/dirent.h.'>ino_t</a> d_ino;                    <em class='comment'>/* file number of entry */</em>
+<a id='L94' name='L94'></a>        __uint16_t d_reclen;            <em class='comment'>/* length of this record */</em>
+<a id='L95' name='L95'></a>        __uint8_t  d_type;              <em class='comment'>/* file type, see below */</em>
+<a id='L96' name='L96'></a>        __uint8_t  d_namlen;            <em class='comment'>/* length of string in d_name */</em>
+<a id='L97' name='L97'></a>        <strong class='reserved'>char</strong> d_name[<a href='../S/576.html#L87' title='Defined at 87 in doc/dirent.h.'>__DARWIN_MAXNAMLEN</a> + 1];    <em class='comment'>/* name must be no longer than this */</em>
+<a id='L98' name='L98'></a><em class='brace'>}</em>;
+<a id='L99' name='L99'></a><em class='sharp'>#endif</em> <em class='comment'>/* !__DARWIN_64_BIT_INO_T */</em>
+<a id='L100' name='L100'></a>
+<a id='L101' name='L101'></a><em class='sharp'>#pragma</em> pack()
+<a id='L102' name='L102'></a>
+<a id='L103' name='L103'></a><em class='sharp'>#define</em> <a href='../S/576.html#L111' title='Referred from 111 in doc/dirent.h.'>__DARWIN_MAXPATHLEN</a>     1024
+<a id='L104' name='L104'></a>
+<a id='L105' name='L105'></a><em class='sharp'>#define</em> <a href='../S/576.html#L115' title='Referred from 115 in doc/dirent.h.'>__DARWIN_STRUCT_DIRENTRY</a> <em class='brace'>{</em> \
+<a id='L106' name='L106'></a>        __uint64_t  d_ino;      <em class='comment'>/* file number of entry */</em> \
+<a id='L107' name='L107'></a>        __uint64_t  d_seekoff;  <em class='comment'>/* seek offset (optional, used by servers) */</em> \
+<a id='L108' name='L108'></a>        __uint16_t  d_reclen;   <em class='comment'>/* length of this record */</em> \
+<a id='L109' name='L109'></a>        __uint16_t  d_namlen;   <em class='comment'>/* length of string in d_name */</em> \
+<a id='L110' name='L110'></a>        __uint8_t   d_type;     <em class='comment'>/* file type, see below */</em> \
+<a id='L111' name='L111'></a>        <strong class='reserved'>char</strong>      d_name[<a href='../S/576.html#L103' title='Defined at 103 in doc/dirent.h.'>__DARWIN_MAXPATHLEN</a>]; <em class='comment'>/* entry name (up to MAXPATHLEN bytes) */</em> \
+<a id='L112' name='L112'></a><em class='brace'>}</em>
+<a id='L113' name='L113'></a>
+<a id='L114' name='L114'></a><em class='sharp'>#if</em> __DARWIN_64_BIT_INO_T
+<a id='L115' name='L115'></a><strong class='reserved'>struct</strong> <a href='../S/576.html#L92' title='Defined at 92 in doc/dirent.h.'>dirent</a> <a href='../S/576.html#L105' title='Defined at 105 in doc/dirent.h.'>__DARWIN_STRUCT_DIRENTRY</a>;
+<a id='L116' name='L116'></a><em class='sharp'>#endif</em> <em class='comment'>/* __DARWIN_64_BIT_INO_T */</em>
+<a id='L117' name='L117'></a>
+<a id='L118' name='L118'></a>
+<a id='L119' name='L119'></a>
+<a id='L120' name='L120'></a><em class='sharp'>#if</em> !<strong class='reserved'>defined</strong>(_POSIX_C_SOURCE) || <strong class='reserved'>defined</strong>(_DARWIN_C_SOURCE)
+<a id='L121' name='L121'></a><em class='sharp'>#define</em> d_fileno        d_ino           <em class='comment'>/* backward compatibility */</em>
+<a id='L122' name='L122'></a><em class='sharp'>#define</em> <a href='../R/73.html' title='Multiple referred from 14 places.'>MAXNAMLEN</a>       <a href='../S/576.html#L87' title='Defined at 87 in doc/dirent.h.'>__DARWIN_MAXNAMLEN</a>
+<a id='L123' name='L123'></a><em class='comment'>/*</em>
+<a id='L124' name='L124'></a><em class='comment'> * File types</em>
+<a id='L125' name='L125'></a><em class='comment'> */</em>
+<a id='L126' name='L126'></a><em class='sharp'>#define</em> <a href='../R/44.html' title='Multiple referred from 2 places.'>DT_UNKNOWN</a>       0
+<a id='L127' name='L127'></a><em class='sharp'>#define</em> <a href='../R/40.html' title='Multiple referred from 2 places.'>DT_FIFO</a>          1
+<a id='L128' name='L128'></a><em class='sharp'>#define</em> <a href='../R/38.html' title='Multiple referred from 2 places.'>DT_CHR</a>           2
+<a id='L129' name='L129'></a><em class='sharp'>#define</em> <a href='../R/39.html' title='Multiple referred from 2 places.'>DT_DIR</a>           4
+<a id='L130' name='L130'></a><em class='sharp'>#define</em> <a href='../R/37.html' title='Multiple referred from 2 places.'>DT_BLK</a>           6
+<a id='L131' name='L131'></a><em class='sharp'>#define</em> <a href='../R/42.html' title='Multiple referred from 38 places.'>DT_REG</a>           8
+<a id='L132' name='L132'></a><em class='sharp'>#define</em> <a href='../R/41.html' title='Multiple referred from 2 places.'>DT_LNK</a>          10
+<a id='L133' name='L133'></a><em class='sharp'>#define</em> <a href='../R/43.html' title='Multiple referred from 2 places.'>DT_SOCK</a>         12
+<a id='L134' name='L134'></a><em class='sharp'>#define</em> <a href='../R/45.html' title='Multiple referred from 2 places.'>DT_WHT</a>          14
+<a id='L135' name='L135'></a>
+<a id='L136' name='L136'></a><em class='comment'>/*</em>
+<a id='L137' name='L137'></a><em class='comment'> * Convert between stat structure types and directory types.</em>
+<a id='L138' name='L138'></a><em class='comment'> */</em>
+<a id='L139' name='L139'></a><em class='sharp'>#define</em> IFTODT(mode)    (((mode) &amp; 0170000) &gt;&gt; 12)
+<a id='L140' name='L140'></a><em class='sharp'>#define</em> DTTOIF(dirtype) ((dirtype) &lt;&lt; 12)
+<a id='L141' name='L141'></a><em class='sharp'>#endif</em>
+<a id='L142' name='L142'></a>
+<a id='L143' name='L143'></a><em class='sharp'>#endif</em> <em class='comment'>/* _SYS_DIRENT_H  */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;][^][v]<a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

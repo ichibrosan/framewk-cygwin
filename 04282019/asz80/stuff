@@ -1,0 +1,25 @@
+  // 3/4/2011 dwg - add ix,pp
+  if(ERR_TYPE == linetype) {
+    if(5 == strlen(szADDtemp)) {
+      if(0 == strcmp("IX,BC",szADDtemp)) {
+        bytes[bytesindex++] = 0xDD;
+        bytes[bytesindex++] = 0x09 + 0x00;
+        linetype = TYPE_Z80;
+      }
+      if(0 == strcmp("IX,DE",szADDtemp)) {
+        bytes[bytesindex++] = 0xDD;
+        bytes[bytesindex++] = 0x09 + 0x10;
+        linetype = TYPE_Z80;
+      }
+      if(0 == strcmp("IX,IX",szADDtemp)) {
+        bytes[bytesindex++] = 0xDD;
+        bytes[bytesindex++] = 0x09 + 0x20;
+        linetype = TYPE_Z80;
+      }
+      if(0 == strcmp("IX,SP",szADDtemp)) {
+        bytes[bytesindex++] = 0xDD;
+        bytes[bytesindex++] = 0x09 + 0x30;
+        linetype = TYPE_Z80;
+      }
+
+

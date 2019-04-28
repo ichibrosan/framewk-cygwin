@@ -1,0 +1,45 @@
+// $Log: README,v $
+// Revision 1.1  2011/04/02 12:48:41  doug
+// Initial revision
+//
+//
+
+This is the README file for the Vintage Modern Assembler Plus Tools
+distribution.
+
+  Copyright (C) 1992, 1993, 1995, 1996, 1997, 1998, 1999, 2000, 2001,
+  2002, 2004, 2005, 2006, 2010 Free Software Foundation, Inc.
+
+  Copying and distribution of this file, with or without modification,
+  are permitted in any medium without royalty provided the copyright
+  notice and this notice are preserved.
+
+See the files ./INSTALL* for building and installation instructions.
+
+Home page: http://server.goodall.com/~doug/framewk
+HTML View: http://server.goodall.com/~doug/framewk/latest/HTML
+
+
+Bug reports:
+ Please include enough information for the maintainers to reproduce the
+ problem.  Generally speaking, that means:
+- the contents of any input files necessary to reproduce the bug
+  and command line invocations of the program(s) involved (crucial!).
+- a description of the problem and any samples of the erroneous output.
+- the version number of the program(s) involved (use --version).
+- hardware, operating system, and compiler versions (uname -a).
+- unusual options you gave to configure, if any (see config.status).
+- anything else that you think would be helpful.
+
+Patches are most welcome; if possible, please make them with diff -c and
+include ChangeLog entries.
+
+See README-dev for information on the development environment -- any
+interested parties are welcome.  If you're a programmer and wish to
+contribute, this should get you started.  If you're not a programmer,
+your help in writing test cases, checking the documentation against the
+implementation, translating the program strings to other languages,
+etc., would still be very much appreciated.
+
+Vintage Modern Assembler Plus Tools is free software.  
+See the file COPYING for copying conditions.

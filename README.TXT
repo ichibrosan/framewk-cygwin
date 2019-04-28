@@ -22,6 +22,8 @@
 Note:
 	The 08212011 version is compiled to run on the Mac OS X.
 	The 01072013 version is compiled to run on Windows 7.
+	Install the global program from ftp.gnu.org
+	Add ~/src/framewk/bin to your path in .bashrc
 
 
 To enter the appropriate development directory,

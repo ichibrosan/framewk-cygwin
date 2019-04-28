@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>base/shex.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.6.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/846.html'>base</a>/shex.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L46'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L46' title='Defined at 46.'>main</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>// $Log: shex.cpp,v $</em>
+<a id='L2' name='L2'></a><em class='comment'>// Revision 1.3  2011/04/14 15:13:09  doug</em>
+<a id='L3' name='L3'></a><em class='comment'>// get ready for release to wiki and server</em>
+<a id='L4' name='L4'></a><em class='comment'>//</em>
+<a id='L5' name='L5'></a><em class='comment'>//</em>
+<a id='L6' name='L6'></a>
+<a id='L7' name='L7'></a><em class='comment'>// ---------------------------------------------------</em>
+<a id='L8' name='L8'></a><em class='comment'>// shex.cpp     21-Feb-11   Running on Mac OS X 10.6.6</em>
+<a id='L9' name='L9'></a><em class='comment'>// S/n 2011-1042-654321  Written by Douglas W. Goodall</em>
+<a id='L10' name='L10'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L11' name='L11'></a><em class='comment'>// ---------------------------------------------------</em>
+<a id='L12' name='L12'></a><em class='comment'>// This file is part of Vintage Modern Assembler Plus Tools.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>// VMAPT is free software: you can redistribute it and/or modify</em>
+<a id='L15' name='L15'></a><em class='comment'>// it under the terms of the GNU General Public License as published by</em>
+<a id='L16' name='L16'></a><em class='comment'>// the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L17' name='L17'></a><em class='comment'>// (at your option) any later version.</em>
+<a id='L18' name='L18'></a><em class='comment'>//</em>
+<a id='L19' name='L19'></a><em class='comment'>// VMAPT is distributed in the hope that it will be useful,</em>
+<a id='L20' name='L20'></a><em class='comment'>// but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L21' name='L21'></a><em class='comment'>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L22' name='L22'></a><em class='comment'>// GNU General Public License for more details.</em>
+<a id='L23' name='L23'></a><em class='comment'>//</em>
+<a id='L24' name='L24'></a><em class='comment'>// You should have received a copy of the GNU General Public License</em>
+<a id='L25' name='L25'></a><em class='comment'>// along with VMAPT.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L26' name='L26'></a><em class='comment'>//</em>
+<a id='L27' name='L27'></a><em class='comment'>// 2/4/2011 dwg - cloned from Borland version</em>
+<a id='L28' name='L28'></a>
+<a id='L29' name='L29'></a><strong class='reserved'>static</strong> <strong class='reserved'>char</strong> szShexCpp[] = "$Id: shex.cpp,v 1.3 2011/04/14 15:13:09 doug Exp $";
+<a id='L30' name='L30'></a>
+<a id='L31' name='L31'></a><em class='sharp'>#include</em> "<a href='../I/196.html'>asdefs.hpp</a>"
+<a id='L32' name='L32'></a><em class='sharp'>#define</em> <a href='../R/46.html' title='Multiple referred from 2 places.'>DWGALLOC</a>
+<a id='L33' name='L33'></a><em class='sharp'>#define</em> <a href='../R/66.html' title='Multiple referred from 2 places.'>INIBIND</a>
+<a id='L34' name='L34'></a><em class='sharp'>#define</em> <a href='../R/77.html' title='Multiple referred from 2 places.'>MEMORY</a>
+<a id='L35' name='L35'></a><em class='sharp'>#include</em> "<a href='../I/324.html'>includes.hpp</a>"
+<a id='L36' name='L36'></a>
+<a id='L37' name='L37'></a>
+<a id='L38' name='L38'></a><em class='comment'>// to create 2's compliment, flip all bits and add 1</em>
+<a id='L39' name='L39'></a><em class='comment'>// (xor with FF ) + 1 does that</em>
+<a id='L40' name='L40'></a>
+<a id='L41' name='L41'></a><em class='comment'>// : &lt;length&gt; &lt;addr&gt; &lt;type&gt; &lt;data&gt; &lt;checksum&gt;</em>
+<a id='L42' name='L42'></a>
+<a id='L43' name='L43'></a><em class='sharp'>#define</em> <a href='../R/23.html' title='Multiple referred from 6 places.'>DATA_RECORD</a> 0x00
+<a id='L44' name='L44'></a><em class='sharp'>#define</em> EOF_RECORD  0x01
+<a id='L45' name='L45'></a>
+<a id='L46' name='L46'></a><strong class='reserved'>int</strong> main(<strong class='reserved'>int</strong> argc,<strong class='reserved'>char</strong> **argv)
+<a id='L47' name='L47'></a><em class='brace'>{</em>
+<a id='L48' name='L48'></a>        <a href='../D/410.html' title='Multiple defined in 2 places.'>TRACE</a>("starting main...");
+<a id='L49' name='L49'></a>        
+<a id='L50' name='L50'></a>        <a href='../D/440.html' title='Multiple defined in 2 places.'>Version</a>(argv[0]);
+<a id='L51' name='L51'></a>
+<a id='L52' name='L52'></a>        <strong class='reserved'>if</strong>(1 == argc) <em class='brace'>{</em>
+<a id='L53' name='L53'></a>                printf("usage - shex &lt;filespec&gt;\n");
+<a id='L54' name='L54'></a>        <em class='brace'>}</em>
+<a id='L55' name='L55'></a>
+<a id='L56' name='L56'></a>        <a href='../D/29.html' title='Multiple defined in 6 places.'>CAlloc</a> * pAlloc = <strong class='reserved'>new</strong> <a href='../D/29.html' title='Multiple defined in 6 places.'>CAlloc</a>();
+<a id='L57' name='L57'></a>        <strong class='reserved'>if</strong>(NULL == pAlloc) <em class='brace'>{</em>
+<a id='L58' name='L58'></a>                printf("pAlloc is NULL\n");
+<a id='L59' name='L59'></a>        <em class='brace'>}</em>
+<a id='L60' name='L60'></a>
+<a id='L61' name='L61'></a>        <a href='../D/34.html' title='Multiple defined in 8 places.'>CMemory</a> * pMem = <strong class='reserved'>new</strong> <a href='../D/34.html' title='Multiple defined in 8 places.'>CMemory</a>(<a href='../D/104.html' title='Multiple defined in 4 places.'>MEMSIZE</a>);
+<a id='L62' name='L62'></a>
+<a id='L63' name='L63'></a>        <a href='../D/410.html' title='Multiple defined in 2 places.'>TRACE</a>("opening output file for writing");
+<a id='L64' name='L64'></a>        FILE * fhex = fopen(argv[1],"w");               
+<a id='L65' name='L65'></a>        
+<a id='L66' name='L66'></a>        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> o=0;o&lt;<a href='../D/104.html' title='Multiple defined in 4 places.'>MEMSIZE</a>;o+=16) <em class='brace'>{</em>
+<a id='L67' name='L67'></a>                <strong class='reserved'>int</strong> check = 0;
+<a id='L68' name='L68'></a>                <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i=0;i&lt;16;i++) <em class='brace'>{</em>
+<a id='L69' name='L69'></a>                        check += pMem-&gt;<a href='../D/545.html' title='Multiple defined in 2 places.'>peekb</a>(o+i);
+<a id='L70' name='L70'></a>                <em class='brace'>}</em>
+<a id='L71' name='L71'></a>                <strong class='reserved'>if</strong>(0 != check) <em class='brace'>{</em>
+<a id='L72' name='L72'></a>                        <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> checksum = 0;
+<a id='L73' name='L73'></a>                        fprintf(fhex,":");
+<a id='L74' name='L74'></a>                        <strong class='reserved'>if</strong>(g_bDebug) fprintf(fhex," ");
+<a id='L75' name='L75'></a>                        fprintf(fhex,"%02X",16);
+<a id='L76' name='L76'></a>                        <strong class='reserved'>if</strong>(g_bDebug) fprintf(fhex," ");
+<a id='L77' name='L77'></a>                        fprintf(fhex,"%04X",o);
+<a id='L78' name='L78'></a>                        <strong class='reserved'>if</strong>(g_bDebug) fprintf(fhex," ");
+<a id='L79' name='L79'></a>                        fprintf(fhex,"%02X",<a href='../D/41.html' title='Multiple defined in 12 places.'>DATA_RECORD</a>);
+<a id='L80' name='L80'></a>                        <strong class='reserved'>if</strong>(g_bDebug) fprintf(fhex," ");
+<a id='L81' name='L81'></a>                        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> index=0;index&lt;16;index++) <em class='brace'>{</em>
+<a id='L82' name='L82'></a>                                fprintf(fhex,"%02X",pMem-&gt;<a href='../D/545.html' title='Multiple defined in 2 places.'>peekb</a>(index+o));
+<a id='L83' name='L83'></a><em class='comment'>//                              printf("%02X",pMem-&gt;peekb(index+o));</em>
+<a id='L84' name='L84'></a>                                checksum += pMem-&gt;<a href='../D/545.html' title='Multiple defined in 2 places.'>peekb</a>(index+o);
+<a id='L85' name='L85'></a>                        <em class='brace'>}</em>
+<a id='L86' name='L86'></a><em class='comment'>//                      printf("\n");</em>
+<a id='L87' name='L87'></a>                        <strong class='reserved'>if</strong>(g_bDebug) fprintf(fhex," ");
+<a id='L88' name='L88'></a>                        fprintf(fhex,"%02X",(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>)((checksum^0xff)+1)&amp;0xff);
+<a id='L89' name='L89'></a>                        fprintf(fhex,"\n");
+<a id='L90' name='L90'></a>                <em class='brace'>}</em>
+<a id='L91' name='L91'></a>        <em class='brace'>}</em>
+<a id='L92' name='L92'></a>
+<a id='L93' name='L93'></a>        fclose(fhex);
+<a id='L94' name='L94'></a>
+<a id='L95' name='L95'></a>        <strong class='reserved'>delete</strong> pMem;
+<a id='L96' name='L96'></a>                
+<a id='L97' name='L97'></a>
+<a id='L98' name='L98'></a>        <a href='../D/410.html' title='Multiple defined in 2 places.'>TRACE</a>("...ending main");
+<a id='L99' name='L99'></a><em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L46'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

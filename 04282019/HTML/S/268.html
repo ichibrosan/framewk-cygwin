@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ascommon/calc.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.6.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/842.html'>ascommon</a>/calc.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L13'>[^]</a><a href='#L90'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L13' title='Defined at 13.'>strcmp</a></li>
+<li><a href='#L37' title='Defined at 37.'>strcmp</a></li>
+<li><a href='#L65' title='Defined at 65.'>strcmp</a></li>
+<li><a href='#L90' title='Defined at 90.'>strcmp</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>// $Log: calc.hpp,v $</em>
+<a id='L2' name='L2'></a><em class='comment'>// Revision 1.2  2011/03/25 21:47:31  doug</em>
+<a id='L3' name='L3'></a><em class='comment'>// *** empty log message ***</em>
+<a id='L4' name='L4'></a><em class='comment'>//</em>
+<a id='L5' name='L5'></a><em class='comment'>// Revision 1.1  2011/03/25 07:19:17  doug</em>
+<a id='L6' name='L6'></a><em class='comment'>// Initial revision</em>
+<a id='L7' name='L7'></a><em class='comment'>//</em>
+<a id='L8' name='L8'></a>
+<a id='L9' name='L9'></a><strong class='reserved'>char</strong> dir_calculat[] = "$Id: calc.hpp,v 1.2 2011/03/25 21:47:31 doug Exp $";
+<a id='L10' name='L10'></a>
+<a id='L11' name='L11'></a><em class='comment'>// Copyright(c)2011 Douglas W. Goodall, United States.</em>
+<a id='L12' name='L12'></a>
+<a id='L13' name='L13'></a><strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"CALC8")) <em class='brace'>{</em>
+<a id='L14' name='L14'></a>  fprintf(g_flog,"Processing CALC8 directive\n");
+<a id='L15' name='L15'></a>  g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L16' name='L16'></a>  g_iLineType = <a href='../D/422.html' title='Multiple defined in 2 places.'>TYPE_DIR</a>;
+<a id='L17' name='L17'></a>  <strong class='reserved'>if</strong>(0 != strlen(g_szParms)) <em class='brace'>{</em>
+<a id='L18' name='L18'></a>    <strong class='reserved'>char</strong> myszTerm1[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
+<a id='L19' name='L19'></a>    <strong class='reserved'>char</strong> myszTerm2[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
+<a id='L20' name='L20'></a>    <strong class='reserved'>char</strong> szOp[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
+<a id='L21' name='L21'></a>    <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> acc;
+<a id='L22' name='L22'></a>    <a href='../D/470.html' title='Multiple defined in 2 places.'>calc</a>(g_szParms,myszTerm1,szOp,myszTerm2);
+<a id='L23' name='L23'></a>        <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> term1 = <a href='../D/560.html' title='Multiple defined in 2 places.'>resolvep8</a>(myszTerm1);
+<a id='L24' name='L24'></a>        <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> term2 = <a href='../D/560.html' title='Multiple defined in 2 places.'>resolvep8</a>(myszTerm2);
+<a id='L25' name='L25'></a>    <strong class='reserved'>switch</strong>(szOp[0]) <em class='brace'>{</em>
+<a id='L26' name='L26'></a>        <strong class='reserved'>case</strong> '+': acc = term1 + term2; <strong class='reserved'>break</strong>;
+<a id='L27' name='L27'></a>        <strong class='reserved'>case</strong> '-': acc = term1 - term2; <strong class='reserved'>break</strong>;
+<a id='L28' name='L28'></a>        <strong class='reserved'>case</strong> '*': acc = term1 * term2; <strong class='reserved'>break</strong>;
+<a id='L29' name='L29'></a>        <strong class='reserved'>case</strong> '/': acc = term1 / term2; <strong class='reserved'>break</strong>;
+<a id='L30' name='L30'></a>        <strong class='reserved'>case</strong> '|': acc = term1 | term2; <strong class='reserved'>break</strong>;
+<a id='L31' name='L31'></a>        <strong class='reserved'>default</strong>:  g_iErrorNo |= <a href='../D/76.html' title='Multiple defined in 2 places.'>ERROR_OPERATOR</a>;
+<a id='L32' name='L32'></a>    <em class='brace'>}</em>;
+<a id='L33' name='L33'></a>    g_pCSymbols-&gt;<a href='../D/455.html' title='Multiple defined in 14 places.'>add</a>(g_szLabel,<a href='../D/438.html' title='Multiple defined in 2 places.'>TYPE_U8</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>)acc);
+<a id='L34' name='L34'></a>  <em class='brace'>}</em>
+<a id='L35' name='L35'></a><em class='brace'>}</em>
+<a id='L36' name='L36'></a>
+<a id='L37' name='L37'></a><strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"CALC16")) <em class='brace'>{</em>
+<a id='L38' name='L38'></a>  fprintf(g_flog,"Processing CALC16 directive\n");
+<a id='L39' name='L39'></a>  g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L40' name='L40'></a>  g_iLineType = <a href='../D/422.html' title='Multiple defined in 2 places.'>TYPE_DIR</a>;
+<a id='L41' name='L41'></a>  <strong class='reserved'>if</strong>(0 != strlen(g_szParms)) <em class='brace'>{</em>
+<a id='L42' name='L42'></a>    <strong class='reserved'>char</strong> myszTerm1[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
+<a id='L43' name='L43'></a>    <strong class='reserved'>char</strong> myszTerm2[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
+<a id='L44' name='L44'></a>    <strong class='reserved'>char</strong> szOp[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
+<a id='L45' name='L45'></a>    <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> acc;
+<a id='L46' name='L46'></a>    <a href='../D/470.html' title='Multiple defined in 2 places.'>calc</a>(g_szParms,myszTerm1,szOp,myszTerm2);
+<a id='L47' name='L47'></a>    <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> term1 = <a href='../D/557.html' title='Multiple defined in 2 places.'>resolvep16</a>(myszTerm1);
+<a id='L48' name='L48'></a>    fprintf(g_flog,"term1 is 0x%04X\n",term1);
+<a id='L49' name='L49'></a>    <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> term2 = <a href='../D/557.html' title='Multiple defined in 2 places.'>resolvep16</a>(myszTerm2);
+<a id='L50' name='L50'></a>    fprintf(g_flog,"term2 is 0x%04X\n",term2);
+<a id='L51' name='L51'></a>    <strong class='reserved'>switch</strong>(szOp[0]) <em class='brace'>{</em>
+<a id='L52' name='L52'></a>        <strong class='reserved'>case</strong> '+': acc = term1 + term2; <strong class='reserved'>break</strong>;
+<a id='L53' name='L53'></a>        <strong class='reserved'>case</strong> '-': acc = term1 - term2; <strong class='reserved'>break</strong>;
+<a id='L54' name='L54'></a>        <strong class='reserved'>case</strong> '*': acc = term1 * term2; <strong class='reserved'>break</strong>;
+<a id='L55' name='L55'></a>        <strong class='reserved'>case</strong> '/': acc = term1 / term2; <strong class='reserved'>break</strong>;
+<a id='L56' name='L56'></a>        <strong class='reserved'>case</strong> '&amp;': acc = term1 &amp; term2; <strong class='reserved'>break</strong>;
+<a id='L57' name='L57'></a>        <strong class='reserved'>case</strong> '|': acc = term1 | term2; <strong class='reserved'>break</strong>;
+<a id='L58' name='L58'></a>        <strong class='reserved'>default</strong>: g_iErrorNo |= <a href='../D/76.html' title='Multiple defined in 2 places.'>ERROR_OPERATOR</a>;
+<a id='L59' name='L59'></a>    <em class='brace'>}</em>;
+<a id='L60' name='L60'></a>    fprintf(g_flog,"acc is 0x%04X\n",acc);
+<a id='L61' name='L61'></a>    g_pCSymbols-&gt;<a href='../D/455.html' title='Multiple defined in 14 places.'>add</a>(g_szLabel,<a href='../D/435.html' title='Multiple defined in 2 places.'>TYPE_U16</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>)acc);
+<a id='L62' name='L62'></a>  <em class='brace'>}</em>
+<a id='L63' name='L63'></a><em class='brace'>}</em>
+<a id='L64' name='L64'></a>
+<a id='L65' name='L65'></a><strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"CALC32")) <em class='brace'>{</em>
+<a id='L66' name='L66'></a>  fprintf(g_flog,"Processing CALC32 directive\n");
+<a id='L67' name='L67'></a>  g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L68' name='L68'></a>  g_iLineType = <a href='../D/422.html' title='Multiple defined in 2 places.'>TYPE_DIR</a>;
+<a id='L69' name='L69'></a>  <strong class='reserved'>if</strong>(0 != strlen(g_szParms)) <em class='brace'>{</em>
+<a id='L70' name='L70'></a>    <strong class='reserved'>char</strong> myszTerm1[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
+<a id='L71' name='L71'></a>    <strong class='reserved'>char</strong> myszTerm2[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
+<a id='L72' name='L72'></a>    <strong class='reserved'>char</strong> szOp[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
+<a id='L73' name='L73'></a>    <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> acc;
+<a id='L74' name='L74'></a>    <a href='../D/470.html' title='Multiple defined in 2 places.'>calc</a>(g_szParms,myszTerm1,szOp,myszTerm2);
+<a id='L75' name='L75'></a>    <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> term1 = <a href='../D/558.html' title='Multiple defined in 2 places.'>resolvep32</a>(myszTerm1);
+<a id='L76' name='L76'></a>    <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> term2 = <a href='../D/558.html' title='Multiple defined in 2 places.'>resolvep32</a>(myszTerm2);
+<a id='L77' name='L77'></a>    <strong class='reserved'>switch</strong>(szOp[0]) <em class='brace'>{</em>
+<a id='L78' name='L78'></a>        <strong class='reserved'>case</strong> '+': acc = term1 + term2; <strong class='reserved'>break</strong>;
+<a id='L79' name='L79'></a>        <strong class='reserved'>case</strong> '-': acc = term1 - term2; <strong class='reserved'>break</strong>;
+<a id='L80' name='L80'></a>        <strong class='reserved'>case</strong> '*': acc = term1 * term2; <strong class='reserved'>break</strong>;
+<a id='L81' name='L81'></a>        <strong class='reserved'>case</strong> '/': acc = term1 / term2; <strong class='reserved'>break</strong>;
+<a id='L82' name='L82'></a>        <strong class='reserved'>case</strong> '&amp;': acc = term1 &amp; term2; <strong class='reserved'>break</strong>;
+<a id='L83' name='L83'></a>        <strong class='reserved'>case</strong> '|': acc = term1 | term2; <strong class='reserved'>break</strong>;
+<a id='L84' name='L84'></a>        <strong class='reserved'>default</strong>: g_iErrorNo |= <a href='../D/76.html' title='Multiple defined in 2 places.'>ERROR_OPERATOR</a>;
+<a id='L85' name='L85'></a>    <em class='brace'>}</em>;
+<a id='L86' name='L86'></a>    g_pCSymbols-&gt;<a href='../D/455.html' title='Multiple defined in 14 places.'>add</a>(g_szLabel,<a href='../D/436.html' title='Multiple defined in 2 places.'>TYPE_U32</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong>)acc);
+<a id='L87' name='L87'></a>  <em class='brace'>}</em>
+<a id='L88' name='L88'></a><em class='brace'>}</em>
+<a id='L89' name='L89'></a>
+<a id='L90' name='L90'></a><strong class='reserved'>if</strong>(0 == <a href='../R/266.html' title='Multiple referred from 426 places.'>strcmp</a>(<a href='../D/570.html' title='Multiple defined in 2 places.'>strupr</a>(g_szOpcode),"CALC64")) <em class='brace'>{</em>
+<a id='L91' name='L91'></a>  fprintf(g_flog,"Processing CALC64 directive\n");
+<a id='L92' name='L92'></a>  g_iErrorNo ^= <a href='../D/80.html' title='Multiple defined in 2 places.'>ERROR_UNKOP</a>;
+<a id='L93' name='L93'></a>  g_iLineType = <a href='../D/422.html' title='Multiple defined in 2 places.'>TYPE_DIR</a>;
+<a id='L94' name='L94'></a>  <strong class='reserved'>if</strong>(0 != strlen(g_szParms)) <em class='brace'>{</em>
+<a id='L95' name='L95'></a>    <strong class='reserved'>char</strong> myszTerm1[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
+<a id='L96' name='L96'></a>    <strong class='reserved'>char</strong> myszTerm2[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
+<a id='L97' name='L97'></a>    <strong class='reserved'>char</strong> szOp[<a href='../D/49.html' title='Multiple defined in 4 places.'>DEFAULT_STRSIZE</a>];
+<a id='L98' name='L98'></a>    <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong> acc;
+<a id='L99' name='L99'></a>    <a href='../D/470.html' title='Multiple defined in 2 places.'>calc</a>(g_szParms,myszTerm1,szOp,myszTerm2);
+<a id='L100' name='L100'></a>    <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong> term1 = <a href='../D/559.html' title='Multiple defined in 2 places.'>resolvep64</a>(myszTerm1);
+<a id='L101' name='L101'></a>    <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong> term2 = <a href='../D/559.html' title='Multiple defined in 2 places.'>resolvep64</a>(myszTerm2);
+<a id='L102' name='L102'></a>    <strong class='reserved'>switch</strong>(szOp[0]) <em class='brace'>{</em>
+<a id='L103' name='L103'></a>        <strong class='reserved'>case</strong> '+': acc = term1 + term2; <strong class='reserved'>break</strong>;
+<a id='L104' name='L104'></a>        <strong class='reserved'>case</strong> '-': acc = term1 - term2; <strong class='reserved'>break</strong>;
+<a id='L105' name='L105'></a>        <strong class='reserved'>case</strong> '*': acc = term1 * term2; <strong class='reserved'>break</strong>;
+<a id='L106' name='L106'></a>        <strong class='reserved'>case</strong> '/': acc = term1 / term2; <strong class='reserved'>break</strong>;
+<a id='L107' name='L107'></a>        <strong class='reserved'>case</strong> '&amp;': acc = term1 &amp; term2; <strong class='reserved'>break</strong>;
+<a id='L108' name='L108'></a>        <strong class='reserved'>case</strong> '|': acc = term1 | term2; <strong class='reserved'>break</strong>;
+<a id='L109' name='L109'></a>        <strong class='reserved'>default</strong>: g_iErrorNo |= <a href='../D/76.html' title='Multiple defined in 2 places.'>ERROR_OPERATOR</a>; <strong class='reserved'>break</strong>;
+<a id='L110' name='L110'></a>    <em class='brace'>}</em>;
+<a id='L111' name='L111'></a>    g_pCSymbols-&gt;<a href='../D/455.html' title='Multiple defined in 14 places.'>add</a>(g_szLabel,<a href='../D/437.html' title='Multiple defined in 2 places.'>TYPE_U64</a>,(<strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <strong class='reserved'>long</strong>)acc);
+<a id='L112' name='L112'></a>  <em class='brace'>}</em>
+<a id='L113' name='L113'></a><em class='brace'>}</em>
+<a id='L114' name='L114'></a>
+<a id='L115' name='L115'></a><em class='comment'>////////////////////</em>
+<a id='L116' name='L116'></a><em class='comment'>// eof - calc.hpp //</em>
+<a id='L117' name='L117'></a><em class='comment'>////////////////////</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L13'>[^]</a><a href='#L90'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>
