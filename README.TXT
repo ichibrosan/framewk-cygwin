@@ -19,6 +19,11 @@
 // along with VMAPT.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+Note:
+	The 08212011 version is compiled to run on the Mac OS X.
+	The 01072013 version is compiled to run on Windows 7.
+
+
 To enter the appropriate development directory,
 do "make" then ". today". 
 
