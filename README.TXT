@@ -1,5 +1,5 @@
 // ---------------------------------------------------
-// README.TXT   28-Apr-19  Running on Mac OS X 10.14.4
+// README.TXT 28-Apr-2019  Running on Mac OS X 10.14.4
 // S/n 2011-1042-654321  Written by Douglas W. Goodall
 // Copyright(c)2011 Douglas W. Goodall, United States.
 // ---------------------------------------------------
